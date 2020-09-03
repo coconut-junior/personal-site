@@ -30,6 +30,9 @@ function nextTex() {
 	}
 }
 
+cursor_x = window.innerWidth / 2;
+cursor_y = window.innerHeight / 2;
+
 document.addEventListener('mousemove', e => {
 	cursor_x = e.pageX;
 	cursor_y = e.pageY;
@@ -89,6 +92,7 @@ function onWindowResize() {
 window.addEventListener('resize', onWindowResize, false);
 
 init();
+
 window.onclick = e => {
 	if (e.target.className == "button icon-shuffle")
     {
