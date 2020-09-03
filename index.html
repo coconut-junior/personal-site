@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Jimmy Blanck</title>
+        <link rel='icon' href='https://mc-heads.net/head/coconut_junior'>
+        <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <script src="js/three.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+        <a id = "home"></a>
+        <script src = "js/card.js">
+            <h1>business cards</h1>
+        </script>
+
+        <div class = "banner" style = "flex-direction: row; height: auto;"><div class = "title"></div></div>
+        
+        <div class = "banner" style = "background-image: url('images/spray_can_mockup.jpg');" id="branding">
+            <h2>branding</h2>
+            <p><span style = "filter:invert(60%)">chamo professional spray paint. 
+                designed to be nontoxic and comes in over </span><span class = "colorful">200 vibrant colors.</span>
+            </p>
+        </div>
+
+        <div class = "banner">
+            <video autobuffer preload muted = "true" autoplay="true" loop="true" style = "width: 100vw;">
+                <source src = "media/text-anim.mp4" type = "video/mp4">
+            </video>
+            <h2>font design</h2>
+        </div>
+
+        <div class = "banner" id = "resume">
+            <h2>resume</h2>
+        </div>
+
+        
+        <div class = "button icon-shuffle"><span style = "font-size: 12px;">click me!</span></div>
+
+        <div class = "navbar">
+            <ul>
+                <a href = '#home'><li>home</li></a>
+                <a href = ''><li>about</li></a>
+                <a href = '#branding'><li>projects</li></a>
+                <a href = '#resume'><li>resume</li></a>
+            </ul>
+        </div>
+
+
+        <div class = "icon"></div>
+        <script src='js/cursor-anim.js'></script>
+        <script>
+            var typed3 = new Typed('.title', {
+                strings: ['i\'m jimmy blanck, and i\'m a web designer.', 'i\'m jimmy blanck, and i\'m a web developer.'],
+                typeSpeed: 50,
+                backSpeed: 50,
+                cursorChar: '',
+                loop: true
+            });
+        </script>
+    </body>
+</html>
