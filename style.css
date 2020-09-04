@@ -128,7 +128,7 @@ p {
     transition: 2s;
     letter-spacing: 2px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 40px;
+    margin: 80px;
     width: auto;
     height: 20px;
 }
@@ -313,7 +313,7 @@ canvas:hover h1 {
 
   .branding {
     background-image: url('images/can_blue.jpg');
-    transition: 0.3s;
+    transition: 0.6s;
   }
 
   .colorpicker {
@@ -341,6 +341,7 @@ canvas:hover h1 {
       height: 0px;
       opacity: 0%;
       text-align: center;
+      margin-bottom: 40px;
   }
 
   h3 ul li {
