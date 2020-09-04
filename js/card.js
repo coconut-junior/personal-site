@@ -39,7 +39,6 @@ document.addEventListener('mousemove', e => {
 	cursor_y = e.pageY - 256;
 
 	var c = document.getElementById('c');
-
 	gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
 
 	if (e.target.className == "colorpicker")
