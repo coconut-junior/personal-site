@@ -15,11 +15,19 @@
 
         <div class = "banner" style = "flex-direction: row; height: auto;"><div class = "title"></div></div>
         
-        <div class = "banner" style = "background-image: url('images/spray_can_mockup.jpg');" id="branding">
+        <div class = "banner branding" id="branding">
             <h2>branding</h2>
+            
             <p><span style = "filter:invert(60%)">chamo professional spray paint. 
                 designed to be nontoxic and comes in over </span><span class = "colorful">200 vibrant colors.</span>
             </p>
+            
+        </div>
+
+        <div class = "banner" style = "flex-direction: row; height: auto; padding: 128px;">
+            <div class = "photo" style = "background-image: url('images/chamo.png');"></div>
+            <div class = "photo" style = "background-image: url('images/ang_jacks.png');"></div>
+            <h2>logos</h2>
         </div>
 
         <div class = "banner">
@@ -30,24 +38,45 @@
         </div>
 
         <div class = "banner" id = "resume">
+            <h3>design skills
+                <div class = "dropdown" id = "dropdown1">+</div>
+                <ul id = "menu1">
+                    <li>photoshop</li>
+                    <li>illustrator</li>
+                    <li>aftereffects</li>
+                </ul>
+            </h3>
+            <h3>tech skills
+                <div class = "dropdown" id = "dropdown2">+</div>
+                <ul id = "menu2">
+                    <li>html/css</li>
+                    <li>javascript</li>
+                </ul>
+            </h3>
+            <h3>interests
+                <div class = "dropdown" id = "dropdown3">+</div>
+                <ul id = "menu3">
+                    <li></li>
+                </ul>
+            </h3>
             <h2>resume</h2>
         </div>
-
         
         <div class = "button icon-shuffle"><span style = "font-size: 12px;">click me!</span></div>
 
         <div class = "navbar">
             <ul>
-                <a href = '#home'><li>home</li></a>
-                <a href = ''><li>about</li></a>
+                <a href = 'mailto:blanckjm@gmail.com'><li style = "color:white;background-color:#2F2F2F;border-radius:50px; padding: 5px 10px 5px 10px;">contact</li></a>
                 <a href = '#branding'><li>projects</li></a>
                 <a href = '#resume'><li>resume</li></a>
             </ul>
         </div>
-
-
-        <div class = "icon"></div>
-        <script src='js/cursor-anim.js'></script>
+        
+        <div class = "footer">© 2020 Jimmy Blanck</div>
+        <div class = "bubble" id = "c"></div>
+        <a href = "#home"><div class = "icon"></div></a>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+        
         <script>
             var typed3 = new Typed('.title', {
                 strings: ['i\'m jimmy blanck, and i\'m a web designer.', 'i\'m jimmy blanck, and i\'m a web developer.'],

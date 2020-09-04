@@ -16,6 +16,7 @@ var hue_array = [
 	0xE0DEFF
 ];
 const texture = new THREE.TextureLoader();
+var menuOpen = false;
 
 function randTex() {
 	tex_index = Math.floor(Math.random() * ((tex_array.length - 1) - 0) + 0);
@@ -34,8 +35,21 @@ cursor_x = window.innerWidth / 2;
 cursor_y = window.innerHeight / 2;
 
 document.addEventListener('mousemove', e => {
-	cursor_x = e.pageX;
-	cursor_y = e.pageY;
+	cursor_x = e.pageX - 256;
+	cursor_y = e.pageY - 256;
+
+	var c = document.getElementById('c');
+
+	gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
+
+	if (e.target.className == "colorpicker")
+	{
+		document.getElementsByClassName("banner branding")[0].style.backgroundImage = "url('images/can_pink.jpg')";
+	}
+	if (e.target.className == "banner branding")
+	{
+		document.getElementsByClassName("banner branding")[0].style.backgroundImage = "url('images/can_blue.jpg')";
+	}
 })
 
 renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -94,10 +108,51 @@ window.addEventListener('resize', onWindowResize, false);
 init();
 
 window.onclick = e => {
+	
+
 	if (e.target.className == "button icon-shuffle")
     {
+
     	setTimeout(nextTex(), 100);
 		init();
+	}
+	if(e.target.id == "dropdown1"){
+        var menu = document.getElementById('menu1');
+        menuOpen = !menuOpen;
+        if (menuOpen){
+            e.target.innerHTML = "-";
+            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+        }
+        else {
+            e.target.innerHTML = "+";
+            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
+        }
+    }
+
+    if(e.target.id == "dropdown2"){
+        var menu = document.getElementById('menu2');
+        menuOpen = !menuOpen;
+        if (menuOpen){
+            e.target.innerHTML = "-";
+            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+        }
+        else {
+            e.target.innerHTML = "+";
+            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
+        }
+    }
+
+    if(e.target.id == "dropdown3"){
+        var menu = document.getElementById('menu3');
+        menuOpen = !menuOpen;
+        if (menuOpen){
+            e.target.innerHTML = "-";
+            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+        }
+        else {
+            e.target.innerHTML = "+";
+            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
+        }
     }
 }
 

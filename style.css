@@ -23,40 +23,37 @@
     color: white;
 }
 
+::-webkit-scrollbar-track {
+    background-color: none;
+    width: 5px;
+    opacity: 0%;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+    background-color: none;
+    opacity: 0%;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+
+      border-radius: 100px;
+      background-color: #2F2F2F;
+      opacity: 50%;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+      opacity: 90%;
+  }
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     display: inline-block;
     overflow-x: hidden;
-}
-
-.cursor {
-	position: absolute;
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	border-style: solid;
-	border-color: white;
-	background-color: white;
-	opacity: 90%;
-	animation: cursorAnim 0.6s infinite alternate;
-	transition: 0.1s;
-	pointer-events: none;
-	mix-blend-mode: difference;
-	z-index: 3;
-}
-
-.cursor::after {
-	content: "";
-	position: absolute;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	border-style: solid;
-	border-color: white;
-	border-width: 1px;
-	top: -11px;
-	left: -11px;
-	mix-blend-mode: difference;
 }
 
 .icon {
@@ -68,6 +65,15 @@ body {
     position: fixed;
     top: 10;
     left: 10;
+    transition: 0.3s;
+}
+
+.icon:hover {
+    height: 42;
+    width: 42;
+    top: 14;
+    left: 14;
+    transform: rotate(15deg);
 }
 
 h1 {
@@ -76,6 +82,15 @@ h1 {
     font-size: 48px;
     position: relative;
     opacity: 0;
+}
+
+h3 {
+    margin: auto;
+    font-family: 'Poiret One', cursive;
+    font-size: 36px;
+    position: relative;
+    width: 100%;
+    text-align: center;
 }
 
 h2 {
@@ -87,7 +102,7 @@ h2 {
     right: 10%;
     content: '';
     opacity: 0;
-    transition: 2s;
+    transition: 1s;
 }
 
 .title {
@@ -112,11 +127,10 @@ p {
     opacity: 0;
     transition: 2s;
     letter-spacing: 2px;
-    position: relative;
     font-family: Arial, Helvetica, sans-serif;
-    margin: auto;
+    margin: 40px;
     width: auto;
-    height: auto;
+    height: 20px;
 }
 
 canvas {
@@ -138,7 +152,7 @@ canvas {
     border-radius: 10%;
     top: 128px;
     right: 96px;
-    transition: 0.6s;
+    transition: 0.3s;
     font-size: 28px;
     display: flex;
     flex-direction: column;
@@ -153,6 +167,10 @@ canvas {
     top: 124px;
     right: 92px;
     cursor: pointer;
+}
+
+.button:active {
+    border-radius: 50%;
 }
 
 .banner {
@@ -181,12 +199,12 @@ ul {
 }
 
 li {
-    margin: 22px;
+    margin: 18px;
     color: #2F2F2F;
     font-family: Arial, Helvetica, sans-serif;
     padding-left: 5px;
     padding-right: 5px;
-    transition: 0.6s;
+    transition: 0.3s;
     text-align: center;
 }
 
@@ -203,6 +221,7 @@ li:hover {
     top: 0;
     left: 0;
     box-shadow: 5px -20px 30px 1px;
+    backdrop-filter: blur(10px);
 }
 
 .banner:hover {
@@ -277,6 +296,83 @@ canvas:hover h1 {
    
     /* Uncomment for 3D effect */
     /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+  }
+
+  .footer {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      display: flex;
+      flex-direction: row;
+      height: 64px;
+      width: auto;
+      padding: 40px;
+      color: #2F2F2F;
+      background-color: rgba(255,255,255,0.9);
+  }
+
+  .branding {
+    background-image: url('images/can_blue.jpg');
+    transition: 0.3s;
+  }
+
+  .colorpicker {
+      border-radius: 100px;
+      background-color: black;
+      height: 64px;
+      width: 64px;
+      transition: 0.3s;
+  }
+
+  .dropdown {
+    font-family: 'Poiret One', cursive;
+    font-size: 36px;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  h3 ul {
+      flex-direction: column;
+      margin-left: -35px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      text-align: center;
+      height: 0px;
+      opacity: 0%;
+      text-align: center;
+  }
+
+  h3 ul li {
+      padding: 0px;
+  }
+
+  .photo {
+      height: 256px;
+      width: 256px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: 40px;
+      transition: 0.6s;
+      position: relative;
+  }
+
+  .photo:hover {
+      height: 270px;
+      width: 270px;
+  }
+
+  .bubble {
+    height: 512px;
+    width: 512px;
+    background-color: #fff;
+    box-shadow:
+    inset 60px 0 120px #f0f,  /* left magenta */
+    inset -60px 0 120px #0ff; /* right cyan */
+    margin: auto;
+    border-radius: 100%;
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: color-burn;
   }
    
   .icon-shuffle:before { content: '\e800'; } /* '' */
