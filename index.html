@@ -9,11 +9,20 @@
         <script src="js/three.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
         <a id = "home"></a>
-        <script src = "js/card.js">
-            <h1>business cards</h1>
-        </script>
+        <script src = "js/card.js"></script>
 
-        <div class = "banner" style = "flex-direction: row; height: auto;"><div class = "title"></div></div>
+        <div class = "banner" style = "flex-direction: row; height: auto; flex-wrap: wrap;"></div>
+        
+
+        <div class = "banner">
+            <div class = "title">
+                <div class = "circle"></div>
+                <div class = "circle" style = "left: 24px;"></div>
+                <div class = "circle" style = "left: 48px; margin-right: 200px;"></div>
+                <div class = "console"></div>
+            </div>
+
+        </div>
         
         <div class = "banner branding" id="branding" style = "display: inline-block;">
             <h2>branding</h2>
@@ -24,7 +33,7 @@
             
         </div>
 
-        <div class = "banner" style = "flex-direction: row; height: auto; padding: 128px;">
+        <div class = "banner" id = "logos" style = "flex-direction: row; height: auto; padding: 256px;">
             <div class = "photo" style = "background-image: url('images/chamo.png');"></div>
             <div class = "photo" style = "background-image: url('images/ang_jacks.png');"></div>
             <div class = "photo" style = "background-image: url('images/genie.png');"></div>
@@ -73,7 +82,7 @@
             <h2>resume</h2>
         </div>
         
-        <div class = "button icon-shuffle"><span style = "font-size: 12px;">click me!</span></div>
+        <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;">click me!</span></div>
 
         <div class = "navbar">
             <ul>
@@ -83,17 +92,23 @@
             </ul>
         </div>
         
-        <div class = "footer">© 2020 Jimmy Blanck</div>
+        <div class = "footer">
+            © 2020 Jimmy Blanck
+            <a href = "https://github.com/coconut-junior"><div class = "slink"></div></a>
+        </div>
         <div class = "bubble" id = "c"></div>
         <a href = "#home"><div class = "icon"></div></a>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         
         <script>
-            var typed3 = new Typed('.title', {
-                strings: ['i\'m jimmy blanck, and i\'m a web designer.', 'i\'m jimmy blanck, and i\'m a web developer.'],
+            document.getElementById("shuffle").onclick = function() {shuffle();}
+            var typed3 = new Typed('.console', {
+                strings: [
+                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color: #E5B396;">web designer</span>.',
+                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#969DE5">web developer</span>.'],
                 typeSpeed: 50,
                 backSpeed: 50,
-                cursorChar: '',
+                showCursor: false,
                 loop: true
             });
         </script>

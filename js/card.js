@@ -4,19 +4,23 @@ var cursor_x = 0;
 var cusor_y = 0;
 var tex_index = 0;
 var tex_array = [
+	'https://i.imgur.com/TljTdYo.png',
 	'https://i.imgur.com/FH0QKkf.png',
 	'https://i.imgur.com/iOxRcqp.png',
 	'https://i.imgur.com/mVgaYhR.png',
 	'https://i.imgur.com/GZlYrXH.png'
 ];
 var hue_array = [
+	0xE59696,
 	0xE5F6AD,
 	0xFFC8FB,
 	0xC0E6DB,
 	0xE0DEFF
 ];
 const texture = new THREE.TextureLoader();
-var menuOpen = false;
+var menuOpen1 = false;
+var menuOpen2 = false;
+var menuOpen3 = false;
 
 function randTex() {
 	tex_index = Math.floor(Math.random() * ((tex_array.length - 1) - 0) + 0);
@@ -39,7 +43,10 @@ document.addEventListener('mousemove', e => {
 	cursor_y = e.pageY - 256;
 
 	var c = document.getElementById('c');
-	gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
+	if (cursor_y < document.body.scrollHeight)
+	{
+		gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
+	}
 
 	if (e.target.className == "colorpicker")
 	{
@@ -57,7 +64,6 @@ document.body.appendChild(renderer.domElement);
 
 // Init BoxGeometry object (rectangular cuboid)
 const geometry = new THREE.BoxGeometry(3.5, 2, 0.05);
-randTex();
 
 function init() {
 	// Init scene
@@ -67,7 +73,7 @@ function init() {
 
 	// Init camera (PerspectiveCamera)
 	camera = new THREE.PerspectiveCamera(
-		75,
+		60,
 		window.innerWidth / window.innerHeight,
 		0.1,
 		1000
@@ -88,8 +94,8 @@ function init() {
 function animate() {
 	requestAnimationFrame(animate);
 	// Rotate cube (Change values to change speed)
-	cube.rotation.x = ((cursor_x - (window.innerWidth/2)) * 0.002);
-	cube.rotation.y = -((cursor_y - (window.innerHeight/2)) * 0.002);
+	cube.rotation.y = ((cursor_x - (window.innerWidth / 4)) * 0.001);
+	cube.rotation.x = ((cursor_y - (window.innerHeight / 4)) * 0.001);
 	renderer.render(scene, camera);
 }
 
@@ -102,23 +108,19 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('resize', onWindowResize, false);
+window.shuffle = function shuffle() {
+	nextTex()
+	init();
+}
 
 init();
+window.addEventListener('resize', onWindowResize, false);
 
 window.onclick = e => {
-	
-
-	if (e.target.className == "button icon-shuffle")
-    {
-
-    	setTimeout(nextTex(), 100);
-		init();
-	}
 	if(e.target.id == "dropdown1"){
         var menu = document.getElementById('menu1');
-        menuOpen = !menuOpen;
-        if (menuOpen){
+        menuOpen1 = !menuOpen1;
+        if (menuOpen1){
             e.target.innerHTML = "-";
             gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
         }
@@ -130,8 +132,8 @@ window.onclick = e => {
 
     if(e.target.id == "dropdown2"){
         var menu = document.getElementById('menu2');
-        menuOpen = !menuOpen;
-        if (menuOpen){
+        menuOpen2 = !menuOpen2;
+        if (menuOpen2){
             e.target.innerHTML = "-";
             gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
         }
@@ -143,8 +145,8 @@ window.onclick = e => {
 
     if(e.target.id == "dropdown3"){
         var menu = document.getElementById('menu3');
-        menuOpen = !menuOpen;
-        if (menuOpen){
+        menuOpen3 = !menuOpen3;
+        if (menuOpen3){
             e.target.innerHTML = "-";
             gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
         }
