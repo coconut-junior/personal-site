@@ -43,10 +43,18 @@ document.addEventListener('mousemove', e => {
 	cursor_y = e.pageY - 256;
 
 	var c = document.getElementById('c');
+	var sphere = document.getElementById('sphere');
+	var hero = document.getElementById('hero');
+	var j = document.getElementById('j');
+	var b = document.getElementById('b');
 	if (cursor_y < window.innerHeight)
 	{
 		gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
 	}
+
+	gsap.to(sphere, {left: -cursor_x / 8, top: -cursor_y / 8, duration: 8});
+	gsap.to(j, {left: cursor_x / 8, top: cursor_y / 4, duration: 8});
+	gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 6});
 
 	if (e.target.className == "colorpicker")
 	{

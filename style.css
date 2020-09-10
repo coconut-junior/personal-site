@@ -129,10 +129,12 @@ h2 {
     background-color: #2F2F2F;
     border-radius: 5px;
     padding: 40px;
-    position: relative;
+    position: absolute;
     margin: auto;
     width: 512px;
-    box-shadow: 5px 10px 30px 1px darkgray;
+    box-shadow: 5px 10px 30px 1px #725BA7;
+    transition: 2s;
+
 }
 
 a {
@@ -151,7 +153,6 @@ a {
 }
 
 p {
-    opacity: 0;
     transition: 2s;
     letter-spacing: 2px;
     font-family: Arial, Helvetica, sans-serif;
@@ -216,6 +217,7 @@ canvas {
     margin: auto;
     transition: 2s;
     flex-wrap: wrap;
+    
 }
 
 ul {
@@ -251,7 +253,7 @@ li:hover {
     top: 0;
     left: 0;
     box-shadow: 5px -20px 30px 1px;
-    backdrop-filter: blur(90%);
+    backdrop-filter: blur(10px);
 }
 
 .banner:hover p {
@@ -321,16 +323,28 @@ canvas:hover h1 {
   }
 
   .footer {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 18px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: auto;
     width: auto;
     padding: 40px;
     color: #2F2F2F;
     box-shadow: 5px -138px 30px 1px;
     background-color: rgba(255,255,255,0.9);
+  }
+
+  .footer a {
+      margin: 20px;
+  }
+
+  .footer p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    color: #2F2F2F;
+    position: relative;
+    margin: 40px;padding: 0;
   }
 
   .branding {
@@ -397,17 +411,17 @@ canvas:hover h1 {
   }
 
   .slink {
-      height: 42px;
-      width: 42px;
-      font-size: 32px;
-      margin: auto;
-      position: relative;
-      display: flex;
+    height: 32px;
+    width: 32px;
+    font-size: 32px;
+    margin: auto;
+    position: relative;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('images/GitHub-Mark-64px.png');
     background-size: contain;
+    background-repeat: no-repeat;
   }
   svg {
     zoom: 200%;
@@ -420,19 +434,10 @@ canvas:hover h1 {
   .gallery {
     background-size:cover;
     background-repeat: no-repeat;
-    height: 512px;
-    width: 512px;
-    margin: 40px;
-    border-radius: 10px;
+    height: 720px;
+    width: 80%;
+    border-radius: 40px;
     transition: 0.6s;
-  }
-
-  .gallery:hover {
-    border-width: 10px;
-    border-color: rgba(252, 252, 252, 0.5);
-    border-style: solid;
-    padding: 10px;
-    
   }
    
   .icon-shuffle:before { content: '\e800'; } /* '' */

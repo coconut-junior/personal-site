@@ -15,9 +15,16 @@
         <script src = "js/card.js"></script>
         <div class = "bubble" id = "c"></div>
 
-        <div class = "banner" style = "flex-direction: row; height: auto; flex-wrap: wrap;box-shadow: 5px -20px 80px 100px #f8f8f8;"></div>
+        <div class = "banner" style = "padding: 0;display: flex;flex-direction: row; height: auto; flex-wrap: wrap;box-shadow: 5px -20px 80px 100px #f8f8f8;"></div>
         
-        <div class = "banner"">
+        <div class = "banner" style = "height: 1080px;background-image: -webkit-linear-gradient(-90deg, #f8f8f8, #a8ffdb); display: flex; 
+        -wrap:wrap;flex-direction: column;justify-content: center;align-items: center;">
+            <div id = "sphere" style = "background-size:contain;background-repeat:no-repeat;width:30%; height: 30%; background-image: url('images/sphere.svg'); position: absolute; top:0px;left:0px;"></div>
+
+            <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.png'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
+            <div class = "j" id = "j" style = "position:absolute;background-image:url('images/j.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
+            <div class = "b" id = "b" style = "position:absolute;background-image:url('images/b.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
+            <div style = "background-image:url('images/squiggle.png'); background-repeat: no-repeat; width:20%; height: auto; margin:auto; background-size: contain;"></div>
             <div class = "title">
                 <div class = "circle"></div>
                 <div class = "circle" style = "left: 24px;"></div>
@@ -25,12 +32,13 @@
                 <div class = "console"></div>
             </div>
         </div>
-        <h2 id = "photography">photography</h2>
-        <div class = "banner" style = "display: flex; flex-direction:row;justify-content: center;height:auto;padding: 150px; align-items: center;">
+            
+        </div>
+        <h2 id = "photography" style = "box-shadow: 5px -20px 80px 100px #f8f8f8;">photography</h2>
+        <div class = "banner" style = "display: flex; flex-direction:row;justify-content: center;height:auto;padding: 150px; padding-left: 10px; padding-right: 10px; align-items: center;">
 
             <div class = "gallery" style="background-image:url('images/DSC00574.jpg')"></div>
-            <div class = "gallery" style="background-image:url('images/DSC01218.jpg')"></div>
-            <div class = "gallery" id = "spread" style="background-image:url('images/DSC00107.jpg');"></div>
+
         </div>
         
         <h2>logos</h2>
@@ -45,7 +53,7 @@
         <h2 style = "padding-bottom: 40px;">font design</h2>
 
         <div class = "banner" style = "display: flex; justify-content: center; align-items: center; 
-        background-color: #1A1A1A; border-radius: 10px;margin: 10px;">
+        background-color: #1A1A1A; border-radius: 40px;margin: 10px;">
             <svg id = "blueprint" width="320" height="141" viewBox="0 0 320 141" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <radialGradient id = "gradient" cx = "40%"" cy = "40%" r = "90%" fx="10%" fy="20%">
                     <stop offset="10%" stop-color="#E8E9FF"></stop>
@@ -89,7 +97,7 @@
                 <path d="M276.98 106.416C276.476 102.6 274.748 98.928 271.94 96.192C267.332 91.728 260.492 90.288 254.516 92.304C254.444 91.8 254.3 91.368 253.868 91.008C252.788 89.928 250.7 90.288 249.26 90.288C247.82 90.288 246.38 90.216 244.94 90.288C243.284 90.36 242.42 91.656 242.42 93.168C242.42 94.104 242.42 95.04 242.42 95.976C242.42 99.504 242.42 102.96 242.42 106.488C242.42 110.232 242.42 114.048 242.42 117.864C242.42 119.592 242.348 121.392 242.42 123.12C242.42 123.768 242.636 124.272 242.996 124.704C242.996 124.776 242.996 124.848 242.996 124.92C242.996 125.352 243.356 125.712 243.716 125.712C244.148 125.712 244.58 125.712 244.94 125.712C246.452 125.712 247.892 125.712 249.332 125.712C250.124 125.712 251.204 125.784 252.068 125.712C252.428 125.712 252.788 125.712 253.148 125.712C253.364 125.712 253.508 125.64 253.652 125.496V125.424C253.796 125.352 253.868 125.136 253.868 124.92C254.66 124.2 254.66 123.264 254.66 122.328C254.66 121.176 254.66 120.096 254.66 118.944C254.66 114.48 254.66 109.944 254.66 105.48C255.596 103.752 257.324 102.528 259.412 102.312C262.148 102.024 264.812 103.68 265.82 106.272C266.252 107.424 266.18 108.648 266.18 109.872C266.18 111.6 266.18 113.328 266.18 115.128C266.18 118.368 266.18 121.68 266.18 124.92C266.18 125.352 266.54 125.712 266.9 125.712C270.068 125.712 273.236 125.712 276.332 125.712C276.764 125.712 277.124 125.352 277.124 124.92C277.124 120.6 277.124 116.208 277.124 111.888C277.124 110.088 277.196 108.216 276.98 106.416ZM243.932 92.808C244.004 91.44 245.876 91.8 246.884 91.8C248.468 91.8 250.124 91.8 251.78 91.8C252.5 91.8 253.076 92.016 253.148 92.808C252.14 93.24 251.204 93.744 250.34 94.392C247.388 96.48 245.084 99.432 243.932 102.816C243.932 101.304 243.932 99.792 243.932 98.28C243.932 96.48 243.788 94.608 243.932 92.808ZM246.236 124.2C245.804 124.2 245.372 124.2 244.94 124.2C244.796 124.2 244.652 124.128 244.508 124.056C244.508 120.24 244.508 116.352 244.508 112.536C244.508 110.952 244.436 109.44 244.508 107.856C244.652 104.112 246.164 100.512 248.684 97.776C249.98 96.408 251.492 95.328 253.148 94.536C253.148 94.968 253.148 95.4 253.148 95.832C253.148 98.928 253.148 102.024 253.148 105.12C252.5 106.416 252.356 107.856 252.356 109.296C252.356 110.952 252.356 112.608 252.356 114.336C252.356 117.576 252.356 120.816 252.356 124.128C252.284 124.128 252.14 124.2 251.996 124.2C251.78 124.2 251.564 124.2 251.348 124.2C249.62 124.2 247.964 124.2 246.236 124.2ZM261.572 100.944C258.98 100.44 256.388 101.232 254.66 102.96C254.66 100.944 254.66 98.928 254.66 96.912C254.66 95.904 254.66 94.896 254.66 93.888C259.412 92.16 265.028 92.736 269.348 95.904C272.3 98.136 274.388 101.376 275.18 104.976C275.612 106.92 275.612 108.864 275.612 110.808C275.612 115.272 275.612 119.736 275.612 124.2C272.948 124.2 270.356 124.2 267.692 124.2C267.692 121.392 267.692 118.656 267.692 115.848C267.692 113.976 267.692 112.032 267.692 110.16C267.692 108.864 267.764 107.64 267.404 106.416C266.684 103.68 264.38 101.448 261.572 100.944Z" stroke="#1A1A1A" stroke-width="2" mask="url(#path-1-outside-1)"/>
                 <path d="M317.807 107.928C314.711 107.928 311.543 107.928 308.447 107.928C308.231 107.928 308.015 108 307.943 108.072L307.871 108.144C307.727 108.288 307.655 108.432 307.655 108.648C307.655 113.184 302.687 116.208 298.655 114.12C296.855 113.112 295.559 111.168 295.415 109.08C295.343 108 295.415 106.848 295.415 105.768C295.415 104.688 295.415 103.608 295.415 102.456C295.991 102.456 296.711 102.528 297.287 102.528C299.735 102.528 302.255 102.528 304.703 102.528C304.847 102.528 305.063 102.528 305.207 102.528C305.279 102.528 305.351 102.528 305.423 102.456C306.647 102.384 307.655 101.52 307.871 100.224C307.943 99.72 307.871 99.144 307.871 98.64C307.871 96.912 307.871 95.112 307.871 93.384C307.871 91.584 306.791 90.288 304.991 90.288C303.407 90.288 301.751 90.288 300.167 90.288C298.943 90.288 297.719 90.288 296.495 90.288C296.495 88.488 296.495 86.616 296.495 84.816C296.495 83.952 296.567 83.088 296.495 82.152C296.495 80.64 295.343 79.488 293.831 79.416C291.671 79.344 289.511 79.416 287.423 79.416C286.055 79.416 284.759 79.992 284.399 81.432C284.255 81.936 284.327 82.512 284.327 83.016C284.327 87.912 284.327 92.808 284.327 97.632C284.327 98.856 284.111 100.368 284.759 101.448C284.615 101.592 284.471 101.808 284.471 102.024C284.471 104.256 284.471 106.416 284.471 108.648C284.471 112.968 286.127 117.216 289.151 120.384C295.343 126.936 305.999 127.44 312.767 121.464C316.439 118.224 318.599 113.472 318.599 108.648C318.599 108.216 318.239 107.928 317.807 107.928ZM286.199 81.288C286.703 80.712 287.927 80.928 288.647 80.928C289.871 80.928 291.167 80.928 292.391 80.928C293.183 80.928 294.335 80.712 294.839 81.504C295.199 82.008 294.983 83.016 294.983 83.592C294.983 85.896 294.983 88.2 294.983 90.504C294.983 90.72 294.983 90.864 294.983 91.08C294.983 91.44 295.343 91.8 295.775 91.8C298.439 91.8 301.103 91.8 303.767 91.8C304.847 91.8 306.287 91.584 306.431 93.024C306.503 94.32 306.431 95.688 306.431 96.984C306.431 97.776 306.431 98.64 306.431 99.432C306.431 100.224 306.143 100.944 305.207 101.016C303.407 101.016 301.607 101.016 299.879 101.016C298.655 101.016 297.431 101.016 296.207 101.016C295.631 101.016 294.983 100.872 294.407 101.016C293.615 101.232 292.823 101.16 292.031 101.16C290.735 101.16 289.511 101.16 288.287 101.16C287.423 101.16 286.199 101.376 285.911 100.368C285.767 100.008 285.839 99.504 285.839 99.072C285.839 94.464 285.839 89.856 285.839 85.248C285.839 84.456 285.839 83.592 285.839 82.8C285.839 82.296 285.767 81.72 286.199 81.288ZM301.823 124.2C293.399 124.344 286.199 117.504 285.983 109.08C285.911 106.992 285.983 104.904 285.983 102.816C288.647 102.816 291.239 102.816 293.903 102.816C293.903 103.824 293.903 104.832 293.903 105.84C293.903 107.28 293.759 108.72 294.047 110.088C294.911 115.2 300.959 117.864 305.423 115.272C307.511 114.048 308.879 111.816 309.167 109.368C311.759 109.368 314.423 109.368 317.087 109.368C316.655 117.432 309.959 124.056 301.823 124.2Z" stroke="#1A1A1A" stroke-width="2" mask="url(#path-1-outside-1)"/>
             </svg>
-            <a href = "" alt = "Download"><svg style = "position: absolute; bottom: 48px;" width ="20" height="20" viewBox="0 0 58 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href = "" alt = "Download"><svg style = "position: relative;bottom: -50px;" width ="20" height="20" viewBox="0 0 58 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0)">
                 <path d="M0 28.1C0.6 27.5 1.2 26.7 2.2 27.1C3.2 27.5 3.4 28.5 3.4 29.5C3.4 34.6 3.4 39.8 3.4 44.9C3.4 49 6.7 52.4 10.6 52.4C22.8 52.4 35 52.4 47.3 52.4C51.3 52.4 54.5 48.9 54.5 44.8C54.5 39.7 54.5 34.6 54.5 29.5C54.5 28.5 54.7 27.6 55.7 27.2C56.8 26.8 57.4 27.6 57.8 28.5C57.8 34.3 57.8 40.1 57.8 45.9C57.7 46 57.6 46.1 57.6 46.2C56.5 52.1 52.4 55.7 46.7 55.7C34.8 55.7 23 55.7 11.1 55.7C7.6 55.7 4.5 54.4 2.5 51.3C1.3 49.9 0.8 47.9 0 46C0 40 0 34 0 28.1Z" fill="black"/>
                 <path d="M30.5 36.8C33 34.2 35.2 31.8 37.5 29.5C37.7 29.2 38 29 38.2 28.7C38.9 28.1 39.7 28 40.4 28.7C41.1 29.4 41.2 30.3 40.5 31.1C37 34.8 33.5 38.5 29.9 42.2C29.2 42.9 28.3 42.8 27.6 42.1C24.1 38.5 20.7 34.9 17.3 31.3C16.6 30.5 16.5 29.7 17.2 28.8C17.8 28.1 18.9 28.1 19.7 29C22.1 31.5 24.5 34 27.2 36.8C27.2 36.1 27.2 35.6 27.2 35.2C27.2 24.4 27.2 13.6 27.2 2.8C27.2 2.4 27.2 2.1 27.2 1.7C27.3 0.7 27.9 0.1 28.8 0.1C29.7 0.1 30.3 0.7 30.5 1.6C30.6 2 30.5 2.4 30.5 2.8C30.5 13.6 30.5 24.3 30.5 35.1C30.5 35.5 30.5 36 30.5 36.8Z" fill="black"/>
@@ -149,8 +157,11 @@
         </div>
         
         <div class = "footer">
-            &#169; 2020 Jimmy Blanck
-            <a href = "https://github.com/coconut-junior"><div class = "slink"></div></a>
+            <p>&#169; 2020 Jimmy Blanck</p>
+            <div style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
+                <a href = "https://github.com/coconut-junior"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
+                <a href = "https://www.behance.net/jblanck"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
+            </div>
         </div>
         
         <a href = "#home"><div class = "icon"></div></a>
@@ -162,7 +173,7 @@
                 strings: [
                     'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color: #E5B396;">web designer</span>.',
                     'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#969DE5">web developer</span>.',
-                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#96E5B4">full stack developer</span>.\ntogether, we can create a fresh look for your business.'],
+                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#96E5B4">full stack developer</span>.\ntogether, we can create a fresh new look for your business.'],
 
                 typeSpeed: 30,
                 backSpeed: 20,
