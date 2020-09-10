@@ -443,6 +443,12 @@ canvas:hover h1 {
   .icon-spin5:before { content: '\e838'; } /* '' */
   .icon-angellist:before { content: '\f209'; } /* '' */
 
+  @media (min-width: 1280px) {
+      #spread {
+        width: 1100px;
+      }
+  }
+
   @media (pointer: coarse) {
     
     .navbar {
