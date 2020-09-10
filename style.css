@@ -54,6 +54,7 @@ body {
     margin: 0;
     display: inline-block;
     overflow-x: hidden;
+    background-color: #fff;
 }
 
 .icon {
@@ -108,12 +109,10 @@ h2 {
     margin: auto;
     font-family: 'Poiret One', cursive;
     font-size: 48px;
-    position: fixed;
-    bottom: 10%;
-    right: 10%;
-    content: '';
-    opacity: 0;
+    position: relative;
     transition: 1s;
+    text-align: center;
+    background-color: #f8f8f8;
 }
 
 .console {
@@ -133,6 +132,7 @@ h2 {
     position: relative;
     margin: auto;
     width: 512px;
+    box-shadow: 5px 10px 30px 1px darkgray;
 }
 
 a {
@@ -211,7 +211,6 @@ canvas {
     height: 720px;
     width: auto;
     background-color: #f8f8f8;
-    box-shadow: 5px -20px 80px 30px #f8f8f8;
     background-size: contain;
     background-repeat: no-repeat;
     margin: auto;
@@ -231,7 +230,8 @@ ul {
 li {
     margin: 18px;
     color: #2F2F2F;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
     padding-left: 5px;
     padding-right: 5px;
     transition: 0.3s;
@@ -243,26 +243,18 @@ li:hover {
 }
 
 .navbar {
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.8);
     opacity: 0.8;
     width: 100%;
-    height: 64px;
+    height: 68px;
     position: fixed;
     top: 0;
     left: 0;
     box-shadow: 5px -20px 30px 1px;
-    backdrop-filter: blur(10px);
-}
-
-.banner:hover {
-    background-position-x: -300px;
+    backdrop-filter: blur(90%);
 }
 
 .banner:hover p {
-    opacity: 1;
-}
-
-.banner:hover h2 {
     opacity: 1;
 }
 
@@ -329,19 +321,19 @@ canvas:hover h1 {
   }
 
   .footer {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      height: 128px;
-      width: auto;
-      padding: 40px;
-      color: #2F2F2F;
-      background-color: rgba(255,255,255,0.9);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+    padding: 40px;
+    color: #2F2F2F;
+    box-shadow: 5px -138px 30px 1px;
+    background-color: rgba(255,255,255,0.9);
   }
 
   .branding {
-    background-color: #f8f8f8;
     background-image: url('images/can_blue.jpg');
     transition: 2s;
   }
@@ -360,6 +352,9 @@ canvas:hover h1 {
     position: relative;
     cursor: pointer;
     text-align: center;
+    background-image: -webkit-linear-gradient(92deg, #A2FFB7, #65CCAD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   h3 ul {
@@ -385,11 +380,6 @@ canvas:hover h1 {
       background-repeat: no-repeat;
       margin: 40px;
       transition: 0.6s;
-      padding: 0px;
-  }
-
-  .photo:hover {
-      padding: 40px;
   }
 
   .bubble {
@@ -418,6 +408,31 @@ canvas:hover h1 {
     align-items: center;
     background-image: url('images/GitHub-Mark-64px.png');
     background-size: contain;
+  }
+  svg {
+    zoom: 200%;
+  }
+
+  svg path {
+      fill: url(#gradient);
+  }
+
+  .gallery {
+    background-size:cover;
+    background-repeat: no-repeat;
+    height: 512px;
+    width: 512px;
+    margin: 40px;
+    border-radius: 10px;
+    transition: 0.6s;
+  }
+
+  .gallery:hover {
+    border-width: 10px;
+    border-color: rgba(252, 252, 252, 0.5);
+    border-style: solid;
+    padding: 10px;
+    
   }
    
   .icon-shuffle:before { content: '\e800'; } /* '' */

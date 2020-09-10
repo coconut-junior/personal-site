@@ -43,7 +43,7 @@ document.addEventListener('mousemove', e => {
 	cursor_y = e.pageY - 256;
 
 	var c = document.getElementById('c');
-	if (cursor_y < document.body.scrollHeight)
+	if (cursor_y < window.innerHeight)
 	{
 		gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
 	}
@@ -76,7 +76,7 @@ function init() {
 		60,
 		window.innerWidth / window.innerHeight,
 		0.1,
-		1000
+		1000000
 	);
 
 	material = new THREE.MeshBasicMaterial({ map: texture.load(tex_array[tex_index]) });
