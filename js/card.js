@@ -22,6 +22,12 @@ var menuOpen1 = false;
 var menuOpen2 = false;
 var menuOpen3 = false;
 
+var isMobile = false;
+
+window.addEventListener('touchstart', function onFirstTouch() {
+	isMobile = true;
+}, false);
+
 function randTex() {
 	tex_index = Math.floor(Math.random() * ((tex_array.length - 1) - 0) + 0);
 }
@@ -48,16 +54,19 @@ document.addEventListener('mousemove', e => {
 	var j = document.getElementById('j');
 	var b = document.getElementById('b');
 	var squiggle = document.getElementById('squiggle');
-	if (cursor_y < window.innerHeight)
-	{
-		gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
-	}
 
-	if (cursor_x < document.innerWidth) {
+	if (!isMobile) {
+		console.log('not mobile')
 		gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 8});
 		gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 8});
 		gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 8});
 		gsap.to(squiggle, {right: cursor_x /  + 512, bottom: cursor_y / 8, duration: 6});
+	}
+
+	if (isMobile) {
+		console.log('mobile')
+		gsap.to(j, {left: (window.innerWidth / 10) - 256, top: window.innerHeight / 10, duration: 8});
+		gsap.to(b, {left: window.innerWidth / 10, top: window.innerHeight / 10, duration: 8});
 	}
 
 	if (e.target.className == "colorpicker")
