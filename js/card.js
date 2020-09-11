@@ -11,11 +11,11 @@ var tex_array = [
 	'https://i.imgur.com/GZlYrXH.png'
 ];
 var hue_array = [
-	0xE59696,
-	0xE5F6AD,
-	0xFFC8FB,
-	0xC0E6DB,
-	0xE0DEFF
+	"#E59696",
+	"#E5F6AD",
+	"#FFC8FB",
+	"#C0E6DB",
+	"#E0DEFF"
 ];
 const texture = new THREE.TextureLoader();
 var menuOpen1 = false;
@@ -47,14 +47,16 @@ document.addEventListener('mousemove', e => {
 	var hero = document.getElementById('hero');
 	var j = document.getElementById('j');
 	var b = document.getElementById('b');
+	var squiggle = document.getElementById('squiggle');
 	if (cursor_y < window.innerHeight)
 	{
 		gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
 	}
 
-	gsap.to(sphere, {left: -cursor_x / 8, top: -cursor_y / 8, duration: 8});
-	gsap.to(j, {left: cursor_x / 8, top: cursor_y / 4, duration: 8});
-	gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 6});
+	gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 8});
+	gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 8});
+	gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 8});
+	gsap.to(squiggle, {right: cursor_x /  + 512, bottom: cursor_y / 8, duration: 6});
 
 	if (e.target.className == "colorpicker")
 	{
@@ -68,6 +70,7 @@ document.addEventListener('mousemove', e => {
 
 renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+
 document.body.appendChild(renderer.domElement);
 
 // Init BoxGeometry object (rectangular cuboid)
@@ -76,7 +79,9 @@ const geometry = new THREE.BoxGeometry(3.5, 2, 0.05);
 function init() {
 	// Init scene
 	scene = new THREE.Scene();
-	scene.background = new THREE.Color( hue_array[tex_index] );
+	scene.background = new THREE.Color( 0xf8f8f8);
+	var s = document.getElementById('shuffle');
+	s.style = "box-shadow: 5px 10px 50px 50px " + hue_array[tex_index] + ";";
 	document.body.style.backgroundColor = scene.background.Color;
 
 	// Init camera (PerspectiveCamera)
@@ -103,7 +108,7 @@ function animate() {
 	requestAnimationFrame(animate);
 	// Rotate cube (Change values to change speed)
 	cube.rotation.y = ((cursor_x - (window.innerWidth / 4)) * 0.001);
-	cube.rotation.x = ((cursor_y - (window.innerHeight / 4)) * 0.001);
+	cube.rotation.x = ((cursor_y - (window.innerHeight / 4) - window.innerHeight) * 0.001);
 	renderer.render(scene, camera);
 }
 

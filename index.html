@@ -12,19 +12,20 @@
         <script src="js/anime.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
         <a id = "home"></a>
-        <script src = "js/card.js"></script>
-        <div class = "bubble" id = "c"></div>
+
+        <!--<div class = "bubble" id = "c"></div>-->
 
         <div class = "banner" style = "padding: 0;display: flex;flex-direction: row; height: auto; flex-wrap: wrap;box-shadow: 5px -20px 80px 100px #f8f8f8;"></div>
         
-        <div class = "banner" style = "height: 1080px;background-image: -webkit-linear-gradient(-90deg, #f8f8f8, #a8ffdb); display: flex; 
-        -wrap:wrap;flex-direction: column;justify-content: center;align-items: center;">
+        <div class = "banner" style = "height: 100vh;background-image: -webkit-linear-gradient(-90deg, #f8f8f8, #a8ffdb); display: flex; 
+        -wrap:wrap;flex-direction: column;justify-content: center;align-items: center;box-shadow: 5px -20px 80px 100px #a8ffdb;margin-bottom: 100px;">
             <div id = "sphere" style = "background-size:contain;background-repeat:no-repeat;width:30%; height: 30%; background-image: url('images/sphere.svg'); position: absolute; top:0px;left:0px;"></div>
 
-            <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.png'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
+            <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
             <div class = "j" id = "j" style = "position:absolute;background-image:url('images/j.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
             <div class = "b" id = "b" style = "position:absolute;background-image:url('images/b.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
-            <div style = "background-image:url('images/squiggle.png'); background-repeat: no-repeat; width:20%; height: auto; margin:auto; background-size: contain;"></div>
+            <div class = "squiggle" id = "squiggle" style = "position:absolute;background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
+            <div style = "background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:20%; height: auto; margin:auto; background-size: contain;"></div>
             <div class = "title">
                 <div class = "circle"></div>
                 <div class = "circle" style = "left: 24px;"></div>
@@ -32,13 +33,22 @@
                 <div class = "console"></div>
             </div>
         </div>
-            
+
+        <h2 style = "background-color:none;box-shadow: 5px -40px 80px 100px #f8f8f8;">business cards</h2>
+        <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;">switch!</span></div>
+        <script src = "js/card.js"></script>
+        
+        <h2 id = "web" style = "box-shadow: 5px -20px 80px 100px #f8f8f8;">web design</h2>
+        <div class = "banner" style = "display: flex; flex-direction:row;justify-content: center;height:auto;padding-bottom: 150px; padding-top: 80px;padding-left: 10px; padding-right: 10px; align-items: center;">
+            <a href = "images/noon_page.png" style = "height:480px; width: 50%;"><div class = "gallery" style="background-image:url('images/noon_preview.png');"></div></a>
+            <h3 style = "width: auto;">blinds by noon</h3>
+            <h4>1</h4>
         </div>
-        <h2 id = "photography" style = "box-shadow: 5px -20px 80px 100px #f8f8f8;">photography</h2>
-        <div class = "banner" style = "display: flex; flex-direction:row;justify-content: center;height:auto;padding: 150px; padding-left: 10px; padding-right: 10px; align-items: center;">
 
-            <div class = "gallery" style="background-image:url('images/DSC00574.jpg')"></div>
-
+        <div class = "banner" style = "display: flex; flex-direction:row;justify-content: center;height:auto;padding-bottom: 150px; padding-left: 10px; padding-right: 10px; align-items: center;">
+            <a href = "images/ang_jacks_page.png" style = "height:480px; width: 50%;"><div class = "gallery" style="background-image:url('images/ang_jacks_preview.png');"></div></a>
+            <h3 style = "width: auto;">ang &amp; jack&apos;s eatery</h3>
+            <h4>2</h4>
         </div>
         
         <h2>logos</h2>
@@ -112,6 +122,7 @@
         </div>
 
         <div class = "banner" id = "resume" style = "height: auto; padding-top: 80px;">
+            <h2 style = "margin-bottom: 80px;">resume</h2>
             <h3>design skills
                 <div class = "dropdown" id = "dropdown1">+</div>
                 <ul id = "menu1">
@@ -145,13 +156,11 @@
             </h3>
 
         </div>
-        
-        <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;">click me!</span></div>
 
         <div class = "navbar">
             <ul>
                 <a href = 'mailto:blanckjm@gmail.com'><li style = "color:white;background-color:#2F2F2F;border-radius:50px; padding: 5px 10px 5px 10px;">contact</li></a>
-                <a href = '#photography'><li>projects</li></a>
+                <a href = '#web'><li>projects</li></a>
                 <a href = '#resume'><li>resume</li></a>
             </ul>
         </div>
@@ -173,7 +182,7 @@
                 strings: [
                     'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color: #E5B396;">web designer</span>.',
                     'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#969DE5">web developer</span>.',
-                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#96E5B4">full stack developer</span>.\ntogether, we can create a fresh new look for your business.'],
+                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#96E5B4">full stack designer</span>.\ntogether, we can create an exciting new look for <span style = "color:#ffff;">your business</span>.'],
 
                 typeSpeed: 30,
                 backSpeed: 20,
