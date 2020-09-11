@@ -491,9 +491,7 @@ canvas:hover h1 {
     .icon {
         zoom: 200%;
     }
-    #resume {
-        zoom: 200%;
-    }
+
     
     .footer {
         zoom: 200%;
@@ -503,11 +501,11 @@ canvas:hover h1 {
         top: -256px;
         right: -256px;
     }
-    p {
-        opacity: 100%;
+
+    h3 {
         zoom: 200%;
-        top: -100px;
     }
+
   }
 
 
