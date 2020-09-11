@@ -17,7 +17,7 @@
 
         <div class = "banner" style = "padding: 0;display: flex;flex-direction: row; height: auto; flex-wrap: wrap;box-shadow: 5px -20px 80px 100px #f8f8f8;"></div>
         
-        <div class = "banner" style = "height: 100vh;width: 100%;background-image: -webkit-linear-gradient(-90deg, #f8f8f8, #a8ffdb); display: flex; 
+        <div class = "banner" style = "height: 100vh;width: 100%;background-image: -webkit-linear-gradient(-90deg, #ffa2a2, #a8ffdb); display: flex; 
         -wrap:wrap;flex-direction: column;justify-content: center;align-items: center;box-shadow: -100px -20px 80px 100px #a8ffdb;margin-bottom: 100px;">
             <div class = "sphere" id = "sphere" style = "background-size:contain;background-repeat:no-repeat;width:30%; height: 30%; background-image: url('images/sphere.svg'); position: absolute; top:0px;left:0px;"></div>
 
@@ -26,6 +26,7 @@
             <div class = "b" id = "b" style = "position:absolute;background-image:url('images/b.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
             <div class = "squiggle" id = "squiggle" style = "position:absolute;background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
             <div style = "background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:20%; height: auto; margin:auto; background-size: contain;"></div>
+
             <div class = "title">
                 <div class = "circle"></div>
                 <div class = "circle" style = "left: 24px;"></div>
@@ -33,6 +34,8 @@
                 <div class = "console"></div>
             </div>
         </div>
+
+        
 
         <h2 style = "background-color:none;box-shadow: 5px -40px 80px 100px #f8f8f8;">business cards</h2>
         <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;">switch!</span></div>
@@ -179,9 +182,9 @@
             document.getElementById("shuffle").onclick = function() {shuffle();}
             var typed3 = new Typed('.console', {
                 strings: [
-                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color: #E5B396;">web designer</span>.',
-                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#969DE5">web developer</span>.',
-                    'i\'m <span style = "color: #E7E5C9;">jimmy blanck</span>, and i\'m a <span style = "color:#96E5B4">full stack designer</span>.\ntogether, we can create an exciting new look for <span style = "color:#ffff;">your business</span>.'],
+                    'i\'m <span style = "color: #41DCAA;">jimmy blanck</span>, and i\'m a <span style = "color: #E77D3F;">web designer</span>.',
+                    'i\'m <span style = "color: #41DCAA;">jimmy blanck</span>, and i\'m a <span style = "color:#969DE5">web developer</span>.',
+                    'i\'m <span style = "color: #41DCAA;">jimmy blanck</span>, and i\'m a <span style = "color:#8541DC">full stack designer</span>.\ntogether, we can create an exciting <span style = "background-color:#2F2F2F; color:white;">new look</span> for <span style = "color:#C6362F;">your business</span>.'],
 
                 typeSpeed: 30,
                 backSpeed: 20,

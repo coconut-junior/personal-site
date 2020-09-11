@@ -57,9 +57,9 @@ document.addEventListener('mousemove', e => {
 
 	if (!isMobile) {
 		console.log('not mobile')
-		gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 8});
-		gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 8});
-		gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 8});
+		gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 6});
+		gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 6});
+		gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 6});
 		gsap.to(squiggle, {right: cursor_x /  + 512, bottom: cursor_y / 8, duration: 6});
 	}
 
