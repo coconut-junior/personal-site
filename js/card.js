@@ -53,10 +53,12 @@ document.addEventListener('mousemove', e => {
 		gsap.to(c, {left: cursor_x, top: cursor_y, duration: 1});
 	}
 
-	gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 8});
-	gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 8});
-	gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 8});
-	gsap.to(squiggle, {right: cursor_x /  + 512, bottom: cursor_y / 8, duration: 6});
+	if (cursor_x < window.innerWidth) {
+		gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 8});
+		gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 8});
+		gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 8});
+		gsap.to(squiggle, {right: cursor_x /  + 512, bottom: cursor_y / 8, duration: 6});
+	}
 
 	if (e.target.className == "colorpicker")
 	{
