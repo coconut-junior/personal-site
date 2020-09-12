@@ -485,7 +485,7 @@ canvas:hover h1 {
     padding-left:80px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: -webkit-linear-gradient(-90deg, #ffa2a2, #a8ffdb);
+    background-image: -webkit-linear-gradient(-90deg, #d6f8e0, #f0e8f4);
   }
 
   #site {
