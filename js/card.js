@@ -4,19 +4,26 @@ var cursor_x = 0;
 var cusor_y = 0;
 var tex_index = 0;
 var tex_array = [
-	'https://i.imgur.com/TljTdYo.png',
+	'https://i.imgur.com/476P4Wv.png',
 	'https://i.imgur.com/FH0QKkf.png',
 	'https://i.imgur.com/iOxRcqp.png',
 	'https://i.imgur.com/mVgaYhR.png',
 	'https://i.imgur.com/GZlYrXH.png'
 ];
 var hue_array = [
-	"#E59696",
-	"#E5F6AD",
-	"#FFC8FB",
-	"#C0E6DB",
-	"#E0DEFF"
+	"#eecec4",
+	"#C6DA8D",
+	"#DB6499",
+	"#77C6AF",
+	"#7B77C6"
 ];
+var shadow_array = [
+	"",
+	"",
+	"",
+	"",
+	""
+]
 const texture = new THREE.TextureLoader();
 var menuOpen1 = false;
 var menuOpen2 = false;
@@ -90,7 +97,7 @@ function init() {
 	scene = new THREE.Scene();
 	scene.background = new THREE.Color( 0xf8f8f8);
 	var s = document.getElementById('shuffle');
-	s.style = "box-shadow: 5px 10px 50px 50px " + hue_array[tex_index] + ";";
+	s.style = "color: " + hue_array[tex_index] + ";";
 	document.body.style.backgroundColor = scene.background.Color;
 
 	// Init camera (PerspectiveCamera)

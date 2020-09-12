@@ -185,8 +185,11 @@ canvas {
 }
 
 .button {
-    background-color: rgba(255,255,255,0.9);
-    opacity: 0.8;
+    border-radius: 60px;
+
+    box-shadow:  6px 6px 13px #c2c6c8, 
+             -6px -6px 13px #ffffff;
+    background: linear-gradient(145deg, #ffffff, #ebebeb);
     width: 64px;
     height: 64px;
     position: relative;
@@ -201,8 +204,6 @@ canvas {
     font-family: Arial, Helvetica, sans-serif;
     margin: auto;
     z-index: 1;
-    box-shadow: 5px 0px 80px 100px #725BA7;
-    mix-blend-mode:multiply;
 }
 
 .button:hover {
@@ -265,6 +266,7 @@ li:hover {
     left: 0;
     box-shadow: 5px -20px 30px 1px;
     backdrop-filter: blur(10px);
+    z-index:2;
 }
 
 .banner:hover p {
@@ -487,7 +489,6 @@ canvas:hover h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: -webkit-linear-gradient(-90deg, #ffa2a2, #a8ffdb);
-    
   }
 
   #site {
@@ -530,6 +531,7 @@ canvas:hover h1 {
       right: 20px;
       visibility: hidden;
   }
+
 
   @media(max-width:720px) {
       #site {
