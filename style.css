@@ -344,7 +344,7 @@ canvas:hover h1 {
     width: auto;
     padding: 40px;
     color: #2F2F2F;
-    background-color: rgba(255,255,255,0.9);
+    background-color: #e8f4ef;
   }
 
   .footer a {
@@ -459,10 +459,6 @@ canvas:hover h1 {
       transition: 0.6s;
   }
 
-  .gallery img svg {
-      fill:red;
-  }
-
   .gallery:hover img {
       opacity: 1;
   }
@@ -485,7 +481,7 @@ canvas:hover h1 {
     position: relative;
     right: 0px;
     top: 0px;
-    margin-right: 80px;
+    margin-right: 120px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: -webkit-linear-gradient(-90deg, #ffa2a2, #a8ffdb);
@@ -520,6 +516,8 @@ canvas:hover h1 {
       flex-direction: column;
       justify-content: flex-end;
       padding:0px;
+      text-align: right;
+      margin: 40px;
   }
 
   .hamburger {

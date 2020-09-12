@@ -11,8 +11,8 @@ var tex_array = [
 	'https://i.imgur.com/GZlYrXH.png'
 ];
 var hue_array = [
-	"#eecec4",
-	"#C6DA8D",
+	"#CDABA1",
+	"#B5C589",
 	"#DB6499",
 	"#77C6AF",
 	"#7B77C6"
