@@ -478,10 +478,11 @@ canvas:hover h1 {
   h4 {
     font-size: 200px;
     font-family: 'Rajdhani', sans-serif;
-    position: relative;
+    position: absolute;
     right: 0px;
-    top: 0px;
-    margin-right: 120px;
+    bottom: 0px;
+    padding-right: 120px;
+    padding-left:80px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: -webkit-linear-gradient(-90deg, #ffa2a2, #a8ffdb);
@@ -516,8 +517,16 @@ canvas:hover h1 {
       flex-direction: column;
       justify-content: flex-end;
       padding:0px;
-      text-align: right;
-      margin: 40px;
+      text-align: left;
+    margin:40px;
+  }
+
+  .infobox p {
+      text-align: left;
+      margin:0px;
+      margin-top:40px;
+      padding:0px;
+      width:80%;
   }
 
   .hamburger {
@@ -546,11 +555,22 @@ canvas:hover h1 {
         width: 480px;
       }
       .infobox {
-          width: 480px;
-          margin: 40px;
+          width: auto;
+          margin: auto;
+          padding: 0px;
+      }
+      .infobox h3 {
+          text-align: center;
+          margin:0px;
+          padding:0px;
+          width:auto;
+      }
+      .infobox p {
+          width:auto;
       }
       h4 {
-          align-self: flex-end;
+          visibility: hidden;
+          position: absolute;
       }
   }
 
@@ -615,12 +635,5 @@ canvas:hover h1 {
     }
     .title p {
         font-size: 64px;
-    }
-  }
-
-
-  @media (pointer: none) {
-    body {
-        zoom: 110%;
     }
   }
