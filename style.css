@@ -54,7 +54,7 @@ body {
     margin: 0;
     display: inline-block;
     overflow-x: hidden;
-    background-color: #fff;
+    background-color: #f8f8f8;
 }
 
 .icon {
@@ -113,6 +113,8 @@ h3 p {
 
 h2 {
     margin: auto;
+    margin-top:40px;
+    margin-bottom: 40px;
     font-family: 'Poiret One', cursive;
     font-size: 48px;
     position: relative;
@@ -216,7 +218,7 @@ canvas {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: right;
+    align-items: center;
     height: 720px;
     width: auto;
     background-color: #f8f8f8;
@@ -224,8 +226,6 @@ canvas {
     background-repeat: no-repeat;
     margin: auto;
     transition: 2s;
-    flex-wrap: wrap;
-    
 }
 
 ul {
@@ -445,6 +445,26 @@ canvas:hover h1 {
     height: 480px;
     border-radius: 40px;
     transition: 0.6s;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery img {
+      opacity: 0;
+      transition: 0.6s;
+  }
+
+  .gallery img svg {
+      fill:red;
+  }
+
+  .gallery:hover img {
+      opacity: 1;
+  }
+
+  #site a:hover .gallery {
+      background-position-y: 180px;
   }
 
   .banner a {
@@ -452,19 +472,32 @@ canvas:hover h1 {
   }
 
   .banner a:hover{
-      opacity: 50%;
+      opacity: 80%;
   }
 
   h4 {
     font-size: 200px;
     font-family: 'Rajdhani', sans-serif;
-    position: absolute;
+    position: relative;
     right: 0px;
     top: 0px;
     margin-right: 80px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: -webkit-linear-gradient(-90deg, #ffa2a2, #a8ffdb);
+    
+  }
+
+  #site {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 80px;
+      margin-left: 10px;
+      height: auto;
+  }
+
+  #site a {
+    height:480px; width: 60%;
   }
    
   .icon-shuffle:before { content: '\e800'; } /* '' */
@@ -475,9 +508,40 @@ canvas:hover h1 {
   .icon-spin5:before { content: '\e838'; } /* '' */
   .icon-angellist:before { content: '\f209'; } /* '' */
 
+  .infobox {
+    display:flex;align-items:flex-end;height:480px;width:40%;
+  }
+  .infobox h3 {
+      margin: 40px;
+  }
+
   @media (min-width: 1280px) {
       #spread {
         width: 1100px;
+      }
+      
+  }
+
+  @media(max-width:720px) {
+      #site {
+          flex-direction: column;
+          justify-content: center;
+          align-items:center;
+          height: auto;
+      }
+      #site a {
+          width: 480px;
+          margin: auto;
+      }
+      .gallery {
+        width: 480px;
+      }
+      .infobox {
+          width: 480px;
+          margin: 40px;
+      }
+      h4 {
+          align-self: flex-end;
       }
   }
 
@@ -492,15 +556,8 @@ canvas:hover h1 {
     .icon {
         zoom: 200%;
     }
-
-    
     .footer {
         zoom: 200%;
-    }
-    .bubble {
-        position: fixed;
-        top: -256px;
-        right: -256px;
     }
 
     h3 {

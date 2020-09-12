@@ -56,7 +56,6 @@ document.addEventListener('mousemove', e => {
 	var squiggle = document.getElementById('squiggle');
 
 	if (!isMobile) {
-		console.log('not mobile')
 		gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 6});
 		gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 6});
 		gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 6});
@@ -64,7 +63,6 @@ document.addEventListener('mousemove', e => {
 	}
 
 	if (isMobile) {
-		console.log('mobile')
 		gsap.to(j, {left: (window.innerWidth / 10) - 256, top: window.innerHeight / 10, duration: 8});
 		gsap.to(b, {left: window.innerWidth / 10, top: window.innerHeight / 10, duration: 8});
 	}
