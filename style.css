@@ -52,6 +52,7 @@ html {
 
 body {
     margin: 0;
+    padding: 0;
     display: inline-block;
     overflow-x: hidden;
     background-color: #f8f8f8;
@@ -225,6 +226,8 @@ canvas {
     background-size: contain;
     background-repeat: no-repeat;
     margin: 10px;
+    margin-top:0px;
+    padding-top:0px;
     transition: 2s;
 }
 
