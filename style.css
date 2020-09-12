@@ -567,6 +567,7 @@ canvas:hover h1 {
     }
     .banner {
         margin: 40px;
+        margin-top:0px;
     }
     .infobox {
         width: 100%;
@@ -576,7 +577,7 @@ canvas:hover h1 {
         font-size: 36px;
     }
     .navbar {
-        zoom: 3;
+        zoom: 2;
     }
     .dropdown {
         font-size: 64px;
