@@ -4,7 +4,7 @@ var cursor_x = 0;
 var cusor_y = 0;
 var tex_index = 0;
 var tex_array = [
-	'https://i.imgur.com/476P4Wv.png',
+	'https://i.imgur.com/u1GSFim.png',
 	'https://i.imgur.com/FH0QKkf.png',
 	'https://i.imgur.com/iOxRcqp.png',
 	'https://i.imgur.com/mVgaYhR.png',
