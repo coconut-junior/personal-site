@@ -9,16 +9,21 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
+        <script>
+            w = 200;
+            scrollTo(w - 1, 0);
+            window.setTimeout (function (){scrollTo(w, 0);}, 10); 
+        </script>
         <script src="js/three.js"></script>
         <script src="js/anime.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
         <a id = "home"></a>
 
         <div class = "home">
             <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
-            <div style = "background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:20%; height: auto; margin:auto; background-size: contain;"></div>
 
-            <div class = "title">
+            <div class = "form" onmousedown = "drag()" onmouseup = "release()">
                 <div class = "circle"></div>
                 <div class = "circle" style = "left: 24px;"></div>
                 <div class = "circle" style = "left: 48px; margin-right: 200px;"></div>
@@ -26,11 +31,15 @@
             </div>
         </div>
 
-        <h2 style = "background-color:none;box-shadow: 5px -40px 80px 100px #f8f8f8;">business cards</h2>
+        <div style = "background-color:none;display:flex;justify-content:center;position:absolute;top:90vh;height:64px;width:100vw;">
+            <svg class = "arrow" style = "fill:black;stroke:black;" height="15" width="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" role="img"><path d="m15 5.41-7.5 7.91-7.5-7.91 1.95-1.95 5.55 5.83 5.55-5.83z"></path></svg>
+        </div>
+
+        <h2 style = "background-color:none;">business cards</h2>
         <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;"></span></div>
         <script src = "js/card.js"></script>
         
-        <h2 id = "web" style = "margin-top:0;box-shadow: 5px -20px 80px 100px #f8f8f8;">projects</h2>
+        <h2 id = "web" style = "margin-top:0;">projects</h2>
         <div class = "banner" id = "site">
             <a href = "images/noon_page.png">
                 <div class = "gallery" style="background-image:url('images/noon_preview.png');">
@@ -125,20 +134,51 @@
 
         </div>
 
+        <div class = "mobile-nav" style = "display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 100vw;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;border-bottom: 1px solid rgba(0,0,0,0.2);
+            background: rgba( 255, 255, 255, 0.5 );
+            backdrop-filter: blur( 4px );
+            -webkit-backdrop-filter: blur( 4px );">
+                <div class = "hamburger" onclick = "openNav()">
+                    <div class = "bar"></div>
+                    <div class = "bar"></div>
+                    <div class = "bar"></div>
+                </div>
+        </div>
 
         <div class = "navbar">
             
             <ul style = "margin-top: 5px;">
-                
                 <a href = '#resume'><li>resume</li></a>
                 <a href = '#testimonials'><li>testimonials</li></a>
                 <a href = '#web'><li>projects</li></a>
                 <a href = '#home'><li>home</li></a>
-                <div class = "hamburger"></div>
             </ul>
 
+            
             <a href = 'mailto:blanckjm@gmail.com'>
-                <div class = "contact">contact</div>
+                <div class = "contact">
+                    <div id = "send"style = "position:absolute;height:46px;width:46px;fill:none;">
+                        <p style = "padding:0;position: absolute;">contact</p>
+                        <svg  viewBox="0 0 41 17" xmlns="http://www.w3.org/2000/svg">
+                            <path id="Vector" d="M21 16H3.2C1.7 16 0.5 14.8 0.5 13.3V3.2C0.5 1.7 1.7 0.5 3.2 0.5H21C22.5 0.5 23.7 1.7 23.7 3.2V13.3C23.7 14.8 22.5 16 21 16Z" stroke="white" stroke-miterlimit="10"/>
+                            <path id="Vector_2" d="M21.8 2.4L14 10.2C12.9 11.3 11.2 11.3 10.2 10.2L2.4 2.4" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M28.5 6H34" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="Vector_3" d="M15 9.5L21.5 14.5" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="Vector_4" d="M2.5 14.5L9.01195 9.51558" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M32.6 2.4H38.1" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M32.7 9.4H40.2" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M28.5 12.9H34" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    
+                </div>
             </a>
 
             <div class="logo"></div>
@@ -153,8 +193,8 @@
         </div>
 
         <div class = "loader">
-            <div style = "display:flex;align-items:center;justify-content:center;height: 128px;width:128px;">
-                <svg  viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
+            <div class = "loader-box" style = "height: 128px;width:128px;">
+                <svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
 
                     <path d="M8.97489 22.4559C11.2124 20.8914 13.8718 20.042 16.6019 20.02C17.264 20.0205 17.7264 20.2721 18.0302 20.6266C18.3433 20.992 18.5118 21.4963 18.5113 22.0195C18.5107 22.5427 18.3412 23.0474 18.0275 23.4132C17.724 23.7671 17.2639 24.018 16.6079 24.02C15.3626 23.9792 14.1218 24.1888 12.9589 24.6364C11.7933 25.0851 10.7298 25.7637 9.83189 26.6319C8.93396 27.5001 8.2199 28.54 7.73222 29.6899C7.24455 30.8398 6.99323 32.076 6.99323 33.325C6.99323 34.574 7.24455 35.8102 7.73222 36.9601C8.2199 38.11 8.93396 39.15 9.83189 40.0181C10.7298 40.8863 11.7933 41.5649 12.9589 42.0136C14.1218 42.4612 15.3626 42.6708 16.6079 42.63C17.2669 42.632 17.7282 42.8832 18.0319 43.237C18.3458 43.6026 18.515 44.107 18.515 44.63C18.515 45.153 18.3458 45.6574 18.0319 46.023C17.7274 46.3777 17.2644 46.6293 16.6028 46.63C13.4226 46.5931 10.3544 45.4509 7.92427 43.3994C5.87718 41.6397 4.41259 39.2999 3.72431 36.6896C3.03613 34.0796 3.15647 31.3223 4.06939 28.7823C5.02731 26.2261 6.73768 24.0203 8.97489 22.4559Z" fill="white" stroke="white"/>
                     <path d="M13.2766 5.81781C13.6755 4.14406 14.4848 2.5967 15.6307 1.31494L15.6998 1.24726C16.0792 0.875796 16.589 0.667761 17.12 0.667761C17.6483 0.667761 18.1558 0.873746 18.5346 1.24177C18.8972 1.62282 19.0995 2.12878 19.0995 2.655C19.0995 3.18384 18.8952 3.69223 18.5291 4.07392L18.5203 4.08308L18.512 4.09268C17.9321 4.7624 17.5016 5.54811 17.2493 6.39739C16.9971 7.24668 16.9289 8.13999 17.0493 9.01772C17.1697 9.89544 17.4759 10.7374 17.9475 11.4874C18.4185 12.2365 19.0438 12.8767 19.7815 13.3653C21.2975 14.3948 23.0089 14.5852 24.6743 14.575C25.276 14.5713 25.8888 14.5408 26.4876 14.5109C26.7139 14.4997 26.9383 14.4885 27.1593 14.4789C27.9748 14.4435 28.7599 14.4287 29.5115 14.4977C32.1523 14.769 34.5905 16.0361 36.3302 18.0412C38.0705 20.0471 38.981 22.6407 38.8764 25.2941C38.7718 27.9476 37.66 30.4615 35.7673 32.3241C33.8748 34.1865 31.3439 35.2578 28.6895 35.3201C28.0272 35.3322 27.5679 35.0894 27.2672 34.7441C26.9567 34.3876 26.7882 33.8889 26.7887 33.3655C26.7893 32.8424 26.9588 32.3322 27.275 31.9575C27.5824 31.5934 28.0475 31.333 28.7064 31.32C30.2178 31.3096 31.6776 30.7687 32.831 29.7918C33.9852 28.8141 34.7591 27.4619 35.0174 25.9716C35.2757 24.4812 35.0019 22.9474 34.2441 21.6384C33.4862 20.3294 32.2924 19.3283 30.8713 18.8102L30.8449 18.8006L30.8176 18.794C29.1608 18.3931 27.4453 18.2941 25.7534 18.502C24.062 18.6098 22.3637 18.4792 20.7086 18.1141C18.9858 17.6522 17.4091 16.759 16.1271 15.5187C14.8437 14.277 13.8982 12.7286 13.38 11.0198C12.9036 9.32288 12.868 7.53241 13.2766 5.81781Z" fill="white" stroke="white"/>
@@ -169,15 +209,17 @@
             </div>
         </div>
 
+        <script src = "js/events.js"></script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         
         <script>
             document.getElementById("shuffle").onclick = function() {shuffle();}
             var typed3 = new Typed('.console', {
                 strings: [
-                    '> i\'m <span style = "color: #2d77ed;">jimmy blanck</span>, and i\'m a\n <span style = "color: #E77D3F;">graphic designer</span>.',
-                    '> i\'m <span style = "color: #2d77ed;">jimmy blanck</span>, and i\'m a <span style = "color:#C6362F">web developer</span>.',
-                    '> i\'m <span style = "color: #2d77ed;">jimmy blanck</span>, and i\'m a\n <span style = "color:#8541DC">full stack designer</span>.\ntogether, we can create an exciting <span style = "background-color:#2F2F2F; color:white;">new look</span> for <span style = "background-color:#2F2F2F; color:white;">your business</span>.'
+                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a\n <span style = "color: #E77D3F;">graphic designer</span>.',
+                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a <span style = "color:#03cafc">web developer</span>.',
+                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a\n <span style = "color:#9970ff">full stack designer</span>.\ntogether, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your business</span>.'
                 ],
 
                 typeSpeed: 30,
