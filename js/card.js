@@ -96,8 +96,8 @@ function init() {
 function animate() {
 	requestAnimationFrame(animate);
 	// Rotate cube (Change values to change speed)
-	cube.rotation.y = ((cursor_x - (window.innerWidth / 4)) * 0.001);
-	cube.rotation.x = ((cursor_y - (window.innerHeight / 4) - window.innerHeight) * 0.001);
+	cube.rotation.y = ((cursor_x - (window.innerWidth / 2))  * 0.001);
+	cube.rotation.x = ((cursor_y - (window.innerHeight / 2) - window.innerHeight) * 0.001);
 	renderer.render(scene, camera);
 }
 

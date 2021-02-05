@@ -1,26 +1,24 @@
-<html>
+<html lang="ja">
     <head>
         <link rel="stylesheet" href="style.css">
         <title>Jimmy Blanck</title>
         <link rel='icon' href='images/favicon.png'>
-        <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
     </head>
     <body>
-        <script>
-            w = 200;
-            scrollTo(w - 1, 0);
-            window.setTimeout (function (){scrollTo(w, 0);}, 10); 
-        </script>
+
+        <script src = "https://smtpjs.com/v3/smtp.js"></script>
         <script src="js/three.js"></script>
         <script src="js/anime.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 
         <a id = "home"></a>
 
-        <div class = "home">
+        <div class = "hero">
             <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
 
             <div class = "form" onmousedown = "drag()" onmouseup = "release()">
@@ -32,10 +30,13 @@
         </div>
 
         <div style = "background-color:none;display:flex;justify-content:center;position:absolute;top:90vh;height:64px;width:100vw;">
-            <svg class = "arrow" style = "fill:black;stroke:black;" height="15" width="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" role="img"><path d="m15 5.41-7.5 7.91-7.5-7.91 1.95-1.95 5.55 5.83 5.55-5.83z"></path></svg>
+            <svg class = "arrow" viewBox="0 0 20 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.5 1L9.66025 6L18.6603 1" stroke-miterlimit="10" stroke-linecap="round"/>
+            </svg>
+                
         </div>
 
-        <h2 style = "background-color:none;">business cards</h2>
+        <h2 style = "background-color:none;">here&apos;s my card!</h2>
         <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;"></span></div>
         <script src = "js/card.js"></script>
         
@@ -86,7 +87,6 @@
             <div class = "photo" style = "background-image: url('images/mixotic.png');"></div>
         </div>
         
-        <div style = "height:160px;width:auto;"></div>
 
         <h2 id = "testimonials">testimonials</h2>
 
@@ -157,12 +157,17 @@
             <ul style = "margin-top: 5px;">
                 <a href = '#resume'><li>resume</li></a>
                 <a href = '#testimonials'><li>testimonials</li></a>
-                <a href = '#web'><li>projects</li></a>
-                <a href = '#home'><li>home</li></a>
+                <a href = '#web'><li>
+                    <span class = "en">projects</span>
+                    <span class = "ja">企画</span>
+                </li></a>
+                <a href = '#home'><li>
+                    <span class = "en">home</span>
+                    <span class = "ja">ホーム</span>
+                </li></a>
             </ul>
-
             
-            <a href = 'mailto:blanckjm@gmail.com'>
+            <a href = '#contact-form'>
                 <div class = "contact">
                     <div id = "send"style = "position:absolute;height:46px;width:46px;fill:none;">
                         <p style = "padding:0;position: absolute;">contact</p>
@@ -183,15 +188,31 @@
 
             <div class="logo"></div>
         </div>
+
+        <!--scrollbar element-->
+        <div style = "height:100vh;width:10px;position: fixed;top:0;right:0;">
+            <div class = "scroll-indicator"></div>
+        </div>
         
-        <div class = "footer">
-            <p>&#169; 2021 Jimmy Blanck</p>
-            <div style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
-                <a href = "https://github.com/coconut-junior"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
-                <a href = "https://www.behance.net/jblanck"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
+        <div class = "footer" id = "contact-form">
+            <h2 style = "color:white;">contact me</h2>
+
+            <div style = "width: 50%;display: block;margin:20px;">
+                <textarea class = "name-first" placeholder = "first name" maxlength="18" style = "width: 45%;float:left;"></textarea>
+                <textarea class = "name-last" placeholder = "last name" maxlength="18" style = "width: 45%;float:right;"></textarea>
+            </div>
+
+            <textarea class = "message" placeholder="message" style = "width: 50%;"></textarea>
+            <a href = "#contact-form" onclick="email()"><div class = "button-light"><p style = "padding: 0;">send</p></div></a>
+
+            <p style = "padding:0px;margin:40px;font-family: 'Rajdhani', sans-serif;font-size: 18px;">&#169; 2021 Jimmy Blanck</p>
+            <div id = "links" style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
+                <a href = "https://github.com/coconut-junior" id = "link"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
+                <a href = "https://www.behance.net/jblanck" id = "link"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
             </div>
         </div>
 
+        <!--
         <div class = "loader">
             <div class = "loader-box" style = "height: 128px;width:128px;">
                 <svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
@@ -208,6 +229,7 @@
                 </svg>
             </div>
         </div>
+        -->
 
         <script src = "js/events.js"></script>
 
@@ -217,9 +239,7 @@
             document.getElementById("shuffle").onclick = function() {shuffle();}
             var typed3 = new Typed('.console', {
                 strings: [
-                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a\n <span style = "color: #E77D3F;">graphic designer</span>.',
-                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a <span style = "color:#03cafc">web developer</span>.',
-                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a\n <span style = "color:#9970ff">full stack designer</span>.\ntogether, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your business</span>.'
+                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a\n <span style = "color:#9970ff">full stack designer</span> based in lancaster. together, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your business</span>.'
                 ],
 
                 typeSpeed: 30,
