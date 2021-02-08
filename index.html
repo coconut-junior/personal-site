@@ -1,43 +1,63 @@
-<html>
+<html lang="ja">
     <head>
         <link rel="stylesheet" href="style.css">
         <title>Jimmy Blanck</title>
         <link rel='icon' href='images/favicon.png'>
-        <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
 
     </head>
     <body>
+
+        <script src = "https://smtpjs.com/v3/smtp.js"></script>
         <script src="js/three.js"></script>
         <script src="js/anime.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 
-        <!--<div class = "bubble" id = "c"></div>-->
+        <a id = "home"></a>
 
-        <div class = "banner" style = "padding: 0;display: flex;flex-direction: row; height: auto; flex-wrap: wrap;box-shadow: 5px -20px 80px 100px #f0e8f4;"></div>
-        
-        <div class = "banner" id = "home" style = "margin:0px;height: 100vh;width:auto;background-image: -webkit-linear-gradient(-90deg,#eeafaf , #f4efe8); display: flex; 
-        -wrap:wrap;flex-direction: column;justify-content: center;align-items: center;box-shadow: 0 100px 80px #f0e8f4;margin-bottom: 100px;top:-10px;">
-            <div class = "sphere" id = "sphere" style = "background-size:contain;background-repeat:no-repeat;width:30%; height: 30%; background-image: url('images/sphere.svg'); position: absolute;"></div>
-            <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
-            <div class = "j" id = "j" style = "position:absolute;background-image:url('images/j.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
-            <div class = "b" id = "b" style = "position:absolute;background-image:url('images/b.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
-            <div class = "squiggle" id = "squiggle" style = "position:absolute;background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
-            <div style = "background-image:url('images/squiggle.svg'); background-repeat: no-repeat; width:20%; height: auto; margin:auto; background-size: contain;"></div>
+        <div class = "hero">
 
-            <div class = "title">
+            <div class = "form" onmousedown = "drag()" onmouseup = "release()">
                 <div class = "circle"></div>
-                <div class = "circle" style = "left: 24px;"></div>
-                <div class = "circle" style = "left: 48px; margin-right: 200px;"></div>
                 <div class = "console"></div>
+            </div>
+
+            <div class = "clock-form" onmousedown = "drag()" onmouseup = "release()">
+                <div class = "circle"></div>
+                <div class="clock" style = "pointer-events: none;">
+                    <div style = "height: 96px;width:96px;background-repeat:no-repeat;background-image: url('images/bunny.png');background-size:contain;"></div>
+
+                    <div class="hour">
+                        <div class="hr" id="hr" style="transform: rotateZ(519deg);"></div>
+                    </div>
+                    <div class="min">
+                        <div class="mn" id="mn" style="transform: rotateZ(108deg);"></div>
+                    </div>
+                    <div class="sec">
+                        <div class="sc" id="sc" style="transform: rotateZ(132deg);"></div>
+                    </div>
+                    <div class = "circle" style = "top:108;left:108;background: #171b1d;"></div>
+
+                </div>
+
             </div>
         </div>
 
-        <h2 style = "background-color:none;box-shadow: 5px -40px 80px 100px #f8f8f8;">business cards</h2>
+        <div style = "background-color:none;display:flex;justify-content:center;position:absolute;top:80vh;height:64px;width:100vw;">
+            <svg class = "arrow" viewBox="0 0 20 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.5 1L9.66025 6L18.6603 1" stroke-miterlimit="10" stroke-linecap="round"/>
+            </svg>
+                
+        </div>
+
+        <h2 style = "background-color:none;">here&apos;s my card!</h2>
         <div class = "button icon-shuffle" id = "shuffle"><span style = "font-size: 12px;"></span></div>
         <script src = "js/card.js"></script>
         
-        <h2 id = "web" style = "box-shadow: 5px -20px 80px 100px #f8f8f8;">projects</h2>
+        <h2 id = "web" style = "margin-top:0;">projects</h2>
         <div class = "banner" id = "site">
             <a href = "images/noon_page.png">
                 <div class = "gallery" style="background-image:url('images/noon_preview.png');">
@@ -63,7 +83,7 @@
         </div>
 
         <div class = "banner" id = "site">
-            <a href = "images/ang_jacks_page.png">
+            <a href = "font/AmateurBlueprint.otf">
                 <div class = "gallery" style="background-image:url('images/blueprint_preview.png');">
                     <img src = "images/download.svg" style = "height: 64px;width:64px;padding:60px;">
                 </div>
@@ -84,13 +104,18 @@
             <div class = "photo" style = "background-image: url('images/mixotic.png');"></div>
         </div>
         
-        <div style = "height:160px;width:auto;"></div>
 
         <h2 id = "testimonials">testimonials</h2>
-        <div class = "banner" style = "height: auto; padding-top: 80px;">
-        <h2 id = "resume" style = "margin-bottom: 80px;">resume</h2>
+
+        <div class = "banner" style = "height: 256px; border-radius: 20px;
+        border: 4px solid rgba(0,0,0,0.05);margin:40px;background-color: #171b1d;"></div>
+
+        <div class = "banner" style = "height: auto; padding-top: 80px;border-radius: 20px;
+        border: 4px solid rgba(0,0,0,0.05);margin:40px;">
+        <h2 id = "resume" style = "margin-top:0px;margin-bottom: 80px;">resume</h2>
         
             <h3>design skills
+                <br>
                 <div class = "dropdown" id = "dropdown1">+</div>
                 <ul id = "menu1">
                     <li>web design</li>
@@ -102,6 +127,7 @@
                 </ul>
             </h3>
             <h3>tech skills
+                <br>
                 <div class = "dropdown" id = "dropdown2">+</div>
                 <ul id = "menu2">
                     <li>html5</li>
@@ -115,6 +141,7 @@
                 </ul>
             </h3>
             <h3>interests
+                <br>
                 <div class = "dropdown" id = "dropdown3">+</div>
                 <ul id = "menu3">
                     <li>music</li>
@@ -124,39 +151,131 @@
 
         </div>
 
+        <div class = "mobile-nav" style = "display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 100vw;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;border-bottom: 1px solid rgba(0,0,0,0.2);
+            background: rgba( 255, 255, 255, 0.5 );
+            backdrop-filter: blur( 4px );
+            -webkit-backdrop-filter: blur( 4px );">
+                <div class = "hamburger" onclick = "openNav()">
+                    <div class = "bar"></div>
+                    <div class = "bar"></div>
+                    <div class = "bar"></div>
+                </div>
+        </div>
 
         <div class = "navbar">
-            <ul>
-                <a href = 'mailto:blanckjm@gmail.com'><li style = "color:white;background-color:#2F2F2F;border-radius:50px; padding: 5px 10px 5px 10px;">contact</li></a>
+            
+            <ul style = "margin-top: 5px;">
                 <a href = '#resume'><li>resume</li></a>
                 <a href = '#testimonials'><li>testimonials</li></a>
-                <a href = '#web'><li>projects</li></a>
-                <a href = '#home'><li>home</li></a>
-                <div class = "hamburger"></div>
+                <a href = '#web'><li>
+                    <span class = "en">projects</span>
+                    <span class = "ja">企画</span>
+                </li></a>
+                <a href = '#home'><li>
+                    <span class = "en">home</span>
+                    <span class = "ja">ホーム</span>
+                </li></a>
             </ul>
+            
+            <a href = '#contact-form'>
+                <div class = "contact">
+                    <div id = "send"style = "position:absolute;height:46px;width:46px;fill:none;">
+                        <p style = "padding:0;position: absolute;">contact</p>
+                        <svg  viewBox="0 0 41 17" xmlns="http://www.w3.org/2000/svg">
+                            <path id="Vector" d="M21 16H3.2C1.7 16 0.5 14.8 0.5 13.3V3.2C0.5 1.7 1.7 0.5 3.2 0.5H21C22.5 0.5 23.7 1.7 23.7 3.2V13.3C23.7 14.8 22.5 16 21 16Z" stroke="white" stroke-miterlimit="10"/>
+                            <path id="Vector_2" d="M21.8 2.4L14 10.2C12.9 11.3 11.2 11.3 10.2 10.2L2.4 2.4" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M28.5 6H34" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="Vector_3" d="M15 9.5L21.5 14.5" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="Vector_4" d="M2.5 14.5L9.01195 9.51558" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M32.6 2.4H38.1" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M32.7 9.4H40.2" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                            <path id="line" d="M28.5 12.9H34" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    
+                </div>
+            </a>
+
+            <div class="logo"></div>
+        </div>
+
+        <!--scrollbar element-->
+        <div style = "height:100vh;width:10px;position: fixed;top:0;right:0;">
+            <div class = "scroll-indicator"></div>
         </div>
         
-        <div class = "footer">
-            <p>&#169; 2020 Jimmy Blanck</p>
-            <div style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
-                <a href = "https://github.com/coconut-junior"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
-                <a href = "https://www.behance.net/jblanck"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
+        <div class = "footer" id = "contact-form">
+            <h2 style = "color:#171b1d;">contact me</h2>
+
+            <div style = "width: 50%;display: block;margin:20px;">
+                <textarea class = "name-first" placeholder = "first name" maxlength="18" style = "width: 45%;float:left;"></textarea>
+                <textarea class = "name-last" placeholder = "last name" maxlength="18" style = "width: 45%;float:right;"></textarea>
+            </div>
+
+            <textarea class = "message" placeholder="message" style = "width: 50%;"></textarea>
+            <a class = "send-button" href = "#contact-form" onclick="email()"><div class = "button-light">
+
+                <svg class = "send-icon" height = "32" width = "32" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-width = "2" d="M21.5119 11.2537L7.19787 4.80992L11 11M21.5119 11.2537L7.19787 17.5L11 11M21.5119 11.2537L11 11" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>send</p>
+
+            </div></a>
+
+            <p style = "color:#171b1d;padding:0px;margin:40px;font-family: 'Rajdhani', sans-serif;font-size: 18px;">&#169; 2021 Jimmy Blanck</p>
+            <div id = "links" style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
+                <a href = "https://github.com/coconut-junior" id = "link"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
+                <a href = "https://www.behance.net/jblanck" id = "link"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
             </div>
         </div>
+
+        <div class = "loader">
+            <div class = "loader-box" style = "height: 128px;width:128px;">
+                <svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
+
+                    <path d="M8.97489 22.4559C11.2124 20.8914 13.8718 20.042 16.6019 20.02C17.264 20.0205 17.7264 20.2721 18.0302 20.6266C18.3433 20.992 18.5118 21.4963 18.5113 22.0195C18.5107 22.5427 18.3412 23.0474 18.0275 23.4132C17.724 23.7671 17.2639 24.018 16.6079 24.02C15.3626 23.9792 14.1218 24.1888 12.9589 24.6364C11.7933 25.0851 10.7298 25.7637 9.83189 26.6319C8.93396 27.5001 8.2199 28.54 7.73222 29.6899C7.24455 30.8398 6.99323 32.076 6.99323 33.325C6.99323 34.574 7.24455 35.8102 7.73222 36.9601C8.2199 38.11 8.93396 39.15 9.83189 40.0181C10.7298 40.8863 11.7933 41.5649 12.9589 42.0136C14.1218 42.4612 15.3626 42.6708 16.6079 42.63C17.2669 42.632 17.7282 42.8832 18.0319 43.237C18.3458 43.6026 18.515 44.107 18.515 44.63C18.515 45.153 18.3458 45.6574 18.0319 46.023C17.7274 46.3777 17.2644 46.6293 16.6028 46.63C13.4226 46.5931 10.3544 45.4509 7.92427 43.3994C5.87718 41.6397 4.41259 39.2999 3.72431 36.6896C3.03613 34.0796 3.15647 31.3223 4.06939 28.7823C5.02731 26.2261 6.73768 24.0203 8.97489 22.4559Z" fill="white" stroke="white"/>
+                    <path d="M13.2766 5.81781C13.6755 4.14406 14.4848 2.5967 15.6307 1.31494L15.6998 1.24726C16.0792 0.875796 16.589 0.667761 17.12 0.667761C17.6483 0.667761 18.1558 0.873746 18.5346 1.24177C18.8972 1.62282 19.0995 2.12878 19.0995 2.655C19.0995 3.18384 18.8952 3.69223 18.5291 4.07392L18.5203 4.08308L18.512 4.09268C17.9321 4.7624 17.5016 5.54811 17.2493 6.39739C16.9971 7.24668 16.9289 8.13999 17.0493 9.01772C17.1697 9.89544 17.4759 10.7374 17.9475 11.4874C18.4185 12.2365 19.0438 12.8767 19.7815 13.3653C21.2975 14.3948 23.0089 14.5852 24.6743 14.575C25.276 14.5713 25.8888 14.5408 26.4876 14.5109C26.7139 14.4997 26.9383 14.4885 27.1593 14.4789C27.9748 14.4435 28.7599 14.4287 29.5115 14.4977C32.1523 14.769 34.5905 16.0361 36.3302 18.0412C38.0705 20.0471 38.981 22.6407 38.8764 25.2941C38.7718 27.9476 37.66 30.4615 35.7673 32.3241C33.8748 34.1865 31.3439 35.2578 28.6895 35.3201C28.0272 35.3322 27.5679 35.0894 27.2672 34.7441C26.9567 34.3876 26.7882 33.8889 26.7887 33.3655C26.7893 32.8424 26.9588 32.3322 27.275 31.9575C27.5824 31.5934 28.0475 31.333 28.7064 31.32C30.2178 31.3096 31.6776 30.7687 32.831 29.7918C33.9852 28.8141 34.7591 27.4619 35.0174 25.9716C35.2757 24.4812 35.0019 22.9474 34.2441 21.6384C33.4862 20.3294 32.2924 19.3283 30.8713 18.8102L30.8449 18.8006L30.8176 18.794C29.1608 18.3931 27.4453 18.2941 25.7534 18.502C24.062 18.6098 22.3637 18.4792 20.7086 18.1141C18.9858 17.6522 17.4091 16.759 16.1271 15.5187C14.8437 14.277 13.8982 12.7286 13.38 11.0198C12.9036 9.32288 12.868 7.53241 13.2766 5.81781Z" fill="white" stroke="white"/>
+                    <path d="M2.41 42.63C3.07618 42.63 3.54116 42.8822 3.84631 43.2372C4.16044 43.6026 4.32927 44.1067 4.32875 44.6295C4.32823 45.1523 4.15836 45.6568 3.84363 46.0227C3.53781 46.3781 3.07321 46.63 2.41 46.63C1.74679 46.63 1.28219 46.3781 0.976374 46.0227C0.661638 45.6568 0.491773 45.1523 0.49125 44.6295C0.490727 44.1067 0.659564 43.6026 0.973687 43.2372C1.27884 42.8822 1.74382 42.63 2.41 42.63Z" fill="white" stroke="white"/>
+                    <path d="M28.69 22.89C29.3562 22.89 29.8212 23.1422 30.1263 23.4972C30.4404 23.8626 30.6093 24.3667 30.6088 24.8895C30.6082 25.4123 30.4384 25.9168 30.1236 26.2827C29.8178 26.6381 29.3532 26.89 28.69 26.89C28.0268 26.89 27.5622 26.6381 27.2564 26.2827C26.9416 25.9168 26.7718 25.4123 26.7713 24.8895C26.7707 24.3667 26.9396 23.8626 27.2537 23.4972C27.5588 23.1422 28.0238 22.89 28.69 22.89Z" fill="white" stroke="white"/>
+                    <path d="M26.69 16.5V2.5C26.69 1.96957 26.9007 1.46086 27.2758 1.08579C27.6509 0.710714 28.1596 0.5 28.69 0.5C29.2204 0.5 29.7291 0.710714 30.1042 1.08579C30.4793 1.46086 30.69 1.96957 30.69 2.5V16.5C30.69 17.0304 30.4793 17.5391 30.1042 17.9142C29.7291 18.2893 29.2204 18.5 28.69 18.5C28.1596 18.5 27.6509 18.2893 27.2758 17.9142C26.9007 17.5391 26.69 17.0304 26.69 16.5Z" fill="white" stroke="white"/>
+                    <path d="M33.1647 44.2261L33.1636 44.2243L26.9578 34.3311C26.6923 33.874 26.6182 33.3302 26.7519 32.8186C26.8862 32.3045 27.2192 31.8649 27.6777 31.5965C28.1361 31.328 28.6824 31.2526 29.1964 31.3869C29.7105 31.5212 30.1501 31.8542 30.4185 32.3127L30.4184 32.3128L30.4258 32.3247L31.3058 33.7347L31.3062 33.7354L37.5018 43.6283C37.6321 43.8536 37.7172 44.1021 37.7523 44.36C37.7878 44.6203 37.7716 44.8851 37.7048 45.1391C37.6379 45.3932 37.5217 45.6316 37.3626 45.8408C37.2036 46.0499 37.005 46.2257 36.7781 46.3581C36.5511 46.4905 36.3003 46.5769 36.04 46.6123C35.7797 46.6478 35.5149 46.6316 35.2608 46.5648C35.0068 46.4979 34.7684 46.3817 34.5592 46.2227C34.3501 46.0636 34.1743 45.865 34.0419 45.6381L34.0421 45.638L34.0347 45.6261L33.1647 44.2261Z" fill="white" stroke="white"/>
+                    <path d="M23.94 46.63H16.6C16.0696 46.63 15.5609 46.4193 15.1858 46.0442C14.8107 45.6691 14.6 45.1604 14.6 44.63C14.6 44.0996 14.8107 43.5909 15.1858 43.2158C15.5609 42.8407 16.0696 42.63 16.6 42.63H23.94C24.4704 42.63 24.9791 42.8407 25.3542 43.2158C25.7293 43.5909 25.94 44.0996 25.94 44.63C25.94 45.1604 25.7293 45.6691 25.3542 46.0442C24.9791 46.4193 24.4704 46.63 23.94 46.63Z" fill="white" stroke="white"/>
+                    <path d="M15.52 4.27L15.8825 3.92564C15.5171 3.54094 15.3133 3.0306 15.3133 2.5C15.3133 1.972 15.5151 1.46407 15.8771 1.08003C16.2529 0.711305 16.7584 0.504622 17.285 0.504622C17.8059 0.504622 18.3062 0.706858 18.6806 1.06812L20.103 2.80662L20.1034 2.80712L30.1034 14.9971L30.115 15.0112L30.1275 15.0244C30.4929 15.4091 30.6967 15.9194 30.6967 16.45C30.6967 16.978 30.4949 17.4859 30.1329 17.87C29.7571 18.2387 29.2516 18.4454 28.725 18.4454C28.2038 18.4454 27.7034 18.243 27.3289 17.8814L25.9067 16.153L25.9061 16.1523L15.9067 3.95304L15.52 4.27Z" fill="white" stroke="white"/>
+
+                </svg>
+            </div>
+        </div>
+
+        <script src= "js/clock.js"></script>
+
+        <script src = "js/events.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         
         <script>
+
+
             document.getElementById("shuffle").onclick = function() {shuffle();}
             var typed3 = new Typed('.console', {
                 strings: [
-                    'i\'m <span style = "color: #41DCAA;">jimmy blanck</span>, and i\'m a <span style = "color: #E77D3F;">graphic designer</span>.',
-                    'i\'m <span style = "color: #41DCAA;">jimmy blanck</span>, and i\'m a <span style = "color:#969DE5">web developer</span>.',
-                    'i\'m <span style = "color: #41DCAA;">jimmy blanck</span>, and i\'m a <span style = "color:#8541DC">full stack designer</span>.\ntogether, we can create an exciting <span style = "background-color:#2F2F2F; color:white;">new look</span> for <span style = "color:#C6362F;">your business</span>.'],
+                    '$ sudo ./introduction.sh<br><br>' + 
+                    '+-+-+-+-+-+-+-+<br>'+
+                    '|w e l c o m e|<br>'+
+                    '+-+-+-+-+-+-+-+<br><br>'+
+                    'i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i design\n <span style = "color:#9970ff">experiences</span>. together, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your business</span>!'
+                ],
 
                 typeSpeed: 30,
                 backSpeed: 20,
-                showCursor: false
+                showCursor: false,
+                autoInsertCSS: true
             });
 
             anime({
@@ -166,7 +285,8 @@
                 duration: 3000,
                 delay: 500,
                 direction: 'alternate',
-                loop: true
+                loop: true,
+                
             });
             
         </script>

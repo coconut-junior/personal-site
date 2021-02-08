@@ -4,7 +4,7 @@ var cursor_x = 0;
 var cusor_y = 0;
 var tex_index = 0;
 var tex_array = [
-	'https://i.imgur.com/476P4Wv.png',
+	'https://i.imgur.com/u1GSFim.png',
 	'https://i.imgur.com/FH0QKkf.png',
 	'https://i.imgur.com/iOxRcqp.png',
 	'https://i.imgur.com/mVgaYhR.png',
@@ -52,36 +52,9 @@ cursor_x = window.innerWidth / 2;
 cursor_y = window.innerHeight / 2;
 
 document.addEventListener('mousemove', e => {
-	cursor_x = e.pageX - 256;
-	cursor_y = e.pageY - 256;
+	cursor_x = e.pageX;
+	cursor_y = e.pageY;
 
-	var c = document.getElementById('c');
-	var sphere = document.getElementById('sphere');
-	var hero = document.getElementById('hero');
-	var j = document.getElementById('j');
-	var b = document.getElementById('b');
-	var squiggle = document.getElementById('squiggle');
-
-	if (!isMobile) {
-		gsap.to(sphere, {left: -cursor_x / 4 + 256, top: cursor_y / 8, duration: 6});
-		gsap.to(j, {left: (cursor_x / 8) - 256, top: -cursor_y / 10, duration: 6});
-		gsap.to(b, {left: cursor_x / 8 + 512, top: cursor_y / 4, duration: 6});
-		gsap.to(squiggle, {right: cursor_x /  + 512, bottom: cursor_y / 8, duration: 6});
-	}
-
-	if (isMobile) {
-		gsap.to(j, {left: (window.innerWidth / 10) - 256, top: window.innerHeight / 10, duration: 8});
-		gsap.to(b, {left: window.innerWidth / 10, top: window.innerHeight / 10, duration: 8});
-	}
-
-	if (e.target.className == "colorpicker")
-	{
-		document.getElementsByClassName("banner branding")[0].style.backgroundImage = "url('images/can_pink.jpg')";
-	}
-	if (e.target.className == "banner branding")
-	{
-		document.getElementsByClassName("banner branding")[0].style.backgroundImage = "url('images/can_blue.jpg')";
-	}
 })
 
 renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -123,8 +96,8 @@ function init() {
 function animate() {
 	requestAnimationFrame(animate);
 	// Rotate cube (Change values to change speed)
-	cube.rotation.y = ((cursor_x - (window.innerWidth / 4)) * 0.001);
-	cube.rotation.x = ((cursor_y - (window.innerHeight / 4) - window.innerHeight) * 0.001);
+	cube.rotation.y = ((cursor_x - (window.innerWidth / 2))  * 0.001);
+	cube.rotation.x = ((cursor_y - (window.innerHeight / 2) - window.innerHeight) * 0.001);
 	renderer.render(scene, camera);
 }
 
