@@ -19,17 +19,34 @@
         <a id = "home"></a>
 
         <div class = "hero">
-            <div class = "line" id = "line" style = "position:absolute;background-image:url('images/line.svg'); background-repeat: no-repeat; width:80%; height: 720px; background-size: contain;margin: auto;background-position:center"></div>
 
             <div class = "form" onmousedown = "drag()" onmouseup = "release()">
                 <div class = "circle"></div>
-                <div class = "circle" style = "left: 24px;"></div>
-                <div class = "circle" style = "left: 48px; margin-right: 200px;"></div>
                 <div class = "console"></div>
+            </div>
+
+            <div class = "clock-form" onmousedown = "drag()" onmouseup = "release()">
+                <div class = "circle"></div>
+                <div class="clock" style = "pointer-events: none;">
+                    <div style = "height: 96px;width:96px;background-repeat:no-repeat;background-image: url('images/bunny.png');background-size:contain;"></div>
+
+                    <div class="hour">
+                        <div class="hr" id="hr" style="transform: rotateZ(519deg);"></div>
+                    </div>
+                    <div class="min">
+                        <div class="mn" id="mn" style="transform: rotateZ(108deg);"></div>
+                    </div>
+                    <div class="sec">
+                        <div class="sc" id="sc" style="transform: rotateZ(132deg);"></div>
+                    </div>
+                    <div class = "circle" style = "top:108;left:108;background: #171b1d;"></div>
+
+                </div>
+
             </div>
         </div>
 
-        <div style = "background-color:none;display:flex;justify-content:center;position:absolute;top:90vh;height:64px;width:100vw;">
+        <div style = "background-color:none;display:flex;justify-content:center;position:absolute;top:80vh;height:64px;width:100vw;">
             <svg class = "arrow" viewBox="0 0 20 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 1L9.66025 6L18.6603 1" stroke-miterlimit="10" stroke-linecap="round"/>
             </svg>
@@ -66,7 +83,7 @@
         </div>
 
         <div class = "banner" id = "site">
-            <a href = "images/ang_jacks_page.png">
+            <a href = "font/AmateurBlueprint.otf">
                 <div class = "gallery" style="background-image:url('images/blueprint_preview.png');">
                     <img src = "images/download.svg" style = "height: 64px;width:64px;padding:60px;">
                 </div>
@@ -90,10 +107,10 @@
 
         <h2 id = "testimonials">testimonials</h2>
 
-        <div class = "banner" style = "height: 256px; border-radius: 60px;
+        <div class = "banner" style = "height: 256px; border-radius: 20px;
         border: 4px solid rgba(0,0,0,0.05);margin:40px;background-color: #171b1d;"></div>
 
-        <div class = "banner" style = "height: auto; padding-top: 80px;border-radius: 60px;
+        <div class = "banner" style = "height: auto; padding-top: 80px;border-radius: 20px;
         border: 4px solid rgba(0,0,0,0.05);margin:40px;">
         <h2 id = "resume" style = "margin-top:0px;margin-bottom: 80px;">resume</h2>
         
@@ -195,7 +212,7 @@
         </div>
         
         <div class = "footer" id = "contact-form">
-            <h2 style = "color:white;">contact me</h2>
+            <h2 style = "color:#171b1d;">contact me</h2>
 
             <div style = "width: 50%;display: block;margin:20px;">
                 <textarea class = "name-first" placeholder = "first name" maxlength="18" style = "width: 45%;float:left;"></textarea>
@@ -203,16 +220,22 @@
             </div>
 
             <textarea class = "message" placeholder="message" style = "width: 50%;"></textarea>
-            <a href = "#contact-form" onclick="email()"><div class = "button-light"><p style = "padding: 0;">send</p></div></a>
+            <a class = "send-button" href = "#contact-form" onclick="email()"><div class = "button-light">
 
-            <p style = "padding:0px;margin:40px;font-family: 'Rajdhani', sans-serif;font-size: 18px;">&#169; 2021 Jimmy Blanck</p>
+                <svg class = "send-icon" height = "32" width = "32" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-width = "2" d="M21.5119 11.2537L7.19787 4.80992L11 11M21.5119 11.2537L7.19787 17.5L11 11M21.5119 11.2537L11 11" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>send</p>
+
+            </div></a>
+
+            <p style = "color:#171b1d;padding:0px;margin:40px;font-family: 'Rajdhani', sans-serif;font-size: 18px;">&#169; 2021 Jimmy Blanck</p>
             <div id = "links" style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
                 <a href = "https://github.com/coconut-junior" id = "link"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
                 <a href = "https://www.behance.net/jblanck" id = "link"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
             </div>
         </div>
 
-        <!--
         <div class = "loader">
             <div class = "loader-box" style = "height: 128px;width:128px;">
                 <svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
@@ -229,17 +252,24 @@
                 </svg>
             </div>
         </div>
-        -->
+
+        <script src= "js/clock.js"></script>
 
         <script src = "js/events.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         
         <script>
+
+
             document.getElementById("shuffle").onclick = function() {shuffle();}
             var typed3 = new Typed('.console', {
                 strings: [
-                    '> i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i\'m a\n <span style = "color:#9970ff">full stack designer</span> based in lancaster. together, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your business</span>.'
+                    '$ sudo ./introduction.sh<br><br>' + 
+                    '+-+-+-+-+-+-+-+<br>'+
+                    '|w e l c o m e|<br>'+
+                    '+-+-+-+-+-+-+-+<br><br>'+
+                    'i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i design\n <span style = "color:#9970ff">experiences</span>. together, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your business</span>!'
                 ],
 
                 typeSpeed: 30,

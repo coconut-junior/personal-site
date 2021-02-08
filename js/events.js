@@ -84,10 +84,17 @@ document.addEventListener('mousemove', e => {
 let drag = function(e) {
 	e = e || window.event;
     e.preventDefault();
-	pos3 = e.clientX;
-    pos4 = e.clientY;
-	dragging = true;
-	terminal.style.cursor = "grabbing"
+	
+	if (e.target.className == "form" || "clock") {
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		dragging = true;
+		terminal.style.zIndex = 1;
+		terminal = e.target;
+		terminal.style.zIndex = 2;
+		terminal.style.cursor = "grabbing"
+	}
+
 }
 
 let release = function(e) {

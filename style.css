@@ -57,13 +57,13 @@ body {
 
 textarea {
     font-family: 'Rajdhani', sans-serif;
-    color: white;
+    color: #171b1d;
     background-color: transparent;
     font-size: 24px;
     overflow: auto;
-    border: 6px solid #171b1d;
-    outline: 2px dotted #171b1d;
-    box-shadow: inset 0 0 0 1px white;
+    border: 6px solid #f5efef;
+    outline: 2px dotted #f5efef;
+    box-shadow: inset 0 0 0 1px #171b1d;
     resize: none;
     padding: 20px;
     transition: 0.3s;
@@ -73,7 +73,7 @@ textarea {
 textarea:focus {
     background-color: white;
     color: black;
-    outline: 2px dotted white;
+    outline: 2px dotted #171b1d;
 }
 
 .icon {
@@ -143,8 +143,80 @@ h2 {
     width: 100%;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5em;
-    letter-spacing: 2px;
     padding-top: 24px;
+    pointer-events: none;
+}
+
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250;
+    width: 250;
+
+    background: url(https://clock.demo.dev.zedpro.me/assets/images/clock.png);
+    background-size: contain;
+}
+
+.clock .hour, .clock .min, .clock .sec {
+    position: absolute;
+}
+
+.clock .hour, .hr {
+    width: 160px;
+    height: 160px;
+}
+
+.clock .min, .mn {
+    width: 190px;
+    height: 190px;
+}
+
+.clock .sec, .sc {
+    width: 230px;
+    height: 230px;
+}
+
+.hr, .mn, .sc {
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hr:before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 80px;
+    background: #ff105e;
+    z-index: 10;
+    border-radius: 6px 6px 0 0;
+}
+
+.mn:before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 90px;
+    background: #171b1d;
+    z-index: 11;
+    border-radius: 6px 6px 0 0;
+}
+
+body.light .mn:before {
+    background: #091921;
+}
+
+.sc:before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: #171b1d;
+    z-index: 12;
+    border-radius: 6px 6px 0 0;
 }
 
 .form {
@@ -154,28 +226,31 @@ h2 {
     position: absolute;
     margin: auto;
     width: 512px;
-    background: rgba(0, 0, 0, 0.7);
+    height: 300px;
+    background: rgba(23, 27, 29, 1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    animation: scale 3s linear forwards;
     cursor: grab;
 }
 
-@keyframes scale {
-    80% {
-        transform:scale(0);
-        opacity: 0;
-    }
-    95% {
-        transform:scale(0.75);
-    }
-    100% {
-        opacity: 1;
-        transform:scale(1);
-    }
+.clock-form {
+    background: #e8e4e2;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    top: 128px;
+    right: 40px;
 }
 
 a {
@@ -255,6 +330,39 @@ canvas {
     border-radius: 50%;
 }
 
+.send-icon {
+    opacity: 0;
+}
+
+.button-light:hover .send-icon {
+    animation: send-anim 1s linear infinite;
+}
+
+@keyframes send-anim {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(100px);
+    }
+}
+
+.send-button p {
+    padding: 0;
+    left: -15px;
+}
+
+.button-light:hover p {
+    left: 96px;
+}
+
 .banner {
     position: relative;
     display: flex;
@@ -310,7 +418,7 @@ li {
 .loader {
     height: 100vh;
     width: 100vw;
-    background-color: #171b1d;
+    background-color: #f5efef;
     position: absolute;
     top:0px;
     left:0px;
@@ -358,8 +466,8 @@ li {
 }
 
 .loader path {
-    fill: white;
-    stroke:white;
+    fill: #171b1d;
+    stroke:#171b1d;
     stroke-dasharray: 115;
     stroke-dashoffset: 0;
     stroke-width: 0.25;
@@ -388,7 +496,7 @@ li {
     }
     89% {
       stroke-dashoffset: 0;
-      fill:white; 
+      fill:#171b1d; 
     }
 }
 
@@ -419,12 +527,13 @@ li {
     display: flex;
     justify-content: left;
     align-items: center;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    animation: drop 3s linear forwards;
 
+
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     background: rgba( 255, 255, 255, 0.5 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
-    animation: drop 3s linear forwards;
 }
 
 @keyframes drop {
@@ -453,8 +562,14 @@ li {
 
 .hero {
     margin:0px;height: 100vh;width:auto;
-    background: linear-gradient(180deg, rgba(242,204,170,1) 0%, #f8f8f8 100%);    background-repeat: repeat; 
-    background-size: 25%; 
+
+    background-image: url('images/hero.png'), linear-gradient(180deg, #feada6 0%, #f5efef 100%);
+        background-image: url('images/hero.png'), linear-gradient(180deg, #50A7C2 0%, #B7F8DB  100%);    
+
+
+    background-repeat: repeat-x; 
+    background-size: contain; 
+    background-position: bottom;
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -485,9 +600,9 @@ li {
 }
 
 .button-light {
-    color:white;
+    color:#171b1d;
     background-color:transparent;
-    border: 2px solid white;
+    border: 2px solid #171b1d;
     border-radius:10px; 
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -499,13 +614,13 @@ li {
     flex-direction: row;
     overflow: hidden;
     margin: 25px;
-    padding: 13px;
+    padding: 14px;
     padding-top:10px;
 }
 
 .button-light:hover {
-    background-color: white;
-    color: #171b1d;
+    background-color: #171b1d;
+    color: white;
 }
 
 #send {
@@ -616,7 +731,7 @@ canvas:hover h1 {
     width: auto;
     padding: 20px;
     color: white;
-    background-color: #171b1d;
+    background-color: #f5efef;
   }
 
   .footer #link {
@@ -646,7 +761,7 @@ canvas:hover h1 {
     font-size: 36px;
     cursor: pointer;
     text-align: center;
-    color: #f2ccaa;
+    color: #171b1d;
     margin-top: 32px;
     height: 64px;
     width: 100%;
@@ -675,20 +790,6 @@ canvas:hover h1 {
       background-repeat: no-repeat;
       margin: 40px;
       transition: 0.6s;
-  }
-
-  .bubble {
-    height: 512px;
-    width: 512px;
-    background-color: #fff;
-    box-shadow:
-    inset 60px 0 120px #f0f,  /* left magenta */
-    inset -60px 0 120px #0ff; /* right cyan */
-    margin: auto;
-    border-radius: 100%;
-    position: absolute;
-    pointer-events: none;
-    mix-blend-mode: multiply;
   }
 
   .slink {
@@ -741,9 +842,7 @@ canvas:hover h1 {
     bottom: 0px;
     padding-right: 120px;
     padding-left:80px;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(180deg, rgba(242,204,170,1) 0%, rgba(242,202,216,1) 53%, rgba(255,255,255,1) 100%);    background-repeat: repeat; 
+    color: #f5efef;
 
   }
 
@@ -788,43 +887,6 @@ canvas:hover h1 {
       width:80%;
   }
 
-  @media(max-width:720px) {
-      .navbar {width: 68px;}
-      .hamburger {visibility: visible;}
-      .navbar ul {visibility: hidden;}
-      .form {width:auto;margin:40px;}
-      #site {
-          flex-direction: column;
-          justify-content: center;
-          align-items:center;
-          height: auto;
-      }
-      #site a {
-          width: 480px;
-          margin: auto;
-      }
-      .gallery {
-        width: 480px;
-      }
-      .infobox {
-          width: auto;
-          margin: auto;
-          padding: 0px;
-      }
-      .infobox h3 {
-          text-align: center;
-          margin:0px;
-          padding:0px;
-          width:auto;
-      }
-      .infobox p {
-          width:auto;
-      }
-      h4 {
-          visibility: hidden;
-          position: absolute;
-      }
-  }
 
   .hamburger {
 	display: flex;
