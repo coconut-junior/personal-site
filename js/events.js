@@ -72,6 +72,17 @@ document.addEventListener('mousemove', e => {
 			terminal.style.position = "absolute";
 			terminal.style.top = (terminal.offsetTop - pos2) + "px";
     		terminal.style.left = (terminal.offsetLeft - pos1) + "px";
+
+			if (e.target.className == "fishtank") {
+				gsap.to(document.getElementById('fish'), 
+				{
+					duration:1.5, ease: "elastic.out(1, 0.2)", x:  Math.sign(pos1)*20, y: Math.sign(pos2)*20
+				});
+				gsap.to(document.getElementById('shadow'), 
+				{
+					duration:1.5, ease: "elastic.out(1, 0.2)", x:  Math.sign(pos1)*20
+				});
+			}
 		}
 		else {
 			terminal.style.top = window.innerHeight - terminal.offsetHeight - 10 + "px";
@@ -85,14 +96,15 @@ let drag = function(e) {
 	e = e || window.event;
     e.preventDefault();
 	
-	if (e.target.className == "form" || "clock") {
+	if (e.target.className == "form" || "clock" || "fishtank") {
 		pos3 = e.clientX;
 		pos4 = e.clientY;
 		dragging = true;
 		terminal.style.zIndex = 1;
 		terminal = e.target;
 		terminal.style.zIndex = 2;
-		terminal.style.cursor = "grabbing"
+		terminal.style.border = "4px solid rgba(255,255,255,0.2)";
+		terminal.style.cursor = "grabbing";
 	}
 
 }
@@ -101,6 +113,7 @@ let release = function(e) {
 	e = e || window.event;
     e.preventDefault();
 	dragging = false;
+	terminal.style.border = "4px solid rgba(255,255,255,0)";
 	terminal.style.cursor = "grab"
 }
 

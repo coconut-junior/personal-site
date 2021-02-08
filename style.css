@@ -37,11 +37,11 @@ html {
 
 .scroll-indicator {
     position: absolute; 
-    height: 32px; 
+    height: 36px; 
     width: 2px;
     background-color: #171b1d;
     top: 106px;
-    right:10px;
+    right:9px;
     transition: 0.3s;
 }
 
@@ -222,18 +222,20 @@ body.light .mn:before {
 .form {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding: 40px;
     position: absolute;
     margin: auto;
     width: 512px;
     height: 300px;
-    background: rgba(23, 27, 29, 1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
     cursor: grab;
+
+    background: rgba( 23, 27, 29, 0.85 );
+    box-shadow: 0 8px 32px 0 rgba(143, 143, 143, 0.37);
+    backdrop-filter: blur( 14.5px );
+    -webkit-backdrop-filter: blur( 14.5px );
+    border-radius: 10px;
+    border: 4px solid rgba(255,255,255,0);
 }
 
 .clock-form {
@@ -249,8 +251,50 @@ body.light .mn:before {
     height: 250px;
     width: 250px;
     position: absolute;
-    top: 128px;
-    right: 40px;
+    top: 136px;
+    right: 20px;
+    border: 4px solid rgba(255,255,255,0);
+}
+
+.fishtank {
+    background: #171b1d;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 10px;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: 4px solid rgba(255,255,255,0);
+}
+
+.fishtank svg {
+    pointer-events: none;
+    height: 80%;
+    width: 80%;
+}
+
+#fish {
+    animation: wobble 5s linear infinite;
+    
+}
+
+#shadow {
+    animation: wobble 5s linear infinite;
+}
+
+@keyframes wobble {
+    25% {
+        transform:rotate(10deg);
+    }
+    50% {
+        transform:rotate(-10deg);
+
+    }
 }
 
 a {
@@ -530,10 +574,10 @@ li {
     animation: drop 3s linear forwards;
 
 
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    background: rgba( 255, 255, 255, 0.5 );
+    background: rgba( 255, 255, 255, 0.1 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 @keyframes drop {
@@ -563,9 +607,9 @@ li {
 .hero {
     margin:0px;height: 100vh;width:auto;
 
-    background-image: url('images/hero.png'), linear-gradient(180deg, #feada6 0%, #f5efef 100%);
-        background-image: url('images/hero.png'), linear-gradient(180deg, #50A7C2 0%, #B7F8DB  100%);    
-
+        background-image: url('images/grid-png-43563.png'), linear-gradient(180deg, #50A7C2 0%, #B7F8DB  100%);    
+    background-image: url('images/grid-png-43563.png'), linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%);
+    background-image: url('images/grid-png-43563.png'), url('images/v904-nunny-035.jpg');
 
     background-repeat: repeat-x; 
     background-size: contain; 
@@ -575,6 +619,7 @@ li {
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
+
 }
 
 .contact {
