@@ -76,7 +76,7 @@ document.addEventListener('mousemove', e => {
 			if (e.target.className == "fishtank") {
 				gsap.to(document.getElementById('fish'), 
 				{
-					duration:1.5, ease: "elastic.out(1, 0.2)", x:  Math.sign(pos1)*20, y: Math.sign(pos2)*20
+					duration:1.5, ease: "elastic.out(1, 0.2)", x:  Math.sign(pos1)*15, y: Math.sign(pos2)*15
 				});
 				gsap.to(document.getElementById('shadow'), 
 				{

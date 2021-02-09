@@ -280,7 +280,6 @@ body.light .mn:before {
 
 #fish {
     animation: wobble 5s linear infinite;
-    
 }
 
 #shadow {
@@ -310,6 +309,7 @@ a {
     position: absolute;
     top:0px;
     left: 0px;
+    filter:invert();
 }
 
 p {
@@ -580,6 +580,11 @@ li {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
+#water {
+    fill:rgba( 255, 255, 255, 0.1 );
+    backdrop-filter: blur(4px);
+}
+
 @keyframes drop {
     70% {
         top:-72px;
@@ -609,7 +614,7 @@ li {
 
         background-image: url('images/grid-png-43563.png'), linear-gradient(180deg, #50A7C2 0%, #B7F8DB  100%);    
     background-image: url('images/grid-png-43563.png'), linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%);
-    background-image: url('images/grid-png-43563.png'), url('images/v904-nunny-035.jpg');
+    background-image: url('images/dot-grid.png'), url('images/v904-nunny-035.jpg');
 
     background-repeat: repeat-x; 
     background-size: contain; 
@@ -619,7 +624,6 @@ li {
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
-
 }
 
 .contact {
