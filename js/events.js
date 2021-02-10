@@ -103,7 +103,6 @@ let drag = function(e) {
 		terminal.style.zIndex = 1;
 		terminal = e.target;
 		terminal.style.zIndex = 2;
-		terminal.style.border = "4px solid rgba(255,255,255,0.2)";
 		terminal.style.cursor = "grabbing";
 	}
 
@@ -113,7 +112,6 @@ let release = function(e) {
 	e = e || window.event;
     e.preventDefault();
 	dragging = false;
-	terminal.style.border = "4px solid rgba(255,255,255,0)";
 	terminal.style.cursor = "grab"
 }
 

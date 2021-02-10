@@ -142,9 +142,10 @@ h2 {
     height: auto;
     width: 100%;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5em;
+    font-size: 1em;
     padding-top: 24px;
     pointer-events: none;
+    margin:40px;
 }
 
 .clock {
@@ -153,7 +154,6 @@ h2 {
     justify-content: center;
     height: 250;
     width: 250;
-
     background: url(https://clock.demo.dev.zedpro.me/assets/images/clock.png);
     background-size: contain;
 }
@@ -223,53 +223,50 @@ body.light .mn:before {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 40px;
     position: absolute;
-    margin: auto;
-    width: 512px;
-    height: 300px;
+    top: 116px;
+    left: 20px;
+    width: 50vw;
+    height: 28vh;
     cursor: grab;
-
-    background: rgba( 23, 27, 29, 0.85 );
+    background: #171b1d;
     box-shadow: 0 8px 32px 0 rgba(143, 143, 143, 0.37);
-    backdrop-filter: blur( 14.5px );
-    -webkit-backdrop-filter: blur( 14.5px );
     border-radius: 10px;
-    border: 4px solid rgba(255,255,255,0);
+    border: 4px solid rgba(255,255,255,0.2);
 }
 
 .clock-form {
     background: #e8e4e2;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     cursor: grab;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
-    width: 250px;
+
+    height:38vh;
+    width:30%;
+
     position: absolute;
-    top: 136px;
+    top: 116px;
     right: 20px;
-    border: 4px solid rgba(255,255,255,0);
+    border: 4px solid rgba(255,255,255,0.2);
 }
 
 .fishtank {
-    background: #171b1d;
+    background: #ff8089;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border-radius: 10px;
     cursor: grab;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 38vh;
     width: 400px;
     position: absolute;
     bottom: 20px;
     right: 20px;
-    border: 4px solid rgba(255,255,255,0);
+    border: 4px solid rgba(255,255,255,0.2);
 }
 
 .fishtank svg {
@@ -309,7 +306,6 @@ a {
     position: absolute;
     top:0px;
     left: 0px;
-    filter:invert();
 }
 
 p {
@@ -420,8 +416,8 @@ canvas {
     margin: 10px;
     margin-top:0px;
     padding-top:0px;
-    margin-left:80px;
-    margin-right: 80px;
+    margin-left:40px;
+    margin-right: 40px;
     transition: 2s;
 }
 
@@ -456,7 +452,7 @@ li {
 }
 
 .logo {
-    padding:2px;opacity:0.9;position:absolute;top:25px;left:40px;background-image: url('images/logo.png');background-size:contain;background-repeat:no-repeat;height: 42px;width:128px;
+    padding:2px;position:absolute;top:25px;left:40px;background-image: url('images/logo.png');background-size:contain;background-repeat:no-repeat;height: 42px;width:128px;
 }
 
 .loader {
@@ -574,7 +570,7 @@ li {
     animation: drop 3s linear forwards;
 
 
-    background: rgba( 255, 255, 255, 0.1 );
+    background: rgba( 255, 255, 255, 0.5 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -611,14 +607,10 @@ li {
 
 .hero {
     margin:0px;height: 100vh;width:auto;
-
-        background-image: url('images/grid-png-43563.png'), linear-gradient(180deg, #50A7C2 0%, #B7F8DB  100%);    
-    background-image: url('images/grid-png-43563.png'), linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%);
-    background-image: url('images/dot-grid.png'), url('images/v904-nunny-035.jpg');
-
-    background-repeat: repeat-x; 
-    background-size: contain; 
-    background-position: bottom;
+    background-color: #f5efef;
+    /*linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%)*/
+    background-image: url('images/dot-grid.png'),url('images/v904-nunny-035.jpg');
+    background-size: stretch; 
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -976,14 +968,84 @@ canvas:hover h1 {
 	transition: 0.3s;
 }
 
+  @media (max-width: 560px) {
+      .form {
+        height: 240px;
+        width: 370px;
+        top: 116px;
+      }
+      .fishtank {
+        width: 450px;
+      }
+      .clock-form {
+        top:1024px;
+        left:20px;
+      }
+  }
+
   @media (pointer: fine) {
       .mobile-nav {
           visibility: hidden;
       }
+
   }
 
   @media (pointer: coarse) {
     .hamburger {visibility: visible;}
     .navbar {visibility: hidden;}
-    .form {width:auto;margin:80px;font-size: 36px;}
+
+    .hero {
+        height: auto;
+        background-image: url('images/v904-nunny-035.jpg');
+        background-size: cover;
+    }
+    .scroll-track {
+        display:none;
+    }
+    .circle {
+        visibility: hidden;
+    }
+    .clock {
+        zoom: 2.5;
+    }
+    .form {
+        position: relative;
+        width: 800px;
+        border-radius: 60px;
+        top:0;left:0;right:0;bottom:0;
+        margin: 20px;
+        margin-top:260;
+        font-size: 3em;
+        box-shadow: none;
+        height:850;
+    }
+    .form p {
+        visibility: hidden;
+    }
+    .fishtank {
+        position: relative;
+        width: 800px;
+        border-radius: 60px;
+        top:0;left:0;right:0;bottom:0;
+        margin: 20px;
+        margin-bottom: 80;
+        box-shadow: none;
+
+    }
+    .fishtank p {
+        visibility: hidden;
+    }
+    .contact {
+        display:none;
+    }
+    .clock-form {
+        position: relative;
+        border-radius: 60px;
+        width: 800px;
+        top:0;left:0;right:0;bottom:0;
+        margin: 20px;
+        box-shadow: none;
+
+    }
+
   }
