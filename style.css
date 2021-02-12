@@ -142,7 +142,7 @@ h2 {
     height: auto;
     width: 100%;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1em;
+    font-size: 1.5em;
     padding-top: 24px;
     pointer-events: none;
     margin:40px;
@@ -155,7 +155,9 @@ h2 {
     height: 250;
     width: 250;
     background: url(https://clock.demo.dev.zedpro.me/assets/images/clock.png);
+    background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
 }
 
 .clock .hour, .clock .min, .clock .sec {
@@ -211,7 +213,7 @@ body.light .mn:before {
 
 .sc:before {
     content: '';
-    position: absolute;
+    position: relative;
     width: 2px;
     height: 150px;
     background: #171b1d;
@@ -219,58 +221,78 @@ body.light .mn:before {
     border-radius: 6px 6px 0 0;
 }
 
+.hero {
+    margin:0px;height: 768px;width:auto;
+    background-color: #f5efef;
+    background-size: stretch;
+
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "terminal terminal rabbit rabbit"
+        "clock fishtank rabbit rabbit";
+    grid-gap: 40px;
+    padding-top: 136px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
 .form {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    position: absolute;
-    top: 116px;
-    left: 20px;
-    width: 50vw;
-    height: 28vh;
-    cursor: grab;
+    position: relative;
     background: #171b1d;
-    box-shadow: 0 8px 32px 0 rgba(143, 143, 143, 0.37);
-    border-radius: 10px;
-    border: 4px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    grid-area: terminal;
+}
+
+.rabbit-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    background: #171b1d;
+    border-radius: 20px;
+    overflow: hidden;
+    grid-area: rabbit;
+}
+
+.rabbit-form iframe {
+    cursor:grab;
 }
 
 .clock-form {
     background: #e8e4e2;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    border-radius: 10px;
-    cursor: grab;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height:38vh;
-    width:30%;
-
-    position: absolute;
-    top: 116px;
-    right: 20px;
-    border: 4px solid rgba(255,255,255,0.2);
+    position: relative;
+    grid-area: clock;
 }
 
 .fishtank {
     background: #ff8089;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    border-radius: 10px;
-    cursor: grab;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 38vh;
-    width: 400px;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    border: 4px solid rgba(255,255,255,0.2);
+    overflow: hidden;
+    grid-area: fishtank;
 }
 
+
 .fishtank svg {
+    height: 70%;
+    width: 70%;
     pointer-events: none;
+    transition: 0.3s;
+}
+
+.fishtank:hover svg {
     height: 80%;
     width: 80%;
 }
@@ -301,11 +323,12 @@ a {
     background-color:darkgray;
     height: 12px;
     width: 12px;
-    margin: 12px;
+    margin: 20px;
     border-radius: 100%;
     position: absolute;
     top:0px;
     left: 0px;
+    pointer-events:none;
 }
 
 p {
@@ -570,7 +593,7 @@ li {
     animation: drop 3s linear forwards;
 
 
-    background: rgba( 255, 255, 255, 0.5 );
+    background: white;
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -603,19 +626,6 @@ li {
 
 .navbar:hover .logo {
     background-image: url('images/logo-hover.png');
-}
-
-.hero {
-    margin:0px;height: 100vh;width:auto;
-    background-color: #f5efef;
-    /*linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%)*/
-    background-image: url('images/dot-grid.png'),url('images/v904-nunny-035.jpg');
-    background-size: stretch; 
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 100px;
 }
 
 .contact {
@@ -964,22 +974,16 @@ canvas:hover h1 {
 	height: 3%;width: 100%;
 	margin-top: 2%;
 	margin-bottom: 2%;
-	background-color: #171b1d;
+	background-color: #feada6;
 	transition: 0.3s;
 }
 
-  @media (max-width: 560px) {
-      .form {
-        height: 240px;
-        width: 370px;
-        top: 116px;
-      }
-      .fishtank {
-        width: 450px;
-      }
-      .clock-form {
-        top:1024px;
-        left:20px;
+  @media (max-width: 760px) {
+      .hero {
+          grid-template-areas: 
+          "terminal terminal terminal terminal"
+          "clock clock fishtank fishtank"
+          "rabbit rabbit rabbit rabbit";
       }
   }
 
@@ -994,10 +998,13 @@ canvas:hover h1 {
     .hamburger {visibility: visible;}
     .navbar {visibility: hidden;}
 
+    
     .hero {
         height: auto;
-        background-image: url('images/v904-nunny-035.jpg');
-        background-size: cover;
+        padding-bottom: 40px;
+    }
+    .button {
+        display:none;
     }
     .scroll-track {
         display:none;
@@ -1005,35 +1012,44 @@ canvas:hover h1 {
     .circle {
         visibility: hidden;
     }
+    .clock-form #center {
+        visibility: visible;
+        zoom: 2;
+    }
     .clock {
-        zoom: 2.5;
+        zoom: 1.5;
     }
     .form {
         position: relative;
         width: 800px;
         border-radius: 60px;
-        top:0;left:0;right:0;bottom:0;
         margin: 20px;
         margin-top:260;
-        font-size: 3em;
+        font-size: 2em;
         box-shadow: none;
         height:850;
+        grid-row-start: span 2;
+        grid-row-end: span 2;
     }
     .form p {
         visibility: hidden;
     }
     .fishtank {
         position: relative;
-        width: 800px;
+        width: 375px;
+        height:375px;
         border-radius: 60px;
         top:0;left:0;right:0;bottom:0;
         margin: 20px;
-        margin-bottom: 80;
         box-shadow: none;
-
     }
+    
     .fishtank p {
         visibility: hidden;
+    }
+    .fishtank svg {
+        height: 80%;
+        width: 80%;
     }
     .contact {
         display:none;
@@ -1041,10 +1057,21 @@ canvas:hover h1 {
     .clock-form {
         position: relative;
         border-radius: 60px;
-        width: 800px;
+        width: 375px;
+        height: 375px;
         top:0;left:0;right:0;bottom:0;
         margin: 20px;
         box-shadow: none;
+    }
+    .footer {
+        zoom:2;
+    }
+
+    h2 {
+        font-size: 4em;
+    }
+    .footer h2 {
+        zoom: normal;
 
     }
 

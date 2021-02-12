@@ -44,7 +44,7 @@ window.onbeforeunload = function () {
 function email() {
 	Email.send({
 		SecureToken: "6d66f2a8-a8c6-4747-bb34-e77eb18b1ae3",
-		To : 'jmblx99@outlook.com',
+		To : 'jmblanck@millersville.edu',
 		From : "blanckjm@gmail.com",
 		Subject : document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
 		Body : document.querySelector('.message').value
@@ -68,7 +68,7 @@ document.addEventListener('mousemove', e => {
 	pos4 = e.clientY;
 	
 	if (dragging) {
-		if (terminal.offsetTop < (window.innerHeight - terminal.offsetHeight)) {
+		if (terminal.offsetTop < 1024) {
 			terminal.style.position = "absolute";
 			terminal.style.top = (terminal.offsetTop - pos2) + "px";
     		terminal.style.left = (terminal.offsetLeft - pos1) + "px";
