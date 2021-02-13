@@ -21,7 +21,7 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-y: hidden;
+    overflow-x: hidden;
     animation: enable-scroll 3.5s linear forwards;
 }
 
@@ -35,16 +35,6 @@ html {
     display: none;
 }
 
-.scroll-indicator {
-    position: absolute; 
-    height: 36px; 
-    width: 2px;
-    background-color: #171b1d;
-    top: 106px;
-    right:9px;
-    transition: 0.3s;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -53,6 +43,26 @@ body {
     background-color: #f8f8f8;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
+}
+
+.kofi-form iframe {
+    pointer-events:none;
+}
+
+.scrollbar-thumb {
+    visibility: hidden;
+    animation: show-track 3s linear forwards;
+}
+
+@keyframes show-track {
+    100% {
+        visibility: visible;
+    }
+}
+
+a li {
+    cursor: hand;
+
 }
 
 textarea {
@@ -230,8 +240,8 @@ body.light .mn:before {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-        "terminal terminal rabbit rabbit"
-        "clock fishtank rabbit rabbit";
+        "terminal terminal kofi kofi"
+        "clock fishtank kofi kofi";
     grid-gap: 40px;
     padding-top: 136px;
     padding-bottom: 40px;
@@ -249,7 +259,7 @@ body.light .mn:before {
     grid-area: terminal;
 }
 
-.rabbit-form {
+.kofi-form {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -257,11 +267,7 @@ body.light .mn:before {
     background: #171b1d;
     border-radius: 20px;
     overflow: hidden;
-    grid-area: rabbit;
-}
-
-.rabbit-form iframe {
-    cursor:grab;
+    grid-area: kofi;
 }
 
 .clock-form {
@@ -361,7 +367,6 @@ canvas {
     height: 64px;
     position: relative;
     border-radius: 10%;
-    bottom: -100px;
     transition: 0.6s;
     font-size: 28px;
     display: flex;
@@ -369,6 +374,8 @@ canvas {
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-top:40px;
+    margin-bottom:40px;
     z-index: 1;
 }
 
@@ -585,39 +592,18 @@ li {
     height: 96px;
     position: fixed;
     top: 0;
-    transition: 0.6s;
+    left: 0;
     z-index: 2;
     display: flex;
     justify-content: left;
     align-items: center;
-    animation: drop 3s linear forwards;
-
-
     background: white;
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 #water {
     fill:rgba( 255, 255, 255, 0.1 );
     backdrop-filter: blur(4px);
-}
-
-@keyframes drop {
-    70% {
-        top:-72px;
-        opacity:0;
-
-    }
-    80% {
-        top:-72px;
-    }
-
-    100% {
-        top:0;
-        opacity:1;
-    }
 }
 
 .navbar:hover {
@@ -644,6 +630,7 @@ li {
     top: 22px;
     right: 40px;
     transition: 1s;
+    cursor:hand;
 
     display: flex;
     flex-direction: row;
@@ -974,7 +961,7 @@ canvas:hover h1 {
 	height: 3%;width: 100%;
 	margin-top: 2%;
 	margin-bottom: 2%;
-	background-color: #feada6;
+	background-color: #171b1d;
 	transition: 0.3s;
 }
 
@@ -983,7 +970,7 @@ canvas:hover h1 {
           grid-template-areas: 
           "terminal terminal terminal terminal"
           "clock clock fishtank fishtank"
-          "rabbit rabbit rabbit rabbit";
+          "kofi kofi kofi kofi";
       }
   }
 
@@ -1000,8 +987,16 @@ canvas:hover h1 {
 
     
     .hero {
-        height: auto;
-        padding-bottom: 40px;
+        padding-top: 240px;
+        height: 100vh;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "terminal terminal terminal terminal"
+        "clock clock fishtank fishtank"
+        "kofi kofi kofi kofi";
+    }
+    .form {
+        font-size: 2em;
     }
     .button {
         display:none;
@@ -1019,29 +1014,8 @@ canvas:hover h1 {
     .clock {
         zoom: 1.5;
     }
-    .form {
-        position: relative;
-        width: 800px;
-        border-radius: 60px;
-        margin: 20px;
-        margin-top:260;
-        font-size: 2em;
-        box-shadow: none;
-        height:850;
-        grid-row-start: span 2;
-        grid-row-end: span 2;
-    }
     .form p {
         visibility: hidden;
-    }
-    .fishtank {
-        position: relative;
-        width: 375px;
-        height:375px;
-        border-radius: 60px;
-        top:0;left:0;right:0;bottom:0;
-        margin: 20px;
-        box-shadow: none;
     }
     
     .fishtank p {
@@ -1053,15 +1027,6 @@ canvas:hover h1 {
     }
     .contact {
         display:none;
-    }
-    .clock-form {
-        position: relative;
-        border-radius: 60px;
-        width: 375px;
-        height: 375px;
-        top:0;left:0;right:0;bottom:0;
-        margin: 20px;
-        box-shadow: none;
     }
     .footer {
         zoom:2;

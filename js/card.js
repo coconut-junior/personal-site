@@ -25,9 +25,7 @@ var shadow_array = [
 	""
 ]
 const texture = new THREE.TextureLoader();
-var menuOpen1 = false;
-var menuOpen2 = false;
-var menuOpen3 = false;
+
 
 var isMobile = false;
 
@@ -118,45 +116,6 @@ window.shuffle = function shuffle() {
 init();
 window.addEventListener('resize', onWindowResize, false);
 
-window.onclick = e => {
-	if(e.target.id == "dropdown1"){
-        var menu = document.getElementById('menu1');
-        menuOpen1 = !menuOpen1;
-        if (menuOpen1){
-            e.target.innerHTML = "-";
-            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
-        }
-        else {
-            e.target.innerHTML = "+";
-            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
-        }
-    }
 
-    if(e.target.id == "dropdown2"){
-        var menu = document.getElementById('menu2');
-        menuOpen2 = !menuOpen2;
-        if (menuOpen2){
-            e.target.innerHTML = "-";
-            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
-        }
-        else {
-            e.target.innerHTML = "+";
-            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
-        }
-    }
-
-    if(e.target.id == "dropdown3"){
-        var menu = document.getElementById('menu3');
-        menuOpen3 = !menuOpen3;
-        if (menuOpen3){
-            e.target.innerHTML = "-";
-            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
-        }
-        else {
-            e.target.innerHTML = "+";
-            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
-        }
-    }
-}
 
 animate();

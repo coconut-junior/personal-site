@@ -4,6 +4,10 @@ var dragging = false;
 var terminal = document.querySelector('.form');
 var lang = 'en';
 
+var menuOpen1 = false;
+var menuOpen2 = false;
+var menuOpen3 = false;
+
 history.scrollRestoration = 'manual'; /*reset scroll position on reload*/
 
 /*language toggle*/
@@ -53,68 +57,46 @@ function email() {
 	);
 }
 
-document.addEventListener('scroll', function(e) {
-	var scrolled = window.pageYOffset;
-	scrolled = Math.round(window.innerHeight * (scrolled / document.body.scrollHeight)) + 106;
-	document.querySelector(".scroll-indicator").style.top = scrolled;
-});
+window.onclick = e => {
+	if(e.target.id == "dropdown1"){
+        var menu = document.getElementById('menu1');
+        menuOpen1 = !menuOpen1;
+        if (menuOpen1){
+            e.target.innerHTML = "-";
+            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+        }
+        else {
+            e.target.innerHTML = "+";
+            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
+        }
+    }
 
-document.addEventListener('mousemove', e => {
-	e = e || window.event;
-	e.preventDefault();
-	pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-	pos4 = e.clientY;
-	
-	if (dragging) {
-		if (terminal.offsetTop < 1024) {
-			terminal.style.position = "absolute";
-			terminal.style.top = (terminal.offsetTop - pos2) + "px";
-    		terminal.style.left = (terminal.offsetLeft - pos1) + "px";
+    if(e.target.id == "dropdown2"){
+        var menu = document.getElementById('menu2');
+        menuOpen2 = !menuOpen2;
+        if (menuOpen2){
+            e.target.innerHTML = "-";
+            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+        }
+        else {
+            e.target.innerHTML = "+";
+            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
+        }
+    }
 
-			if (e.target.className == "fishtank") {
-				gsap.to(document.getElementById('fish'), 
-				{
-					duration:1.5, ease: "elastic.out(1, 0.2)", x:  Math.sign(pos1)*15, y: Math.sign(pos2)*15
-				});
-				gsap.to(document.getElementById('shadow'), 
-				{
-					duration:1.5, ease: "elastic.out(1, 0.2)", x:  Math.sign(pos1)*20
-				});
-			}
-		}
-		else {
-			terminal.style.top = window.innerHeight - terminal.offsetHeight - 10 + "px";
-			dragging = false;
-			terminal.style.cursor = "grab"
-		}
-	}
-})
-
-let drag = function(e) {
-	e = e || window.event;
-    e.preventDefault();
-	
-	if (e.target.className == "form" || "clock" || "fishtank") {
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		dragging = true;
-		terminal.style.zIndex = 1;
-		terminal = e.target;
-		terminal.style.zIndex = 2;
-		terminal.style.cursor = "grabbing";
-	}
-
+    if(e.target.id == "dropdown3"){
+        var menu = document.getElementById('menu3');
+        menuOpen3 = !menuOpen3;
+        if (menuOpen3){
+            e.target.innerHTML = "-";
+            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+        }
+        else {
+            e.target.innerHTML = "+";
+            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
+        }
+    }
 }
-
-let release = function(e) {
-	e = e || window.event;
-    e.preventDefault();
-	dragging = false;
-	terminal.style.cursor = "grab"
-}
-
 
 let openNav = function() {
 	let homeButton = document.querySelector(".hamburger");
