@@ -10,6 +10,33 @@ var menuOpen3 = false;
 
 history.scrollRestoration = 'manual'; /*reset scroll position on reload*/
 
+var nav = document.body.querySelector('.nav-items');
+var bar = document.querySelectorAll('.bar');
+
+function openMenu() {
+    if (menuOpen) {
+        menuOpen = false;
+        nav.style.height = "0";
+        nav.style.paddingTop = "0";
+        nav.style.paddingBottom = "0";
+        
+        for (i = 0; i < bar.length; i++) {
+            bar[i].style.marginTop = "4px";
+            bar[i].style.marginBottom = "4px";
+        }
+    }
+    else {
+        menuOpen = true;
+        nav.style.height = "auto";
+        nav.style.paddingTop = "20%";
+        nav.style.paddingBottom = "24px";
+        for (i = 0; i < bar.length; i++) {
+            bar[i].style.marginTop = "6px";
+            bar[i].style.marginBottom = "6px";
+        }
+    }
+}
+
 /*language toggle*/
 function toggleLang() {
 	if (lang=='en') {
@@ -96,41 +123,4 @@ window.onclick = e => {
             gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
         }
     }
-}
-
-let openNav = function() {
-	let homeButton = document.querySelector(".hamburger");
-	let menu = document.querySelector(".links");
-	var bars = document.getElementsByClassName("bar");
-
-	if (menuOpen == false) {
-		for(var i=0; i<bars.length; i++) {
-		    bars[i].style.marginTop = "5%";
-		    bars[i].style.marginBottom = "5%";
-		}
-		menuOpen = true;
-		
-		try {
-			menu.style.top = "160px";
-			menu.style.opacity = "1";
-		}
-		catch {
-			console.log('menu not implemented!');
-		}
-		
-	}
-	else {
-		for(var i=0; i<bars.length; i++) {
-		    bars[i].style.marginTop = "2%";
-		    bars[i].style.marginBottom = "2%";
-		}
-		menuOpen = false;
-		try {
-		menu.style.top = "0px";
-		menu.style.opacity = "0";
-		}
-		catch {
-			console.log('menu not implemented!');
-		}
-	}
 }

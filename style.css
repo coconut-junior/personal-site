@@ -240,8 +240,8 @@ body.light .mn:before {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-        "terminal terminal kofi kofi"
-        "clock fishtank kofi kofi";
+        "terminal terminal fishtank fishtank"
+        "clock kofi fishtank fishtank";
     grid-gap: 40px;
     padding-top: 136px;
     padding-bottom: 40px;
@@ -264,7 +264,7 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #171b1d;
+    background: #a2f6dd;
     border-radius: 20px;
     overflow: hidden;
     grid-area: kofi;
@@ -296,11 +296,6 @@ body.light .mn:before {
     width: 70%;
     pointer-events: none;
     transition: 0.3s;
-}
-
-.fishtank:hover svg {
-    height: 80%;
-    width: 80%;
 }
 
 #fish {
@@ -931,8 +926,8 @@ canvas:hover h1 {
 	flex-direction: column;
 	justify-content: center;
     height: 100%;
-    width: 15%;
-	margin: auto;
+    width: 12%;
+	margin-left: 10%;
 	left: auto;
     visibility: hidden;
 
@@ -958,11 +953,47 @@ canvas:hover h1 {
 
 .bar {
 	pointer-events: none;
-	height: 3%;width: 100%;
-	margin-top: 2%;
-	margin-bottom: 2%;
+	height: 2%;width: 100%;
+	margin-top: 4px;
+	margin-bottom: 4px;
 	background-color: #171b1d;
 	transition: 0.3s;
+}
+
+.nav-items {
+	display: flex;
+	flex-direction: column;
+	background-color: #171b1d;
+	height: 0;
+    margin:0;
+	margin-top:5%;
+    padding-left:0;
+	width: 100vw;
+	position: absolute;
+	top:0;
+	left:0;
+	transition: 0.3s;
+	overflow:hidden;
+	visibility: visible;
+}
+
+.nav-items a {
+    color: #f5efef;
+    padding: 4%;
+}
+
+.nav-items a:hover {
+    border: 4px white dotted;
+}
+
+.nav-items li {
+    opacity:1;
+    margin:0;
+    margin-top:4%;
+    margin-bottom:4%;
+	font-size: 2em;
+	text-align: center;
+	width: auto;
 }
 
   @media (max-width: 760px) {
@@ -978,14 +1009,17 @@ canvas:hover h1 {
       .mobile-nav {
           visibility: hidden;
       }
-
+      .nav-items {
+          visibility: hidden;
+      }
   }
 
   @media (pointer: coarse) {
     .hamburger {visibility: visible;}
     .navbar {visibility: hidden;}
-
-    
+    .nav-items {
+        visibility: visible;
+    }
     .hero {
         padding-top: 240px;
         height: 100vh;
@@ -1030,6 +1064,10 @@ canvas:hover h1 {
     }
     .footer {
         zoom:2;
+    }
+
+    .footer h2 {
+        font-size:2em;
     }
 
     h2 {
