@@ -467,6 +467,10 @@ li {
     transition: 0.3s;
 }
 
+.navbar ul li{
+    border-radius: 5px;
+}
+
 .banner ul li:hover {
     letter-spacing: 2px;
 }
@@ -980,6 +984,11 @@ canvas:hover h1 {
 .nav-items a {
     color: #f5efef;
     padding: 4%;
+    border-radius: 10px;
+}
+
+.clock-form .circle {
+    margin:0;
 }
 
 .nav-items a:hover {
