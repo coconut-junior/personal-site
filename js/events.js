@@ -73,15 +73,20 @@ window.onbeforeunload = function () {
 }
 
 function email() {
-	Email.send({
-		SecureToken: "6d66f2a8-a8c6-4747-bb34-e77eb18b1ae3",
-		To : 'jmblanck@millersville.edu',
-		From : "blanckjm@gmail.com",
-		Subject : document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
-		Body : document.querySelector('.message').value
-	}).then(
-	  message => alert(message)
-	);
+	if (document.body.querySelector('.message').value != '') {
+        Email.send({
+            SecureToken: "6d66f2a8-a8c6-4747-bb34-e77eb18b1ae3",
+            To : 'jmblanck@millersville.edu',
+            From : "blanckjm@gmail.com",
+            Subject : document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
+            Body : document.querySelector('.message').value + ' ' + document.querySelector('.phone-number').value
+        }).then(
+          alert('Thanks for the feedback!')
+        );
+    }
+    else {
+        alert('Please type a message before clicking send!');
+    }
 }
 
 window.onclick = e => {

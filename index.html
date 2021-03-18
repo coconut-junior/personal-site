@@ -7,6 +7,8 @@
         <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
+
+        <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display&display=swap" rel="stylesheet">
     </head>
     <body id = "smooth-scroll">
 
@@ -41,15 +43,10 @@
 
             </div>
 
-            <div class = "fishtank">                
-
-
-            </div>
+            <div class = "fishtank"></div>
 
             <div class = "kofi-form">
                 <iframe id = "mesh" scrolling="no" src='https://my.spline.design/untitled-9438c715aca29572c391fcc2ca87552e/' frameborder='0' width='100%' height='100%'></iframe>
-                <h2 style = "position: absolute;">ko-fi</h2>
-                <a href = "https://ko-fi.com/jimmyblanck" style = "text-decoration: underline; position: absolute;top: 120px;">give thanks with a cup of joe &#128076</a>
             </div>
 
         </div>
@@ -104,7 +101,7 @@
         </div>
 
         <div class = "banner" id = "site">
-            <a href = "images/ang_jacks_page.png">
+            <a href = "https://coconut-junior.github.io/ang-jacks-site/">
                 <div class = "gallery" style="background-image:url('images/mockup_wallpaper.png');">
                     <img src = "images/link.svg" style = "height: 64px;width:64px;padding:60px;">
                 </div>
@@ -119,10 +116,10 @@
 
         <h2>logos</h2>
         <div class = "banner" id = "logos" style = "margin: 10px;border-radius:40px;flex-direction: row; height: auto; padding: 40px; flex-wrap: wrap;">
-            <div class = "photo" style = "background-image: url('images/chamo.png');"></div>
-            <div class = "photo" style = "background-image: url('images/ang_jacks.png');"></div>
-            <div class = "photo" style = "background-image: url('images/genie.png');"></div>
-            <div class = "photo" style = "background-image: url('images/mixotic.png');"></div>
+            <div class = "photo" style = "background-position:center;background-image: url('images/chamo.png');"></div>
+            <div class = "photo" style = "background-position:center;background-image: url('images/ang_jacks.png');"></div>
+            <div class = "photo" style = "background-position:center;background-image: url('images/genie.png');"></div>
+            <div class = "photo" style = "background-position:center;background-image: url('images/mixotic.png');"></div>
         </div>
         
 
@@ -134,7 +131,7 @@
         <h2 id = "resume" style = "margin-top:0px;margin-bottom: 80px;">resume</h2>
 
         <div class = "banner" style = "height: auto; padding-top: 80px;border-radius: 20px;
-        border: 4px solid rgba(0,0,0,0.05);margin:40px;">
+        border: 4px solid rgba(0,0,0,0.05);margin:40px;overflow:hidden;">
         
             <h3>design skills
                 <br>
@@ -142,10 +139,8 @@
                 <ul id = "menu1">
                     <li>web design</li>
                     <li>branding</li>
-                    <li>publication design</li>
                     <li>illustration</li>
                     <li>photography</li>
-                    <li>ux design</li>
                 </ul>
             </h3>
             <h3>tech skills
@@ -204,11 +199,15 @@
             <h2 style = "color: #171b1d;">contact me</h2>
 
             <div style = "width: 50%;display: block;margin:20px;">
-                <textarea class = "name-first" placeholder = "first name" maxlength="18" style = "width: 45%;float:left;"></textarea>
-                <textarea class = "name-last" placeholder = "last name" maxlength="18" style = "width: 45%;float:right;"></textarea>
+                <textarea class = "name-first" rows="1" placeholder = "first name" maxlength="18" style = "float:left;"></textarea>
+                <textarea class = "name-last" rows="1" placeholder = "last name" maxlength="18" style = "float:right;"></textarea>
             </div>
 
+            <input type="tel" id="phone" name="phone" class = "phone-number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+             placeholder = "phone number"
+            style = "width:50%;">
             <textarea class = "message" placeholder="message" style = "width: 50%;height:25%;"></textarea>
+
             <a class = "send-button" href = "#contact-form" onclick="email()"><div class = "button-light">
 
                 <svg class = "send-icon" height = "32" width = "32" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -218,7 +217,7 @@
 
             </div></a>
 
-            <p style = "color:#171b1d;padding:0px;margin:40px;font-family: 'Rajdhani', sans-serif;font-size: 18px;">&#169; 2021 Jimmy Blanck</p>
+            <p style = "color:#171b1d;padding:0px;margin:40px;margin-top:80px;font-family: 'Rajdhani', sans-serif;font-size: 18px;">&#169; 2021 Jimmy Blanck</p>
             <div id = "links" style = "display: flex; flex-direction: row; justify-content:center; align-items: center;">
                 <a href = "https://github.com/coconut-junior" id = "link"><div class = "slink" style = "background-image: url('images/github.png')"></div></a>
                 <a href = "https://www.behance.net/jblanck" id = "link"><div class = "slink" style = "background-image: url('images/behance.png')"></div></a>
@@ -240,10 +239,13 @@
                 </li></a>
             </ul>
             
+            
+
+            <div class="logo"></div>
             <a onclick = "goContact()">
                 <div class = "contact">
                     <div id = "send"style = "position:absolute;height:46px;width:46px;fill:none;">
-                        <p style = "padding:0;position: absolute;">contact</p>
+                        <p style = "padding:0;position: absolute;font-size:12px;">contact</p>
                         <svg  viewBox="0 0 41 17" xmlns="http://www.w3.org/2000/svg">
                             <path id="Vector" d="M21 16H3.2C1.7 16 0.5 14.8 0.5 13.3V3.2C0.5 1.7 1.7 0.5 3.2 0.5H21C22.5 0.5 23.7 1.7 23.7 3.2V13.3C23.7 14.8 22.5 16 21 16Z" stroke="white" stroke-miterlimit="10"/>
                             <path id="Vector_2" d="M21.8 2.4L14 10.2C12.9 11.3 11.2 11.3 10.2 10.2L2.4 2.4" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
@@ -258,8 +260,6 @@
                     
                 </div>
             </a>
-
-            <div class="logo"></div>
         </div>
 
         <div class = "loader">
@@ -306,30 +306,18 @@
                 navbar.style.top = offset.y + 'px';
             });
 
-            function goHome() {
-                scrollbar.scrollTo(0, 0, 600);
-            }
+            function goHome() {scrollbar.scrollTo(0, 0, 600);}
 
-            function goProjects() {
-                scrollbar.scrollTo(0, proj.offsetTop, 600);
-            }
+            function goProjects() {scrollbar.scrollTo(0, proj.offsetTop, 600);}
 
-            function goTestimonials() {
-                scrollbar.scrollTo(0, test.offsetTop, 600);
-            }
+            function goTestimonials() {scrollbar.scrollTo(0, test.offsetTop, 600);}
 
-            function goResume() {
-                scrollbar.scrollTo(0, myResume.offsetTop, 600);
-            }
+            function goResume() {scrollbar.scrollTo(0, myResume.offsetTop, 600);}
 
-            function goContact() {
-                scrollbar.scrollTo(0, footer.offsetTop, 600);
-            }
-
+            function goContact() {scrollbar.scrollTo(0, footer.offsetTop, 600);}
             
         </script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         <script>
             document.getElementById("shuffle").onclick = function() {shuffle();}
             var typed3 = new Typed('.console', {
