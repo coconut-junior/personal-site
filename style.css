@@ -135,6 +135,7 @@ a {
     text-decoration: none;
     color: #2F2F2F;
     padding: 0px;
+    cursor: pointer;
 }
 
 h1 {
@@ -478,6 +479,17 @@ ul {
     padding-top:10px;
 }
 
+ul a {
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+ul a:hover {
+    background-color: hsl(180, 100%, 96%);
+    border-radius: 10px;
+}
+
 li {
     margin: 18px;
     color: #171b1d;
@@ -488,6 +500,9 @@ li {
     text-align: center;
     padding-bottom: 5px;
     border: 2px dotted transparent;
+}
+
+#resume li {
     transition: 0.3s;
 }
 
@@ -503,11 +518,6 @@ li {
 
 .banner ul li:hover {
     letter-spacing: 2px;
-}
-
-.navbar ul li:hover {
-    letter-spacing: 2px;
-    border: 2px dotted #171b1d;
 }
 
 .logo {
@@ -651,17 +661,21 @@ li {
     padding-top:14px;
     font-family: 'M PLUS Rounded 1c', sans-serif;    
     font-size: 16px;
-    height: 24;
+    height: 36px;
     width: 76;
     text-align: center;
     position: absolute;
-    top: 40;
+    top: 30px;
     right: 40px;
     transition: 1s;
     cursor: hand;
     display: flex;
     flex-direction: row;
     overflow: hidden;
+}
+
+.contact svg {
+    top: 10px;
 }
 
 .button-light {
@@ -728,7 +742,7 @@ li {
 }
 
 .contact p {
-    top: 1px;
+    top: 6px;
     left: -75px;
 }
 
