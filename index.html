@@ -10,7 +10,7 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display&display=swap" rel="stylesheet">
     </head>
-    <body id = "smooth-scroll">
+    <body>
 
         <script src = "https://smtpjs.com/v3/smtp.js"></script>
         <script src="js/three.js"></script>
@@ -46,7 +46,7 @@
             <div class = "fishtank"></div>
 
             <div class = "kofi-form">
-                <iframe id = "mesh" scrolling="no" src='https://my.spline.design/untitled-9438c715aca29572c391fcc2ca87552e/' frameborder='0' width='100%' height='100%'></iframe>
+                
             </div>
 
         </div>
@@ -174,7 +174,6 @@
             justify-content:space-between;
             align-items:center;
             width: 100vw;
-            height: 200px;
             position:fixed;
             top: 0;
             left: 0;background-color: white;
@@ -189,12 +188,14 @@
         </div> 
 
         <ul class = "nav-items">
-            <li><a onclick = "goHome()">home</a></li>
-            <li><a onclick = "goProjects()">projects</a></li>
-            <li><a onclick = "goTestimonials()">testimonials</a></li>
-            <li><a onclick = "goResume()">resume</a></li>
+            <li><a href = "#home">home</a></li>
+            <li><a href = "#projects">projects</a></li>
+            <li><a href = "#testimonials">testimonials</a></li>
+            <li><a href = "#contact-form">resume</a></li>
         </ul>
         
+        <div id = "contact"></div>
+
         <div class = "footer" id = "contact-form">
             <h2 style = "color: #171b1d;">contact me</h2>
 
@@ -227,22 +228,21 @@
         <div class = "navbar">
             
             <ul style = "margin-top: 5px;">
-                <a onclick = "goResume()"><li>resume</li></a>
-                <a onclick = "goTestimonials()"><li>testimonials</li></a>
-                <a onclick = "goProjects()"><li>
+                <a href = "#resume"><li>resume</li></a>
+                <a href = "#testimonials"><li>testimonials</li></a>
+                <a href = "#projects"><li>
                     <span class = "en">projects</span>
                     <span class = "ja">企画</span>
                 </li></a>
-                <a onclick="goHome()"><li>
+                <a href = "#home"><li>
                     <span class = "en">home</span>
                     <span class = "ja">ホーム</span>
                 </li></a>
             </ul>
             
-            
 
             <div class="logo"></div>
-            <a onclick = "goContact()">
+            <a href = "#contact">
                 <div class = "contact">
                     <div id = "send"style = "position:absolute;height:46px;width:46px;fill:none;">
                         <p style = "padding:0;position: absolute;font-size:12px;">contact</p>
@@ -281,42 +281,6 @@
 
         <script src = "js/events.js"></script>
         <script src= "js/clock.js"></script>
-        <script src="dist/smooth-scrollbar.js"></script>
-        
-        <script>
-            const navbar = document.querySelector('.navbar');
-            const proj = document.querySelector('#projects');
-            const test = document.querySelector('#testimonials');
-            const myResume = document.querySelector('#resume');
-            const footer = document.querySelector('#contact-form');
-
-            var options = {
-                'alwaysShowTracks': true,
-                'damping': 0.05
-            }
-
-            const scrollbar = Scrollbar.init(document.querySelector('#smooth-scroll'), {
-                // execute listeners synchronously to make sure they can be rendered at same tick
-                syncCallbacks: true,
-                continuousScrolling: false,
-                alwaysShowTracks: true
-            });
-
-            scrollbar.addListener(({ offset }) => {  
-                navbar.style.top = offset.y + 'px';
-            });
-
-            function goHome() {scrollbar.scrollTo(0, 0, 600);}
-
-            function goProjects() {scrollbar.scrollTo(0, proj.offsetTop, 600);}
-
-            function goTestimonials() {scrollbar.scrollTo(0, test.offsetTop, 600);}
-
-            function goResume() {scrollbar.scrollTo(0, myResume.offsetTop, 600);}
-
-            function goContact() {scrollbar.scrollTo(0, footer.offsetTop, 600);}
-            
-        </script>
 
         <script>
             document.getElementById("shuffle").onclick = function() {shuffle();}

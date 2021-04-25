@@ -480,12 +480,12 @@ ul {
 }
 
 ul a {
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
     transition: 0.3s;
 }
 
-ul a:hover {
+.navbar ul a:hover {
     background-color: hsl(180, 100%, 96%);
     border-radius: 10px;
 }
@@ -711,7 +711,7 @@ li {
        transform: translateY(5px);
    }
    75% {
-    transform: translateY(-5px);
+    transform: translateY(10px);
    }
 }
 
@@ -1055,6 +1055,10 @@ canvas:hover h1 {
 	width: auto;
 }
 
+.mobile-nav {
+    visibility: hidden;
+}
+
   @media (max-width: 760px) {
       .hero {
           grid-template-areas: 
@@ -1062,15 +1066,19 @@ canvas:hover h1 {
           "clock clock fishtank fishtank"
           "kofi kofi kofi kofi";
       }
-  }
-
-  @media (pointer: fine) {
       .mobile-nav {
-          visibility: hidden;
+          visibility: visible;
+          height: 100px;
       }
       .nav-items {
-          visibility: hidden;
+          visibility: visible;
+          font-size: 10px;
       }
+      .navbar {
+        visibility: hidden;
+      }
+     .hamburger {visibility: visible;}
+
   }
 
   @media (pointer: coarse) {
@@ -1079,8 +1087,12 @@ canvas:hover h1 {
     textarea {
         width: 100%;
     }
+    .mobile-nav {
+        height: 200px;
+    }
     .nav-items {
         visibility: visible;
+        font-size: 18px;
     }
     .hero {
         padding-top: 240px;
