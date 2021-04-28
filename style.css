@@ -269,7 +269,7 @@ body.light .mn:before {
         "terminal terminal fishtank fishtank"
         "clock kofi fishtank fishtank";
     grid-gap: 40px;
-    padding-top: 176px;
+    padding-top: 144px;
     padding-bottom: 40px;
     padding-left: 40px;
     padding-right: 40px;
@@ -628,7 +628,7 @@ li {
 
 .navbar {
     width: 100%;
-    height: 128px;
+    height: 96px;
     position: fixed;
     top: 0;
     left: 0;
@@ -665,7 +665,7 @@ li {
     width: 76;
     text-align: center;
     position: absolute;
-    top: 30px;
+    top: 16px;
     right: 40px;
     transition: 1s;
     cursor: hand;
