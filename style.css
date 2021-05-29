@@ -22,7 +22,6 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    animation: enable-scroll 3.5s linear forwards;
 }
 
 @keyframes enable-scroll {
@@ -38,7 +37,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: auto;
     overflow-x: hidden;
     background-color: #f8f8f8;
     -ms-overflow-style: none;  /* IE and Edge */
@@ -71,8 +70,8 @@ textarea {
     background-color: transparent;
     font-size: 24px;
     overflow: auto;
-    border: 6px solid #f5efef;
-    outline: 2px dotted #f5efef;
+    border: 6px solid #ebf1dd;
+    outline: 2px dotted #ebf1dd;
     box-shadow: inset 0 0 0 1px #171b1d;
     resize: none;
     padding: 20px;
@@ -94,8 +93,8 @@ input {
     background-color: transparent;
     font-size: 24px;
     overflow: auto;
-    border: 6px solid #f5efef;
-    outline: 2px dotted #f5efef;
+    border: 6px solid #ebf1dd;
+    outline: 2px dotted #ebf1dd;
     box-shadow: inset 0 0 0 1px #171b1d;
     resize: none;
     padding: 20px;
@@ -151,7 +150,7 @@ h3 {
     font-family: 'Big Shoulders Inline Display', cursive;    
     font-size: 1.5em;
     position: relative;
-    width: 100%;
+    width: auto;
     text-align: center;
 }
 
@@ -258,10 +257,12 @@ body.light .mn:before {
 }
 
 .hero {
-    margin:0px;height: 768px;width:auto;
+    position: relative;
+    margin:auto;
+    height: 768px;
+    width:85%;
     background-color: #f8f8f8;
     background-size: stretch;
-
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -483,10 +484,11 @@ ul a {
     background-color: transparent;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 10px;
 }
 
 .navbar ul a:hover {
-    background-color: hsl(180, 100%, 96%);
+    background-color: #ebf1dd;
     border-radius: 10px;
 }
 
@@ -521,13 +523,14 @@ li {
 }
 
 .logo {
-    padding:2px;position:relative;left:40px;background-image: url('images/logo-hover.png');background-size:contain;background-repeat:no-repeat;height: 42px;width:128px;
+    opacity: 0.9;
+    padding:2px;position:relative;left:40px;background-image: url('images/logo.png');background-size:contain;background-repeat:no-repeat;height: 42px;width:128px;
 }
 
 .loader {
     height: 100vh;
     width: 100vw;
-    background-color: #f5efef;
+    background-color: #ebf1dd;
     position: absolute;
     top:0px;
     left:0px;
@@ -641,11 +644,6 @@ li {
 
     -webkit-box-shadow: 0px 0px 50px -8px rgba(0,0,0,0.1); 
     box-shadow: 0px 0px 50px -8px rgba(0,0,0,0.1);
-}
-
-#water {
-    fill:rgba( 255, 255, 255, 0.1 );
-    backdrop-filter: blur(4px);
 }
 
 .navbar:hover {
@@ -810,7 +808,7 @@ canvas:hover h1 {
     width: auto;
     padding: 20px;
     color: white;
-    background-color: #f5efef;
+    background-color: #ebf1dd;
   }
 
   .footer #link {
@@ -852,7 +850,7 @@ canvas:hover h1 {
     color: #171b1d;
     margin-top: 32px;
     height: 64px;
-    width: 100%;
+    width: auto;
   }
 
   h3 ul {
@@ -929,7 +927,7 @@ canvas:hover h1 {
     bottom: 0px;
     padding-right: 120px;
     padding-left:80px;
-    color: #f5efef;
+    color: #ebf1dd;
 
   }
 
@@ -1028,11 +1026,11 @@ canvas:hover h1 {
 	left:0;
 	transition: 0.3s;
 	overflow:hidden;
-	visibility: visible;
+	visibility: hidden;
 }
 
 .nav-items a {
-    color: #f5efef;
+    color: #ebf1dd;
     padding: 4%;
     border-radius: 10px;
 }
