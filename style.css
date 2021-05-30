@@ -1100,8 +1100,35 @@ canvas:hover h1 {
         "clock clock fishtank fishtank"
         "kofi kofi fishtank fishtank";
     }
-    h3 {
-        font-size: 2em;
+    .infobox h3 {
+        font-size: 4em;
+        margin-left: 40px;
+        width: auto;
+        text-align: left;
+    }
+    .infobox h3 p {
+        font-size: 0.5em;
+    }
+    h4 {
+        display: none;
+    }
+    .gallery {
+        position: relative;
+        width: 100%;
+    }
+    #site a {
+        width: 100%;
+        padding: 40px;
+    }
+    .banner p {
+        position: relative;
+    }
+    .infobox {
+        height: 340px;
+        width: 100%;
+    }
+    .banner {
+        height: auto;
     }
     .form {
         font-size: 2em;
