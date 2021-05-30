@@ -1093,12 +1093,12 @@ canvas:hover h1 {
     }
     .hero {
         padding-top: 280px;
-        height: 1480px;
+        height: 1680;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal terminal terminal"
         "clock clock fishtank fishtank"
-        "kofi kofi kofi kofi";
+        "kofi kofi fishtank fishtank";
     }
     .banner p {
         font-size: 18px;
@@ -1108,6 +1108,7 @@ canvas:hover h1 {
     }
     .form {
         font-size: 2em;
+        height: 800px;
     }
     .button {
         display:none;
