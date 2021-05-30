@@ -1093,7 +1093,7 @@ canvas:hover h1 {
     }
     .hero {
         padding-top: 280px;
-        height: 100vh;
+        height: 800px;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal terminal terminal"
