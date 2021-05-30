@@ -139,7 +139,7 @@ a {
 
 h1 {
     margin: auto;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 48px;
     position: relative;
     opacity: 0;
@@ -147,7 +147,7 @@ h1 {
 
 h3 {
     margin: auto;
-    font-family: 'Big Shoulders Inline Display', cursive;    
+    font-family: 'Rubik', sans-serif;    
     font-size: 1.5em;
     position: relative;
     width: auto;
@@ -164,7 +164,7 @@ h2 {
     margin-top:40px;
     margin-bottom: 20px;
     padding-top:20px;
-    font-family: 'Big Shoulders Inline Display', cursive;
+    font-family: 'Rubik', sans-serif;
     font-size: 2em;
     position: relative;
     transition: 1s;
@@ -358,7 +358,7 @@ a {
 p {
     transition: 2s;
     letter-spacing: 2px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;    
+    font-family: 'Open Sans', sans-serif;    
     margin: auto;
     padding: 80px;
     width: auto;
@@ -378,7 +378,7 @@ canvas {
 }
 
 .button {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     border-radius: 60px;
     border: 2px solid #171b1d;
     width: 64px;
@@ -491,7 +491,7 @@ ul a {
 li {
     margin: 18px;
     color: #171b1d;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     padding: 5px;
     padding-bottom: 10px;
@@ -653,7 +653,7 @@ li {
     border-radius:10px; 
     padding: 10px;
     padding-top:14px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;    
+    font-family: 'Open Sans', sans-serif;    
     font-size: 16px;
     height: 36px;
     width: 76;
@@ -839,7 +839,7 @@ canvas:hover h1 {
 
   .dropdown {
     z-index: 1;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 36px;
     cursor: pointer;
     text-align: center;
@@ -916,13 +916,12 @@ canvas:hover h1 {
   }
 
   h4 {
-    font-size: 200px;
+    font-size: 128px;
     font-family: 'Rajdhani', sans-serif;
     position: absolute;
-    right: 0px;
-    bottom: 0px;
-    padding-right: 120px;
-    padding-left:80px;
+    top: 20;
+    right: 20;
+    margin: auto;
     color: #ebf1dd;
 
   }
@@ -935,7 +934,7 @@ canvas:hover h1 {
   }
 
   #site a {
-    height:480px; width: 60%;
+    height:480px; width: 50%;
   }
    
   .icon-shuffle:before { content: '\e800'; } /* '' */
@@ -947,16 +946,16 @@ canvas:hover h1 {
   .icon-angellist:before { content: '\f209'; } /* '' */
 
   .infobox {
-    display:flex;align-items:flex-end;height:480px;width:40%;
+    display:flex;align-items:flex-end;height:480px;width:40%;margin: auto;
   }
 
   .infobox h3 {
       display: flex;
+      height: 50%;
       flex-direction: column;
       justify-content: flex-end;
       padding:0px;
       text-align: left;
-      margin:40px;
   }
 
   .infobox p {
@@ -1071,6 +1070,22 @@ canvas:hover h1 {
         visibility: hidden;
       }
      .hamburger {visibility: visible;}
+     .infobox h3 {
+        margin-left: 40px;
+        width: auto;
+        text-align: left;
+    }
+    h4 {
+        display: none;
+    }
+    .gallery {
+        position: relative;
+        width: 100%;
+    }
+    #site a {
+        width: 100%;
+        padding: 40px;
+    }
 
   }
 
