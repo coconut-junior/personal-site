@@ -20,13 +20,13 @@
 
         <div class = "hero">
 
-            <div class = "form">
+            <div class = "form" id = "widget">
                 <p style = "font-size:1em;pointer-events:none;position:absolute;top:7px;padding: 0;color:white;">terminal</p>
                 <div class = "console"></div>
                 <div class = "circle"></div>
             </div>
 
-            <div class = "clock-form">
+            <div class = "clock-form" id = "widget">
                 <div class="clock" style = "pointer-events: none;">
                     <div style = "height: 96px;width:96px;background-repeat:no-repeat;background-image: url('images/bunny.png');background-size:contain;"></div>
                     <div class="hour">
@@ -43,7 +43,7 @@
 
             </div>
 
-            <div class = "fishtank">
+            <div class = "fishtank" id = "widget">
                 <video autobuffer preload muted = "true" loop = "true" autoplay="true" style = "
     position: relative;
     height: 100%;
@@ -53,7 +53,7 @@
         </video>
             </div>
 
-            <div class = "kofi-form">
+            <div class = "kofi-form" id = "widget">
                 
             </div>
 
@@ -185,7 +185,7 @@
             position:fixed;
             top: 0;
             left: 0;background-color: white;
-            z-index:2;">
+            z-index:3;">
                 <div class = "hamburger" onclick = "openMenu()">
                     <div class = "bar"></div>
                     <div class = "bar"></div>
