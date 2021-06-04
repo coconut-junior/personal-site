@@ -1099,6 +1099,9 @@ canvas:hover h1 {
   @media (pointer: coarse) {
     .hamburger {visibility: visible;}
     .navbar {visibility: hidden;}
+    canvas {
+        display: none;
+    }
     textarea {
         width: 100%;
     }
