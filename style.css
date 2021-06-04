@@ -189,7 +189,7 @@ h2 {
     justify-content: center;
     height: 250;
     width: 250;
-    background: url(https://clock.demo.dev.zedpro.me/assets/images/clock.png);
+    background: url("images/clock.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -260,7 +260,7 @@ body.light .mn:before {
     position: relative;
     margin:auto;
     height: 768px;
-    width:85%;
+    width:auto;
     background-color: #f8f8f8;
     background-size: stretch;
     display: grid; 
@@ -305,14 +305,21 @@ body.light .mn:before {
 }
 
 .fishtank {
+    color: white;
     background: #ff8089;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-start;
     overflow: hidden;
     grid-area: fishtank;
+    background-image: url("images/photography.jpg");
+    background-size: cover;
 }
 
+canvas {
+    cursor: grab;
+}
 
 .fishtank svg {
     height: 70%;
@@ -651,15 +658,14 @@ li {
     background-color:transparent;
     border: 2px solid #171b1d;
     border-radius:10px; 
-    padding: 10px;
+    padding: 12px;
     padding-top:14px;
     font-family: 'Open Sans', sans-serif;    
-    font-size: 16px;
     height: 36px;
     width: 76;
     text-align: center;
     position: absolute;
-    top: 16px;
+    top: 15px;
     right: 40px;
     transition: 1s;
     cursor: hand;
@@ -959,7 +965,8 @@ canvas:hover h1 {
   }
 
   .infobox p {
-      font-family: 'Rajdhani', sans-serif;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
       text-align: left;
       margin:0px;
       margin-top:40px;
