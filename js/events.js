@@ -89,43 +89,30 @@ function email() {
     }
 }
 
-window.onclick = e => {
-	if(e.target.id == "dropdown1"){
-        var menu = document.getElementById('menu1');
-        menuOpen1 = !menuOpen1;
-        if (menuOpen1){
-            e.target.innerHTML = "-";
-            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
-        }
-        else {
-            e.target.innerHTML = "+";
-            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
-        }
+function dropdown1() {
+    var dropdown = document.getElementById('dropdown1');
+    var menu = document.getElementById('menu1')
+    menuOpen1 = !menuOpen1;
+    if (menuOpen1){
+        dropdown.innerHTML = "-";
+        gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
     }
-
-    if(e.target.id == "dropdown2"){
-        var menu = document.getElementById('menu2');
-        menuOpen2 = !menuOpen2;
-        if (menuOpen2){
-            e.target.innerHTML = "-";
-            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
-        }
-        else {
-            e.target.innerHTML = "+";
-            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
-        }
+    else {
+        dropdown.innerHTML = "+";
+        gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
     }
+}
 
-    if(e.target.id == "dropdown3"){
-        var menu = document.getElementById('menu3');
-        menuOpen3 = !menuOpen3;
-        if (menuOpen3){
-            e.target.innerHTML = "-";
-            gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
-        }
-        else {
-            e.target.innerHTML = "+";
-            gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
-        }
+function dropdown2() {
+    var dropdown = document.getElementById('dropdown2');
+    var menu = document.getElementById('menu2');
+    menuOpen2 = !menuOpen2;
+    if (menuOpen2){
+        dropdown.innerHTML = "-";
+        gsap.to(menu, {height: "auto", opacity: "100%", duration: 1});
+    }
+    else {
+        dropdown.innerHTML = "+";
+        gsap.to(menu, {height: "0px", opacity: "0%", duration: 1});
     }
 }
