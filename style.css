@@ -290,7 +290,7 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #a2f6dd;
+    background: #e8e4e2;
     overflow: hidden;
     grid-area: kofi;
 }
@@ -304,16 +304,15 @@ body.light .mn:before {
     grid-area: clock;
 }
 
-.fishtank {
+.photo-service {
     color: white;
-    background: #ff8089;
+    background: #e8e4e2;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: left;
     align-items: flex-start;
-    overflow: hidden;
     grid-area: fishtank;
-    background-image: url("images/photography.jpg");
+    background-image: url("images/photography2.jpg");
     background-size: cover;
 }
 
@@ -616,6 +615,8 @@ li {
 }
 
 .loader svg {
+    margin: auto;
+    scale: 0.75;
     animation: jump 2s linear forwards;
 }
 
@@ -742,7 +743,7 @@ li {
 }
 
 .contact p {
-    top: 6px;
+    top: 7px;
     left: -75px;
 }
 
@@ -1099,6 +1100,9 @@ canvas:hover h1 {
   @media (pointer: coarse) {
     .hamburger {visibility: visible;}
     .navbar {visibility: hidden;}
+    .loader svg {
+        scale: 1;
+    }
     canvas {
         display: none;
     }
@@ -1117,8 +1121,8 @@ canvas:hover h1 {
         font-size: 18px;
     }
     .hero {
-        padding-top: 280px;
-        height: 1680;
+        margin-top: 120px;
+        height: 1740;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal terminal terminal"
