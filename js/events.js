@@ -67,11 +67,6 @@ function toggleLang() {
 	}
 }
 
-window.onbeforeunload = function () {
-	window.scrollTop(0);
-	window.scrollTo(0, 0);
-}
-
 function email() {
 	if (document.body.querySelector('.message').value != '') {
         Email.send({

@@ -1,3 +1,6 @@
+
+<meta charset="UTF-8">
+
 <html lang="ja">
     <head>
         <link rel="stylesheet" href="style.css">
@@ -20,7 +23,13 @@
         <div class = "hero">
 
             <div class = "form" id = "widget">
-                
+                <div class = "waves">
+                    <div class = "wave"></div>
+                    <div class = "wave2"></div>
+                </div>
+
+                <div style = "z-index:2;background-image:url('images/business_card2.png');height: 80%;width:80%;background-size: contain;background-repeat: no-repeat;margin:auto;position: relative;padding: 0;">
+                </div>
             </div>
 
             <div class = "clock-form" id = "widget">
@@ -267,26 +276,5 @@
         <script src = "js/events.js"></script>
         <script src= "js/clock.js"></script>
 
-        <script>
-            document.getElementById("shuffle").onclick = function() {shuffle();}
-            var typed3 = new Typed('.console', {
-                strings: [
-                    '$ sudo ./introduction.sh<br><br>' + 
-                    '+-+-+-+-+-+-+-+<br>'+
-                    '|w e l c o m e|<br>'+
-                    '+-+-+-+-+-+-+-+<br><br>'+
-                    'i\'m <span style = "color: #03fca5;">jimmy blanck</span>, and i design\n <span style = "color:#9970ff">experiences</span> for the web. together, we can create an exciting <span style = "background-color:white; color:black;">new look</span> for <span style = "background-color:white; color:black;">your brand</span>!'
-                ],
-
-                typeSpeed: 30,
-                backSpeed: 20,
-                showCursor: false,
-                autoInsertCSS: true
-            });
-            
-            /*refresh spline iframe*/
-            document.getElementById('mesh').src += '';
-            document.getElementById('mesh').onwheel = function(){ return false; }
-        </script>
     </body>
 </html>
