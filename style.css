@@ -187,8 +187,8 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 250;
-    width: 250;
+    height: 90%;
+    width: 90%;
     background: url("images/clock.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -551,9 +551,9 @@ li {
 
     90% {
         transform:scale(1);
+        opacity: 1;
     }
-    98% {
-     opacity: 1;
+    96% {
         transform:scale(0.5);   
     }
     100% {
@@ -1058,6 +1058,16 @@ canvas:hover h1 {
     visibility: hidden;
 }
 
+@media (max-width: 640px) {
+    .hero {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "terminal terminal terminal terminal"
+        "clock clock fishtank fishtank"
+        "kofi kofi fishtank fishtank";
+    }
+}
+
   @media (max-width: 760px) {
       .hero {
           grid-template-areas: 
@@ -1177,9 +1187,6 @@ canvas:hover h1 {
     .clock-form #center {
         visibility: visible;
         zoom: 2;
-    }
-    .clock {
-        zoom: 1.5;
     }
     .form p {
         visibility: hidden;
