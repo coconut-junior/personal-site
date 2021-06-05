@@ -281,8 +281,11 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #171b1d;
+    background: #e8e4e2;
     grid-area: terminal;
+    background-image: url("https://i.imgur.com/u1GSFim.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .kofi-form {
@@ -312,7 +315,7 @@ body.light .mn:before {
     justify-content: left;
     align-items: flex-start;
     grid-area: fishtank;
-    background-image: url("images/photography2.jpg");
+    background-image: url("images/photography3.jpg");
     background-size: cover;
 }
 
@@ -364,6 +367,7 @@ a {
 p {
     transition: 2s;
     letter-spacing: 2px;
+    font-size: 14px;
     font-family: 'Open Sans', sans-serif;    
     margin: auto;
     padding: 80px;
@@ -546,17 +550,13 @@ li {
 @keyframes hide {
 
     90% {
-        transform:translateX(0);
-    }
-    95% {
-        transform:translateX(10vw);
-    }
-    99% {
-        opacity:1;
         transform:scale(1);
     }
+    98% {
+     opacity: 1;
+        transform:scale(0.5);   
+    }
     100% {
-        transform: translateX(100vw);
         pointer-events: none;
         opacity:0;
         transform:scale(0);
@@ -616,7 +616,6 @@ li {
 
 .loader svg {
     margin: auto;
-    scale: 0.75;
     animation: jump 2s linear forwards;
 }
 
@@ -744,7 +743,7 @@ li {
 
 .contact p {
     top: 7px;
-    left: -75px;
+    left: -76px;
 }
 
 .contact:hover #send  {
@@ -1122,7 +1121,7 @@ canvas:hover h1 {
     }
     .hero {
         margin-top: 120px;
-        height: 1740;
+        height: 1540;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal terminal terminal"
@@ -1137,6 +1136,9 @@ canvas:hover h1 {
     }
     .infobox h3 p {
         font-size: 0.5em;
+    }
+    .photo-service p {
+        display: none;
     }
     h4 {
         display: none;
@@ -1161,7 +1163,7 @@ canvas:hover h1 {
     }
     .form {
         font-size: 2em;
-        height: 800px;
+        height: 600px;
     }
     .button {
         display:none;
