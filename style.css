@@ -1184,6 +1184,10 @@ canvas:hover h1 {
     .circle {
         visibility: hidden;
     }
+    .clock .hour, .clock .min, .clock .sec {
+        position: absolute;
+        zoom: 1.5;
+    }
     .clock-form #center {
         visibility: visible;
         zoom: 2;
