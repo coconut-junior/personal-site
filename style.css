@@ -283,9 +283,6 @@ body.light .mn:before {
     position: relative;
     background: #0e0f10;
     grid-area: terminal;
-    /*background-image: url("https://i.imgur.com/u1GSFim.png");*/
-    background-size: contain;
-    background-repeat: no-repeat;
     overflow: hidden;
     padding: 40px;
 }
@@ -1185,7 +1182,7 @@ canvas:hover h1 {
     }
     .hero {
         margin-top: 120px;
-        height: 1540;
+        height: 1420;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal terminal terminal"
@@ -1229,8 +1226,7 @@ canvas:hover h1 {
         height: auto;
     }
     .form {
-        font-size: 2em;
-        height: 600px;
+        height: 400px;
     }
     .button {
         display:none;
