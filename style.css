@@ -1098,6 +1098,10 @@ canvas:hover h1 {
     visibility: hidden;
 }
 
+.photo-service h2 {
+    margin: 40px;
+}
+
 @media (max-width: 480px) {
     .hero {
         grid-template-rows: 1fr 1fr 1fr;
@@ -1111,9 +1115,9 @@ canvas:hover h1 {
   @media (max-width: 760px) {
       .hero {
           grid-template-areas: 
-          "terminal terminal terminal terminal"
-          "clock clock fishtank fishtank"
-          "kofi kofi kofi kofi";
+          "terminal terminal terminal "
+          "clock clock fishtank "
+          "kofi kofi kofi ";
       }
       .photo-service p {
         display: none;
@@ -1202,7 +1206,12 @@ canvas:hover h1 {
     .photo-service p {
         display: none;
     }
-    
+    .photo-service h2 {
+        margin-left: 80px;
+    }
+    .photo-service a {
+        zoom: 2;
+    }
     h4 {
         display: none;
     }
