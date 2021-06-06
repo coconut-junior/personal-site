@@ -1187,11 +1187,11 @@ canvas:hover h1 {
         margin-top: 120px;
         height: 1420;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
-        "terminal terminal terminal terminal"
-        "clock clock fishtank fishtank"
-        "kofi kofi fishtank fishtank";
+        "terminal terminal"
+        "clock fishtank"
+        "kofi fishtank";
     }
     .infobox h3 {
         font-size: 4em;
