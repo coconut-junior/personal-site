@@ -579,7 +579,7 @@ li {
     position: absolute;
     top:0px;
     left:0px;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1183,7 +1183,7 @@ canvas:hover h1 {
     }
     .hero {
         margin-top: 120px;
-        height: 1460;
+        height: 1420;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal terminal terminal"
@@ -1202,9 +1202,7 @@ canvas:hover h1 {
     .photo-service p {
         display: none;
     }
-    .photo-service a {
-        zoom: 2;
-    }
+    
     h4 {
         display: none;
     }
