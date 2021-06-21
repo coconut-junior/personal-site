@@ -1236,6 +1236,7 @@ canvas:hover h1 {
         width: auto;
         padding: 40px;
         height: 400px;
+        background-color: #161B1D;
     }
     .button {
         display:none;
