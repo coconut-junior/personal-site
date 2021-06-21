@@ -22,16 +22,14 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    overflow-y: hidden;
+        animation: enable-scroll 2.5s linear forwards;
 }
 
 @keyframes enable-scroll {
     100% {
-        overflow-y: auto;
+        overflow-y: visible;
     }
-}
-
-::-webkit-scrollbar {
-    display: none;
 }
 
 body {
@@ -237,7 +235,7 @@ h2 {
     position: absolute;
     width: 4px;
     height: 90px;
-    background: #171b1d;
+    background: #313131;
     z-index: 11;
     border-radius: 6px 6px 0 0;
 }
@@ -251,7 +249,7 @@ body.light .mn:before {
     position: relative;
     width: 2px;
     height: 150px;
-    background: #171b1d;
+    background: #313131;
     z-index: 12;
     border-radius: 6px 6px 0 0;
 }
@@ -270,7 +268,7 @@ body.light .mn:before {
         "terminal terminal fishtank fishtank"
         "clock kofi fishtank fishtank";
     grid-gap: 40px;
-    padding-top: 140px;
+    margin-top: 140px;
     padding-bottom: 40px;
     padding-left: 40px;
     padding-right: 40px;
@@ -338,7 +336,7 @@ body.light .mn:before {
 }
 
 .clock-form {
-    background: #e8e4e2;
+    background: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1184,7 +1182,7 @@ canvas:hover h1 {
         font-size: 18px;
     }
     .hero {
-        margin-top: 120px;
+        margin-top: 260px;
         height: 1420;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
