@@ -225,7 +225,7 @@ h2 {
     position: absolute;
     width: 8px;
     height: 80px;
-    background: #ff105e;
+    background: #ffe6cc;
     z-index: 10;
     border-radius: 6px 6px 0 0;
 }
@@ -235,7 +235,7 @@ h2 {
     position: absolute;
     width: 4px;
     height: 90px;
-    background: #313131;
+    background: #ffe6cc;
     z-index: 11;
     border-radius: 6px 6px 0 0;
 }
@@ -249,7 +249,7 @@ body.light .mn:before {
     position: relative;
     width: 2px;
     height: 150px;
-    background: #313131;
+    background: #ffe6cc;
     z-index: 12;
     border-radius: 6px 6px 0 0;
 }
@@ -336,7 +336,7 @@ body.light .mn:before {
 }
 
 .clock-form {
-    background: black;
+    background: #1a0008;
     display: flex;
     justify-content: center;
     align-items: center;
