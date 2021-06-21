@@ -1157,10 +1157,12 @@ canvas:hover h1 {
     }
 
     .wave1 {
+        display: none;
         right: -50%;
         top: 50%;
     }
     .wave2 {
+        display: none;
         top: 25%;
     }
 
