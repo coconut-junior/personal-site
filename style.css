@@ -35,11 +35,8 @@ html {
 body {
     margin: 0;
     padding: 0;
-    display: auto;
     overflow-x: hidden;
     background-color: #f8f8f8;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;
 }
 
 .kofi-form iframe {
@@ -1009,6 +1006,7 @@ canvas:hover h1 {
       justify-content: flex-end;
       padding:0px;
       text-align: left;
+      width: 60%;
   }
 
   .infobox p {
@@ -1195,14 +1193,15 @@ canvas:hover h1 {
         font-size: 18px;
     }
     .hero {
-        margin-top: 260px;
-        height: 1420;
+        margin-top: 250px;
+        height: 1880;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-areas: 
         "terminal terminal"
-        "clock fishtank"
-        "kofi fishtank";
+        "clock kofi"
+        "fishtank fishtank"
+        "fishtank fishtank";
     }
     .infobox h3 {
         font-size: 4em;
