@@ -280,7 +280,7 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #0e0f10;
+    background: #ebf1dd;
     grid-area: terminal;
     overflow: hidden;
     padding: 40px;
@@ -297,8 +297,9 @@ body.light .mn:before {
   margin-left: -500px;
   margin-top: -500px;
   border-radius: 40%;
-  background: #161B1D;
+  background: #4d5f66;
   translate: rotate(180deg);
+  opacity: 10%;
   animation: wave 15s infinite linear;
 }
 
@@ -311,14 +312,15 @@ body.light .mn:before {
   margin-left: -500px;
   margin-top: -500px;
   border-radius: 40%;
-  background: #292c2e;
+  background: #4d5f66;
   translate: rotate(180deg);
+  opacity: 5%;
   animation: wave2 15s infinite linear;
 }
 
 @keyframes wave {
-  from { transform: rotate(180deg);}
-  from { transform: rotate(270deg);}
+  from { transform: rotate(180deg)}
+  from { transform: rotate(270deg)}
 }
 
 @keyframes wave2 {
@@ -607,6 +609,8 @@ li {
 }
 
 .loader-box {
+    height: 96px;
+    width: 96px;
     animation: hop 2s linear forwards;
 }
 
@@ -786,7 +790,7 @@ li {
 
 .contact p {
     top: 7px;
-    left: -76px;
+    left: -75px;
 }
 
 .contact:hover #send  {
@@ -1030,6 +1034,7 @@ canvas:hover h1 {
 
 }
 
+
 .arrow {
     height: 48px;
     width: 48px;
@@ -1201,19 +1206,14 @@ canvas:hover h1 {
     }
     .infobox h3 {
         font-size: 4em;
-        margin-left: 40px;
+        margin-left: 80px;
         width: auto;
         text-align: left;
     }
     .infobox h3 p {
         font-size: 0.5em;
     }
-    .photo-service p {
-        display: none;
-    }
-    .photo-service h2 {
-        margin-left: 80px;
-    }
+
     .photo-service a {
         zoom: 2;
     }
@@ -1237,12 +1237,12 @@ canvas:hover h1 {
     }
     .banner {
         height: auto;
+        margin: 0;
     }
     .form {
         width: auto;
         padding: 40px;
         height: 400px;
-        background-color: #161B1D;
     }
     .button {
         display:none;
@@ -1278,6 +1278,12 @@ canvas:hover h1 {
     .footer {
         zoom:2;
     }
+    #resume-dropdown {
+        font-size: 2em;
+    }
+    #resume-dropdown li {
+        font-size: 2em;
+    }
 
     .footer h2 {
         font-size:2em;
@@ -1290,5 +1296,8 @@ canvas:hover h1 {
         zoom: normal;
 
     }
-
+    .loader-box {
+        height: 128px;
+        width: 128px;
+    }
   }
