@@ -187,6 +187,7 @@ h2 {
     justify-content: center;
     height: 90%;
     width: 90%;
+    opacity: 0.8;
     background: url("images/clock.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -225,7 +226,7 @@ h2 {
     position: absolute;
     width: 8px;
     height: 80px;
-    background: #ffe6cc;
+    background: white;
     z-index: 10;
     border-radius: 6px 6px 0 0;
 }
@@ -235,7 +236,7 @@ h2 {
     position: absolute;
     width: 4px;
     height: 90px;
-    background: #ffe6cc;
+    background: white;
     z-index: 11;
     border-radius: 6px 6px 0 0;
 }
@@ -249,7 +250,7 @@ body.light .mn:before {
     position: relative;
     width: 2px;
     height: 150px;
-    background: #ffe6cc;
+    background: white;
     z-index: 12;
     border-radius: 6px 6px 0 0;
 }
@@ -331,13 +332,13 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #e8e4e2;
+    background: #fffcb0;
     overflow: hidden;
     grid-area: kofi;
 }
 
 .clock-form {
-    background: #1a0008;
+    background: #362127;
     display: flex;
     justify-content: center;
     align-items: center;
