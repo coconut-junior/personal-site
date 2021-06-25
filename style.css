@@ -413,6 +413,7 @@ p {
     width: auto;
     height: 20px;
     position: relative;
+    color: #171b1d;
 }
 
 canvas {
