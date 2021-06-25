@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'fontello';
     src: url('font/fontello.eot');
@@ -693,10 +694,6 @@ li {
     box-shadow: 0px 0px 50px -8px rgba(0,0,0,0.1);
 }
 
-.navbar:hover {
-    background: rgba( 255, 255, 255, 1 );
-}
-
 .contact {
     color:black;
     background-color:transparent;
@@ -1019,6 +1016,9 @@ canvas:hover h1 {
       width:80%;
   }
 
+  .footer h2 {
+    color: #171b1d;
+  }
 
   .hamburger {
 	display: flex;
@@ -1103,6 +1103,16 @@ canvas:hover h1 {
 
 .mobile-nav {
     visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-items:center;
+    width: 100vw;
+    position:fixed;
+    top: 0;
+    left: 0;background-color: white;
+    z-index:3;
 }
 
 .photo-service h2 {
@@ -1293,10 +1303,45 @@ canvas:hover h1 {
     }
     .footer h2 {
         zoom: normal;
-
     }
     .loader-box {
         height: 128px;
         width: 128px;
+    }
+  }
+
+  @media (prefers-color-scheme:  dark) {
+    body, .hero {
+        color: #fbfbfb;
+        background-color: #1c1c28;
+    }
+    .logo, .form, .slink, #mobile-logo {
+        filter: invert();
+    }
+    .contact, .footer #link {
+        color:  #fbfbfb;
+        border-color: #fbfbfb;
+    }
+    .contact:hover, .footer #link:hover, .bar {
+        background-color: #fbfbfb;
+        color: #28293d;
+    }
+    .footer #link:hover .slink {
+        filter: none;
+    }
+    .contact:hover svg {
+        stroke: #28293d;
+    }
+
+    li, .dropdown, .footer h2, .footer p, h3 {
+        color:  #fbfbfb;;
+    }
+    h4 {
+        color: #33333d;
+    }
+    .navbar, .footer, .mobile-nav {
+        color: #33333d;
+        background-color: #28293d;
+        border: none;
     }
   }
