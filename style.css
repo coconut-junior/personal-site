@@ -75,6 +75,7 @@ textarea {
     height: 80px;
     margin:2px;
     width: 45%;
+    overflow-y: hidden;
 }
 
 textarea:focus {
@@ -157,7 +158,7 @@ h3 p {
 
 h2 {
     margin: auto;
-    margin-top:40px;
+    margin-top: 20px;
     margin-bottom: 20px;
     padding-top:20px;
     font-family: 'Rubik', sans-serif;
@@ -267,7 +268,7 @@ body.light .mn:before {
         "terminal terminal fishtank fishtank"
         "clock kofi fishtank fishtank";
     grid-gap: 40px;
-    margin-top: 140px;
+    margin-top: 40px;
     padding-bottom: 40px;
     padding-left: 40px;
     padding-right: 40px;
@@ -685,7 +686,7 @@ li {
     top: 0;
     left: 0;
     z-index: 2;
-    display: flex;
+    display: none;
     justify-content: left;
     align-items: center;
     background: white;
@@ -705,10 +706,8 @@ li {
     font-family: 'Open Sans', sans-serif;    
     height: 36px;
     width: 76;
+    margin-top: 20px;
     text-align: center;
-    position: absolute;
-    top: 15px;
-    right: 40px;
     transition: 1s;
     cursor: hand;
     display: flex;
@@ -717,7 +716,8 @@ li {
 }
 
 .contact svg {
-    top: 10px;
+    margin-top: 8px;
+    filter: invert();
 }
 
 .button-light {
@@ -774,8 +774,8 @@ li {
     background-color: #171b1d;
 }
 
-.contact:hover p {
-    left:-96px;
+.contact:hover svg {
+    filter: none;
 }
 
 #send {
@@ -935,7 +935,7 @@ canvas:hover h1 {
     background-size:cover;
     background-repeat: no-repeat;
     height: 480px;
-    border-radius: 40px;
+    border-radius: 20px;
     transition: 0.6s;
     display:flex;
     flex-direction: column;
