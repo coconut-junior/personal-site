@@ -1024,7 +1024,7 @@ canvas:hover h1 {
     left: 0;
     margin:0;
 	width: 80vw;
-	transition: 0.6s;
+	transition: 0.3s;
     z-index: 2;
     visibility: hidden;
     padding-left: 10vw;
@@ -1122,9 +1122,6 @@ canvas:hover h1 {
   }
 
   @media (pointer: coarse) {
-    body {
-        -webkit-overflow-scrolling: touch;
-    }
     .navbar {visibility: hidden;}
     .loader svg {
         scale: 1;
