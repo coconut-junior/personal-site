@@ -258,6 +258,10 @@
                     "margin" : margin,
                     "width" : $(window).width() - (margin * 2)
                 });
+
+                $('.mobile-nav').css({
+                    "bottom": Math.min(0, -240 + scrollTop)
+                });
             }
 
             $(window).scroll(function() {
