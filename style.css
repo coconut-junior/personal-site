@@ -686,8 +686,8 @@ li {
     top: 0;
     left: 0;
     z-index: 2;
-    border-radius: 10px;
-    margin: 10px;
+    border-radius: 20px;
+    margin: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
