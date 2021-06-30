@@ -692,6 +692,7 @@ li {
     justify-content: left;
     align-items: center;
     background: white;
+    transition: 0.3s;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
