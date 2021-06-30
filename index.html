@@ -262,20 +262,17 @@
                 if(scroll > position) {
                     /*scroll down*/
                     $('.mobile-nav').css({
-                        "bottom": 0,
-                        "display": "flex"
+                        "padding-bottom": "40px"
                     });
                 } else {
                     /*scroll up*/
                     $('.mobile-nav').css({
-                        "bottom": -240,
-                        "display": "flex"
+                        "padding-bottom": "0px"
                     });
                 }
                 if (scroll == 0) {
                     $('.mobile-nav').css({
-                        "bottom": -240,
-                        "display": "flex"
+                        "padding-bottom": "0px"
                     });
                 }
                 position = scroll;

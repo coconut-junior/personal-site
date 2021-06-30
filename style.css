@@ -1018,9 +1018,9 @@ canvas:hover h1 {
     align-items: center;
     justify-content: space-between;
 	background-color: white;
-	height: 200px;
+	height: 150px;
     position: fixed;
-    bottom: -240px;
+    bottom: 0px;
     left: 0;
     margin:0;
 	width: 80vw;
@@ -1029,8 +1029,6 @@ canvas:hover h1 {
     visibility: hidden;
     padding-left: 10vw;
     padding-right: 10vw;
-    padding-bottom: 20px;
-    display: none;
 }
 
 .mobile-nav a {
