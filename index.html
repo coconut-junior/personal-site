@@ -258,14 +258,27 @@
                     "margin" : margin,
                     "width" : $(window).width() - (margin * 2)
                 });
-
-                $('.mobile-nav').css({
-                    "bottom": Math.min(0, -240 + scrollTop)
-                });
             }
+
+            var position = $(window).scrollTop();
 
             $(window).scroll(function() {
                 resize();
+                var scroll = $(window).scrollTop();
+                if(scroll > position) {
+                    /*scroll down*/
+                    $('.mobile-nav').css({
+                        "bottom": 0,
+                        "display": "flex"
+                    });
+                } else {
+                    /*scroll up*/
+                    $('.mobile-nav').css({
+                        "bottom": -240,
+                        "display": "flex"
+                    });
+                }
+                position = scroll;
             })
 
             $(window).resize(function() {

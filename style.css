@@ -1030,6 +1030,7 @@ canvas:hover h1 {
     padding-left: 10vw;
     padding-right: 10vw;
     padding-bottom: 20px;
+    display: none;
 }
 
 .mobile-nav a {
