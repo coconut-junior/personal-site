@@ -24,7 +24,7 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-y: hidden;
-        animation: enable-scroll 2.5s linear forwards;
+    animation: enable-scroll 2.5s linear forwards;
 }
 
 @keyframes enable-scroll {
@@ -268,7 +268,7 @@ body.light .mn:before {
         "terminal terminal fishtank fishtank"
         "clock kofi fishtank fishtank";
     grid-gap: 40px;
-    margin-top: 40px;
+    margin-top: 150px;
     padding-bottom: 40px;
     padding-left: 40px;
     padding-right: 40px;
@@ -535,7 +535,7 @@ ul a {
 }
 
 .navbar ul a:hover {
-    background-color: #ebf1dd;
+    background-color: #f8f8f8;
     border-radius: 10px;
 }
 
@@ -680,20 +680,19 @@ li {
 }
 
 .navbar {
-    width: 100%;
+    width: 100vw;
     height: 96px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
-    display: none;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
     justify-content: left;
     align-items: center;
     background: white;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-
-    -webkit-box-shadow: 0px 0px 50px -8px rgba(0,0,0,0.1); 
-    box-shadow: 0px 0px 50px -8px rgba(0,0,0,0.1);
 }
 
 .contact {
@@ -995,6 +994,10 @@ canvas:hover h1 {
 
   .infobox {
     display:flex;align-items:flex-end;height:480px;width:40%;margin: auto;
+  }
+
+  #resume-dropdown {
+    border: 4px solid rgba(0,0,0,0.05);margin:40px;overflow:hidden;
   }
 
   .infobox h3 {
@@ -1312,37 +1315,54 @@ canvas:hover h1 {
   }
 
   @media (prefers-color-scheme:  dark) {
-    body, .hero {
+    p, h3 li{
+        color: #485567;
+    }
+    body, .hero, .loader {
         color: #fbfbfb;
-        background-color: #1c1c28;
+        background-color: #0d1218;
+    }
+    svg {
+        filter: invert();
+    }
+    textarea, input {
+        border: 6px solid #121920;
+        outline: 2px dotted #485567;
+        box-shadow: inset 0 0 0 1px #121920;
+    }
+    .navbar ul a:hover {
+        background-color: #161f29;
+        border-radius: 10px;
+    }
+    #logos {
+        filter: invert();
     }
     .logo, .form, .slink, #mobile-logo {
         filter: invert();
     }
-    .contact, .footer #link {
+    .footer #link {
         color:  #fbfbfb;
         border-color: #fbfbfb;
     }
-    .contact:hover, .footer #link:hover, .bar {
+    .footer #link:hover, .bar {
         background-color: #fbfbfb;
         color: #28293d;
     }
     .footer #link:hover .slink {
         filter: none;
     }
-    .contact:hover svg {
-        stroke: #28293d;
-    }
-
     li, .dropdown, .footer h2, .footer p, h3 {
         color:  #fbfbfb;;
     }
     h4 {
-        color: #33333d;
+        color: #161f29;
+    }
+    #resume-dropdown {
+        border-color: #161f29;
     }
     .navbar, .footer, .mobile-nav {
         color: #33333d;
-        background-color: #28293d;
+        background-color: #121920;
         border: none;
     }
   }

@@ -9,14 +9,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Rubik&display=swap" rel="stylesheet"> 
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     </head>
     <body>
 
         <script src = "https://smtpjs.com/v3/smtp.js"></script>
-        <script src="js/three.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <a id = "home"></a>
 
@@ -127,8 +126,7 @@
         
         <h2 id = "resume" style = "margin-top:0px;margin-bottom: 80px;">Resume</h2>
 
-        <div class = "banner" id = "resume-dropdown" style = "height: auto; padding-top: 80px;border-radius: 20px;
-        border: 4px solid rgba(0,0,0,0.05);margin:40px;overflow:hidden;">
+        <div class = "banner" id = "resume-dropdown" style = "height: auto; padding-top: 80px;border-radius: 20px;">
         
             <h3>Design Skills
                 <br>
@@ -253,6 +251,27 @@
 
         <script src = "js/events.js"></script>
         <script src= "js/clock.js"></script>
+
+        <script>
+            $('.navbar').css({
+                "width" : $(window).width() - 40
+                }
+            );
+
+            $(window).scroll(function() {
+              var scrollTop = $(this).scrollTop();
+              var border = $('.navbar').css('border-radius');
+              var adjusted = 20 - (scrollTop / 20);
+              var margin = Math.max(adjusted, 0);
+
+              $('.navbar').css({
+                "border-radius": adjusted,
+                "margin" : margin,
+                "width" : $(window).width() - (margin * 2)
+                }
+              );
+            })
+        </script>
 
     </body>
 </html>
