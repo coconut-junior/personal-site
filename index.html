@@ -6,10 +6,9 @@
         <link rel="stylesheet" href="style.css">
         <title>Jimmy Blanck - Visual Designer</title>
         <link rel='icon' href='images/favicon.png'>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Rubik&display=swap" rel="stylesheet"> 
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
     </head>
     <body>
 
@@ -48,7 +47,7 @@
             </div>
 
             <div class = "photo-service" id = "widget">
-                <h2 style = "text-align:center;padding:0;margin:auto;width:70%;">Professional Photography at a Low Cost.</h2>
+                <h2 style = "text-align:center;padding:0;margin:auto;width:70%;">Professional Photography Done Right.</h2>
                 <a href = "" style = "padding: 10px;border-radius:5px;background-color: white;bottom:40px;right: 80px;position: absolute;margin-bottom:40px;color: #171b1d;size:auto;"><img src = "images/link.svg" style = "height: 32px;width:32px;"></a>
 
             </div>
@@ -156,21 +155,11 @@
         </div>
 
         <div class = "mobile-nav">
-                <div class = "hamburger" onclick = "openMenu()">
-                    <div class = "bar"></div>
-                    <div class = "bar"></div>
-                    <div class = "bar"></div>
-                </div>
-            <div id = "mobile-logo" style = "background-position:center;background-image:url('images/logo.png');background-size:contain;height:50%;width:40%;background-repeat: no-repeat;opacity:0.9;" ></div>
-            <div class = "hamburger"></div>
+            <a href = "#home"><div class = "mobile-link" style = "background-image: url('images/home.png');"></div></a>
+            <a href = "#projects"><div class = "mobile-link" style = "background-image: url('images/projects.png');"></div></a>
+            <a href = "#resume"><div class = "mobile-link" style = "background-image: url('images/resume.png');"></div></a>
+            <a href = "#contact-form"><div class = "mobile-link" style = "background-image: url('images/contact.png');"></div></a>
         </div> 
-
-        <ul class = "nav-items">
-            <li><a href = "#home">Home</a></li>
-            <li><a href = "#projects">Projects</a></li>
-            <li><a href = "#testimonials">Testimonials</a></li>
-            <li><a href = "#contact-form">Resume</a></li>
-        </ul>
         
         <div id = "contact"></div>
 
@@ -258,18 +247,25 @@
                 }
             );
 
-            $(window).scroll(function() {
-              var scrollTop = $(this).scrollTop();
-              var border = $('.navbar').css('border-radius');
-              var adjusted = 20 - (scrollTop / 20);
-              var margin = Math.max(adjusted, 0);
+            function resize() {
+                var scrollTop = $(this).scrollTop();
+                var border = $('.navbar').css('border-radius');
+                var adjusted = 20 - (scrollTop / 20);
+                var margin = Math.max(adjusted, 0);
 
-              $('.navbar').css({
-                "border-radius": adjusted,
-                "margin" : margin,
-                "width" : $(window).width() - (margin * 2)
-                }
-              );
+                $('.navbar').css({
+                    "border-radius": adjusted,
+                    "margin" : margin,
+                    "width" : $(window).width() - (margin * 2)
+                });
+            }
+
+            $(window).scroll(function() {
+                resize();
+            })
+
+            $(window).resize(function() {
+                resize();
             })
         </script>
 

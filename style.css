@@ -61,7 +61,7 @@ a li {
 }
 
 textarea {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Asap', sans-serif;
     color: #171b1d;
     background-color: transparent;
     font-size: 24px;
@@ -85,7 +85,7 @@ textarea:focus {
 }
 
 input {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Asap', sans-serif;
     color: #171b1d;
     background-color: transparent;
     font-size: 24px;
@@ -136,7 +136,7 @@ a {
 
 h1 {
     margin: auto;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-size: 48px;
     position: relative;
     opacity: 0;
@@ -144,7 +144,7 @@ h1 {
 
 h3 {
     margin: auto;
-    font-family: 'Rubik', sans-serif;    
+    font-family: 'Asap', sans-serif;   
     font-size: 1.5em;
     position: relative;
     width: auto;
@@ -161,23 +161,11 @@ h2 {
     margin-top: 20px;
     margin-bottom: 20px;
     padding-top:20px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-size: 2em;
     position: relative;
     transition: 1s;
     text-align: center;
-}
-
-.console {
-    display:inline-block;
-    color: white;
-    height: auto;
-    width: 100%;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5em;
-    padding-top: 24px;
-    pointer-events: none;
-    margin:40px;
 }
 
 .clock {
@@ -408,7 +396,7 @@ p {
     transition: 2s;
     letter-spacing: 1.5px;
     font-size: 14px;
-    font-family: 'Open Sans', sans-serif;    
+    font-family: 'Asap', sans-serif;    
     margin: auto;
     padding: 80px;
     width: auto;
@@ -429,7 +417,7 @@ canvas {
 }
 
 .button {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Asap', sans-serif;
     border-radius: 60px;
     border: 2px solid #171b1d;
     width: 64px;
@@ -542,7 +530,7 @@ ul a {
 li {
     margin: 18px;
     color: #171b1d;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-size: 14px;
     padding: 5px;
     padding-bottom: 10px;
@@ -703,7 +691,7 @@ li {
     border-radius:10px; 
     padding: 12px;
     padding-top:14px;
-    font-family: 'Open Sans', sans-serif;    
+    font-family: 'Asap', sans-serif;    
     height: 36px;
     width: 76;
     margin-top: 20px;
@@ -725,7 +713,7 @@ li {
     background-color:transparent;
     border: 2px solid #171b1d;
     border-radius:10px; 
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-size: 16px;
     height: 24px;
     width: 76px;
@@ -802,47 +790,6 @@ canvas:hover h1 {
     opacity: 1;
 }
 
-.blueprint {
-    font-family: 'amateur-blueprint-regular';
-    font-size: 72px;
-    text-align: center;
-}
-
-[class^="icon-"]:before, [class*=" icon-"]:before {
-    font-family: "fontello";
-    font-style: normal;
-    font-weight: normal;
-    speak: none;
-   
-    display: inline-block;
-    text-decoration: inherit;
-    width: 1em;
-    margin-right: .2em;
-    text-align: center;
-    /* opacity: .8; */
-   
-    /* For safety - reset parent styles, that can break glyph codes*/
-    font-variant: normal;
-    text-transform: none;
-   
-    /* fix buttons height, for twitter bootstrap */
-    line-height: 1em;
-   
-    /* Animation center compensation - margins should be symmetric */
-    /* remove if not needed */
-    margin-left: .2em;
-   
-    /* you can be more comfortable with increased icons size */
-    /* font-size: 120%; */
-   
-    /* Font smoothing. That was taken from TWBS */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-   
-    /* Uncomment for 3D effect */
-    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
-  }
-
   .footer {
     display: flex;
     flex-direction: column;
@@ -879,7 +826,7 @@ canvas:hover h1 {
   }
 
   .footer #links a {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-size: 18px;
     color: white;
     position: relative;
@@ -887,7 +834,7 @@ canvas:hover h1 {
 
   .dropdown {
     z-index: 1;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-size: 36px;
     cursor: pointer;
     text-align: center;
@@ -900,7 +847,7 @@ canvas:hover h1 {
   h3 ul {
       flex-direction: column;
       margin-left: -35px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Asap', sans-serif;
       font-size: 14px;
       text-align: center;
       height: 0px;
@@ -965,7 +912,7 @@ canvas:hover h1 {
 
   h4 {
     font-size: 128px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Asap', sans-serif;
     position: absolute;
     top: 20;
     right: 20;
@@ -1012,7 +959,7 @@ canvas:hover h1 {
   }
 
   .infobox p {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Asap', sans-serif;
       font-size: 14px;
       text-align: left;
       margin:0px;
@@ -1065,22 +1012,35 @@ canvas:hover h1 {
 	transition: 0.3s;
 }
 
-.nav-items {
+.mobile-nav {
 	display: flex;
-	flex-direction: column;
-	background-color: #171b1d;
-	height: 0;
+	flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+	background-color: white;
+	height: 200px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     margin:0;
-	margin-top:5%;
-    padding-left:0;
-	width: 100vw;
-	position: fixed;
-	top:0;
-	left:0;
+	width: 80vw;
 	transition: 0.3s;
-	overflow:hidden;
-	visibility: hidden;
     z-index: 2;
+    visibility: hidden;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.mobile-nav a {
+    height: 64px;
+    width: 64px;
+}
+
+.mobile-link {
+    height:64px;width: 64px;
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #widget {
@@ -1104,20 +1064,6 @@ canvas:hover h1 {
 	font-size: 2em;
 	text-align: center;
 	width: auto;
-}
-
-.mobile-nav {
-    visibility: hidden;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:space-between;
-    align-items:center;
-    width: 100vw;
-    position:fixed;
-    top: 0;
-    left: 0;background-color: white;
-    z-index:3;
 }
 
 .photo-service h2 {
@@ -1208,7 +1154,7 @@ canvas:hover h1 {
         font-size: 18px;
     }
     .hero {
-        margin-top: 250px;
+        margin-top: 40px;
         height: 1880;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -1291,6 +1237,7 @@ canvas:hover h1 {
     }
     .footer {
         zoom:2;
+        padding-bottom: 140px;
     }
     #resume-dropdown {
         font-size: 2em;
