@@ -1037,7 +1037,8 @@ canvas:hover h1 {
 }
 
 .mobile-link {
-    height:64px;width: 64px;
+    margin: auto;
+    height:48px;width: 48px;
     background-size:contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -1308,9 +1309,12 @@ canvas:hover h1 {
     #resume-dropdown {
         border-color: #161f29;
     }
-    .navbar, .footer, .mobile-nav {
+    .navbar, .footer {
         color: #33333d;
         background-color: #121920;
         border: none;
+    }
+    .mobile-nav {
+        filter: invert();
     }
   }

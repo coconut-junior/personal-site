@@ -10,33 +10,6 @@ var menuOpen3 = false;
 
 history.scrollRestoration = 'manual'; /*reset scroll position on reload*/
 
-var nav = document.body.querySelector('.nav-items');
-var bar = document.querySelectorAll('.bar');
-
-function openMenu() {
-    if (menuOpen) {
-        menuOpen = false;
-        nav.style.height = "0";
-        nav.style.paddingTop = "0";
-        nav.style.paddingBottom = "0";
-        
-        for (i = 0; i < bar.length; i++) {
-            bar[i].style.marginTop = "4px";
-            bar[i].style.marginBottom = "4px";
-        }
-    }
-    else {
-        menuOpen = true;
-        nav.style.height = "auto";
-        nav.style.paddingTop = "20%";
-        nav.style.paddingBottom = "24px";
-        for (i = 0; i < bar.length; i++) {
-            bar[i].style.marginTop = "6px";
-            bar[i].style.marginBottom = "6px";
-        }
-    }
-}
-
 /*language toggle*/
 function toggleLang() {
 	if (lang=='en') {
