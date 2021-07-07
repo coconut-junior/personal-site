@@ -37,7 +37,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #f8f8f8;
+    background-color: #f5f5f5;
 }
 
 .kofi-form iframe {
@@ -229,7 +229,7 @@ body.light .mn:before {
     margin:auto;
     height: 768px;
     width:auto;
-    background-color: #f8f8f8;
+    background-color: #f5f5f5;
     background-size: stretch;
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -465,7 +465,7 @@ ul a {
 
 
 .navbar ul a:hover {
-    background-color: #f6faf0;
+    background-color: #f1f7e8;
     border-radius: 10px;
 }
 
@@ -862,8 +862,7 @@ canvas:hover h1 {
     top: 20;
     right: 20;
     margin: auto;
-    color: #ebf1dd;
-
+    color: #e7e3d5;
   }
 
   #site {
