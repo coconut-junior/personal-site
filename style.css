@@ -1260,10 +1260,8 @@ canvas:hover h1 {
         background-color: #121920;
         border: none;
     }
-    .mobile-nav {
+    .mobile-nav, .banner img, .contact {
         filter: invert();
     }
-    .contact {
-        filter: invert();
-    }
+
   }
