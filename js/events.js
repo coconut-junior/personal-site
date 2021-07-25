@@ -49,7 +49,7 @@ function email() {
             Subject : document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
             Body : document.querySelector('.message').value + ' ' + document.querySelector('.phone-number').value
         }).then(
-          alert('Thanks for the feedback!')
+          alert('Your message has been sent. Thank you!')
         );
     }
     else {

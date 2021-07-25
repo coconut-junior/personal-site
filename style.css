@@ -24,7 +24,7 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-y: hidden;
-    animation: enable-scroll 2.5s linear forwards;
+    animation: enable-scroll 3s linear forwards;
 }
 
 @keyframes enable-scroll {
@@ -975,6 +975,14 @@ canvas:hover h1 {
     padding-right: 10vw;
 }
 
+.name-first {
+    float:left;
+}
+
+.name-last {
+    float: right;
+}
+
 .mobile-nav a {
     height: 96px;
     width: 96px;
@@ -1003,6 +1011,10 @@ canvas:hover h1 {
     margin:0;
 }
 
+#send {
+    height:46px;width:46px;fill:none;
+}
+
 .nav-items li {
     opacity:1;
     margin:0;
@@ -1016,6 +1028,12 @@ canvas:hover h1 {
 .photo-service h2 {
     margin: 40px;
     margin-right: 40%;
+}
+
+
+#first-last {
+    margin:20px;
+    width: 50%;display: block;
 }
 
 @media (max-width: 480px) {
@@ -1075,11 +1093,42 @@ canvas:hover h1 {
     .loader svg {
         scale: 1;
     }
+    #contact-button {
+        width: 46%;
+        margin: auto;
+        height: 80px;
+        margin-top: 40px;
+    }
+    .contact {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #first-last {
+        margin: 0;
+    }
+    .name-first, .name-last {
+        float: none;
+    }
+    #send {
+        width: 60px;
+        height: 30px;
+        paddding-bottom: 10px;
+        margin-bottom: 100px;
+        margin: auto;
+    }
     canvas {
         display: none;
     }
-    textarea {
+    textarea,input {
         width: 100%;
+        outline-width: 2px;
+        border-radius: 0px;
+        float: clear;
+        margin: 0;
+        margin-top: 10px;
+        box-shadow: inset 0 0 0 1px #485567;
     }
     #widget {
         border-radius: 40px;
@@ -1170,9 +1219,6 @@ canvas:hover h1 {
         height: 80%;
         width: 80%;
     }
-    .contact {
-        display:none;
-    }
     .footer {
         zoom:2;
         padding-bottom: 140px;
@@ -1185,6 +1231,7 @@ canvas:hover h1 {
     }
 
     .footer h2 {
+        margin-bottom: 40px;
         font-size:2em;
     }
 
@@ -1232,7 +1279,7 @@ canvas:hover h1 {
     #logos {
         filter: invert();
     }
-    .logo, .form, .slink, #mobile-logo {
+    .logo, .slink, #mobile-logo {
         filter: invert();
     }
     .footer #link {
