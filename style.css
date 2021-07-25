@@ -1118,6 +1118,9 @@ canvas:hover h1 {
         margin-bottom: 100px;
         margin: auto;
     }
+    #send,#line {
+        stroke-width: 1px;
+    }
     canvas {
         display: none;
     }
