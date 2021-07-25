@@ -401,26 +401,6 @@ canvas {
     opacity: 0;
 }
 
-.button-light:hover .send-icon {
-    animation: send-anim 1s linear infinite;
-}
-
-@keyframes send-anim {
-    0% {
-        transform: rotate(0);
-    }
-    25% {
-        opacity: 1;
-    }
-    50% {
-        transform: translate(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(100px);
-    }
-}
-
 .send-button p {
     padding: 0;
     left: -15px;
