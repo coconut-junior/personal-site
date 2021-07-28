@@ -195,9 +195,10 @@ h2 {
     position: absolute;
     width: 8px;
     height: 80px;
-    background: white;
+    background: #362127;
     z-index: 10;
     border-radius: 6px 6px 0 0;
+    border:  3px solid white;
 }
 
 .mn:before {
@@ -205,9 +206,10 @@ h2 {
     position: absolute;
     width: 4px;
     height: 90px;
-    background: white;
+    background: #362127;
     z-index: 11;
     border-radius: 6px 6px 0 0;
+    border:  3px solid white;
 }
 
 body.light .mn:before {
@@ -219,7 +221,7 @@ body.light .mn:before {
     position: relative;
     width: 2px;
     height: 150px;
-    background: white;
+    background: red;
     z-index: 12;
     border-radius: 6px 6px 0 0;
 }
