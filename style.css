@@ -2,6 +2,7 @@
     --color-primary: #e8f7f0;
     --color-secondary: #ddf1e6;
     --color-tertiary: #a9c8c5;
+    --color-background: #f5f5f5;
 }
 
 @font-face {
@@ -42,7 +43,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #f5f5f5;
+    background-color: var(--color-background);
 }
 
 .kofi-form iframe {
@@ -233,7 +234,7 @@ body.light .mn:before {
     margin:auto;
     height: 768px;
     width:auto;
-    background-color: #f5f5f5;
+    background-color: var(--color-background);
     background-size: stretch;
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -450,7 +451,7 @@ ul a {
 
 
 .navbar ul a:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     border-radius: 10px;
 }
 
@@ -616,6 +617,7 @@ li {
 }
 
 #fade {
+    background-color: white;
     height: 96px;
     opacity: 0;
 }
@@ -1240,7 +1242,8 @@ canvas:hover h1 {
     }
   }
 
-  @media (prefers-color-scheme:  dark) {
+
+@media (prefers-color-scheme:dark) {
     p, h3 li{
         color: #485567;
     }
@@ -1295,7 +1298,7 @@ canvas:hover h1 {
     #resume-dropdown {
         border-color: #161f29;
     }
-    .navbar, .footer {
+    .footer,#fade {
         color: #33333d;
         background-color: #121920;
         border: none;
@@ -1303,5 +1306,4 @@ canvas:hover h1 {
     .mobile-nav, .banner img, .contact {
         filter: invert();
     }
-
-  }
+}
