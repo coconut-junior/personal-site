@@ -1,3 +1,8 @@
+:root {
+    --color-primary: #e8f7f0;
+    --color-secondary: #ddf1e6;
+    --color-tertiary: #a9c8c5;
+}
 
 @font-face {
     font-family: 'fontello';
@@ -9,7 +14,7 @@
          url('font/fontello.svg') format('svg');
     font-weight: normal;
     font-style: normal;
-  }
+}
 
 ::selection {
     background-color:#2F2F2F;
@@ -66,8 +71,8 @@ textarea, input {
     background-color: transparent;
     font-size: 24px;
     overflow: auto;
-    border: 6px solid #ebf1dd;
-    outline: 2px dotted #ebf1dd;
+    border: 6px solid var(--color-secondary);
+    outline: 2px dotted var(--color-secondary);
     box-shadow: inset 0 0 0 1px #171b1d;
     resize: none;
     padding: 20px;
@@ -154,8 +159,8 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
     background: url("images/clock.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -194,10 +199,9 @@ h2 {
     position: absolute;
     width: 8px;
     height: 80px;
-    background: #362127;
+    background: white;
     z-index: 10;
     border-radius: 12px 12px 0 0;
-    border:  3px solid white;
 }
 
 .mn:before {
@@ -205,10 +209,9 @@ h2 {
     position: absolute;
     width: 4px;
     height: 90px;
-    background: #362127;
+    background: white;
     z-index: 11;
     border-radius: 6px 6px 0 0;
-    border:  3px solid white;
 }
 
 body.light .mn:before {
@@ -248,9 +251,10 @@ body.light .mn:before {
 .form {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     position: relative;
-    background: #f1eddf;
+    background: var(--color-secondary);
     grid-area: terminal;
     overflow: hidden;
     padding: 40px;
@@ -446,12 +450,12 @@ ul a {
 
 
 .navbar ul a:hover {
-    background-color: #f1f7e8;
+    background-color: var(--color-primary);
     border-radius: 10px;
 }
 
 .navbar ul a:hover li {
-    color:  #b1c8a9;
+    color:  var(--color-tertiary);
 }
 
 li {
@@ -496,7 +500,7 @@ li {
 .loader {
     height: 100vh;
     width: 100vw;
-    background-color: #ebf1dd;
+    background-color: var(--color-secondary);
     position: absolute;
     top:0px;
     left:0px;
@@ -606,8 +610,14 @@ li {
     display: flex;
     justify-content: left;
     align-items: center;
-    background: white;
+    background: transparent;
     transition: 0.3s;
+    overflow: hidden;
+}
+
+#fade {
+    height: 96px;
+    opacity: 0;
 }
 
 .contact {
@@ -725,7 +735,7 @@ canvas:hover h1 {
     width: auto;
     padding: 20px;
     color: white;
-    background-color: #ebf1dd;
+    background-color: var(--color-secondary);
   }
 
   .footer #link {
@@ -843,7 +853,7 @@ canvas:hover h1 {
     top: 20;
     right: 20;
     margin: auto;
-    color: #e7e3d5;
+    color: var(--color-secondary);
   }
 
   #site {
@@ -984,7 +994,7 @@ canvas:hover h1 {
 }
 
 .nav-items a {
-    color: #ebf1dd;
+    color: var(--color-secondary);
     padding: 4%;
 }
 
@@ -1049,7 +1059,6 @@ canvas:hover h1 {
       .navbar {
         visibility: hidden;
       }
-     .hamburger {visibility: visible;}
      .infobox h3 {
         margin-left: 40px;
         width: auto;

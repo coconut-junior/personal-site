@@ -22,7 +22,7 @@
         <div class = "hero">
 
             <div class = "form" id = "widget">
-                <div style = "z-index:1;background-image:url('images/business_card.png');height: 100%;width:100%;background-size: contain;background-repeat: no-repeat;margin:auto;position: relative;padding: 0;">
+                <div style = "background-image:url('images/business_card.png');height: 100%;width:100%;background-size: contain;background-position: center;background-repeat: no-repeat;margin:auto;position: relative;padding: 0;">
                 </div>
             </div>
 
@@ -199,6 +199,7 @@
         </div>
 
         <div class = "navbar">
+            <div id = "fade" style = "background-color: white;width:100%;position:fixed;overflow: hidden;"></div>
             
             <ul style = "margin-top: 5px;">
                 <a href = "#contact"><li>Contact</li></a>
@@ -255,6 +256,16 @@
 
             $(window).scroll(function() {
                 resize();
+
+                var scrollTop = $(this).scrollTop();
+
+                  $('#fade').css({
+                    opacity: function() {
+                      var elementHeight = $(this).height();
+                      return 1 - (elementHeight - scrollTop) / elementHeight;
+                    }
+                  });
+
                 var scroll = $(window).scrollTop();
                 if(scroll > position) {
                     /*scroll down*/
