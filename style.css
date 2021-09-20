@@ -1255,6 +1255,9 @@ canvas:hover h1 {
         color: #fbfbfb;
         background-color: #0d1218;
     }
+    .feature h3 {
+        color: #0d1218;
+    }
     svg {
         filter: invert();
     }
