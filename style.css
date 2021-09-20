@@ -1253,7 +1253,7 @@ canvas:hover h1 {
     p, h3 li{
         color: #485567;
     }
-    body, .hero, .loader {
+    body, .hero, .loader, .banner, .footer h3 {
         color: #fbfbfb;
         background-color: #0d1218;
     }
