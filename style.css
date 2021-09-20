@@ -150,6 +150,7 @@ h2 {
     position: relative;
     transition: 1s;
     text-align: center;
+    background-color: var(--color-primary);
 }
 
 .clock {
@@ -1251,7 +1252,7 @@ canvas:hover h1 {
     p, h3 li{
         color: #485567;
     }
-    body, .hero, .loader, .banner, .resume-dropdown {
+    body, .hero, .loader, .banner, .resume-dropdown, h4 {
         color: #fbfbfb;
         background-color: #0d1218;
     }
