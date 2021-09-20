@@ -1253,19 +1253,25 @@ canvas:hover h1 {
 
 
 @media (prefers-color-scheme:dark) {
+
     p, h3 li{
         color: #485567;
     }
+
     body, .hero, .loader, .banner, .resume-dropdown,h2,#logos {
         color: #fbfbfb;
         background-color: #0d1218;
-    },#logos
+    }
+
     .feature h3 {
+        background-color: #121920;
         color: #fbfbfb;
     }
-    svg {
+
+    svg, .photo {
         filter: invert();
     }
+
     textarea, input {
         color: #485567;
         background-color: #121920;
@@ -1284,9 +1290,7 @@ canvas:hover h1 {
         background-color: #161f29;
         border-radius: 10px;
     }
-    #logos {
-        filter: invert();
-    }
+
     .logo, .slink, #mobile-logo {
         filter: invert();
     }
@@ -1302,12 +1306,12 @@ canvas:hover h1 {
         filter: none;
     }
     li, .dropdown, .footer h2, .footer p, h3 {
-        color:  #fbfbfb;;
+        color:  #fbfbfb;
     }
     #resume-dropdown {
         border-color: #161f29;
     }
-    .footer,#fade,.footer h2 {
+    .footer,#fade {
         color: #33333d;
         background-color: #121920;
         border: none;
@@ -1315,4 +1319,5 @@ canvas:hover h1 {
     .mobile-nav, .banner img, .contact {
         filter: invert();
     }
+
 }
