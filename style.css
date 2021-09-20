@@ -1,8 +1,11 @@
 :root {
-    --color-primary: #e8f7f0;
+    --color-primary: #f5f5f5;
     --color-secondary: #ddf1e6;
-    --color-tertiary: #a9c8c5;
-    --color-background: #f5f5f5;
+    --color-tertiary: #9bb7b4;
+}
+
+* {
+    cursor: none;
 }
 
 @font-face {
@@ -43,7 +46,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: var(--color-background);
+    background-color: var(--color-primary);
 }
 
 .kofi-form iframe {
@@ -59,11 +62,6 @@ body {
     100% {
         visibility: visible;
     }
-}
-
-a li {
-    cursor: hand;
-
 }
 
 textarea, input {
@@ -119,7 +117,6 @@ a {
     text-decoration: none;
     color: #2F2F2F;
     padding: 0px;
-    cursor: pointer;
 }
 
 h1 {
@@ -146,14 +143,14 @@ h3 p {
 
 h2 {
     margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     padding-top:20px;
     font-family: 'Asap', sans-serif;
     font-size: 2em;
     position: relative;
     transition: 1s;
     text-align: center;
+    background: var(--color-primary);
 }
 
 .clock {
@@ -234,7 +231,7 @@ body.light .mn:before {
     margin:auto;
     height: 768px;
     width:auto;
-    background-color: var(--color-background);
+    background-color: var(--color-primary);
     background-size: stretch;
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -243,8 +240,8 @@ body.light .mn:before {
         "terminal terminal fishtank fishtank"
         "clock kofi fishtank fishtank";
     grid-gap: 40px;
-    margin-top: 150px;
-    padding-bottom: 40px;
+    padding-top: 150px;
+    padding-bottom: 80px;
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -255,7 +252,7 @@ body.light .mn:before {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: var(--color-secondary);
+    background: white;
     grid-area: terminal;
     overflow: hidden;
     padding: 40px;
@@ -281,20 +278,10 @@ body.light .mn:before {
     grid-area: clock;
 }
 
-.photo-service {
-    color: white;
-    background: #e8e4e2;
+.feature {
     display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
+    background: #E3D8EB;
     grid-area: fishtank;
-    background-image: url("images/photography3.jpg");
-    background-size: cover;
-}
-
-canvas {
-    cursor: grab;
 }
 
 .fishtank svg {
@@ -396,7 +383,6 @@ canvas {
 
 .button:hover {
     background-color:  #171b1d;
-    cursor: pointer;
 }
 
 .button:active {
@@ -424,14 +410,14 @@ canvas {
     align-items: center;
     height: 720px;
     width: auto;
+    background: var(--color-primary);
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 10px;
-    margin-top:0px;
+    padding: 10px;
     padding-top:0px;
-    margin-left:40px;
-    margin-right: 40px;
-    transition: 2s;
+    padding-left:40px;
+    padding-right: 40px;
+    transition: 1s;
 }
 
 ul {
@@ -443,7 +429,6 @@ ul {
 
 ul a {
     background-color: transparent;
-    cursor: pointer;
     transition: 0.3s;
     border-radius: 10px;
 }
@@ -611,7 +596,7 @@ li {
     display: flex;
     justify-content: left;
     align-items: center;
-    background: transparent;
+    background: rgba(255,255,255,0);
     transition: 0.3s;
     overflow: hidden;
 }
@@ -635,7 +620,6 @@ li {
     margin-top: 20px;
     text-align: center;
     transition: 1s;
-    cursor: hand;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -774,7 +758,6 @@ canvas:hover h1 {
     z-index: 1;
     font-family: 'Asap', sans-serif;
     font-size: 36px;
-    cursor: pointer;
     text-align: center;
     color: #171b1d;
     margin-top: 32px;
@@ -848,20 +831,10 @@ canvas:hover h1 {
       opacity: 80%;
   }
 
-  h4 {
-    font-size: 128px;
-    font-family: 'Asap', sans-serif;
-    position: absolute;
-    top: 20;
-    right: 20;
-    margin: auto;
-    color: var(--color-secondary);
-  }
-
   #site {
       flex-direction: row;
       flex-wrap: wrap;
-      margin-top: 80px;
+      padding-top: 80px;
       height: auto;
   }
 
@@ -878,11 +851,11 @@ canvas:hover h1 {
   .icon-angellist:before { content: '\f209'; } /* '' */
 
   .infobox {
-    display:flex;align-items:flex-end;height:480px;width:40%;margin: auto;
+    display:flex;align-items:flex-end;height:480px;width:50%;margin: auto;
   }
 
   #resume-dropdown {
-    border: 4px solid rgba(0,0,0,0.05);margin:40px;overflow:hidden;
+    border: 2px solid rgba(0,0,0,0.05);margin:40px;overflow:hidden;
   }
 
   .infobox h3 {
@@ -906,6 +879,7 @@ canvas:hover h1 {
   }
 
   .footer h2 {
+    background-color: var(--color-secondary);
     color: #171b1d;
   }
 
@@ -993,6 +967,12 @@ canvas:hover h1 {
 
 #widget {
     border-radius: 20px;
+    border: 10px solid transparent;
+    transition:0.3s;
+}
+
+#widget:hover {
+    border: 1px solid transparent;
 }
 
 .nav-items a {
@@ -1018,7 +998,33 @@ canvas:hover h1 {
 	width: auto;
 }
 
-.photo-service h2 {
+.cursor-dot {
+    mix-blend-mode: difference;
+    pointer-events: none;
+    height: 12px;
+    width: 12px;
+    background-color: white;
+    border-radius: 50%;
+    position:absolute;
+    transition: 0.3s;
+}
+
+.cursor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: difference;
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    background-color:transparent;
+    border-radius:50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.feature h2 {
     margin: 40px;
     margin-right: 40%;
 }
@@ -1037,14 +1043,14 @@ canvas:hover h1 {
 
   @media (max-width: 900px) {
       .hero {
-        margin-top: 40px;
+        padding-top: 40px;
           grid-template-rows: 1fr 1fr 1fr;
           grid-template-areas: 
           "terminal terminal terminal terminal"
           "clock clock fishtank fishtank"
           "kofi kofi fishtank fishtank";
       }
-      .photo-service p {
+      .feature p {
         display: none;
         }
       .mobile-nav {
@@ -1066,9 +1072,6 @@ canvas:hover h1 {
         width: auto;
         text-align: left;
     }
-    h4 {
-        display: none;
-    }
     .gallery {
         position: relative;
         width: 100%;
@@ -1084,6 +1087,9 @@ canvas:hover h1 {
     .navbar {visibility: hidden;}
     .loader svg {
         scale: 1;
+    }
+    .cursor {
+        display: none;
     }
     #contact-button {
         width: 46%;
@@ -1136,7 +1142,7 @@ canvas:hover h1 {
         font-size: 18px;
     }
     .hero {
-        margin-top: 40px;
+        padding-top: 40px;
         height: 1880;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -1146,21 +1152,21 @@ canvas:hover h1 {
         "fishtank fishtank"
         "fishtank fishtank";
     }
+    .feature h3 {
+        display: none;
+    }
     .infobox h3 {
-        font-size: 4em;
+        font-size: 3em;
         margin-left: 80px;
         width: auto;
         text-align: left;
     }
     .infobox h3 p {
-        font-size: 0.5em;
+        font-size: 0.6em;
     }
 
-    .photo-service a {
+    .feature a {
         zoom: 2;
-    }
-    h4 {
-        display: none;
     }
     .gallery {
         position: relative;
@@ -1291,9 +1297,6 @@ canvas:hover h1 {
     }
     li, .dropdown, .footer h2, .footer p, h3 {
         color:  #fbfbfb;;
-    }
-    h4 {
-        color: #161f29;
     }
     #resume-dropdown {
         border-color: #161f29;

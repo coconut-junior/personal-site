@@ -17,11 +17,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <a id = "home"></a>
+        <section id = "home"></section>
 
         <div class = "hero">
 
-            <div class = "form" id = "widget">
+            <div class = "form" id = "widget" style = "filter:invert()">
                 <div style = "background-image:url('images/business_card.png');height: 100%;width:100%;background-size: contain;background-position: center;background-repeat: no-repeat;margin:auto;position: relative;padding: 0;">
                 </div>
             </div>
@@ -42,9 +42,13 @@
 
             </div>
 
-            <div class = "photo-service" id = "widget">
-                <h2 style = "text-align:center;padding:0;margin:auto;width:70%;">Professional Photography Done Right.</h2>
-                <a href = "" style = "padding: 10px;border-radius:5px;background-color: white;bottom:40px;right: 80px;position: absolute;margin-bottom:40px;color: #171b1d;size:auto;"><img src = "images/link.svg" style = "height: 32px;width:32px;"></a>
+            <div class = "feature" id = "widget">
+                <video width="100%" height="auto" autoplay muted loop margin="auto">
+                  <source src="media/stellar.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
+                <h3 style = "position:absolute;z-index:1;text-align:left;padding:0;margin:40px;width:auto;">Rebrand: Stellar Lumens</h3>
+                <a href = "" style = "padding: 10px;border-radius:5px;background-color: white;margin:0;bottom:120px;right: 80px;position: absolute;color: #171b1d;size:auto;"><img src = "images/link.svg" style = "height: 32px;width:32px;"></a>
 
             </div>
 
@@ -64,7 +68,6 @@
             </a>
             <div class = "infobox">
                 <h3>Blinds by Noon<p>Website for a kickstarter backed project.</p></h3>
-                <h4>1</h4>
             </div>
         </div>
 
@@ -76,7 +79,6 @@
             </a>
             <div class = "infobox">
                 <h3>Ang &amp; Jack&apos;s<p>Website and brand identity for an asian fusion restaurant.</p></h3>
-                <h4>2</h4>
             </div>
         </div>
 
@@ -88,7 +90,6 @@
             </a>
             <div class = "infobox">
                 <h3>Amateur Blueprint<p>A font inspired by technical drawings.</p></h3>
-                <h4>3</h4>
             </div>
         </div>
 
@@ -100,11 +101,10 @@
             </a>
             <div class = "infobox">
                 <h3>Genie Dental<p>Brand identity for a pediatric dentistry.</p></h3>
-                <h4>4</h4>
             </div>
         </div>
 
-        <h2 style = "margin-top: 80;">Logos</h2>
+        <h2 style = "padding-top: 80;">Logos</h2>
         <div class = "banner" id = "logos" style = "margin: 10px;border-radius:40px;flex-direction: row; height: auto; padding: 40px; flex-wrap: wrap;">
             <div class = "photo" style = "background-position:center;background-image: url('images/chamo.png');"></div>
             <div class = "photo" style = "background-position:center;background-image: url('images/ang_jacks.png');"></div>
@@ -113,16 +113,9 @@
             <div class = "photo" style = "background-position:center;background-image: url('images/iroha.png');"></div>
         </div>
         
-        <!--
-        <h2 id = "testimonials" style = "margin-bottom: 80px;">Testimonials</h2>
+        <h2 id = "resume" style = "padding-top:0px;padding-bottom: 80px;">Resume</h2>
 
-        <div class = "banner" style = "height: 256px; border-radius: 20px;
-        border: 4px solid rgba(0,0,0,0.05);margin:40px;background-color: #171b1d;"></div>
-        -->
-        
-        <h2 id = "resume" style = "margin-top:0px;margin-bottom: 80px;">Resume</h2>
-
-        <div class = "banner" id = "resume-dropdown" style = "height: auto; padding-top: 80px;border-radius: 20px;">
+        <div class = "banner" id = "resume-dropdown" style = "margin:0;height: auto; margin-left:40px;margin-right:40px;padding-top: 80px;margin-bottom:80px;border-radius: 20px;">
         
             <h3>Design Skills
                 <br>
@@ -230,10 +223,13 @@
             </div>
         </div>
 
+        <div class = "cursor"><div class = "cursor-dot"></div></div>
+
         <script src = "js/events.js"></script>
         <script src= "js/clock.js"></script>
 
         <script>
+
             $('.navbar').css({
                 "width" : $(window).width() - 60
                 }
