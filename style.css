@@ -1261,7 +1261,7 @@ canvas:hover h1 {
         background-color: #0d1218;
     },#logos
     .feature h3 {
-        color: #0d1218;
+        color: #fbfbfb;
     }
     svg {
         filter: invert();
