@@ -1256,10 +1256,10 @@ canvas:hover h1 {
     p, h3 li{
         color: #485567;
     }
-    body, .hero, .loader, .banner, .resume-dropdown {
+    body, .hero, .loader, .banner, .resume-dropdown,h2,#logos {
         color: #fbfbfb;
         background-color: #0d1218;
-    }
+    },#logos
     .feature h3 {
         color: #0d1218;
     }
