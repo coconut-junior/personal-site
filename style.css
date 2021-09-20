@@ -1023,6 +1023,10 @@ canvas:hover h1 {
     pointer-events: none;
 }
 
+.footer h2 {
+    background-color: var(--color-secondary);
+}
+
 .feature h2 {
     margin: 40px;
     margin-right: 40%;
@@ -1252,7 +1256,7 @@ canvas:hover h1 {
     p, h3 li{
         color: #485567;
     }
-    body, .hero, .loader, .banner, .resume-dropdown, h4 {
+    body, .hero, .loader, .banner, .resume-dropdown {
         color: #fbfbfb;
         background-color: #0d1218;
     }
@@ -1303,7 +1307,7 @@ canvas:hover h1 {
     #resume-dropdown {
         border-color: #161f29;
     }
-    .footer,#fade {
+    .footer,#fade,.footer h2 {
         color: #33333d;
         background-color: #121920;
         border: none;
