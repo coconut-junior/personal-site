@@ -130,7 +130,7 @@ h1 {
 h3 {
     margin: auto;
     font-family: 'Asap', sans-serif;   
-    font-size: 1.5em;
+    font-size: 21px;
     position: relative;
     width: auto;
     text-align: center;
@@ -280,7 +280,7 @@ body.light .mn:before {
 
 .feature {
     display: flex;
-    background: #E3D8EB;
+    background: #F2E1FF;
     grid-area: fishtank;
 }
 
