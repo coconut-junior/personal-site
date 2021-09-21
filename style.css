@@ -280,7 +280,7 @@ body.light .mn:before {
 
 .feature {
     display: flex;
-    background: #F2E1FF;
+    background: #0E2547;
     grid-area: fishtank;
 }
 
@@ -1027,9 +1027,8 @@ canvas:hover h1 {
     background-color: var(--color-secondary);
 }
 
-.feature h2 {
-    margin: 40px;
-    margin-right: 40%;
+.feature h3 {
+    color: var(--color-primary);
 }
 
 
