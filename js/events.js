@@ -46,8 +46,8 @@ $(function() {
     $('.cursor-dot').css('border-radius', '0px');
   }, function() {
     // on mouseout, reset the background colour
-    $('.cursor-dot').css('height', '6px');
-    $('.cursor-dot').css('width', '6px');
+    $('.cursor-dot').css('height', '12px');
+    $('.cursor-dot').css('width', '12px');
     $('.cursor-dot').css('border-radius', '50%');
   });
 });
