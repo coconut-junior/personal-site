@@ -1256,7 +1256,7 @@ canvas:hover h1 {
 
 
 @media (prefers-color-scheme:dark) {
-    .form {filter: invert();}
+    .form,.form h2 {background-color: #121920;color: #fbfbfb}
     p, h3 li{
         color: #485567;
     }
@@ -1322,5 +1322,4 @@ canvas:hover h1 {
     .mobile-nav, .banner img, .contact {
         filter: invert();
     }
-
 }
