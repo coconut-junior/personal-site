@@ -65,19 +65,6 @@ $(function() {
   });
 });
 
-$(function() {
-  $('h2').hover(function() {
-    $('.cursor-dot').css('height', '40px');
-    $('.cursor-dot').css('width', '1px');
-    $('.cursor-dot').css('border-radius', '0px');
-  }, function() {
-    // on mouseout, reset the background colour
-    $('.cursor-dot').css('height', '6px');
-    $('.cursor-dot').css('width', '6px');
-    $('.cursor-dot').css('border-radius', '50%');
-  });
-});
-
 function email() {
 	if (document.body.querySelector('.message').value != '') {
         Email.send({
