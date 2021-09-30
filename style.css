@@ -159,7 +159,7 @@ h2 {
     justify-content: center;
     height: 80%;
     width: 80%;
-    background: url("images/clock.png");
+    background: url("images/clock-white.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -197,7 +197,7 @@ h2 {
     position: absolute;
     width: 8px;
     height: 80px;
-    background: white;
+    background: #313131;
     z-index: 10;
     border-radius: 12px 12px 0 0;
 }
@@ -207,7 +207,7 @@ h2 {
     position: absolute;
     width: 4px;
     height: 90px;
-    background: white;
+    background: #313131;
     z-index: 11;
     border-radius: 6px 6px 0 0;
 }
@@ -270,7 +270,7 @@ body.light .mn:before {
 }
 
 .clock-form {
-    background: #362127;
+    background: #F1DCD0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,7 +280,11 @@ body.light .mn:before {
 
 .feature {
     display: flex;
-    background: #0E2547;
+    background: #4838d9;
+    background-image:  url('images/stellar.gif');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
     grid-area: fishtank;
 }
 
@@ -1093,6 +1097,9 @@ canvas:hover h1 {
     .cursor {
         display: none;
     }
+    #resume-dropdown h3 {
+        font-size:  1em;
+    }
     #contact-button {
         width: 46%;
         margin: auto;
@@ -1252,7 +1259,7 @@ canvas:hover h1 {
 
 
 @media (prefers-color-scheme:dark) {
-
+    .form {filter: invert();}
     p, h3 li{
         color: #485567;
     }
