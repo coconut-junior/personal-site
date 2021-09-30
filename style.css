@@ -64,6 +64,10 @@ body {
     }
 }
 
+.form h2 {
+    background-color: white;
+}
+
 textarea, input {
     font-family: 'Asap', sans-serif;
     color: #171b1d;
@@ -247,16 +251,11 @@ body.light .mn:before {
 }
 
 .form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    display: block;
     position: relative;
     background: white;
     grid-area: terminal;
-    overflow: hidden;
-    padding: 40px;
-    opacity: 85%;
+    padding: 20px;
 }
 
 .kofi-form {
@@ -1035,6 +1034,14 @@ canvas:hover h1 {
     color: var(--color-primary);
 }
 
+#highlight {
+    color:  #4838d9;
+}
+
+.form p {
+    font-size: 1em;
+    line-height: 140%;
+}
 
 #first-last {
     margin:20px;
@@ -1098,7 +1105,10 @@ canvas:hover h1 {
         display: none;
     }
     #resume-dropdown h3 {
-        font-size:  1em;
+        font-size:  3em;
+    }
+    li {
+        font-size: 2em;
     }
     #contact-button {
         width: 46%;
@@ -1152,7 +1162,7 @@ canvas:hover h1 {
     }
     .hero {
         padding-top: 40px;
-        height: 1880;
+        height: 1960;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-areas: 
@@ -1170,8 +1180,11 @@ canvas:hover h1 {
         width: auto;
         text-align: left;
     }
+    .form p {
+        font-size: 2em;
+    }
     .infobox h3 p {
-        font-size: 0.6em;
+        font-size: 1em;
     }
 
     .feature a {
@@ -1199,7 +1212,7 @@ canvas:hover h1 {
     .form {
         width: auto;
         padding: 40px;
-        height: 400px;
+        height: 480px;
     }
     .button {
         display:none;
@@ -1218,26 +1231,10 @@ canvas:hover h1 {
         visibility: visible;
         zoom: 2;
     }
-    .form p {
-        visibility: hidden;
-    }
     
-    .fishtank p {
-        visibility: hidden;
-    }
-    .fishtank svg {
-        height: 80%;
-        width: 80%;
-    }
     .footer {
         zoom:2;
         padding-bottom: 140px;
-    }
-    #resume-dropdown {
-        font-size: 2em;
-    }
-    #resume-dropdown li {
-        font-size: 2em;
     }
 
     .footer h2 {
