@@ -122,13 +122,14 @@
                 <br>
                 <div class = "dropdown" id = "dropdown1" onclick = "dropdown1()">+</div>
                 <ul id = "menu1">
-                    <li>Web design</li>
+                    <li>Visual Design</li>
+                    <li>UX Design</li>
+                    <li>Interaction Design</li>
                     <li>Branding</li>
-                    <li>Illustration</li>
-                    <li>Photography</li>
+                    <li>Web Design</li>
                 </ul>
             </h3>
-            <h3>Tech skills
+            <h3>Tech Skills
                 <br>
                 <div class = "dropdown" id = "dropdown2" onclick = "dropdown2()">+</div>
                 <ul id = "menu2">
@@ -230,6 +231,7 @@
         <script src= "js/clock.js"></script>
 
         <script>
+            gsap.from('#widget', {y: 50,delay: 2.5,opacity:0, duration: 0.5, ease: Power2.easeInOut, stagger:0.3})
 
             $('.navbar').css({
                 "width" : $(window).width() - 60
