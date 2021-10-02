@@ -1272,6 +1272,9 @@ canvas:hover h1 {
     p, h3 li{
         color: #485567;
     }
+    .form h2 {
+        color:  black;
+    }
 
     body, .hero, .loader, .banner, .resume-dropdown,h2,#logos {
         color: #fbfbfb;
