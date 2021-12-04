@@ -6,6 +6,7 @@
 
 * {
     cursor: none;
+    shape-rendering: geometricPrecision;
 }
 
 @font-face {
@@ -55,7 +56,7 @@ body {
     width:46px;
     bottom:40px;
     right:40px;
-    border-radius: 5px;
+    border-radius: 20%;
     background-color:white;
     background-image:url('images/link.svg');
     background-size:80%;
@@ -252,7 +253,7 @@ body.light .mn:before {
     background-size: stretch;
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 3fr 2fr;
     grid-template-areas:
         "terminal terminal fishtank fishtank"
         "clock kofi fishtank fishtank"
@@ -270,12 +271,20 @@ body.light .mn:before {
     grid-area:logos;
 }
 
+#widget p {
+    width: 30%;
+}
+
 .stetson {
     grid-area: stetson;
+    background-color: #f1eee9;
     background-image: url('images/stetson.jpg');
-    background-position: center;
+    background-position: center bottom;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size:contain;
+    display: flex;
+    align-items: left;
+    justify-content: left;
 }
 
 
@@ -512,7 +521,7 @@ li {
 .logo {
     opacity: 0.9;
     margin: auto;
-    background-image: url('images/logo.png');
+    background-image: url('images/logo.svg');
     background-size:contain;
     background-position: center;
     background-repeat:no-repeat;height: 42px;width:128px;
@@ -1057,7 +1066,7 @@ canvas:hover h1 {
     color:  #4838d9;
 }
 
-.form p {
+p {
     font-size: 1em;
     line-height: 140%;
 }
@@ -1067,11 +1076,23 @@ canvas:hover h1 {
     width: 50%;display: block;
 }
 
- 
+#logos {
+    height:100%;
+    margin:auto;background-color:transparent;flex-direction: row; flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+    #widget p {
+        width: 50%;
+    }
+}
 
 @media (pointer: coarse) {
+    #widget p {
+        width: auto;
+    }
     h3 {
-        font-size: 2em;
+        font-size: 3em;
     }
     .navbar {visibility: hidden;}
     .loader svg {
@@ -1153,7 +1174,7 @@ canvas:hover h1 {
         "stetson stetson"
         "logos logos";
     }
-    .form p {
+    p, .form p {
         font-size: 2em;
     }
     .infobox h3 p {
@@ -1197,7 +1218,7 @@ canvas:hover h1 {
     }
 
     h2 {
-        font-size: 4em;
+        font-size: 3em;
     }
     .footer h2 {
         zoom: normal;
@@ -1205,6 +1226,10 @@ canvas:hover h1 {
     .loader-box {
         height: 128px;
         width: 128px;
+    }
+    .link {
+        height: 100px;
+        width:100px;
     }
 }
 
@@ -1217,7 +1242,7 @@ canvas:hover h1 {
         color:  black;
     }
 
-    body, .hero, .loader, .banner, .resume-dropdown,h2,#logos {
+    body, .hero, .loader, .banner, .resume-dropdown,h2 {
         color: #fbfbfb;
         background-color: #0d1218;
     }
@@ -1249,8 +1274,7 @@ canvas:hover h1 {
         background-color: #161f29;
         border-radius: 10px;
     }
-
-    .logo, .slink, #mobile-logo {
+    .slink {
         filter: invert();
     }
     .footer #link {
