@@ -4,7 +4,7 @@
     <head>
         <link rel="stylesheet" href="style.css">
         <title>Jimmy Blanck - Graphic Designer</title>
-        <meta name = "description" content = "Graphic/Visual Designer based in Phoenixville, PA. I provide logo design, branding, website, and mobile app design services.">
+        <meta name = "description" content = "Graphic Designer based in Phoenixville, PA. I provide logo design, branding, website, and mobile app design services.">
 
         <link rel='icon' href='images/favicon.png'>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,13 +52,21 @@
             </div>
 
             <div class = "kofi-form" id = "widget">
-                <img style = "height: 60%;width:60%;margin:auto;" src = "images/snapcode.svg">
+                <img style = "height: 60%;width:60%;margin:auto;" src = "images/logo.svg">
             </div>
 
             <div class = "stetson" id = "widget">
                 <h3 style = "color: #3F1E1F;position:absolute;z-index:1;text-align:left;padding:0;margin:40px;width:auto;">Microsite - Stetson Education</h3>
-                <p style = "margin-top:120px;margin-left:40px;">Microsite created based on Stetson's series of educational videos on YouTube. The site aims to simplify the process of buying a new hat and provides detailed illustrations and diagrams.</p>
+                <p style = "margin-top:120px;margin-left:40px;">Microsite created based on Stetson's series of educational videos on YouTube. The site aims to simplify the process of buying a new hat, providing detailed illustrations and diagrams.</p>
                 <a href = "https://coconut-junior.github.io/stetson/" target="_blank"><div class = "link"></div></a>
+            </div>
+
+            <div class = "santelmo" id = "widget">
+                <h3 style = "color: rgb(245, 237, 237);position:absolute;z-index:1;text-align:left;padding:0;margin:40px;width:auto;">Outdoor Advertising - San Telmo</h3>
+            </div>
+
+            <div class = "baxter" id = "widget">
+                <h3 style = "color: rgb(245, 237, 237);position:absolute;z-index:1;text-align:left;padding:0;margin:40px;width:auto;">Package Design - Baxter</h3>
             </div>
 
             <div class = "logos" id = "widget">
@@ -84,9 +92,9 @@
                 <br>
                 <div class = "dropdown" id = "dropdown1" onclick = "dropdown1()">+</div>
                 <ul id = "menu1">
-                    <li>Visual Design</li>
-                    <li>UX Design</li>
-                    <li>Interaction Design</li>
+                    <li>Graphic Design</li>
+                    <li>Graphic Illustration</li>
+                    <li>UI/UX Design</li>
                     <li>Branding</li>
                     <li>Web Design</li>
                 </ul>
@@ -95,14 +103,16 @@
                 <br>
                 <div class = "dropdown" id = "dropdown2" onclick = "dropdown2()">+</div>
                 <ul id = "menu2">
-                    <li>HTML5</li>
-                    <li>CSS3</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
                     <li>JavaScript</li>
-                    <li>C#</li>
                     <li>Python</li>
                     <li>Photoshop</li>
                     <li>Illustrator</li>
                     <li>AfterEffects</li>
+                    <li>Dimension</li>
+                    <li>Blender</li>
+                    <li>Figma</li>
                 </ul>
             </h3>
 
@@ -190,68 +200,7 @@
 
         <script src = "js/events.js"></script>
         <script src= "js/clock.js"></script>
-
-        <script>
-            gsap.registerPlugin(ScrollTrigger);
-            gsap.from('#widget', {y: 50,delay: 2.5,opacity:0, duration: 0.5, ease: Power2.easeInOut})
-            gsap.from('.stetson',{backgroundPosition:"+=50vw",duration:2,ease: "circ.out",duration:2, scrollTrigger:{trigger:".form",scrub:true,markers: true}});
-            
-            $('.navbar').css({
-                "width" : $(window).width() - 60
-                }
-            );
-
-            function resize() {
-                var scrollTop = $(this).scrollTop();
-                var border = $('.navbar').css('border-radius');
-                var adjusted = 20 - (scrollTop / 20);
-                var margin = Math.max(adjusted, 0);
-
-                $('.navbar').css({
-                    "border-radius": adjusted,
-                    "margin" : margin,
-                    "width" : $(window).width() - (margin * 2)
-                });
-            }
-
-            var position = $(window).scrollTop();
-
-            $(window).scroll(function() {
-                resize();
-
-                var scrollTop = $(this).scrollTop();
-
-                  $('#fade').css({
-                    opacity: function() {
-                      var elementHeight = $(this).height();
-                      return 1 - (elementHeight - scrollTop) / elementHeight;
-                    }
-                  });
-
-                var scroll = $(window).scrollTop();
-                if(scroll > position) {
-                    /*scroll down*/
-                    $('.mobile-nav').css({
-                        "padding-bottom": "80px"
-                    });
-                } else {
-                    /*scroll up*/
-                    $('.mobile-nav').css({
-                        "padding-bottom": "0px"
-                    });
-                }
-                if (scroll == 0) {
-                    $('.mobile-nav').css({
-                        "padding-bottom": "0px"
-                    });
-                }
-                position = scroll;
-            })
-
-            $(window).resize(function() {
-                resize();
-            })
-        </script>
+        <script src = "js/animations.js"></script>
 
     </body>
 </html>

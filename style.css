@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #f5f5f5;
+    --color-primary: #FAFCFF;
     --color-secondary: #dceff1;
     --color-tertiary: #92a7bf;
 }
@@ -62,6 +62,20 @@ body {
     background-size:80%;
     background-repeat: no-repeat;
     background-position:center;
+}
+
+.santelmo {
+    background-image: url('images/santelmo-banner.png');
+    background-size:cover;
+    background-position: center;
+    grid-area: santelmo;
+}
+
+.baxter {
+    background-image: url('images/baxter.png');
+    background-size:cover;
+    background-position: center;
+    grid-area: baxter;
 }
 
 .kofi-form iframe {
@@ -253,11 +267,12 @@ body.light .mn:before {
     background-size: stretch;
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 3fr 2fr;
+    grid-template-rows: 1fr 1fr 3fr 2fr 2fr;
     grid-template-areas:
         "terminal terminal fishtank fishtank"
-        "clock kofi fishtank fishtank"
+        "kofi clock fishtank fishtank"
         "stetson stetson stetson stetson"
+        "santelmo santelmo baxter baxter"
         "logos logos logos logos";
     grid-gap: 40px;
     padding-top: 150px;
@@ -306,7 +321,7 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #fffcb0;
+    background: #FFFFE9;
     overflow: hidden;
     grid-area: kofi;
 }
@@ -519,10 +534,9 @@ li {
 }
 
 .logo {
-    opacity: 0.9;
     margin: auto;
-    background-image: url('images/logo.svg');
-    background-size:contain;
+    background-image: url('images/logo-solid.svg');
+    background-size: contain;
     background-position: center;
     background-repeat:no-repeat;height: 42px;width:128px;
 }
@@ -1081,6 +1095,25 @@ p {
     margin:auto;background-color:transparent;flex-direction: row; flex-wrap: wrap;
 }
 
+@media (max-width: 720px) {
+    .hero {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 2fr 2fr 2fr 2fr 2fr;
+        grid-template-areas:
+        "terminal terminal"
+        "clock kofi"
+        "fishtank fishtank"
+        "stetson stetson"
+        "logos logos"
+        "santelmo santelmo"
+        "baxter baxter";
+    }
+
+    .logo {
+        display: none;
+    }
+}
+
 @media (max-width: 1024px) {
     #widget p {
         width: 50%;
@@ -1166,12 +1199,14 @@ p {
     .hero {
         padding-top: 40px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 2fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
         "terminal terminal"
-        "clock kofi"
+        "kofi clock"
         "fishtank fishtank"
         "stetson stetson"
+        "santelmo santelmo"
+        "baxter baxter"
         "logos logos";
     }
     p, .form p {
