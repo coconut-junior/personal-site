@@ -72,7 +72,7 @@ body {
 }
 
 .baxter {
-    background-image: url('images/baxter.png');
+    background-image: url('images/baxter.jpg');
     background-size:cover;
     background-position: center;
     grid-area: baxter;
