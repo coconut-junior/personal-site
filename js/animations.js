@@ -34,24 +34,7 @@ gsap.registerPlugin(ScrollTrigger);
                     }
                   });
 
-                var scroll = $(window).scrollTop();
-                if(scroll > position) {
-                    /*scroll down*/
-                    $('.mobile-nav').css({
-                        "padding-bottom": "80px"
-                    });
-                } else {
-                    /*scroll up*/
-                    $('.mobile-nav').css({
-                        "padding-bottom": "0px"
-                    });
-                }
-                if (scroll == 0) {
-                    $('.mobile-nav').css({
-                        "padding-bottom": "0px"
-                    });
-                }
-                position = scroll;
+
             })
 
             $(window).resize(function() {

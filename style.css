@@ -1131,12 +1131,6 @@ p {
     .loader svg {
         scale: 1;
     }
-    .mobile-nav {
-        height: 160px;
-    }
-    .mobile-nav a{
-        zoom: 2;
-    }
     .cursor {
         display: none;
     }
@@ -1209,7 +1203,10 @@ p {
         "baxter baxter"
         "logos logos";
     }
-    p, .form p {
+    .form p {
+        font-size: 1em;
+    }
+    .stetson p {
         font-size: 1em;
     }
     .infobox h3 p {
