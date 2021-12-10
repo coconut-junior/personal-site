@@ -1274,6 +1274,10 @@ p {
         color:  black;
     }
 
+    .logo {
+        filter:invert();
+    }
+
     body, .hero, .loader, .banner, .resume-dropdown,h2 {
         color: #fbfbfb;
         background-color: #0d1218;
