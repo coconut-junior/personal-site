@@ -1,7 +1,7 @@
 :root {
-    --color-primary: #FAFCFF;
-    --color-secondary: #dceff1;
-    --color-tertiary: #92a7bf;
+    --color-primary: #f2f8ff;
+    --color-secondary: #E4F1FF;
+    --color-tertiary: #9DC9FD;
 }
 
 * {
@@ -76,10 +76,6 @@ body {
     background-size:cover;
     background-position: center;
     grid-area: baxter;
-}
-
-.kofi-form iframe {
-    pointer-events:none;
 }
 
 .scrollbar-thumb {
@@ -321,7 +317,7 @@ body.light .mn:before {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: #FFFFE9;
+    background: white;
     overflow: hidden;
     grid-area: kofi;
 }
@@ -1272,10 +1268,6 @@ p {
     }
     .form h2 {
         color:  black;
-    }
-
-    .logo {
-        filter:invert();
     }
 
     body, .hero, .loader, .banner, .resume-dropdown,h2 {
