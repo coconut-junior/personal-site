@@ -2,6 +2,11 @@ gsap.registerPlugin(ScrollTrigger);
             gsap.from('#widget', {y: 50,delay: 2.5,opacity:0, duration: 0.5, ease: Power2.easeInOut})
             gsap.from('.stetson',{backgroundPosition:"+=50vw",duration:2,ease: "circ.out",duration:2, scrollTrigger:{trigger:".form",scrub:true}});
             
+			//hand wave
+			gsap.to('#hand',{rotation:15,duration:0.2,delay:3.5});
+			gsap.to('#hand',{rotation:-15,duration:0.2,delay:3.7});
+			gsap.to('#hand',{rotation:0,duration:0.2,delay:3.9});
+			
             $('.navbar').css({
                 "width" : $(window).width() - 60
                 }
