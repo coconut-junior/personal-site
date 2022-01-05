@@ -518,6 +518,7 @@ li {
 .navbar ul {
     position:absolute;
     left: 0px;
+    gap: 10px;
 }
 
 .navbar ul li {
@@ -534,7 +535,7 @@ li {
     background-image: url('images/logo-solid.svg');
     background-size: contain;
     background-position: center;
-    background-repeat:no-repeat;height: 42px;width:128px;
+    background-repeat: no-repeat;height: 42px;width:128px;
 }
 
 .loader {
@@ -1095,6 +1096,10 @@ p {
     margin:auto;background-color:transparent;flex-direction: row; flex-wrap: wrap;
 }
 
+#home-button {
+    position: relative;margin:auto;
+}
+
 @media (max-width: 720px) {
     .hero {
         grid-template-columns: 1fr 1fr;
@@ -1335,4 +1340,14 @@ p {
     .mobile-nav, .banner img, .contact {
         filter: invert();
     }
+}*/
+
+
+#home-button {
+    display: none;
+}
+.navbar ul {
+    margin: auto;
+    position: relative;
+    padding-left: 0;
 }

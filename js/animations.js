@@ -1,47 +1,113 @@
 gsap.registerPlugin(ScrollTrigger);
-            gsap.from('#widget', {y: 50,delay: 2.5,opacity:0, duration: 0.5, ease: Power2.easeInOut})
-            gsap.from('.stetson',{backgroundPosition:"+=50vw",duration:2,ease: "circ.out",duration:2, scrollTrigger:{trigger:".form",scrub:true}});
-            
-			//hand wave
-			gsap.to('#hand',{rotation:15,duration:0.2,delay:3.5});
-			gsap.to('#hand',{rotation:-15,duration:0.2,delay:3.7});
-			gsap.to('#hand',{rotation:0,duration:0.2,delay:3.9});
-			
-            $('.navbar').css({
-                "width" : $(window).width() - 60
-                }
-            );
 
-            function resize() {
-                var scrollTop = $(this).scrollTop();
-                var border = $('.navbar').css('border-radius');
-                var adjusted = 20 - (scrollTop / 20);
-                var margin = Math.max(adjusted, 0);
+gsap.from('#widget', {
+    y: "25vh",
+    delay: 2.5,
+    opacity: 0, 
+    duration: 0.4,
+    stagger: {
+        amount: 1, 
+        ease: "sine.in",
+        from: "left"
+    }
+});
 
-                $('.navbar').css({
-                    "border-radius": adjusted,
-                    "margin" : margin,
-                    "width" : $(window).width() - (margin * 2)
-                });
-            }
+gsap.from('.stetson',{backgroundPosition:"+=50vw",duration:2,ease: "circ.out",duration:2, scrollTrigger:{trigger:".form",scrub:true}});
 
-            var position = $(window).scrollTop();
+//hand wave
+gsap.to('#hand',{rotation:15,duration:0.2,delay:3.5});
+gsap.to('#hand',{rotation:-15,duration:0.2,delay:3.7});
+gsap.to('#hand',{rotation:0,duration:0.2,delay:3.9});
 
-            $(window).scroll(function() {
-                resize();
+$('.navbar').css({
+    "width" : $(window).width() - 60
+    }
+);
 
-                var scrollTop = $(this).scrollTop();
+document.onmousemove = function(e) {
+    var c = document.querySelector('.cursor');
+    gsap.to(c, {left:e.clientX - 40, duration: "0.2"});
+    gsap.to(c, {top:e.clientY - 40 + $(document).scrollTop(), duration: "0.2"});
+}
 
-                  $('#fade').css({
-                    opacity: function() {
-                      var elementHeight = $(this).height();
-                      return 1 - (elementHeight - scrollTop) / elementHeight;
-                    }
-                  });
+$(function() {
+  $('a').hover(function() {
+    $('.cursor-dot').css('height', '40px');
+    $('.cursor-dot').css('width', '40px');
+  }, function() {
+    // on mouseout, reset the background colour
+    $('.cursor-dot').css('height', '12px');
+    $('.cursor-dot').css('width', '12px');
+  });
+});
+
+$(function() {
+  $('.dropdown').hover(function() {
+    $('.cursor-dot').css('height', '40px');
+    $('.cursor-dot').css('width', '40px');
+  }, function() {
+    // on mouseout, reset the background colour
+    $('.cursor-dot').css('height', '12px');
+    $('.cursor-dot').css('width', '12px');
+  });
+});
+
+$(function() {
+  $('textarea').hover(function() {
+    $('.cursor-dot').css('height', '40px');
+    $('.cursor-dot').css('width', '1px');
+    $('.cursor-dot').css('border-radius', '0px');
+  }, function() {
+    // on mouseout, reset the background colour
+    $('.cursor-dot').css('height', '12px');
+    $('.cursor-dot').css('width', '12px');
+    $('.cursor-dot').css('border-radius', '50%');
+  });
+});
+
+$(function() {
+  $('input').hover(function() {
+    $('.cursor-dot').css('height', '40px');
+    $('.cursor-dot').css('width', '1px');
+    $('.cursor-dot').css('border-radius', '0px');
+  }, function() {
+    // on mouseout, reset the background colour
+    $('.cursor-dot').css('height', '6px');
+    $('.cursor-dot').css('width', '6px');
+    $('.cursor-dot').css('border-radius', '50%');
+  });
+});
+
+function resize() {
+    var scrollTop = $(this).scrollTop();
+    var border = $('.navbar').css('border-radius');
+    var adjusted = 20 - (scrollTop / 20);
+    var margin = Math.max(adjusted, 0);
+
+    $('.navbar').css({
+        "border-radius": adjusted,
+        "margin" : margin,
+        "width" : $(window).width() - (margin * 2)
+    });
+}
+
+var position = $(window).scrollTop();
+
+$(window).scroll(function() {
+    resize();
+
+    var scrollTop = $(this).scrollTop();
+
+        $('#fade').css({
+        opacity: function() {
+            var elementHeight = $(this).height();
+            return 1 - (elementHeight - scrollTop) / elementHeight;
+        }
+        });
 
 
-            })
+})
 
-            $(window).resize(function() {
-                resize();
-            })
+$(window).resize(function() {
+    resize();
+})
