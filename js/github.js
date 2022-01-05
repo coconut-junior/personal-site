@@ -30,7 +30,8 @@ async function getContributions(token, username) {
 }
 
 async function printInfo() {
-    const data = await getContributions('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', 'coconut-junior');
+    const data = await getContributions('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', 'coconut-junior');
+    console.log(data);
     var count = data.data.user.contributionsCollection.contributionCalendar.totalContributions;
     document.getElementById('contributions').innerHTML = count;
 }
