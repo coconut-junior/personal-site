@@ -1,3 +1,25 @@
+const cipher = salt => {
+  const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+  const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+  const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+
+  return text => text.split('')
+    .map(textToChars)
+    .map(applySaltToChar)
+    .map(byteHex)
+    .join('');
+}
+  
+const decipher = salt => {
+  const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+  const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+  return encoded => encoded.match(/.{1,2}/g)
+    .map(hex => parseInt(hex, 16))
+    .map(applySaltToChar)
+    .map(charCode => String.fromCharCode(charCode))
+    .join('');
+}
+
 async function getContributions(token, username) {
     const headers = {
         'Authorization': `bearer ${token}`,
@@ -29,12 +51,14 @@ async function getContributions(token, username) {
     return data;
 }
 
-async function printInfo() {
-    const data = await getContributions('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', 'coconut-junior');
+async function printInfo(token) {
+    const data = await getContributions(token, 'coconut-junior');
     console.log(data);
     var count = data.data.user.contributionsCollection.contributionCalendar.totalContributions;
     document.getElementById('contributions').innerHTML = count;
 }
 
-printInfo();
+var token = '6f6078577f6352597f7e5e7b6f60515146415e786f616f464d526b4551666d46633c3b30317f3050';
+const myDecipher = decipher('mySecretSalt');
+var token = myDecipher(token);
 
