@@ -53,7 +53,6 @@ async function getContributions(token, username) {
 
 async function printInfo(token) {
     const data = await getContributions(token, 'coconut-junior');
-    console.log(data);
     var count = data.data.user.contributionsCollection.contributionCalendar.totalContributions;
     document.getElementById('contributions').innerHTML = count;
 }
@@ -62,3 +61,4 @@ var token = '6f6078577f6352597f7e5e7b6f60515146415e786f616f464d526b4551666d46633
 const myDecipher = decipher('mySecretSalt');
 var token = myDecipher(token);
 
+printInfo(token);
