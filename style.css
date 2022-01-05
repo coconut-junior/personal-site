@@ -1007,7 +1007,6 @@ canvas:hover h1 {
 
 p {
     font-size: 1em;
-    line-height: 140%;
 }
 
 #first-last {
@@ -1164,10 +1163,6 @@ p {
     .clock .hour, .clock .min, .clock .sec {
         position: absolute;
         zoom: 1.5;
-    }
-    .clock-form #center {
-        visibility: visible;
-        zoom: 2;
     }
 
     .footer {
