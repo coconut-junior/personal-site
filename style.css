@@ -1053,6 +1053,9 @@ p {
 }
 
 @media (pointer: coarse) {
+    p {
+        font-size: 2em;
+    }
     #widget p {
         width: auto;
     }
@@ -1135,9 +1138,7 @@ p {
         "baxter baxter"
         "logos logos";
     }
-    .form p {
-        font-size: 1em;
-    }
+
     .stetson p {
         font-size: 1em;
     }
