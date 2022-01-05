@@ -1,7 +1,5 @@
 let menuOpen = false;
 var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-var dragging = false;
-var terminal = document.querySelector('.form');
 var lang = 'en';
 
 var menuOpen1 = false;
