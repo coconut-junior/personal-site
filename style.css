@@ -433,10 +433,6 @@ li {
     border-radius: 5px;
 }
 
-.banner ul li:hover {
-    letter-spacing: 2px;
-}
-
 .logo {
     margin: auto;
     background-image: url('images/logo-solid.svg');
@@ -904,7 +900,7 @@ canvas:hover h1 {
 
 #widget {
     border-radius: 20px;
-    transition:0.3s;
+    transition: 0.3s;
 }
 
 .nav-items a {
@@ -1085,13 +1081,6 @@ canvas:hover h1 {
         "santelmo santelmo"
         "baxter baxter"
         "logos logos";
-    }
-
-    .stetson p {
-        font-size: 1em;
-    }
-    .infobox h3 p {
-        font-size: 0.6em;
     }
 
     .feature a {
