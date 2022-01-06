@@ -209,7 +209,7 @@ h2 {
     grid-area: stetson;
     background-color: #f1eee9;
     background-image: url('images/stetson.jpg');
-    background-position: center bottom;
+    background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
     display: flex;
@@ -983,7 +983,7 @@ canvas:hover h1 {
     position: relative;margin:auto;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
     .hero {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 2fr 2fr 2fr 2fr 2fr;
