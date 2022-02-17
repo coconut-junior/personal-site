@@ -1,8 +1,10 @@
 :root {
+    --color-bunnywhite:#FAFCFF;
+    --color-highlight:#E4F1FF;
     --color-primary: #f2f8ff;
-    --color-secondary: #E4F1FF;
-    --color-tertiary: #9DC9FD;
+    --color-secondary: #3343D2;
 }
+
 
 * {
     cursor: none;
@@ -102,7 +104,7 @@ textarea, input {
     overflow: auto;
     border: 6px solid var(--color-secondary);
     outline: 2px dotted var(--color-secondary);
-    box-shadow: inset 0 0 0 1px #171b1d;
+    box-shadow: inset 0 0 0 1px var(--color-bunnywhite);
     resize: none;
     padding: 20px;
     transition: 0.3s;
@@ -113,13 +115,14 @@ textarea, input {
 }
 
 textarea:focus, input:focus {
-    background-color: white;
+    background-color: var(--color-bunnywhite);
     color: black;
     box-shadow: inset 0 0 0 1px transparent;
-    outline: 2px dotted #171b1d;
+    outline: 2px dotted var(--color-bunnywhite);
 }
 
 textarea, input {
+    color: var(--color-bunnywhite);
     border-radius: 10px;
 }
 
@@ -203,6 +206,7 @@ h2 {
 .logos {
     background-color:white;
     grid-area:logos;
+    border: 2px solid rgba(0,0,0,0.05);
 }
 
 .stetson {
@@ -227,6 +231,7 @@ h2 {
     grid-area: terminal;
     height:  auto;
     padding: 40px;
+    border: 2px solid rgba(0,0,0,0.05);
 }
 
 .kofi-form {
@@ -237,6 +242,7 @@ h2 {
     background: white;
     overflow: hidden;
     grid-area: kofi;
+    border: 2px solid rgba(0,0,0,0.05);
 }
 
 .clock-form {
@@ -398,12 +404,12 @@ ul a {
 
 
 .navbar ul a:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-highlight);
     border-radius: 10px;
 }
 
 .navbar ul a:hover li {
-    color:  var(--color-tertiary);
+    color:  var(--color-secondary);
 }
 
 li {
@@ -490,8 +496,8 @@ li {
 }
 
 .loader path {
-    fill: #171b1d;
-    stroke:#171b1d;
+    fill: #FAFCFF;
+    stroke: #FAFCFF;
     stroke-dasharray: 115;
     stroke-dashoffset: 0;
     stroke-width: 0.25;
@@ -520,7 +526,7 @@ li {
     }
     89% {
       stroke-dashoffset: 0;
-      fill:#171b1d; 
+      fill: var(--color-bunnywhite); 
     }
 }
 
@@ -566,9 +572,9 @@ li {
 }
 
 .contact {
-    color:black;
+    color: var(--color-bunnywhite);
     background-color:transparent;
-    border: 2px solid #171b1d;
+    border: 2px solid var(--color-bunnywhite);
     border-radius:10px; 
     padding: 12px;
     padding-top:14px;
@@ -585,7 +591,7 @@ li {
 
 .contact svg {
     margin-top: 8px;
-    filter: invert();
+    stroke: var(--color-bunnywhite);
 }
 
 .button-light {
@@ -639,11 +645,11 @@ li {
 }
 
 .contact:hover {
-    background-color: #171b1d;
+    background-color: var(--color-bunnywhite);
 }
 
 .contact:hover svg {
-    filter: none;
+    stroke: var(--color-secondary);
 }
 
 #send {
@@ -678,7 +684,7 @@ canvas:hover h1 {
     height: auto;
     width: auto;
     padding: 20px;
-    color: white;
+    color: var(--color-bunnywhite);
     background-color: var(--color-secondary);
   }
 
@@ -813,7 +819,7 @@ canvas:hover h1 {
 
 
   .footer h2 {
-    color: #171b1d;
+    color: color: var(--color-bunnywhite);;
   }
 
   .hamburger {
@@ -958,6 +964,10 @@ canvas:hover h1 {
 
 .feature h3 {
     color: var(--color-primary);
+}
+
+.footer p {
+    color:var(--color-bunnywhite);
 }
 
 #highlight {

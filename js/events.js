@@ -12,18 +12,17 @@ history.scrollRestoration = 'manual'; /*reset scroll position on reload*/
 
 function email() {
 	if (document.body.querySelector('.message').value != '') {
-        Email.send({
-            SecureToken: "6d66f2a8-a8c6-4747-bb34-e77eb18b1ae3",
-            To : 'jmblanck@millersville.edu',
-            From : "blanckjm@gmail.com",
-            Subject : document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
-            Body : document.querySelector('.message').value + ' ' + document.querySelector('.phone-number').value
-        }).then(
-          alert('Your message has been sent. Thank you!')
+		var templateParams = {
+		    name: document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
+		    message: document.querySelector('.message').value + ' ' + document.querySelector('.phone-number').value
+		};
+		emailjs.send('service_wraq17q', 'template_37qdzrg', templateParams)
+    	.then(
+          alert('Your message has been sent. Thank you! 😄')
         );
     }
     else {
-        alert('Please type a message before clicking send!');
+        alert('Please type a message before clicking send! 😨');
     }
 }
 
