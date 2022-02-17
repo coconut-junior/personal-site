@@ -163,7 +163,7 @@ h1 {
 
 h3 {
     margin: auto;
-    font-family: 'Asap', sans-serif;   
+    font-family: 'Asap', sans-serif;
     font-size: 21px;
     position: relative;
     width: auto;
@@ -188,7 +188,7 @@ h2 {
     width:auto;
     background-color: var(--color-primary);
     background-size: stretch;
-    display: grid; 
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 3fr 2fr 2fr;
     grid-template-areas:
@@ -311,7 +311,7 @@ p {
     font-size: 1em;
     line-height: 2;
     font-family: 'Asap', sans-serif;
-    font-weight: normal;    
+    font-weight: normal;
     margin: auto;
     width: auto;
     position: relative;
@@ -469,7 +469,7 @@ li {
         opacity: 1;
     }
     96% {
-        transform:scale(0.5);   
+        transform:scale(0.5);
     }
     100% {
         pointer-events: none;
@@ -505,7 +505,7 @@ li {
     -webkit-animation: trace 2s linear forwards;
     animation: trace 2s linear forwards;
   }
-  
+
   @keyframes trace {
     0% {
         stroke-dashoffset: 115;
@@ -527,7 +527,7 @@ li {
     }
     89% {
       stroke-dashoffset: 0;
-      fill: var(--color-bunnywhite); 
+      fill: var(--color-bunnywhite);
     }
 }
 
@@ -575,10 +575,10 @@ li {
 .contact {
     color: var(--color-secondary);
     background-color: var(--color-bunnywhite);
-    border-radius:10px; 
+    border-radius:10px;
     padding: 12px;
     padding-top:14px;
-    font-family: 'Asap', sans-serif;    
+    font-family: 'Asap', sans-serif;
     height: 36px;
     width: 76;
     margin-top: 20px;
@@ -598,7 +598,7 @@ li {
     color:#171b1d;
     background-color:transparent;
     border: 2px solid #171b1d;
-    border-radius:10px; 
+    border-radius:10px;
     font-family: 'Asap', sans-serif;
     font-size: 16px;
     height: 24px;
@@ -1009,10 +1009,10 @@ canvas:hover h1 {
     }
 }
 
-@media (pointer: coarse) {
+@media (pointer: coarse) and (min-width: 900px) and (max-width: 1024px) {
     p {
         font-size: 18px;
-        
+
     }
     h3 {
         font-size: 3em;
