@@ -1009,7 +1009,7 @@ canvas:hover h1 {
     }
 }
 
-@media (pointer: coarse) and (min-width: 900px) and (max-width: 1024px) {
+@media (pointer: coarse) and (min-width: 360px) and (max-width: 900px) {
     p {
         font-size: 18px;
 
