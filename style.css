@@ -983,7 +983,7 @@ canvas:hover h1 {
 
 .Message {
     width: 50%;
-    height: 10vh;
+    height: 20vh;
 }
 
 #home-button {
@@ -1138,6 +1138,9 @@ canvas:hover h1 {
     }
     #first-last,#phone,.Message,#contact-button {
     	width: 80%;
+    }
+    .Message {
+    	height: 10vh;
     }
 }
 
