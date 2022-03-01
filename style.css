@@ -1099,12 +1099,13 @@ canvas:hover h1 {
         width: auto;
         padding-top: 40px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
         "terminal terminal"
         "kofi clock"
         "stellar stellar"
         "foodiez foodiez"
+        "blueprint blueprint"
         "stetson stetson"
         "santelmo santelmo"
         "baxter baxter"
