@@ -2,7 +2,7 @@
     --color-bunnywhite:#FAFCFF;
     --color-highlight:#E4F1FF;
     --color-primary: #f2f8ff;
-    --color-secondary: #3343D2;
+    --color-secondary: #596AFF;
 }
 
 
@@ -27,6 +27,7 @@
 ::selection {
     background-color:#2F2F2F;
     color: white;
+    -webkit-text-fill-color: var(--color-bunnywhite);
 }
 
 .ja {
@@ -185,15 +186,17 @@ h2 {
 .hero {
     position: relative;
     margin:auto;
-    width:auto;
+    width: 1280px;
     background-color: var(--color-primary);
     background-size: stretch;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 3fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 3fr 2fr 2fr;
     grid-template-areas:
-        "terminal terminal fishtank fishtank"
-        "kofi clock fishtank fishtank"
+        "terminal terminal stellar stellar"
+        "kofi clock stellar stellar"
+        "foodiez foodiez blueprint blueprint"
+        "foodiez foodiez . ."
         "stetson stetson stetson stetson"
         "santelmo santelmo baxter baxter"
         "logos logos logos logos";
@@ -202,6 +205,24 @@ h2 {
     padding-bottom: 0px;
     padding-left: 40px;
     padding-right: 40px;
+}
+
+.foodiez {
+    grid-area: foodiez;
+    background-color: #f18c7d;
+    background-image: url('images/foodiez_light.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.blueprint {
+    grid-area: blueprint;
+    background-color: #cdc1ff;
+    background-image: url('images/blueprint_preview.png');
+    background-size: cover;
+    background-position: top;
+    border-radius: 20px;
 }
 
 .logos {
@@ -240,7 +261,9 @@ h2 {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background: white;
+    background-image: url('images/logo_pattern.png');
+    background-position:center;
+    background-size: fill;
     overflow: hidden;
     grid-area: kofi;
     border: 2px solid rgba(0,0,0,0.05);
@@ -263,10 +286,10 @@ h2 {
     background-size: 60%;
     background-position: center;
     background-repeat: no-repeat;
-    grid-area: fishtank;
+    grid-area: stellar;
 }
 
-.fishtank svg {
+.stellar svg {
     height: 70%;
     width: 70%;
     pointer-events: none;
@@ -963,7 +986,7 @@ canvas:hover h1 {
 }
 
 #highlight {
-    color:  #4838d9;
+    color:  var(--color-secondary);
 }
 
 #first-last {
@@ -990,22 +1013,9 @@ canvas:hover h1 {
     position: relative;margin:auto;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
     .hero {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 2fr 2fr 2fr 2fr 2fr;
-        grid-template-areas:
-        "terminal terminal"
-        "clock kofi"
-        "fishtank fishtank"
-        "stetson stetson"
-        "logos logos"
-        "santelmo santelmo"
-        "baxter baxter";
-    }
-
-    .logo {
-        display: none;
+    	width: auto;
     }
 }
 
@@ -1081,13 +1091,15 @@ canvas:hover h1 {
         font-size: 18px;
     }
     .hero {
+        width: auto;
         padding-top: 40px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 2fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
         "terminal terminal"
         "kofi clock"
-        "fishtank fishtank"
+        "stellar stellar"
+        "foodiez foodiez"
         "stetson stetson"
         "santelmo santelmo"
         "baxter baxter"
