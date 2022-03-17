@@ -196,7 +196,7 @@ h2 {
         "terminal terminal stellar stellar"
         "kofi clock stellar stellar"
         "foodiez foodiez blueprint blueprint"
-        "foodiez foodiez . ."
+        "foodiez foodiez blueprint blueprint"
         "stetson stetson stetson stetson"
         "santelmo santelmo baxter baxter"
         "logos logos logos logos";
@@ -220,7 +220,7 @@ h2 {
     grid-area: blueprint;
     background-color: #cdc1ff;
     background-image: url('images/blueprint_preview.jpg');
-    background-size: cover;
+    background-size: contain;
     background-position: top;
     border-radius: 20px;
 }
