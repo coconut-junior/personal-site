@@ -100,7 +100,7 @@ body {
 textarea, input {
     font-family: 'Asap', sans-serif;
     color: #171b1d;
-    background-color: transparent;
+    background-color: var(--color-bunnywhite);
     font-size: 24px;
     overflow: auto;
     border: 6px solid var(--color-secondary);
@@ -197,8 +197,8 @@ h2 {
         "kofi clock stetson stetson"
         "foodiez foodiez stellar stellar"
         "foodiez foodiez stellar stellar"
-        "blueprint blueprint . ."
-        "santelmo santelmo baxter baxter"
+        "blueprint blueprint santelmo santelmo"
+        "baxter baxter . ."
         "logos logos logos logos";
     grid-gap: 40px;
     padding-top: 150px;
@@ -230,6 +230,7 @@ h2 {
     background-color:white;
     grid-area:logos;
     border: 2px solid rgba(0,0,0,0.05);
+    padding-bottom: 40px;
     margin-bottom: 80px;
 }
 
