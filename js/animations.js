@@ -3,16 +3,15 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.from('#widget', {
     y: "25vh",
     delay: 2.5,
-    opacity: 0, 
+    opacity: 0,
     duration: 0.4,
     stagger: {
-        amount: 1, 
+        amount: 1,
         ease: "sine.in",
         from: "left"
     }
 });
 
-gsap.from('.stetson',{backgroundPosition:"+=50vw",duration:2,ease: "circ.out",duration:2, scrollTrigger:{trigger:".form",scrub:true}});
 
 //hand wave
 gsap.to('#hand',{rotation:15,duration:0.2,delay:3.5});
