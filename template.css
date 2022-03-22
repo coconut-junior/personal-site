@@ -1,9 +1,47 @@
-about me page
-internships
-mention that site is custom made (under the hood)
-reorder projects
-maybe black and white versions of logos
+:root {
+    --color-bunnywhite:#FAFCFF;
+    --color-highlight:#E4F1FF;
+    --color-primary: #f2f8ff;
+    --color-secondary: #596AFF;
+}
 
+* {
+  font-family: "Asap";
+  font-size: 16px;
 
-I'm Jimmy Blanck and I'm the designer for you. My skills include graphic design, web design, and animation.
-Additionally, I can code complete websites (like this one!) Scroll through to see some of my best projects.
+}
+
+body {
+  background-color: var(--color-bunnywhite);
+}
+
+::selection {
+  background-color: #596AFF;
+  color:white;
+}
+
+h1,h2,.image, p {
+  width: 50%;
+  margin: auto;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--color-secondary);
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--color-secondary);
+  height: 50vh;
+}
+
+p {
+  line-height: 160%;
+}

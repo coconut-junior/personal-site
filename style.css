@@ -1093,6 +1093,7 @@ canvas:hover h1 {
         display: none;
     }
     textarea,input {
+      background-color: transparent;
     	-webkit-text-fill-color: var(--color-bunnywhite);
         width: 100%;
         outline-width: 2px;
