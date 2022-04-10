@@ -1006,6 +1006,17 @@ canvas:hover h1 {
 }
 
 @media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
+
+  @keyframes fillin {
+    from {
+      height:0;
+      width:0;
+    }
+    to {
+      height:100vh;
+      width:100vw;
+    }
+  }
     p {
         font-size: 18px;
     }
@@ -1129,8 +1140,8 @@ canvas:hover h1 {
         zoom: normal;
     }
     .loader-box {
-        height: 128px;
-        width: 128px;
+        height: 200px;
+        width: 200px;
     }
     .link {
         height: 100px;
