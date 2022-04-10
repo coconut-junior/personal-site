@@ -486,7 +486,7 @@ li {
 #blob {
   fill: var(--color-secondary);
   position: absolute;
-  animation: fillin 1s linear forwards;
+  animation: fillin 0.5s linear forwards;
   height:0;width:0;
 }
 
