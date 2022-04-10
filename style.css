@@ -4,10 +4,10 @@
     --color-primary: #f2f8ff;
     --color-secondary: #596AFF;
 }
+}
 
 
 * {
-    cursor: none;
     shape-rendering: geometricPrecision;
     -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -113,7 +113,7 @@ textarea, input {
     margin:2px;
     width: 49%;
     overflow-y: hidden;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 textarea:focus, input:focus {
