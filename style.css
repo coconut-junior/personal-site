@@ -4,7 +4,6 @@
     --color-primary: #f2f8ff;
     --color-secondary: #596AFF;
 }
-}
 
 
 * {
@@ -37,14 +36,6 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    overflow-y: hidden;
-    animation: enable-scroll 3s linear forwards;
-}
-
-@keyframes enable-scroll {
-    100% {
-        overflow-y: visible;
-    }
 }
 
 body {
