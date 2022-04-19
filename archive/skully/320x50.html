@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="ad.size" content="width=320,height=50"/>
+    <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
+    <title></title>
+
+    <script type="text/javascript" charset="utf-8">
+
+      function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" :
+      decodeURIComponent(results[1].replace(/\+/g, " "));
+
+      }
+      var clickTAG = getParameterByName("clickTAG");
+
+    </script>
+
+  </head>
+  <body style = "height:320px;width:50px;">
+    <a href="javascript:window.open(window.clickTAG);void(0);">
+    <video
+      id="my-video"
+      class="video-js"
+      autoplay="true"
+      muted="true"
+      preload="auto"
+      width="320"
+      height="50"
+      data-setup="{}"
+      loop = "true"
+    >
+      <source src="https://www.millersville.edu/ucm/files/redhouse/320x50.mp4" type="video/mp4" />
+    </video></a>
+
+  <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
+  </body>
+</html>
