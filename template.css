@@ -7,8 +7,7 @@
 
 * {
   font-family: "Asap";
-  font-size: 16px;
-
+  font-size: 1em;
 }
 
 body {
@@ -27,12 +26,13 @@ h1,h2,.image, p {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 2em;
   color: var(--color-secondary);
+  padding:80px;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 1.75em;
 }
 
 .image {
@@ -40,8 +40,26 @@ h2 {
   background-repeat: no-repeat;
   background-color: var(--color-secondary);
   height: 50vh;
+  margin-bottom:40px;
 }
 
 p {
   line-height: 160%;
+}
+
+@media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
+	* {
+	  font-size: 1.5em;
+	}
+	h1 {
+	  font-size: 2em;
+	}
+	h2 {
+	  font-size: 1.75em;
+	}
+	h1,h2,.image, p {
+	  width: 80%;
+	  margin: auto;
+	  padding: 80px;
+	}
 }
