@@ -7,7 +7,6 @@
 
 
 * {
-    cursor: none;
     shape-rendering: geometricPrecision;
     -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -37,14 +36,6 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    overflow-y: hidden;
-    animation: enable-scroll 3s linear forwards;
-}
-
-@keyframes enable-scroll {
-    100% {
-        overflow-y: visible;
-    }
 }
 
 body {
@@ -75,6 +66,20 @@ body {
     grid-area: santelmo;
 }
 
+.noon {
+    background-image: url('images/noon.png');
+    background-size:cover;
+    background-position: center;
+    grid-area: noon;
+}
+
+.ang {
+    background-image: url('images/ang.png');
+    background-size:cover;
+    background-position: center;
+    grid-area: ang;
+}
+
 .baxter {
     background-image: url('images/baxter.jpg');
     background-size:cover;
@@ -93,10 +98,6 @@ body {
     }
 }
 
-.form h2 {
-    background-color: white;
-}
-
 textarea, input {
     font-family: 'Asap', sans-serif;
     color: #171b1d;
@@ -113,7 +114,7 @@ textarea, input {
     margin:2px;
     width: 49%;
     overflow-y: hidden;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 textarea:focus, input:focus {
@@ -187,14 +188,15 @@ h2 {
     background-size: stretch;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 2fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 2fr 2fr 2fr 2fr;
     grid-template-areas:
         "terminal terminal stetson stetson"
         "kofi clock stetson stetson"
         "foodiez foodiez stellar stellar"
         "foodiez foodiez stellar stellar"
         "blueprint blueprint santelmo santelmo"
-        "baxter baxter . ."
+        "baxter baxter noon noon"
+		"ang ang . ."
         "logos logos logos logos";
     grid-gap: 40px;
     padding-top: 150px;
@@ -243,16 +245,21 @@ h2 {
 }
 
 .form {
+	color: white;
     display: flex;
     flex-direction: column;
     align-items: left;
     justify-content: center;
     position: relative;
-    background: white;
+    background: var(--color-secondary);
     grid-area: terminal;
     height:  auto;
     padding: 40px;
     border: 2px solid rgba(0,0,0,0.05);
+}
+
+.form p {
+	color:white;
 }
 
 .kofi-form {
@@ -475,7 +482,7 @@ li {
 .loader {
     height: 100vh;
     width: 100vw;
-    background-color: var(--color-secondary);
+    background-color: var(--color-bunnywhite);
     position: absolute;
     top:0px;
     left:0px;
@@ -484,6 +491,19 @@ li {
     align-items: center;
     justify-content: center;
     animation: hide 2.5s linear forwards;
+}
+
+.loader-box {
+  position: absolute;
+    height: 96px;
+    width: 96px;
+}
+
+#blob {
+  fill: var(--color-secondary);
+  position: absolute;
+  animation: fillin 0.5s linear forwards;
+  height:0;width:0;
 }
 
 @keyframes hide {
@@ -502,75 +522,38 @@ li {
     }
 }
 
-.loader-box {
-    height: 96px;
-    width: 96px;
-    animation: hop 2s linear forwards;
+@keyframes fillin {
+  from {
+    height:0;
+    width:0;
+  }
+  to {
+    height:500vh;
+    width:500vw;
+  }
 }
 
-@keyframes hop {
-    82% {
-        transform:translateY(0);
-    }
-    88% {
-        transform:translateY(-20px)
-    }
-    96% {
-        transform:translateY(0);
-    }
-}
-
-.loader path {
+.loader-box #logo {
     fill: #FAFCFF;
     stroke: #FAFCFF;
-    stroke-dasharray: 115;
+    stroke-dasharray: 300;
     stroke-dashoffset: 0;
     stroke-width: 0.25;
     -webkit-animation: trace 2s linear forwards;
     animation: trace 2s linear forwards;
   }
 
-  @keyframes trace {
-    0% {
-        stroke-dashoffset: 115;
-        fill:none;
-    }
-    25% {
-        stroke-dashoffset: 110;
-    }
-    50% {
-        stroke-width: 0.25;
-    }
-    80% {
-        stroke-width: 0.75;
+@keyframes trace {
+    from {
 
     }
-    86% {
-        fill:rgba(255, 255, 255, 0);
+    to {
 
-    }
-    89% {
-      stroke-dashoffset: 0;
-      fill: var(--color-bunnywhite);
     }
 }
 
-.loader svg {
+.loader #logo {
     margin: auto;
-    animation: jump 2s linear forwards;
-}
-
-@keyframes jump {
-    86% {
-        transform: rotate(0deg);
-    }
-    88% {
-        transform: rotate(-10deg);
-    }
-    96% {
-        transform: rotate(10deg);
-    }
-
 }
 
 .navbar {
@@ -1039,6 +1022,17 @@ canvas:hover h1 {
 }
 
 @media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
+
+  @keyframes fillin {
+    from {
+      height:0;
+      width:0;
+    }
+    to {
+      height:100vh;
+      width:100vw;
+    }
+  }
     p {
         font-size: 18px;
     }
@@ -1114,7 +1108,7 @@ canvas:hover h1 {
         width: auto;
         padding-top: 40px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
         "terminal terminal"
         "kofi clock"
@@ -1124,6 +1118,8 @@ canvas:hover h1 {
         "stetson stetson"
         "santelmo santelmo"
         "baxter baxter"
+		"noon noon"
+		"ang ang"
         "logos logos";
     }
 
@@ -1162,8 +1158,8 @@ canvas:hover h1 {
         zoom: normal;
     }
     .loader-box {
-        height: 128px;
-        width: 128px;
+        height: 200px;
+        width: 200px;
     }
     .link {
         height: 100px;
