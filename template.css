@@ -89,6 +89,8 @@ p {
 	margin-bottom: 80px;
 }
 
+iframe {height:25vw;}
+
 @media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
 	* {
 	  font-size: 1.5em;
@@ -116,6 +118,7 @@ p {
 		width: 60vw;
 		
 	}
+	iframe {height:50vw;}
 }
 
 
