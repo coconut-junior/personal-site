@@ -67,10 +67,17 @@ body {
 }
 
 .noon {
-    background-image: url('images/noon.png');
+    background-image: url('images/noon.PNG');
     background-size:cover;
     background-position: center;
     grid-area: noon;
+}
+
+.waterbears {
+    background-image: url('images/waterbears.png');
+    background-size:cover;
+    background-position: center;
+    grid-area: waterbears;	
 }
 
 .ang {
@@ -196,7 +203,7 @@ h2 {
         "foodiez foodiez stellar stellar"
         "blueprint blueprint santelmo santelmo"
         "baxter baxter noon noon"
-		"ang ang . ."
+		"ang ang waterbears waterbears"
         "logos logos logos logos";
     grid-gap: 40px;
     padding-top: 150px;
@@ -1007,7 +1014,7 @@ canvas:hover h1 {
 @media (max-width: 1024px) {
     .hero {
     	grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
         "terminal terminal"
         "kofi clock"
@@ -1017,6 +1024,7 @@ canvas:hover h1 {
         "stetson stetson"
         "santelmo santelmo"
         "baxter baxter"
+		"waterbears waterbears"
         "logos logos";
     }
 }

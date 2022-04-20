@@ -8,10 +8,7 @@
 * {
   font-family: "Asap";
   font-size: 1em;
-<<<<<<< HEAD
-=======
   margin:0;padding:0;
->>>>>>> d1d60d50aa0593e8664c75b2324faf57d12ccd65
 }
 
 body {
@@ -27,8 +24,29 @@ body {
   color:white;
 }
 
+.button {
+	text-decoration: none;
+	color: var(--color-bunnywhite);
+    background-color: var(--color-secondary);
+    border-radius:10px;
+    padding: 20px;
+	text-align:center;
+    font-family: 'Asap', sans-serif;
+	font-size: 1em;
+    height: 36px;
+    width: 10vw;
+    margin-top: 20px;
+    transition: 1s;
+    display: flex;
+    flex-direction: row;
+	align-items:center;
+	justify-content:center;
+    overflow: hidden;
+	margin: 40px;
+}
+
 h2,img, p {
-  width: 90%;
+  width: 60%;
   margin: auto;
   padding: 40px;
 }
@@ -36,11 +54,9 @@ h2,img, p {
 a {background-color:transparent;}
 
 h1 {
-<<<<<<< HEAD
   font-size: 2em;
   color: var(--color-secondary);
   padding:80px;
-=======
   display:flex;align-items:center;justify-content:center;
   font-size: 2em;
   color: var(--color-secondary);
@@ -73,23 +89,19 @@ h1 {
 #blob:hover {
 	height:70vh;
 	width:70vh;
->>>>>>> d1d60d50aa0593e8664c75b2324faf57d12ccd65
 }
 
 h2 {
   font-size: 1.75em;
 }
 
-<<<<<<< HEAD
 .image {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: var(--color-secondary);
   height: 50vh;
-=======
 img {
   height: auto;
->>>>>>> d1d60d50aa0593e8664c75b2324faf57d12ccd65
   margin-bottom:40px;
 }
 
@@ -101,23 +113,26 @@ p {
 	* {
 	  font-size: 1.5em;
 	}
+	body {background-color:red;}
 	h1 {
-<<<<<<< HEAD
-=======
 	  height:60vh;
->>>>>>> d1d60d50aa0593e8664c75b2324faf57d12ccd65
 	  font-size: 2em;
 	}
+	
 	h2 {
 	  font-size: 1.75em;
 	}
-<<<<<<< HEAD
+	
+	.button {
+		font-size: 1.5em;
+		width: 80vw;
+		height: 10vh;
+	}
+
 	h1,h2,.image, p {
-	  width: 80%;
+	  width: 90%;
 	  margin: auto;
 	  padding: 80px;
 	}
-=======
 
->>>>>>> d1d60d50aa0593e8664c75b2324faf57d12ccd65
 }
