@@ -49,6 +49,7 @@ h1,h2, p {
 
 h1 {
   font-size: 2em;
+  text-align: center;
   color: var(--color-secondary);
   padding:80px;
 }
@@ -57,9 +58,9 @@ h2 {
   font-size: 1.75em;
 }
 
-img {
-	width: 60vw;
-	margin-left:20%;
+img,iframe {
+	width: 50vw;
+	margin-left:25%;
 }
 
 p {
@@ -106,7 +107,7 @@ p {
 	  margin: auto;
 	  padding: 80px;
 	}
-	img {
+	img,iframe {
 		margin:0;
 		width: 100vw;
 	}
