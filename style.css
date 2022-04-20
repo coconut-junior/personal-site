@@ -67,14 +67,14 @@ body {
 }
 
 .noon {
-    background-image: url('images/noon.PNG');
+    background-image: url('images/noon.png');
     background-size:cover;
     background-position: center;
     grid-area: noon;
 }
 
 .ang {
-    background-image: url('images/ang-jacks-preview.PNG');
+    background-image: url('images/ang-jacks-preview.png');
     background-size:cover;
     background-position: center;
     grid-area: ang;
