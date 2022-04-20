@@ -8,65 +8,10 @@
 * {
   font-family: "Asap";
   font-size: 1em;
-  margin:0;padding:0;
 }
 
 body {
   background-color: var(--color-bunnywhite);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}
-
-::selection {
-  background-color: #596AFF;
-  color:white;
-}
-
-.button {
-	text-decoration: none;
-	color: var(--color-bunnywhite);
-    background-color: var(--color-secondary);
-    border-radius:10px;
-    padding: 20px;
-	text-align:center;
-    font-family: 'Asap', sans-serif;
-	font-size: 1em;
-    height: 36px;
-    width: 10vw;
-    margin-top: 20px;
-    transition: 1s;
-    display: flex;
-    flex-direction: row;
-	align-items:center;
-	justify-content:center;
-    overflow: hidden;
-	margin: 40px;
-}
-
-h2,img, p {
-  width: 60%;
-  margin: auto;
-  padding: 40px;
-}
-
-a {background-color:transparent;}
-
-h1 {
-  font-size: 2em;
-  color: var(--color-secondary);
-  padding:80px;
-  display:flex;align-items:center;justify-content:center;
-  font-size: 2em;
-  color: var(--color-secondary);
-  margin:auto;
-  height:25vh;
-  width:100%;
-  text-align:center;
-  background-color: white;
-  margin-bottom:40px;
-  
 }
 
 #logo {
@@ -91,48 +36,86 @@ h1 {
 	width:70vh;
 }
 
+::selection {
+  background-color: #596AFF;
+  color:white;
+}
+
+h1,h2, p {
+  width: 50%;
+  margin: auto;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 2em;
+  color: var(--color-secondary);
+  padding:80px;
+}
+
 h2 {
   font-size: 1.75em;
 }
 
-.image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: var(--color-secondary);
-  height: 50vh;
 img {
-  height: auto;
-  margin-bottom:40px;
+	width: 60vw;
+	margin-left:20%;
 }
 
 p {
   line-height: 160%;
 }
 
+.button {
+	text-decoration: none;
+	color: var(--color-bunnywhite);
+    background-color: var(--color-secondary);
+    border-radius:10px;
+    padding: 20px;
+	text-align:center;
+    font-family: 'Asap', sans-serif;
+	font-size: 1em;
+    height: 36px;
+    width: 10vw;
+    transition: 1s;
+    display: flex;
+    flex-direction: row;
+	align-items:center;
+	justify-content:center;
+    overflow: hidden;
+	margin: auto;
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
 @media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
 	* {
 	  font-size: 1.5em;
 	}
-	body {background-color:red;}
 	h1 {
-	  height:60vh;
 	  font-size: 2em;
+	  height: 50vh;
+	  width: 80%;
+	  display:flex;align-items:center;justify-content:center;
 	}
-	
 	h2 {
 	  font-size: 1.75em;
 	}
-	
-	.button {
-		font-size: 1.5em;
-		width: 80vw;
-		height: 10vh;
-	}
-
-	h1,h2,.image, p {
-	  width: 90%;
+	h1,h2, p {
+	  width: 80%;
 	  margin: auto;
 	  padding: 80px;
 	}
-
+	img {
+		margin:0;
+		width: 100vw;
+	}
+	.button {
+		height: 5vh;
+		width: 60vw;
+		
+	}
 }
+
+
+
