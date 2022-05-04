@@ -195,15 +195,14 @@ h2 {
     background-size: stretch;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 2fr 2fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
     grid-template-areas:
         "terminal terminal stetson stetson"
-        "kofi clock stetson stetson"
-        "foodiez foodiez stellar stellar"
-        "foodiez foodiez stellar stellar"
-        "blueprint blueprint santelmo santelmo"
-        "baxter baxter noon noon"
-		"ang ang waterbears waterbears"
+        "kofi clock stellar stellar"
+        "foodiez foodiez blueprint blueprint"
+        "santelmo santelmo baxter baxter"
+        "ang ang noon noon"
+		"waterbears waterbears . ."
         "logos logos logos logos";
     grid-gap: 40px;
     padding-top: 150px;
@@ -283,13 +282,22 @@ h2 {
     border: 2px solid rgba(0,0,0,0.05);
 }
 
+.social-link {
+	background-position: center;background-repeat: no-repeat;background-size: contain;
+	height:25%;width:25%;
+	margin:10px;
+}
+
 .clock-form {
-    background: #0d1117;
+    background: white;
+	border: 1px solid lightgray;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     position: relative;
+	padding: 25%;
+	flex-wrap: wrap;
     grid-area: clock;
 }
 

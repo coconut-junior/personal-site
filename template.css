@@ -58,6 +58,7 @@ h1 {
 h2 {
   font-weight: 500;
   font-size: 1.75em;
+  padding-bottom: 15px;
 }
 
 img,iframe {
@@ -66,6 +67,7 @@ img,iframe {
 }
 
 p {
+  padding-top: 0;
   line-height: 160%;
 }
 
