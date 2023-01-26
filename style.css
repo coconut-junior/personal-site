@@ -279,6 +279,10 @@ h2 {
     border: 2px solid rgba(0,0,0,0.05);
 }
 
+.form p {
+    font-size: 1em;
+}
+
 .kofi-form {
     display: flex;
     flex-direction: row;
@@ -1057,8 +1061,11 @@ canvas:hover h1 {
       width:100vw;
     }
   }
-    p {
-        font-size: 18px;
+    h1 {
+        font-size: 3em;
+    }
+    .form p {
+        font-size: 2em;
     }
     h3 {
         font-size: 3em;
