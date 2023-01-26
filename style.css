@@ -49,7 +49,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     background-color: var(--color-primary);
-    font-family: "Cabinet Grotesk";
+    font-family: "CabinetGrotesk-Variable";
 }
 
 .link {
@@ -128,7 +128,7 @@ textarea, input {
     width: 49%;
     overflow-y: hidden;
     border-radius: 15px;
-    font-family: "Cabinet Grotesk";
+    font-family: "CabinetGrotesk-Variable";
 }
 
 textarea:focus, input:focus {
