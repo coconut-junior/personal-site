@@ -38,11 +38,18 @@ html {
     overflow-x: hidden;
 }
 
+#hand {
+    height: 64px;width:64px;
+    position: relative;
+    top:-64px;left:-64px;
+}
+
 body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     background-color: var(--color-primary);
+    font-family: "Cabinet Grotesk";
 }
 
 .link {
@@ -106,7 +113,6 @@ body {
 }
 
 textarea, input {
-    font-family: 'Asap', sans-serif;
     color: #171b1d;
     background-color: var(--color-bunnywhite);
     font-size: 24px;
@@ -122,6 +128,7 @@ textarea, input {
     width: 49%;
     overflow-y: hidden;
     border-radius: 15px;
+    font-family: "Cabinet Grotesk";
 }
 
 textarea:focus, input:focus {
@@ -161,18 +168,27 @@ a {
 h1 {
     margin: auto;
     font-family: 'Asap', sans-serif;
-    font-size: 48px;
+    font-size: 36px;
     position: relative;
-    opacity: 0;
+    color:black;
+    text-align:left;
+    width: 100%;
 }
 
 h3 {
+    color: black;
+    position:absolute;
+    z-index:1;
+    text-align:left;
+    padding:5px 10px 5px 10px;
+    background-color: rgba(255,255,255,0.8);
     margin: auto;
-    font-family: 'Asap', sans-serif;
     font-size: 21px;
-    position: relative;
     width: auto;
     text-align: center;
+    top: 20px;
+    left: 20px;
+    border-radius: 5px;
 }
 
 
@@ -180,17 +196,16 @@ h2 {
     margin: auto;
     padding-bottom: 20px;
     padding-top:20px;
-    font-family: 'Asap', sans-serif;
     font-size: 1.5em;
     position: relative;
     transition: 1s;
     text-align: center;
 }
 
-.hero {
+.wrapper {
     position: relative;
     margin:auto;
-    width: 1280px;
+    max-width: 1024px;
     background-color: var(--color-primary);
     background-size: stretch;
     display: grid;
@@ -251,21 +266,17 @@ h2 {
 }
 
 .form {
-	color: white;
+	color: black;
     display: flex;
     flex-direction: column;
     align-items: left;
     justify-content: center;
     position: relative;
-    background: var(--color-secondary);
+    background: var(--color-highlight);
     grid-area: terminal;
     height:  auto;
     padding: 40px;
     border: 2px solid rgba(0,0,0,0.05);
-}
-
-.form p {
-	color:white;
 }
 
 .kofi-form {
@@ -353,9 +364,8 @@ a {
 }
 
 p {
-    font-size: 1em;
-    line-height: 2;
-    font-family: 'Asap', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
     font-weight: normal;
     margin: auto;
     width: auto;
@@ -598,17 +608,19 @@ li {
     color: var(--color-secondary);
     background-color: var(--color-bunnywhite);
     border-radius:10px;
-    padding: 12px;
-    padding-top:14px;
-    font-family: 'Asap', sans-serif;
+    padding: 20px;
+    gap: 10px;
     height: 36px;
-    width: 76;
+    width: auto;
     margin-top: 20px;
     text-align: center;
     transition: 1s;
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
 .contact svg {
@@ -621,7 +633,6 @@ li {
     background-color:transparent;
     border: 2px solid #171b1d;
     border-radius:10px;
-    font-family: 'Asap', sans-serif;
     font-size: 16px;
     height: 24px;
     width: 76px;
@@ -641,7 +652,11 @@ li {
 }
 
 #send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     stroke-width: 2;
+    padding-bottom: 5px;
 }
 
 @keyframes bounce {
@@ -726,7 +741,6 @@ canvas:hover h1 {
   }
 
   .footer #links a {
-    font-family: 'Asap', sans-serif;
     font-size: 18px;
     color: white;
     position: relative;
@@ -734,7 +748,6 @@ canvas:hover h1 {
 
   .dropdown {
     z-index: 1;
-    font-family: 'Asap', sans-serif;
     font-size: 36px;
     text-align: center;
     color: #171b1d;
@@ -746,7 +759,6 @@ canvas:hover h1 {
   h3 ul {
       flex-direction: column;
       margin-left: -35px;
-      font-family: 'Asap', sans-serif;
       font-size: 14px;
       text-align: center;
       height: 0px;
@@ -977,10 +989,6 @@ canvas:hover h1 {
     background-color: var(--color-secondary);
 }
 
-.feature h3 {
-    color: var(--color-primary);
-}
-
 .footer p {
     color:var(--color-bunnywhite);
 }
@@ -991,7 +999,7 @@ canvas:hover h1 {
 
 #first-last {
     margin:20px;
-    width: 50%;display: block;
+    width: 512px;display: block;
 }
 
 #logos {
@@ -1003,11 +1011,11 @@ canvas:hover h1 {
 }
 
 #phone {
-    width:50%;
+    width:512px;
 }
 
 .Message {
-    width: 50%;
+    width: 512px;
     height: 20vh;
 }
 
@@ -1016,11 +1024,11 @@ canvas:hover h1 {
 }
 
 @media (max-width: 1280px) {
-    .hero { width:auto;}
+    .wrapper { width:auto;}
 }
 
 @media (max-width: 1024px) {
-    .hero {
+    .wrapper {
     	grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 2fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
@@ -1120,7 +1128,7 @@ canvas:hover h1 {
         visibility: visible;
         font-size: 18px;
     }
-    .hero {
+    .wrapper {
         width: auto;
         padding-top: 40px;
         grid-template-columns: 1fr 1fr;
