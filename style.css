@@ -67,35 +67,35 @@ body {
 }
 
 .santelmo {
-    background-image: url('images/santelmo-banner.png');
+    background-image: url('images/santelmo-banner.webp');
     background-size:cover;
     background-position: center;
     grid-area: santelmo;
 }
 
 .noon {
-    background-image: url('images/noon.PNG');
+    background-image: url('images/noon.webp');
     background-size:cover;
     background-position: center;
     grid-area: noon;
 }
 
 .waterbears {
-    background-image: url('images/waterbears.png');
+    background-image: url('images/waterbears.webp');
     background-size:cover;
     background-position: center;
     grid-area: waterbears;	
 }
 
 .ang {
-    background-image: url('images/ang-jacks-preview.png');
+    background-image: url('images/ang-jacks-preview.webp');
     background-size:cover;
     background-position: center;
     grid-area: ang;
 }
 
 .baxter {
-    background-image: url('images/baxter.jpg');
+    background-image: url('images/baxter.webp');
     background-size:cover;
     background-position: center;
     grid-area: baxter;
@@ -229,7 +229,7 @@ h2 {
 .foodiez {
     grid-area: foodiez;
     background-color: #f18c7d;
-    background-image: url('images/foodiez_light.png');
+    background-image: url('images/foodiez_light.webp');
     background-size: cover;
     background-position: center;
     border-radius: 20px;
@@ -238,7 +238,7 @@ h2 {
 .blueprint {
     grid-area: blueprint;
     background-color: #b09af8;
-    background-image: url('images/blueprint_preview.jpg');
+    background-image: url('images/blueprint_preview.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -256,7 +256,7 @@ h2 {
 .stetson {
     grid-area: stetson;
     background-color: #f1eee9;
-    background-image: url('images/stetson.jpg');
+    background-image: url('images/stetson.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
@@ -288,7 +288,7 @@ h2 {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    background-image: url('images/logo_pattern.png');
+    background-image: url('images/logo_pattern.webp');
     background-position:center;
     background-size: cover;
     background-repeat: no-repeat;
