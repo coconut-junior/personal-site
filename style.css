@@ -919,10 +919,6 @@ canvas:hover h1 {
 
 .name-first, .name-last {
     width: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .mobile-nav a {
@@ -1032,6 +1028,10 @@ canvas:hover h1 {
     height: 20vh;
 }
 
+#widget:hover {
+    scale: 1.05;
+}
+
 #home-button {
     position: relative;margin:auto;
 }
@@ -1041,6 +1041,7 @@ canvas:hover h1 {
 }
 
 @media (max-width: 1024px) {
+
     .wrapper {
     	grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
@@ -1072,6 +1073,10 @@ canvas:hover h1 {
       width:100vw;
     }
   }
+
+    #widget:hover {
+        scale: 1;
+    }
     h1 {
         font-size: 3em;
     }
