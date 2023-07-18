@@ -166,7 +166,6 @@ a {
 
 h1 {
     margin: auto;
-    font-family: 'Asap', sans-serif;
     font-size: 36px;
     position: relative;
     color:black;
@@ -208,20 +207,20 @@ h2 {
     background-color: var(--color-primary);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
         "intro intro stetson stetson"
         "kofi clock stellar stellar"
         "foodiez foodiez blueprint blueprint"
         "santelmo santelmo baxter baxter"
         "ang ang noon noon"
-		"waterbears waterbears . ."
-        "logos logos logos logos";
+		"waterbears waterbears . .";
     grid-gap: 40px;
     padding-top: 150px;
     padding-bottom: 0px;
     padding-left: 40px;
     padding-right: 40px;
+    margin-bottom: 80px;
 }
 
 .foodiez {
@@ -241,14 +240,6 @@ h2 {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 20px;
-}
-
-.logos {
-    background-color:white;
-    grid-area:logos;
-    border: 2px solid rgba(0,0,0,0.05);
-    padding-bottom: 40px;
-    margin-bottom: 80px;
 }
 
 .stetson {
@@ -297,7 +288,8 @@ h2 {
 
 .social-link {
 	background-position: center;background-repeat: no-repeat;background-size: contain;
-	height:25%;width:25%;
+	height: 40px;
+    width: 40px;
 	margin:10px;
 }
 
@@ -309,7 +301,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     position: relative;
-	padding: 25%;
+	padding: 40px;
 	flex-wrap: wrap;
     grid-area: clock;
 }
@@ -1011,14 +1003,6 @@ canvas:hover h1 {
     grid-template-areas: "first last";
 }
 
-#logos {
-    padding: 40px;
-    height:100%;
-    width: auto;
-    display:flex;align-items:center;justify-content:center;
-    margin:auto;background-color:transparent;flex-direction: row; flex-wrap: wrap;
-}
-
 #phone {
     width:512px;
 }
@@ -1036,9 +1020,6 @@ canvas:hover h1 {
     position: relative;margin:auto;
 }
 
-@media (max-width: 1280px) {
-    .wrapper { width:auto;}
-}
 
 @media (max-width: 1024px) {
 
@@ -1056,8 +1037,7 @@ canvas:hover h1 {
         "baxter baxter"
         "ang ang"
         "noon noon"
-		"waterbears waterbears"
-        "logos logos";
+		"waterbears waterbears";
     }
 }
 
@@ -1078,13 +1058,13 @@ canvas:hover h1 {
         scale: 1;
     }
     h1 {
-        font-size: 3em;
+        font-size: 4em;
     }
     .form p {
         font-size: 2em;
     }
     h3 {
-        font-size: 3em;
+        font-size: 2.5em;
     }
     .navbar {visibility: hidden;}
     .loader svg {
@@ -1157,7 +1137,7 @@ canvas:hover h1 {
         width: auto;
         padding-top: 40px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas:
         "intro intro"
         "kofi clock"
@@ -1169,8 +1149,7 @@ canvas:hover h1 {
         "baxter baxter"
 		"noon noon"
 		"ang ang"
-		"waterbears waterbears"
-        "logos logos";
+		"waterbears waterbears";
     }
 
     .feature a {
