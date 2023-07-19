@@ -44,6 +44,22 @@ html {
     top:-64px;left:-64px;
 }
 
+.hero {
+    width: 80vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 40px;
+    max-width: 1024px;
+    margin: auto;
+    padding-top:40px;padding-bottom: 40px;
+}
+
+.hero-wrapper {
+    height: 100vh;width: 100vw;margin: auto;display: flex;justify-content: center;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -70,35 +86,30 @@ body {
     background-image: url('images/santelmo-banner.webp');
     background-size:cover;
     background-position: center;
-    grid-area: santelmo;
 }
 
 .noon {
     background-image: url('images/noon.webp');
     background-size:cover;
     background-position: center;
-    grid-area: noon;
 }
 
 .waterbears {
     background-image: url('images/waterbears.webp');
     background-size:cover;
-    background-position: center;
-    grid-area: waterbears;	
+    background-position: center;	
 }
 
 .ang {
     background-image: url('images/ang-jacks-preview.webp');
     background-size:cover;
     background-position: center;
-    grid-area: ang;
 }
 
 .baxter {
     background-image: url('images/baxter.webp');
     background-size:cover;
     background-position: center;
-    grid-area: baxter;
 }
 
 .scrollbar-thumb {
@@ -204,17 +215,10 @@ h2 {
     position: relative;
     margin:auto;
     max-width: 1024px;
+    height:auto;
     background-color: var(--color-primary);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas:
-        "intro intro stetson stetson"
-        "kofi clock stellar stellar"
-        "foodiez foodiez blueprint blueprint"
-        "santelmo santelmo baxter baxter"
-        "ang ang noon noon"
-		"waterbears waterbears . .";
+    grid-template-columns: 1fr 1fr;
     grid-gap: 40px;
     padding-top: 150px;
     padding-bottom: 0px;
@@ -224,7 +228,6 @@ h2 {
 }
 
 .foodiez {
-    grid-area: foodiez;
     background-color: #f18c7d;
     background-image: url('images/foodiez_light.webp');
     background-size: cover;
@@ -233,7 +236,6 @@ h2 {
 }
 
 .blueprint {
-    grid-area: blueprint;
     background-color: #b09af8;
     background-image: url('images/blueprint_preview.webp');
     background-size: contain;
@@ -243,7 +245,6 @@ h2 {
 }
 
 .stetson {
-    grid-area: stetson;
     background-color: #f1eee9;
     background-image: url('images/stetson.webp');
     background-position: center;
@@ -262,7 +263,6 @@ h2 {
     justify-content: center;
     position: relative;
     background: var(--color-highlight);
-    grid-area: intro;
     height:  auto;
     padding: 40px;
     border: 2px solid rgba(0,0,0,0.05);
@@ -282,7 +282,6 @@ h2 {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    grid-area: kofi;
     border: 2px solid rgba(0,0,0,0.05);
 }
 
@@ -303,7 +302,6 @@ h2 {
     position: relative;
 	padding: 40px;
 	flex-wrap: wrap;
-    grid-area: clock;
 }
 
 .feature {
@@ -313,7 +311,6 @@ h2 {
     background-size: 60%;
     background-position: center;
     background-repeat: no-repeat;
-    grid-area: stellar;
 }
 
 .stellar svg {
@@ -831,6 +828,14 @@ canvas:hover h1 {
     display:flex;align-items:flex-end;height:480px;width:50%;margin: auto;
   }
 
+  .background {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 20px;
+  }
+
   #resume-dropdown {
     border-radius: 20px;
     background-color: white;
@@ -929,6 +934,8 @@ canvas:hover h1 {
 }
 
 #widget {
+    padding: 40px;
+    height: 30vh;
     border-radius: 20px;
     transition: 0.3s;
 }
@@ -1023,22 +1030,17 @@ canvas:hover h1 {
 
 @media (max-width: 1024px) {
 
-    .wrapper {
-    	grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
-        grid-template-areas:
-        "intro intro"
-        "kofi clock"
-        "stellar stellar"
-        "foodiez foodiez"
-        "blueprint blueprint"
-        "stetson stetson"
-        "santelmo santelmo"
-        "baxter baxter"
-        "ang ang"
-        "noon noon"
-		"waterbears waterbears";
+    .hero,.hero-wrapper {
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
     }
+
+    .wrapper {
+        width: auto;
+    	grid-template-columns: 1fr;
+    }
+
 }
 
 @media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
@@ -1060,7 +1062,7 @@ canvas:hover h1 {
     h1 {
         font-size: 4em;
     }
-    .form p {
+    p {
         font-size: 2em;
     }
     h3 {
@@ -1132,24 +1134,6 @@ canvas:hover h1 {
     .nav-items {
         visibility: visible;
         font-size: 18px;
-    }
-    .wrapper {
-        width: auto;
-        padding-top: 40px;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-areas:
-        "intro intro"
-        "kofi clock"
-        "stellar stellar"
-        "foodiez foodiez"
-        "blueprint blueprint"
-        "stetson stetson"
-        "santelmo santelmo"
-        "baxter baxter"
-		"noon noon"
-		"ang ang"
-		"waterbears waterbears";
     }
 
     .feature a {

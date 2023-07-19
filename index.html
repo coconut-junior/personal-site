@@ -45,13 +45,33 @@
 
         <section id = "home"></section>
 
-        <div class = "wrapper">
-
-            <div class = "form" id = "widget">
-                <h1 style = "margin-bottom: 20px;">Hey there!</h1>
-                <p>I'm Jimmy Blanck and I'm the designer of your dreams. My skills include graphic design, web design, and animation.
-                Additionally, I can code complete websites from the ground up (like this one!) Scroll through to see some of my best projects.</p>
+        <div class = "hero-wrapper">
+            <div class = "hero">
+                <div class="background" style = "background-image: url('images/pattern.png');" ></div>
+                <div style = "margin:auto;">
+                    <h1 style = "margin-bottom: 40px;">Hey there!</h1>
+                    <p>
+                        My name’s Jimmy Blanck and I'm the designer of your dreams. My skills include graphic design, web design, and animation. Additionally, I can code complete websites from the ground up (like this one!)
+                        <br><br>
+                        Besides design and programming, I enjoy drawing, watching anime and learning new things on YouTube.
+                        <br><br>
+                        You can find some of my latest design projects below!
+                        <br><br>
+                        <a href = "resume.pdf" style = "text-decoration-line: underline;">Download my resume →</a>
+                    </p>
+                </div>
             </div>
+
+            <div style = "position: absolute;top: 80vh;z-index:2;background-color:transparent;display:flex;justify-content:center;height:64px;width:100vw;">
+		
+                <svg class = "arrow" viewBox="0 0 20 7" stroke = "black" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 1L9.66025 6L18.6603 1" stroke-miterlimit="10" stroke-linecap="round"/>
+                </svg>
+                    
+            </div>
+        </div>
+
+        <div class = "wrapper">
 
             <div class = "clock-form" id = "widget" target = "_blank">
                 <a class = "social-link" aria-label = "Github" style = "background-image: url('images/github.webp');" href = "https://github.com/coconut-junior" target = "_blank"></a>
@@ -142,19 +162,6 @@
 
         </div>
 
-        <div class = "navbar">
-            <div id = "fade" style = "width:100%;position:fixed;overflow: hidden;"></div>
-
-            <ul style = "margin-top: 5px;">
-                <a href = "#contact"><li>Contact</li></a>
-                <a href = "resume.pdf" target = "_blank"><li>Resume</li></a>
-				<a href = "internships.html"><li>Internships</li></a>
-            </ul>
-
-
-            <a href = "#home" id = "home-button"><div class="logo"></div></a>
-
-        </div>
 
         <div class = "loader">
           <svg id = "blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
