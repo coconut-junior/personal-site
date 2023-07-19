@@ -16,7 +16,10 @@ var button2 = window.add("button");
 button.text = "Calculate";
 button2.text = "Cancel"
 
-var key = arguments[0];
+var key;
+try{
+    var key = arguments[0];
+}catch(e){}
 
 function main() {
     var canceled = false;
