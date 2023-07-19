@@ -120,6 +120,14 @@
             "hidden":true,
             "version": 1.0,
             "description": ""
+        },
+        {
+            "name": "Apply Discounts",
+            "filename":"apply_discounts.jsx",
+            "url":"https://jbx.design/stellar/apply_discounts.jsx",
+            "hidden":true,
+            "version": 1.0,
+            "description": "Select a discount to apply, and click ok. Note: this only works with prices with a paragraph style named 'our price'."
         }
 
         
