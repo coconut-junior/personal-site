@@ -16,10 +16,12 @@ var button2 = window.add("button");
 button.text = "Calculate";
 button2.text = "Cancel"
 
+var key = arguments[0];
+
 function main() {
     var canceled = false;
 
-    if(arguments[0] == 'stellar') {
+    if(key == 'stellar') {
         button.onClick = function() {
             discount = parseInt(dropdown.selection.text) * 0.01;
             window.close();
