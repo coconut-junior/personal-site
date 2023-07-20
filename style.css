@@ -479,12 +479,13 @@ p{
 }
 .background{
     background-position:center;
-    background-size:200%;
+    background-size: 200%;
     background-repeat:no-repeat;
     height:80vh;
     width:100%;
     border-radius:20px;
-    margin:auto
+    margin:auto;
+    background-color: black;
 }
 .arrow{
     height:48px;
@@ -578,10 +579,15 @@ p{
 }
 @media (max-width:1024px){
     .hero,.hero-wrapper{
-        height:200vh;
+        height:auto;
         grid-template-columns:1fr;
         grid-template-rows:1fr 1fr
     }
+    .hero {
+        margin-top: 10%;
+    }
+    .arrow{stroke-width: 2px; }
+    .background {background-size: 250%;}
     .wrapper{
         width:auto;
         grid-template-columns:1fr
@@ -591,24 +597,24 @@ p{
     @keyframes fillin{
         from{
             height:0;
-            width:0
+            width:0;
         }
         to{
             height:100vh;
-            width:100vw
+            width:100vw;
         }
     }
     #widget:hover{
-        scale:1
+        scale:1;
     }
     h1{
-        font-size:4em
+        font-size:4em;
     }
     p{
-        font-size:2em
+        font-size: 2em;
     }
     h3{
-        font-size:2.5em
+        font-size: 2.5em;
     }
     .loader svg{
         scale:1
@@ -658,9 +664,7 @@ p{
     #widget{
         border-radius:40px
     }
-    .feature a{
-        zoom:2
-    }
+
     #site a{
         width:100%;
         padding:40px
@@ -669,7 +673,6 @@ p{
         display:none
     }
     .footer{
-        zoom:2;
         padding-bottom:140px
     }
     .footer h2{
@@ -678,9 +681,6 @@ p{
     }
     h2{
         font-size:3em
-    }
-    .footer h2{
-        zoom:normal
     }
     .loader-box{
         height:200px;
