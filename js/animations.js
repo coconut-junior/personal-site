@@ -12,17 +12,6 @@ gsap.from('#widget', {
     }
 });
 
-
-//hand wave
-gsap.to('#hand',{rotation:15,duration:0.2,delay:3.5});
-gsap.to('#hand',{rotation:-15,duration:0.2,delay:3.7});
-gsap.to('#hand',{rotation:0,duration:0.2,delay:3.9});
-
-$('.navbar').css({
-    "width" : $(window).width() - 60
-    }
-);
-
 document.onmousemove = function(e) {
     var c = document.querySelector('.cursor');
     gsap.to(c, {left:e.clientX - 40, duration: "0.2"});

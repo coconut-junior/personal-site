@@ -9,7 +9,7 @@ var menuOpen3 = false;
 history.scrollRestoration = 'manual'; /*reset scroll position on reload*/
 
 function email() {
-	if (document.body.querySelector('.message').value != '') {
+	if ($('.message').val() != '') {
 		var templateParams = {
 		    name: document.querySelector('.name-first').value + ' ' + document.querySelector('.name-last').value,
 		    message: document.querySelector('.message').value + ' ' + document.querySelector('.phone-number').value
