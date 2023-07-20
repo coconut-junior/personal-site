@@ -1,5 +1,17 @@
 gsap.registerPlugin(ScrollTrigger);
 
+//parallax
+gsap.to(".background", {
+  backgroundPosition: "0% 100%",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".background",
+    start: "top bottom",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
 gsap.from('#widget', {
     y: "25vh",
     delay: 2.5,

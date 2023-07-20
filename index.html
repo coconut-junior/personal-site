@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div style = "position: absolute;top: 85vh;z-index:2;background-color:transparent;display:flex;justify-content:center;height:64px;width:100vw;">
+            <div style = "position: absolute;top: calc(100vh - 120px);z-index:2;background-color:transparent;display:flex;justify-content:center;height:64px;width:100vw;">
 		
                 <svg class = "arrow" viewBox="0 0 20 7" stroke = "black" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.5 1L9.66025 6L18.6603 1" stroke-miterlimit="10" stroke-linecap="round"/>
@@ -120,7 +120,7 @@
 
         <div id = "contact"></div>
 
-        <div class = "footer" id = "contact-form">
+        <div class = "footer">
             <h2>Contact Me</h2>
 
             <div id = "first-last">
@@ -132,7 +132,7 @@
              placeholder = "Phone Number" maxlength = "15">
             <textarea class = "message" placeholder="Message"></textarea>
 
-            <a id = "contact-button" href = "#contact" onclick="email()">
+            <button id = "contact-button" href = "#contact" onclick="email()">
                 <div class = "contact">
                     <div id = "send">
                         <svg  viewBox="0 0 41 17" xmlns="http://www.w3.org/2000/svg">
@@ -147,12 +147,15 @@
                         </svg>
                         
                     </div>
-                    Send
                 </div>
-            </a>
+            </button>
 
-            <p style = "padding:0px;margin:40px;margin-top:80px;font-size: 18px;">&#169; 2023 Jimmy Blanck</p>
+            
 
+        </div>
+
+        <div style = "width: 100%;height:80px;background-color: var(--color-bunny-white);display: flex;align-items: center;justify-content: center;">
+            <p style = "padding:0px;margin:auto;font-size: 18px;">&#169; 2023 Jimmy Blanck</p>
         </div>
 
 

@@ -1,25 +1,33 @@
 :root{
+    --color-black:#312A2A;
     --color-bunnywhite:#FAFCFF;
-    --color-highlight:#E4F1FF;
+    --color-highlight:#E8F8FF;
     --color-primary:#f2f8ff;
-    --color-secondary:#596AFF
+    --color-secondary:#596AFF;
 }
 *{
     shape-rendering:geometricPrecision;
-    -webkit-font-smoothing:subpixel-antialiased
+    -webkit-font-smoothing:subpixel-antialiased;
 }
 ::selection{
-    background-color:#2f2f2f;
+    background-color:var(--color-black);
     color:#fff;
     -webkit-text-fill-color:var(--color-bunnywhite)
 }
 html{
     scroll-behavior:smooth;
-    overflow-x:hidden
+    overflow-x:hidden;
 }
 
 a {
     font-weight: bold;
+}
+
+button {
+    background: none;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
 .hero{
@@ -32,21 +40,21 @@ a {
     max-width:1024px;
     margin:auto;
     justify-content:center;
-    align-content:center
+    align-content:center;
 }
 .hero-wrapper{
     height:100vh;
     width:100vw;
     margin:auto;
     display:flex;
-    justify-content:center
+    justify-content:center;
 }
 body{
     margin:0;
     padding:0;
     overflow-x:hidden;
     background-color:var(--color-primary);
-    font-family:CabinetGrotesk-Variable
+    font-family:CabinetGrotesk-Variable;
 }
 .link{
     position:absolute;
@@ -59,36 +67,36 @@ body{
     background-image:url(images/link.svg);
     background-size:80%;
     background-repeat:no-repeat;
-    background-position:center
+    background-position:center;
 }
 .santelmo{
     background-image:url(images/santelmo-banner.webp);
     background-size:cover;
-    background-position:center
+    background-position:center;
 }
 .noon{
     background-image:url(images/noon.webp);
     background-size:cover;
-    background-position:center
+    background-position:center;
 }
 .waterbears{
     background-image:url(images/waterbears.webp);
     background-size:cover;
-    background-position:center
+    background-position:center;
 }
 .ang{
     background-image:url(images/ang-jacks-preview.webp);
     background-size:cover;
-    background-position:center
+    background-position:center;
 }
 .baxter{
     background-image:url(images/baxter.webp);
     background-size:cover;
-    background-position:center
+    background-position:center;
 }
 @keyframes show-track{
     100%{
-        visibility:visible
+        visibility:visible;
     }
 }
 input,textarea{
@@ -96,9 +104,9 @@ input,textarea{
     background-color:var(--color-bunnywhite);
     font-size:24px;
     overflow:auto;
-    border:6px solid var(--color-secondary);
-    outline:2px dotted var(--color-secondary);
-    box-shadow:inset 0 0 0 1px var(--color-bunnywhite);
+    border:6px solid var(--color-highlight);
+    outline:2px dotted var(--color-highlight);
+    box-shadow:inset 0 0 0 1px lightgrey;
     resize:none;
     padding:20px;
     transition:.3s;
@@ -108,11 +116,10 @@ input,textarea{
     font-family:CabinetGrotesk-Variable
 }
 input:focus,textarea:focus{
-    background-color:var(--color-bunnywhite);
-    color:#000;
-    -webkit-text-fill-color:#000;
+    color:var(--color-black);
+    -webkit-text-fill-color:var(--color-black);
     box-shadow:inset 0 0 0 1px transparent;
-    outline:2px dotted var(--color-bunnywhite)
+    outline:2px dotted var(--color-black)
 }
 .icon{
     background-image:url(https://mc-heads.net/head/coconut_junior);
@@ -159,7 +166,7 @@ h3{
     text-align:center;
     top:20px;
     left:20px;
-    border-radius:5px
+    border-radius:5px;
 }
 h2{
     margin:auto;
@@ -168,7 +175,7 @@ h2{
     font-size:1.5em;
     position:relative;
     transition:1s;
-    text-align:center
+    text-align:center;
 }
 .wrapper{
     position:relative;
@@ -183,14 +190,14 @@ h2{
     padding-bottom:0;
     padding-left:40px;
     padding-right:40px;
-    margin-bottom:80px
+    margin-bottom:80px;
 }
 .foodiez{
     background-color:#f18c7d;
     background-image:url(images/foodiez_light.webp);
     background-size:cover;
     background-position:center;
-    border-radius:20px
+    border-radius:20px;
 }
 .blueprint{
     background-color:#b09af8;
@@ -198,7 +205,7 @@ h2{
     background-size:contain;
     background-repeat:no-repeat;
     background-position:center;
-    border-radius:20px
+    border-radius:20px;
 }
 .stetson{
     background-color:#f1eee9;
@@ -208,7 +215,7 @@ h2{
     background-size:contain;
     display:flex;
     align-items:left;
-    justify-content:left
+    justify-content:left;
 }
 .form{
     color:#000;
@@ -220,7 +227,7 @@ h2{
     background:var(--color-highlight);
     height:auto;
     padding:40px;
-    border:2px solid rgba(0,0,0,.05)
+    border:2px solid rgba(0,0,0,.05);
 }
 .form p{
     font-size:1em
@@ -231,7 +238,7 @@ h2{
     background-image:url(images/stellar.gif);
     background-size:60%;
     background-position:center;
-    background-repeat:no-repeat
+    background-repeat:no-repeat;
 }
 @keyframes wobble{
     25%{
@@ -255,6 +262,7 @@ p{
     position:relative;
     color:#171b1d
 }
+
 .button{
     font-family:Asap,sans-serif;
     border-radius:60px;
@@ -274,6 +282,7 @@ p{
     top:100px;
     z-index:1
 }
+
 @keyframes blink{
     0%{
         opacity:1
@@ -369,8 +378,8 @@ p{
     margin:auto
 }
 .contact{
-    color:var(--color-secondary);
-    background-color:var(--color-bunnywhite);
+    color:var(--color-bunnywhite);
+    background-color:var(--color-black);
     border-radius:10px;
     padding:20px;
     gap:10px;
@@ -384,25 +393,26 @@ p{
     overflow:hidden;
     align-items:center;
     justify-content:center;
-    font-weight:700
+    font-weight:700;
+    width: 160px;
 }
 .contact svg{
     margin-top:8px;
-    stroke:var(--color-secondary)
+    stroke:var(--color-bunnywhite);
 }
 #send{
     display:flex;
     align-items:center;
     justify-content:center;
     stroke-width:2;
-    padding-bottom:5px
+    padding-bottom:5px;
 }
 @keyframes bounce{
     50%{
-        padding-bottom:5px
+        padding-bottom:5px;
     }
     75%{
-        padding-bottom:10px
+        padding-bottom:10px;
     }
 }
 #line{
@@ -436,9 +446,9 @@ p{
     align-items:center;
     height:auto;
     width:auto;
-    padding:20px;
-    color:var(--color-bunnywhite);
-    background-color:var(--color-secondary)
+    padding:40px;
+    color:var(--color-black);
+    background-color:var(--color-highlight)
 }
 .footer #link{
     text-align:center;
@@ -469,15 +479,12 @@ p{
 }
 .background{
     background-position:center;
-    background-size:cover;
+    background-size:200%;
     background-repeat:no-repeat;
     height:80vh;
     width:100%;
     border-radius:20px;
     margin:auto
-}
-.footer h2{
-    color:var(--color-bunnywhite)
 }
 .arrow{
     height:48px;
@@ -546,12 +553,6 @@ p{
     border:1px solid rgba(255,255,255,.1);
     z-index:3;
     pointer-events:none
-}
-.footer h2{
-    background-color:var(--color-secondary)
-}
-.footer p{
-    color:var(--color-bunnywhite)
 }
 #first-last{
     width:565px;
