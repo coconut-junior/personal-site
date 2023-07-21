@@ -523,6 +523,11 @@ p{
     width:46px;
     fill:none
 }
+#ucm {
+    background-image: url(images/ucm/parent_portal_front.webp);
+    background-size: cover;
+    background-color: white;
+}
 .cursor-dot{
     mix-blend-mode:difference;
     pointer-events:none;
@@ -563,7 +568,7 @@ p{
     height:20vh
 }
 .widget:hover{
-    scale:1.05
+    transform: scale(1.05);
 }
 #home-button{
     position:relative;

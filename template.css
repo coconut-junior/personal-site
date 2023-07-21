@@ -1,3 +1,13 @@
+@font-face {
+	font-family: 'CabinetGrotesk-Variable';
+	src: url('fonts/cabinet/fonts/CabinetGrotesk-Variable.woff2') format('woff2'),
+		 url('fonts/cabinet/fonts/CabinetGrotesk-Variable.woff') format('woff'),
+		 url('fonts/cabinet/fonts/CabinetGrotesk-Variable.ttf') format('truetype');
+		 font-weight: 100 900;
+		 font-display: swap;
+		 font-style: normal;
+  }
+
 :root {
     --color-bunnywhite:#FAFCFF;
     --color-highlight:#E4F1FF;
@@ -6,21 +16,50 @@
 }
 
 * {
-  font-family: "Asap";
-  font-size: 1em;
+  font-family: "CabinetGrotesk-Variable";
   margin:0;padding:0;
+
 }
 
 body {
   background-color: var(--color-bunnywhite);
 }
 
-.gallery {
-	display:flex;flex-wrap:wrap;
-	height:auto;width:auto;
-	justify-content:space-around;
-	overflow:hidden;
+.wrapper {
+	width: 100%;
+	max-width: 1024px;
+	margin:auto;
 }
+
+.wide {
+	width: 100%;
+	padding: 10px 0px 10px 0px;
+}
+
+.image-gallery {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+  }
+  
+  .image-gallery > li {
+	height: 100%;
+	cursor: pointer;
+	position: relative;
+	text-decoration: none;
+	list-style: none;
+  }
+  
+  .image-gallery li video, iframe {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	border-radius: 5px;
+  }
 
 #logo {
 	position:absolute;
@@ -28,7 +67,6 @@ body {
 	height:10vh;
 	width:10vh;
 	padding:40px;
-	pointer-events:none;
 }
 
 #blob {
@@ -37,22 +75,12 @@ body {
 	height:60vh;
 	width: 60vh;
 	transition:0.6s;
-}
-
-#blob:hover {
-	height:70vh;
-	width:70vh;
+	pointer-events: none;
 }
 
 ::selection {
   background-color: #596AFF;
   color:white;
-}
-
-h1,h2, p,.gallery {
-  width: 50%;
-  margin: auto;
-  padding: 40px;
 }
 
 h1 {
@@ -66,17 +94,24 @@ h1 {
 h2 {
   font-weight: 500;
   font-size: 1.75em;
-  padding-bottom: 15px;
+  text-align: center;
+  padding: 40px;
 }
 
 img {
-	width: 50vw;
-	margin-left:25%;
+	width: 100%;
+	max-height: 100vh;
+	object-fit: contain;
 }
 
 p {
-  padding-top: 0;
-  line-height: 160%;
+	margin: auto;
+	padding-top: 0;
+	line-height: 160%;
+	font-size: 1em;
+	width: 80%;
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 .button {
@@ -86,7 +121,6 @@ p {
     border-radius:10px;
     padding: 20px;
 	text-align:center;
-    font-family: 'Asap', sans-serif;
 	font-size: 1em;
     height: 36px;
     width: 10vw;
@@ -104,34 +138,41 @@ p {
 iframe {height:25vw;}
 
 @media (pointer: coarse) and (min-width: 240px) and (max-width: 1024px) {
-	* {
-	  font-size: 1.5em;
+
+	.wrapper {
+		width: 100vw;
+		max-width: unset;
+	}
+	.image-gallery{
+		flex-wrap: wrap;
 	}
 	h1 {
-	  font-size: 2em;
-	  height: 50vh;
-	  width: 80%;
+	  font-size: 3.5em;
+	  height: 30vh;
 	  display:flex;align-items:center;justify-content:center;
 	}
 	h2 {
-	  font-size: 1.75em;
-	}
-	h1,h2, p,.gallery {
-	  width: 80%;
-	  margin: auto;
+	  font-size: 3em;
 	  padding: 80px;
 	}
 	img,iframe {
 		margin:0;
 		width: 100vw;
 	}
-	p {font-size:1em;}
+	p {
+		font-size: 2em;
+		width: 80%;
+	}
+	#blob {
+		height: 50vh;
+		width: 50vh;
+	}
 	.button {
 		height: 5vh;
 		width: 60vw;
 		
 	}
-	iframe {height:50vw;}
+
 }
 
 
