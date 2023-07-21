@@ -1,4 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
+var clickSound = new Audio('sound/click.mp3');
+
+$(`.widget`).on('mouseenter',function(event){
+  clickSound.play();
+});
 
 //parallax
 gsap.to(".background", {
