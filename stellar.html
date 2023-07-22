@@ -11,44 +11,70 @@
   <body>
     <div class = "wrapper">
 		<h1>
-			Stellar Lumens
+			Stellar
 		
 		</h1>
 		
 		<h2>
-		Introduction
+		Background
 		</h2>
 			<p>
-				Stellar Lumens is just one of the many new crypto currencies. Some of the largest crypto platforms allow you to own Stellar, yet their branding is somewhat lackluster. I set forth to reimagine and redesign the stellar brand starting with colors and eventually creating a fully animated logo.
+				The Ollie’s creative team had a problem. With increasing workloads and a variety of InDesign scripts to keep track of, the designers often found themselves either not using a script because they couldn’t remember how it worked, or simply gave up on using all of them because the process of installing them was too confusing.			<p>
+			
+			<h2>Idea Generation</h2>
 			<p>
+				During this stage, I asked each of the designers what problems they faced while using scripts to automate some of their work. Some of the issues included not knowing whether their script was the latest version, forgetting how to use it and the need for more scripts which handled monotonous tasks, such as marking down prices when we had a promotion going on.
+				<br>
+				At the time, we had a CMS (Content Management System) which stored product information and a DAM (Digital Asset Management) System which stored creative assets like product logos. It was suggested that our product logos could be automatically added into flyer documents and I took note of that.
+			</p>
 			
-			<h2>Sketches</h2>
+			<h2>Research</h2>
+			<p>
+				I first had to figure out what was feasible considering technical limitations. IT would not host any of the files, nor would they write any of the code. I had to find a way to get it done in a reasonable time frame as well.
+				<br>
+				Luckily, I knew of a JavaScript framework called Electron. This would allow me to quickly develop a desktop application which would manage our InDesign scripts and push out updates to the design team.
+				<br>
+				This would save everyone the hassle of sharing script files back and forth and me having to explain how each is used. New time-saving features could be added on the fly simply by developing a new script and uploading it. Their app would automatically download it, and it would be ready to use.
+			</p>
 			
-			<img src = "images/stellar/sketches1.webp">
+			<h2>Prototyping</h2>
 			
-			<h2>Lockups</h2>
+			<p>
+				At minimum, the app would need to grab scripts from a server and save them to the InDesign script folder. I mocked up this up in Figma, creating a basic screen with a list of scripts and an option to launch each of them. Since one of the biggest complaints was not knowing how to use a script, I added an info button which would explain the process when clicked.
+			</p>
 			
-			<img src = "images/stellar/lockups.webp">
-			
-			<h2>Storyboard</h2>
-			
-			<img src = "images/stellar/storyboard.webp">
-			
-			<h2>Coinbase Integration</h2>
-			
-			<img src = "images/stellar/coinbase.webp">
-			
-			<h2>Final</h2>
-			
-			<img src = "images/stellar/laptop.webp">
-		
+			<h2>Initial Design</h2>
+			<p>
+				During the design phase, I regularly shared progress updates with the team. I designed each of the UI elements. Since this was going to be a tool the designers would use everyday, I wanted to add a touch of fun to the experience. I added a micro interaction that occurs when the user launches an animation. There’s a short animation that plays of stars flying out of the button. It was originally 2 seconds long, but eventually shortened to 1 second, which users found to still give them a sense of excitement and anticipation, without being too drawn out and annoying them.
+			</p>	
+
+
 			<ul class = "image-gallery">
 				<li>
 					<video id="my-video_html5_api" class="vjs-tech" autoplay="" muted="muted" preload="auto" data-setup="{}" loop="" tabindex="-1">
-						<source src="media/stellar.mp4" type="video/mp4">
+						<source src="stellar/button_interaction_2.mp4" type="video/mp4">
 					</video>
 				</li>
-			</ul>	
+			</ul>
+
+			
+			<h2>Validation &amp; Testing</h2>
+			<p>
+				The creative team was tasked with testing the app once initial development was complete. I asked that they test each of the buttons and share any confusion they had. The only hurdle that was encountered was when the app requested automation privileges. The macOS security popup would show. Some users accepted and others declined. If permission was declined, the popup would not show again and the app could not function. In order to resolve this, the user would have to know where to find the setting in the macOS settings app. To solve this, I explained the need for permission through another popup. Upon clicking ok, it would lead them to the macOS User Guide and show them where to find the setting. 
+				<br>
+				Once that issue was resolved, I moved onto developing new features that were on the  team’s wishlist. These included marking down prices in flyers automatically, grouping product blocks, removing unused layers, swatches and styles, and placing logos into the flyer based on what brands had been entered in the CMS. Each of these features was tested individually until they were ready.
+				<br>
+				The app was also given a collapsed layout so that it doesn't take up too much of the screen when using it alongside InDesign.
+			</p>
+		
+			<ul class = "image-gallery">
+				<li>
+					<img src = "stellar/window_full.png">
+				</li>
+				<li>
+					<img src = "stellar/window_collapsed.png">
+				</li>
+			</ul>
 			
 			
 			<a href = "index.html">
