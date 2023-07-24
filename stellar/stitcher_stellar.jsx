@@ -11,7 +11,7 @@ Array.prototype.exists = function(search){
 }
 
 const orientation = {landscape:"landscape",portrait:"portrait",square:"square"};
-const titleStyle = "item head";
+const titleStyle = "item head m8";
 var thisDoc = app.activeDocument;
 thisDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
 thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
@@ -181,6 +181,8 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 			vFolder.create();
 		}
 
+		var products = 0;
+
 		//find groups
 		for (var i=0; i<groups.length; i++) {
 			var objects = groups[i].allGraphics;//object pdf and image in here?
@@ -195,11 +197,15 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 					var text = items[g].texts[0].contents;
 		
 					//ChocolateMilk_V19 updated to look for new font
-					if(text.match('theirs')||text.match('% off')||text.match('% OFF')||
-					(text.match('$') && items[g].texts[0].position==Position.SUPERSCRIPT
-					|| items[g].texts[0].appliedFont.name == 'ChocolateMilk_V19')
+					if(
+						text.match('theirs')
+						||text.match('% off')
+						||text.match('% OFF')
+						||(text.match('$') && items[g].texts[0].position==Position.SUPERSCRIPT)
+						|| items[g].texts[0].appliedFont.name.match('ChocolateMilk')
 					) {
 						isProduct = true;
+						++products;
 					}
 
 					if (items[g].texts[0].appliedParagraphStyle.name.match(titleStyle)
@@ -216,6 +222,8 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 			}
 		
 		}
+
+		alert(products);
 	}
 	
 }
