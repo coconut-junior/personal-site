@@ -83,9 +83,9 @@
         {
             "name": "Create Stitcher Ads",
             "filename":"stitcher_stellar.jsx",
-            "url":"https://www.dropbox.com/s/a9orzrjvc27t20g/stitcher_stellar.jsx?dl=1",
+            "url":"https://jbx.design/stellar/stitcher_stellar.jsx",
             "hidden":false,
-            "version": 1.7,
+            "version": 1.8,
             "description": "Creates ads for stitcher and sorts them into folders by DC."
         }
         ,
