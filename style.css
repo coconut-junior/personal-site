@@ -176,7 +176,7 @@ h2{
 .wrapper{
     position:relative;
     margin:auto;
-    max-width:1024px;
+    max-width:1600px;
     height:auto;
     background-color:var(--color-primary);
     display:grid;
@@ -573,6 +573,12 @@ p{
 #home-button{
     position:relative;
     margin:auto
+}
+@media (min-width: 1600px) {
+    .wrapper{
+        width:auto;
+        grid-template-columns:1fr 1fr 1fr;
+    }
 }
 @media (max-width:1024px){
     .hero,.hero-wrapper{
