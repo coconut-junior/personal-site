@@ -223,7 +223,6 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 		
 		}
 
-		alert(products);
 	}
 	
 }

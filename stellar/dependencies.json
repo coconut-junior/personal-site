@@ -65,7 +65,7 @@
             "description": "Removes all items from pasteboard."
         },
         {
-            "name": "Convert Quotes to Foot & Inch Marks",
+            "name": "Convert Foot & Inch Marks",
             "filename":"format_quotes.jsx",
             "url":"https://www.dropbox.com/s/paevq7hjnm6ihxh/format_quotes.jsx?dl=1",
             "hidden":false,
