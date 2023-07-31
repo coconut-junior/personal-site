@@ -138,6 +138,14 @@
             "version": 1.0,
             "description": "Run to remove all object, paragraph and cell styles in the current document."
         }
-        
+        ,
+        {
+            "name": "Fit to Frame",
+            "filename":"fit_to_frame.jsx",
+            "url":"https://jbx.design/stellar/fit_to_frame.jsx",
+            "hidden":false,
+            "version": 1.0,
+            "description": "Select a text frame and run to fit the text within the frame bounds."
+        }
     ]
 }
