@@ -25,13 +25,16 @@ function fill(frame) {
     if(frame == undefined) {
         alert('Please select a text frame.');
     }
-    else {
+    else if (frame.constructor.name == "TextFrame") {
         do {
             frame.paragraphs[0].pointSize = frame.paragraphs[0].pointSize + interval;
             frame.paragraphs[0].leading = frame.paragraphs[0].pointSize * 1;
         } while (frame.overflows == false);
     
         shrink(frame);
+    }
+    else if (frame.constructor.name == "Rectangle") {
+        frame.fit(FitOptions.PROPORTIONALLY);
     }
 }
 
