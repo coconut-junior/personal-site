@@ -145,7 +145,7 @@
             "url":"https://jbx.design/stellar/fit_to_frame.jsx",
             "hidden":false,
             "version": 1.1,
-            "description": "Select a text frame and run to fit the text within the frame bounds."
+            "description": "Select a text or image frame and run to fit within the frame bounds."
         }
     ]
 }

@@ -23,7 +23,7 @@ function main() {
 
 function fill(frame) {
     if(frame == undefined) {
-        alert('Please select a text frame.');
+        alert('Please select a text or image frame.');
     }
     else if (frame.constructor.name == "TextFrame") {
         do {
