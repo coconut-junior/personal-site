@@ -129,7 +129,15 @@
             "version": 1.0,
             "description": "Select a discount to apply, and click ok. Note: this only works with prices with a paragraph style named 'our price'."
         }
-
+        ,
+        {
+            "name": "Remove Styles",
+            "filename":"remove_styles.jsx",
+            "url":"https://jbx.design/stellar/remove_styles.jsx",
+            "hidden":false,
+            "version": 1.0,
+            "description": "Run to remove all object, paragraph and cell styles in the current document."
+        }
         
     ]
 }
