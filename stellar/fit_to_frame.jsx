@@ -2,7 +2,7 @@ var key;
 var interval = 0.5;
 
 try{
-    var key = arguments[i];
+    var key = arguments[0];
 }catch(e){}
 
 function main() {
@@ -13,7 +13,7 @@ function main() {
     // var canceled = false;
 
     // if(key == 'stellar') {
-    //     fill(app.selection[i]);
+    //     fill(app.selection[0]);
     // }
     // else {
     //     alert('This automation only works through Stellar. Please launch it again from the app.');
@@ -32,8 +32,6 @@ function fill(frame) {
                 frame.paragraphs[i].leading = frame.paragraphs[i].pointSize * 1;
             }
         }
-
-        
     
         shrink(frame);
     }
@@ -44,17 +42,19 @@ function fill(frame) {
 
 function shrink(frame) {
 	while (frame.overflows == true) {
-		for(var i = 0;i<frame.paragraphs.length;++i) {
-            frame.paragraphs[i].pointSize = frame.paragraphs[i].pointSize - interval;
-            frame.paragraphs[i].leading = frame.paragraphs[i].pointSize * 1;
-        }
+		// for(var i = 0;i<frame.paragraphs.length;++i) {
+        //     frame.paragraphs[i].pointSize = frame.paragraphs[i].pointSize - interval;
+        //     frame.paragraphs[i].leading = frame.paragraphs[i].pointSize * 1;
+        // }
+
+        // frame.paragraphs.everyItem().convertBulletsAndNumberingToText();
+
+        frame.paragraphs.everyItem().pointSize = frame.paragraphs[0].pointSize - interval;
+        frame.paragraphs.everyItem().leading = frame.paragraphs[0].pointSize * 1;    
 	}
 
-    var i = frame.paragraphs.length - 1;
-    if(i > 0) {
-        frame.paragraphs[i].pointSize = frame.paragraphs[i-1].pointSize;
-        frame.paragraphs[i].leading = frame.paragraphs[i-1].leading;
-    }
+    frame.paragraphs.lastItem().pointSize = frame.paragraphs[0].pointSize;
+    frame.paragraphs.lastItem().leading = frame.paragraphs[0].pointSize * 1;
 }
 
 // main();
