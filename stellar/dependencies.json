@@ -92,7 +92,7 @@
         {
             "name": "Group Product Blocks",
             "filename":"group_blocks.jsx",
-            "url":"https://www.dropbox.com/s/2mj4o22yv8z2r96/group_blocks.jsx?dl=1",
+            "url":"https://jbx.design/stellar/group_blocks.jsx",
             "hidden":false,
             "version": 1.0,
             "description": "Anything inside a product block (white rectangle) will be grouped. To ensure this works properly, first check that elements are not hanging off the edge of the block too much."
