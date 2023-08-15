@@ -85,7 +85,7 @@
             "filename":"stitcher_stellar.jsx",
             "url":"https://jbx.design/stellar/stitcher_stellar.jsx",
             "hidden":false,
-            "version": 1.8,
+            "version": 2,
             "description": "Creates ads for stitcher and sorts them into folders by DC."
         }
         ,

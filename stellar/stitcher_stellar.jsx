@@ -4,6 +4,8 @@
 //Updated to automatically name and place assets in correct folder
 //Updated to correct image scaling
 
+var mainlineFont = 'Marvin';
+
 Array.prototype.exists = function(search){
 	for (var i=0; i<this.length; i++)
 	   if (this[i] == search) return true;
@@ -198,7 +200,7 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 		
 					//ChocolateMilk_V19 updated to look for new font
 					if(
-						text.match('theirs')
+						text.toLowerCase().match('theirs')
 						||text.match('% off')
 						||text.match('% OFF')
 						||(text.match('$') && items[g].texts[0].position==Position.SUPERSCRIPT)
@@ -208,8 +210,7 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 						++products;
 					}
 
-					if (items[g].texts[0].appliedParagraphStyle.name.match(titleStyle)
-					|| items[g].texts[0].appliedFont.name == 'ollies solid V2') {
+					if (items[g].texts[0].appliedFont.name.match(mainlineFont)) {
 						productName = text.toLowerCase().replaceAll(' ','_');
 					}
 
