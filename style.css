@@ -32,7 +32,7 @@ button {
 
 .hero{
     width:80vw;
-    height:90vh;
+    height:100vh;
     display:grid;
     grid-template-columns:1fr 1fr;
     grid-template-rows:1fr;
@@ -464,10 +464,10 @@ p{
     width:50%
 }
 .background{
+    background-size: cover;
     background-position:center;
-    background-size: 200%;
     background-repeat:no-repeat;
-    height:80vh;
+    height:80%;
     width:100%;
     border-radius:20px;
     margin:auto;
@@ -588,10 +588,10 @@ p{
     }
     textarea, input {font-size: 2em;}
     .hero {
-        margin-top: 10%;
+        width: 100vw;
+        padding: 40px;
     }
     .arrow{stroke-width: 2px; }
-    .background {background-size: 250%;}
     .wrapper{
         width:auto;
         grid-template-columns:1fr

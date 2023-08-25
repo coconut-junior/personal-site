@@ -6,8 +6,8 @@ $(`.widget`).on('mouseenter',function(event){
 });
 
 //parallax
-gsap.to(".background", {
-  backgroundPosition: "0% 100%",
+gsap.from(".background", {
+  backgroundPosition: "100% 0%",
   ease: "none",
   scrollTrigger: {
     trigger: ".background",
