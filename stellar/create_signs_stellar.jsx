@@ -140,8 +140,7 @@ function myExportProduct(myDoc,myProduct,myOutputFolderName) {
     app.pdfExportPreferences.pageRange = "1";
     app.pdfExportPreferences.optimizePDF = false;
     mySignDoc.exportFile(ExportFormat.pdfType, myFileName, false, app.pdfExportPresets.itemByName("[Press Quality]"));
-    var myInDesignFileName = myTrimName(myFileName)+".indd";
-    mySignDoc.save(File(myInDesignFileName));
+    mySignDoc.save(File(myOutputFolderName + '/' + myFileNameText + '.indd'));
     mySignDoc.close();
 }
 // Move object to the specified XY coordinate relative to the specified anchor point
