@@ -20,6 +20,7 @@ thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
 var itemIndex = 0;
 var start = new Date();
 var link_dir = [];
+var exportDir = myTrimName(thisDoc.fullName) + '/kargo';
 
 var dc5050_links = [];
 var dc5100_links = [];
@@ -30,6 +31,13 @@ var national_links = [];
 String.prototype.replaceAll = function(str1, str2, ignore) 
 {
     return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+}
+
+function myTrimName(myFileName) {
+	var myString = myFileName.toString();
+	var myLastSlash = myString.lastIndexOf("/");
+	var myPathName = myString.slice(0,myLastSlash);
+	return myPathName;
 }
 
 //start creating a list of all links by layer
@@ -148,14 +156,14 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 	}
 }
 
-var vFolder = new Folder(Folder.desktop + "/stitcher");
+var vFolder = new Folder(exportDir);
 if(!vFolder.exists) {
 	vFolder.create();
 }
 
 var folders = ["5050","5100","5150","national"];
 for (var i=0;i<folders.length;++i){
-	var vFolder = new Folder(Folder.desktop + "/stitcher/" + folders[i]);
+	var vFolder = new Folder(exportDir + "/" + folders[i]);
 	if(!vFolder.exists) {
 		vFolder.create();
 	}
@@ -170,9 +178,9 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 
 	//create DC folders
 	if(layer.name == "5050" || layer.name=="5100" || layer.name=="5150" || layer.name == "cmyk_base"){
-		vFolder = new Folder(Folder.desktop + "/stitcher/" + layer.name);
+		vFolder = new Folder(exportDir + "/" + layer.name);
 		if (layer.name == "cmyk_base"){
-			vFolder = new Folder(Folder.desktop + "/stitcher/national");
+			vFolder = new Folder(exportDir + "/national");
 			version = "national";
 		}
 		else {
@@ -233,6 +241,8 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 var ms = new Date() - start;
 var seconds = ms/1000;
 
+alert("Generated " + itemIndex + " ads in " + seconds + " seconds.\n" + (exportDir.replaceAll('%20',' ')));
+
 function getHeight(object) {
 	var bounds = object.parent.geometricBounds;
 	return bounds[2]-bounds[0];
@@ -245,7 +255,6 @@ function getWidth(object) {
 
 function createDoc(objects,index,version,productName) {
 	var newDoc = app.documents.add();
-	//figure out naming convention for stitcher ads
 	newDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
 	newDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
 	newDoc.viewPreferences.rulerOrigin = RulerOrigin.PAGE_ORIGIN;
@@ -399,7 +408,7 @@ function createDoc(objects,index,version,productName) {
 	var complete_name = code + "_" + productName;
 	//name document after product
 	newDoc.name = complete_name;
-	var folder = Folder.desktop;
+	var folder = exportDir;
 	var myExportRes = 72;
 	app.jpegExportPreferences.exportResolution = myExportRes;
 		
@@ -433,16 +442,16 @@ function createDoc(objects,index,version,productName) {
 		else if (version == "5150") {
 			complete_name=complete_name.replace("undefined","4");
 		}
-		else (version == "5150") {
+		else {
 			complete_name=complete_name.replace("undefined","1");
 		}
 	}
 
-	fileName = new File(folder + "/stitcher/" + version + "/" + complete_name + ".jpg");
+	fileName = new File(folder + "/" + version + "/" + complete_name + ".jpg");
 
 	if(!link_dir.exists(linkName)){
 		newDoc.exportFile(ExportFormat.JPG, fileName, false);
-		newDoc.close(SaveOptions.YES,new File(folder + "/stitcher/" + version + "/" + complete_name + ".indd"));
+		newDoc.close(SaveOptions.YES,new File(folder + "/" + version + "/" + complete_name + ".indd"));
 		link_dir.push(linkName);
 	}
 	else {
