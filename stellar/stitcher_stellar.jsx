@@ -12,6 +12,35 @@ Array.prototype.exists = function(search){
 	return false;
 }
 
+if (![].includes) {
+	Array.prototype.includes = function(searchElement /*, fromIndex*/ ) {
+	  'use strict';
+	  var O = Object(this);
+	  var len = parseInt(O.length) || 0;
+	  if (len === 0) {
+		return false;
+	  }
+	  var n = parseInt(arguments[1]) || 0;
+	  var k;
+	  if (n >= 0) {
+		k = n;
+	  } else {
+		k = len + n;
+		if (k < 0) {k = 0;}
+	  }
+	  var currentElement;
+	  while (k < len) {
+		currentElement = O[k];
+		if (searchElement === currentElement ||
+		   (searchElement !== searchElement && currentElement !== currentElement)) {
+		  return true;
+		}
+		k++;
+	  }
+	  return false;
+	};
+  }
+
 const orientation = {landscape:"landscape",portrait:"portrait",square:"square"};
 const titleStyle = "item head m8";
 var thisDoc = app.activeDocument;
@@ -32,6 +61,8 @@ String.prototype.replaceAll = function(str1, str2, ignore)
 {
     return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
 }
+
+
 
 function myTrimName(myFileName) {
 	var myString = myFileName.toString();
@@ -78,10 +109,13 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 		switch(layer.name){
 			case "5050":
 				dc5050_links.push(link);
+				break;
 			case "5100":
 				dc5100_links.push(link);
+				break;
 			case "5150":
 				dc5150_links.push(link);
+				break;
 		}
 	}
 }
@@ -218,7 +252,8 @@ for (var l = 0;l<thisDoc.layers.length;++l) {
 						++products;
 					}
 
-					if (items[g].texts[0].appliedFont.name.match(mainlineFont)) {
+					if (items[g].texts[0].appliedFont.name.match(mainlineFont)
+					&& !text.toLowerCase().match('each')) {
 						productName = text.toLowerCase().replaceAll(' ','_');
 					}
 
@@ -406,6 +441,7 @@ function createDoc(objects,index,version,productName) {
 
 	productName = productName.replace(/[^a-z0-9]+/gi, "_"); //replace all non alphanumeric
 	var complete_name = code + "_" + productName;
+
 	//name document after product
 	newDoc.name = complete_name;
 	var folder = exportDir;
@@ -449,19 +485,11 @@ function createDoc(objects,index,version,productName) {
 
 	fileName = new File(folder + "/" + version + "/" + complete_name + ".jpg");
 
-	if(!link_dir.exists(linkName)){
-		newDoc.exportFile(ExportFormat.JPG, fileName, false);
-		newDoc.close(SaveOptions.YES,new File(folder + "/" + version + "/" + complete_name + ".indd"));
+	newDoc.exportFile(ExportFormat.JPG, fileName, false);
+	newDoc.close(SaveOptions.YES,new File(folder + "/" + version + "/" + complete_name + ".indd"));
+	if(!linkName.match('.ai')) {
 		link_dir.push(linkName);
 	}
-	else {
-		newDoc.close(SaveOptions.NO);
-	}
-	
-
-	// else{
-		// newDoc.close(SaveOptions.NO);
-	// }
 	
 }
 
