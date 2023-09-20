@@ -67,7 +67,7 @@
         {
             "name": "Clean Pasteboard",
             "filename":"clean_pasteboard.jsx",
-            "url":"https://jbx.design/clean_pasteboard.jsx",
+            "url":"https://jbx.design/stellar/clean_pasteboard.jsx",
             "hidden":false,
             "version": 1.0,
             "description": "Removes all items from pasteboard."
@@ -75,7 +75,7 @@
         {
             "name": "Convert Foot & Inch Marks",
             "filename":"format_quotes.jsx",
-            "url":"https://jbx.design/format_quotes.jsx",
+            "url":"https://jbx.design/stellar/format_quotes.jsx",
             "hidden":false,
             "version": 1.0,
             "description": "Converts double quotes to inch marks and single quotes to foot mark characters."
