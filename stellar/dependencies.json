@@ -3,7 +3,7 @@
         {
             "name": "Isolate PageItems",
             "filename":"isolate_items.jsx",
-            "url":"https://www.dropbox.com/s/hz4g8wmd64u2lyv/isolate_items.jsx?dl=1",
+            "url":"https://jbx.design/stellar/isolate_items.jsx",
             "hidden": true,
             "version": 1.0,
             "description": ""
@@ -11,7 +11,7 @@
         {
             "name": "Build Ad",
             "filename":"build_ad.jsx",
-            "url":"https://www.dropbox.com/s/07nz2t1c6rx69wc/build_ad.jsx?dl=1",
+            "url":"https://jbx.design/stellar/build_ad.jsx",
             "hidden": true,
             "version": 1.0,
             "description": ""
@@ -19,7 +19,7 @@
         {
             "name": "Clean Up Document",
             "filename":"cleanup.jsx",
-            "url":"https://www.dropbox.com/s/ixn1oj7apksj8e0/cleanup.jsx?dl=1",
+            "url":"https://jbx.design/stellar/cleanup.jsx",
             "hidden": false,
             "version": 1.0,
             "description": ""
@@ -27,7 +27,7 @@
         {
             "name": "Clean Up Document Config",
             "filename":"cleanup_demo.ini",
-            "url":"https://www.dropbox.com/s/vd4amv42wxz2i1f/cleanup_demo.ini?dl=1",
+            "url":"https://jbx.design/stellar/cleanup_demo.ini",
             "hidden":true,
             "version": 1.0,
             "description":""
@@ -35,7 +35,7 @@
         {
             "name": "Fix Broken Links",
             "filename":"search_for_links.jsx",
-            "url":"https://www.dropbox.com/s/yfhs7rypnwn2u9z/search_for_links.jsx?dl=1",
+            "url":"https://jbx.design/stellar/search_for_links.jsx",
             "hidden":false,
             "version": 1.2,
             "description": ""
@@ -43,7 +43,7 @@
         {
             "name": "Badger to Email",
             "filename":"badger_to_email_blocks.jsx",
-            "url":"https://www.dropbox.com/s/q253x07id5f45m4/badger_to_email_blocks.jsx?dl=1",
+            "url":"https://jbx.design/stellar/badger_to_email_blocks.jsx",
             "hidden":false,
             "version": 1.2,
             "description": "Takes the feature view exported from Badger and turns it into email product blocks."
@@ -67,7 +67,7 @@
         {
             "name": "Clean Pasteboard",
             "filename":"clean_pasteboard.jsx",
-            "url":"https://www.dropbox.com/s/ltqk787wazu1kxl/clean_pasteboard.jsx?dl=1",
+            "url":"https://jbx.design/clean_pasteboard.jsx",
             "hidden":false,
             "version": 1.0,
             "description": "Removes all items from pasteboard."
@@ -75,7 +75,7 @@
         {
             "name": "Convert Foot & Inch Marks",
             "filename":"format_quotes.jsx",
-            "url":"https://www.dropbox.com/s/paevq7hjnm6ihxh/format_quotes.jsx?dl=1",
+            "url":"https://jbx.design/format_quotes.jsx",
             "hidden":false,
             "version": 1.0,
             "description": "Converts double quotes to inch marks and single quotes to foot mark characters."
@@ -83,7 +83,7 @@
         {
             "name": "Proper Fractions",
             "filename":"proper_fraction.jsx",
-            "url":"https://www.dropbox.com/s/e83n6qun2u7e6z4/proper_fraction.jsx?dl=1",
+            "url":"https://jbx.design/stellar/proper_fraction.jsx",
             "hidden":false,
             "version": 2.01,
             "description": "Just select a fraction, like 1/8, run the automation and you get a properly styled fraction."
@@ -108,7 +108,7 @@
         {
             "name": "Export Groups",
             "filename":"export_groups.jsx",
-            "url":"https://www.dropbox.com/s/beynn792t91lkwv/export_groups.jsx?dl=1",
+            "url":"https://jbx.design/stellar/export_groups.jsx",
             "hidden":false,
             "version": 1.0,
             "description": "Automatically exports groups as PNGs into a folder named 'images'. The filename is determined by the text inside each group."
