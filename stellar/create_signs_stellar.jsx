@@ -1,4 +1,4 @@
-﻿//DESCRIPTION:Create a sign for each individual prepared product in the InDesign file
+//DESCRIPTION:Create a sign for each individual prepared product in the InDesign file
 
 // Modified 2022-04-25
 // Keith Gilbert, Gilbert Consulting
@@ -25,13 +25,11 @@ function Pre () {
 	app.scriptPreferences.userInteractionLevel = _userInteraction;  
 	app.scriptPreferences.measurementUnit = _measurementUnit;
     beep();
-    alert("Export complete.");
 }  
 function Main() {
 	var myDoc = app.activeDocument;
     var myDocFullName = myDoc.fullName;
     var myOutputFolderName = myTrimName(myDoc.fullName) + '/store_signs';
-    alert(myOutputFolderName);
 
     // Create the output folder
     var myOutputFolder = new Folder(myOutputFolderName);
@@ -53,15 +51,16 @@ function Main() {
             if(isProduct) {
                 var myProduct = myObjectsArray[i];
                 myBreakObjectStyleLinks(myProduct);
-                myExportProduct(myDoc,myProduct,myOutputFolderName);
+                exportGroup(myDoc,myProduct,myOutputFolderName);
             }
         }
     }
     // Close the modified document without saving and reopen the original
     myDoc.close(SaveOptions.no);
     app.open(myDocFullName);
+    alert('Export Complete\n' + myOutputFolderName);
 }
-function myExportProduct(myDoc,myProduct,myOutputFolderName) {
+function exportGroup(myDoc,myProduct,myOutputFolderName) {
     // Create a new doc for the sign
     var mySignDoc = app.documents.add();
     mySignDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.points;
@@ -102,7 +101,9 @@ function myExportProduct(myDoc,myProduct,myOutputFolderName) {
     else {
         var myScaleFactor = (576/myProductHeight)*100;
     }
+
     myScaleFrame(myProduct, AnchorPoint.CENTER_ANCHOR, myScaleFactor);
+
     // Ungroup everything in the document
     while (mySignDoc.groups.length > 0) {
         mySignDoc.groups.everyItem().ungroup();
@@ -187,10 +188,33 @@ function myGetHeight(myObject) {
 }
 // Scale a frame relative to the specified anchor point
 function myScaleFrame(myFrame, myAnchor, myScale) {
+
+    var scales = [];
+
+    //save original scaling
+    for (i = 0; i < myFrame.allPageItems.length;++i) {
+        var f = myFrame.allPageItems[i];
+        scales.push([f.horizontalScale,f.verticalScale]);
+    }
+    
+    //scale group
 	for (i = 0; i < app.layoutWindows.length; i++) {
 		app.layoutWindows.item(i).transformReferencePoint = myAnchor;
 	}
 	myFrame.horizontalScale = myFrame.verticalScale = myScale;
+
+    //apply scaling only to images
+    newScale = myScale / 100;
+    for (i = 0; i < myFrame.allPageItems.length;++i) {
+        var f = myFrame.allPageItems[i];
+        if(f.constructor.name == "Image" || f.constructor.name == "PDF") {
+            var h = scales[i][0];
+            var v = scales[i][1];
+            f.horizontalScale = h * newScale;
+            f.verticalScale = v * newScale;
+        }
+    }
+
 }
 // Trim the characters from a file path, starting from the right, through the first "." character 
 function myTrimName(myFileName) {
