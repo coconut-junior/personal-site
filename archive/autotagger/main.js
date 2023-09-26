@@ -1,4 +1,5 @@
 document.addEventListener('mousemove', mouseMove);
+document.addEventListener('dragleave', dragLeave);
 
 function mouseMove(e) {
     var x = e.clientX;
@@ -7,10 +8,17 @@ function mouseMove(e) {
     $(`.cursor`).css(`top`,`${y}px`);
 }
 
+function dragLeave(event) {
+    $('.file-selectors').css('transform','rotateX(0deg)');
+    $('.file-selectors').css('scale','1');
+}
+
 var xlsFile = null;
 
 function dropHandler(ev) {
     console.log('File(s) dropped');
+    $('.file-selectors').css('transform','rotateX(0deg)');
+    $('.file-selectors').css('scale','1');
 
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
@@ -46,6 +54,8 @@ function dropHandler(ev) {
 
 function dragOverHandler(ev) {
     console.log('File(s) in drop zone');
+    $('.file-selectors').css('transform','rotateX(2deg)');
+    $('.file-selectors').css('scale','0.9');
 
     // Prevent default behavior (Prevent file from being opened)
     ev.target.style = "background: #ECF9FF;border: 2px dashed #CDCDCD;border-radius: 20px;";
