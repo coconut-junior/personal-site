@@ -55,7 +55,7 @@ function dropHandler(ev) {
 function dragOverHandler(ev) {
     console.log('File(s) in drop zone');
     $('.file-selectors').css('transform','rotateX(2deg)');
-    $('.file-selectors').css('scale','0.9');
+    $('.file-selectors').css('scale','0.8');
 
     // Prevent default behavior (Prevent file from being opened)
     ev.target.style = "background: #ECF9FF;border: 2px dashed #CDCDCD;border-radius: 20px;";
