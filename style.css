@@ -31,20 +31,21 @@ button {
 }
 
 .hero{
-    width:80vw;
-    height:100vh;
+    width:auto;
+    height:90%;
     display:grid;
     grid-template-columns:1fr 1fr;
     grid-template-rows:1fr;
     gap:40px;
-    max-width:1024px;
     margin:auto;
     justify-content:center;
     align-content:center;
+    padding: 40px;
 }
 .hero-wrapper{
     height:100vh;
     width:100vw;
+    max-width: 1600px;
     margin:auto;
     display:flex;
     justify-content:center;
@@ -147,12 +148,12 @@ a{
 }
 h1{
     margin:auto;
-    font-size:36px;
+    font-size: 3em;
     position:relative;
     color:#000;
     text-align:left;
     width:100%;
-    font-weight: 800;
+    font-weight: 900;
 }
 h3{
     color:#000;
@@ -467,7 +468,7 @@ p{
     background-size: cover;
     background-position:center;
     background-repeat:no-repeat;
-    height:80%;
+    height:100%;
     width:100%;
     border-radius:20px;
     margin:auto;
