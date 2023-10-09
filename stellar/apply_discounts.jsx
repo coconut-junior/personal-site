@@ -15,6 +15,7 @@ var button = window.add("button");
 var button2 = window.add("button");
 button.text = "Calculate";
 button2.text = "Cancel"
+var centSymbol = new String('\u00a2');
 
 var key;
 try{
@@ -77,7 +78,7 @@ function calculate() {
 
             //replace dollars with cents if less than dollar
             if(newPrice.length == 3 && newPrice.match('$')) {
-                newPrice = newPrice.replace('$','') + '¢';
+                newPrice = newPrice.replace('$','') + centSymbol;
             }
 
             newPrice = newPrice.replace('¢¢','¢');
