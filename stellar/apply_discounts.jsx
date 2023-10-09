@@ -56,9 +56,7 @@ function calculate() {
         var item = items[i];
 
         //our price
-        if(item != undefined && item == "[object TextFrame]" &&
-            ((item.contents.match('$') && item.texts[0].position==Position.SUPERSCRIPT)
-            || (item.contents.match('¢') && item.texts[0].appliedParagraphStyle.name == ourPriceStyle))) {
+        if(item != undefined && item == "[object TextFrame]" && item.texts[0].appliedFont.name.match('ChocolateMilk')) {
             
             var bounds = item.geometricBounds;
             var contents = '';
@@ -91,79 +89,13 @@ function calculate() {
                 }
             }
 
-            //apply our price style to paragraphs that are missing it
-            if(item.paragraphs[0].appliedParagraphStyle.name != 'our price') {
-                //somehow change grep style ONLY
-                item.paragraphs[0].appliedParagraphStyle = 'our price';
-            }
+            item.contents = newPrice;
             
-            //make ours price white
-            item.paragraphs[0].fillColor = white;
-            item.paragraphs[0].strokeColor = 'None';
 
-            //red bg
-            item.fillColor = red;
-            //set new price
-            item.paragraphs[0].contents = newPrice;
-            item.textFramePreferences.autoSizingType = AutoSizingTypeEnum.OFF;
-            //item.textFramePreferences.autoSizingReferencePoint = AutoSizingReferenceEnum.BOTTOM_RIGHT_POINT
-
-            //add discount message
-            var messageText = 'AFTER ' + dropdown.selection.text + '% OFF!!!';
-            var discountMessage = doc.textFrames.add(item.itemLayer, {
-                geometricBounds:item.geometricBounds,
-                contents:messageText
-            });
-
-            discountMessage.paragraphs[0].appliedFont = "Dom Casual";
-            discountMessage.paragraphs[0].fontStyle = "Regular";
-            discountMessage.paragraphs[0].fillColor = red;
-            discountMessage.paragraphs[0].strokeWeight = 0;
-
-            discountMessage.fillColor = yellow;
-            discountMessage.paragraphs[0].justification = Justification.CENTER_ALIGN;
-
-
-            //shrink price
-            var y1 = item.geometricBounds[0];
-            var x1 = item.geometricBounds[1];
-            var y2 = item.geometricBounds[2];
-            var x2 = item.geometricBounds[3];
-            var messageHeight = (y2 - y1) / 8; //message should be 1/8 height of our price
-            item.geometricBounds = [y1+messageHeight,x1,y2,x2];
-            shrinkVertical(item);
-
-            //shrink message
-            var y1 = discountMessage.geometricBounds[0];
-            var x1 = discountMessage.geometricBounds[1];
-            var y2 = discountMessage.geometricBounds[2];
-            var x2 = discountMessage.geometricBounds[3];
-            discountMessage.geometricBounds = [y1,x1,y1 + (messageHeight*2),x2];
-            growVertical(discountMessage);
         }
-        //their price
-        else if (item == "[object TextFrame]" && item.paragraphs[0].contents.match('theirs')) {
-            for(var p = 0;p<item.paragraphs.length;++p) {
-                item.paragraphs[p].fillColor = white;
-                item.paragraphs[p].strokeWeight = 0;
-                item.paragraphs[p].verticalScale = item.paragraphs[p].verticalScale - 15;
-                //item.paragraphs[p].horizontalScale = item.paragraphs[p].horizontalScale - 15;
-                item.paragraphs[p].leading = parseFloat(item.paragraphs[p].pointSize / 1.2); //decrease leading by 20%
-
-                var y1 = item.geometricBounds[0];
-                var x1 = item.geometricBounds[1];
-                var y2 = item.geometricBounds[2];
-                var x2 = item.geometricBounds[3];
-                var height = y2 - y1;
-                item.geometricBounds = [y1 + (height/10),x1,y2 + (height/10),x2];
-                item.bringToFront();
-                app.documents[0].recompose();
-            }
-        }
+            
     }
-    catch(e) {
-        //alert(e + " line " + e.line);
-    }
+    catch(e) {}
     }
 }
 
