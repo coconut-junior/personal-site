@@ -28,8 +28,7 @@ function isWhite(color) {
             white = true;
         }
     }
-  
-    
+
     return white;
 }
 
@@ -44,7 +43,8 @@ function collectAssets(pageIndex) {
         try{
             if(
             (item == "[object Rectangle]" || item == "[object TextFrame]")
-            && (isWhite(item.fillColor) || item.strokeWeight > 0)
+            || item.name == "script_bg_box"
+            && (isWhite(item.fillColor))
             && !item.locked){
                 whiteSpaces.push(item);
             }
