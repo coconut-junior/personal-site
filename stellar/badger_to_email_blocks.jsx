@@ -63,6 +63,7 @@ function convertBadgerRecords(records) {
 
 		p.title = fixCopy(r.itemName);
 		p.version = r.version;
+		p.specialNotes = r.specialNotes;
 		
 		if(r.burst != "") {p.bursts = [fixCopy(r.burst)];}
 		
