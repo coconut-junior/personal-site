@@ -15,6 +15,8 @@ function dragLeave(event) {
 
 var xlsFile = null;
 
+
+
 function dropHandler(ev) {
     console.log('File(s) dropped');
     $('.file-selectors').css('transform','rotateX(0deg)');
