@@ -48,16 +48,24 @@ function main() {
     }
 }
 
+
+function round(num, precision) {
+    var base = Math.pow(10, precision);
+    return (Math.round(num * base) / base).toFixed(precision);
+}
+
+
 function calculate() {
     var doc = app.activeDocument;
     var items = doc.pages[0].allPageItems;
 
-    for (var i = 0;i<items.length;++i) {
-    try {
+    for (var i = 0;i<items.length;++i) { 
+
         var item = items[i];
 
         //our price
-        if(item != undefined && item == "[object TextFrame]" && item.texts[0].appliedFont.name.match('ChocolateMilk')) {
+        if(item != undefined && item == "[object TextFrame]" && item.texts[0].appliedFont.name.match('ChocolateMilk') 
+        && (item.contents.match(/^\$/) || item.contents.match(centSymbol))) {
             
             var bounds = item.geometricBounds;
             var contents = '';
@@ -68,36 +76,19 @@ function calculate() {
             var price = parseInt(contents.replace(/\D/g, "")) * 0.01;
             var newPrice = '';
 
-            if(contents.match('$')) {
-                newPrice = '$' + ((price * (1-discount)).toFixed(2) * 100);
+            if(contents.match(/^\$/)) {
+                newPrice = '$' + round(price * (1-discount), 2) * 100;
             }
-            if(contents.match('¢')) {
-                newPrice = ((price * (1-discount)).toFixed(2) * 100) + '¢';
+            else if(contents.match(centSymbol)) {
+                newPrice = round(price * (1-discount), 2) * 100
+                newPrice = newPrice.toString() + centSymbol;
             }
+
             newPrice = newPrice.replace('.','');
-
-            //replace dollars with cents if less than dollar
-            if(newPrice.length == 3 && newPrice.match('$')) {
-                newPrice = newPrice.replace('$','') + centSymbol;
-            }
-
-            newPrice = newPrice.replace('¢¢','¢');
-
-            //remove excess paragraphs
-            if(item.paragraphs.length > 0) {
-                for(var p = 1;p<item.paragraphs.length;++p) {
-                    item.paragraphs[p].remove();
-                }
-            }
-
             item.contents = newPrice;
-            
-
         }
-            
     }
-    catch(e) {}
-    }
+
 }
 
 // Repeatedly shrink text paragraphs by .1 points until the text is no longer overset
