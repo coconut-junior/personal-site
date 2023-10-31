@@ -31,7 +31,6 @@ String.prototype.replaceAll = function(str1, str2, ignore)
 var filePrefixLookupTable = {};
 var FILENAME_MATCH_PATTERN = /([^\:]+)\.(ai|psd|jpg|png|tif)/i;
 var flyerSpecs = "";
-var redPricing = false;
 
 var ProgressBar = function(/*str*/title) // by Marc Autret
 {
@@ -476,27 +475,6 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 			  "<<Notes>> "+myRecord.specialNotes+"\n\n";
 	myLocateFrame(myAd,"script_item_head").label = myLabel;
 	// Add metadata to the price frame
-	var yellow = app.activeDocument.colors[-1].duplicate();
-	yellow.properties = {colorValue:[0,0,100,0]};
-	var red = app.activeDocument.colors[-1].duplicate();
-	red.properties = {colorValue:[0,99,97,0]};
-
-	if(Number(myRecord.pageNumber) == 1
-	|| (flyerSpecs == "2-Page Broad (9x21)" && Number(myRecord.pageNumber)==2)
-	|| (flyerSpecs == "2-Page Broad (11x21)" && Number(myRecord.pageNumber)==2) 
-	|| (flyerSpecs == "4-Page Broad" && Number(myRecord.pageNumber)==4)
-	|| (flyerSpecs == "4-Page Broad (8.375x21)" && Number(myRecord.pageNumber == 4))
-	|| (flyerSpecs == "8-Page Tab" && Number(myRecord.pageNumber)==8)
-	&& redPricing){
-		
-		//red theirs price
-		// for(var p = 0; p<theirPriceFrame.paragraphs.length;++p) {
-		// 	theirPriceFrame.paragraphs[p].fillColor = red;
-		// }
-
-		ourPriceFrame.paragraphs[0].fillColor = red;
-		ourPriceFrame.fillColor = yellow;
-	}
 
 	ourPriceFrame.label = myRecord.ourPriceCents;
 	return myAd;
@@ -802,8 +780,8 @@ function myInput() {
 
 	// MYWINDOW
 	// ========
-	var myWindow = new Window("dialog"); 
-		myWindow.text = "Build catalog pages"; 
+	var myWindow = new Window("dialog");
+		myWindow.text = "Build Flyer";
 		myWindow.orientation = "column"; 
 		myWindow.alignChildren = ["right","top"]; 
 		myWindow.spacing = 10; 
@@ -853,34 +831,45 @@ function myInput() {
 
 	var myYear_array = ["","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030","2031"]; 
 	var myYear = group2.add("dropdownlist", undefined, undefined, {name: "myYear", items: myYear_array}); 
-		myYear.selection = 0; 
+		myYear.selection = 0;
+		try {
+			var d = new Date();
+			var year = d.getFullYear();
+			myYear.selection = myYear_array.indexOf(year.toString());
+		}
+		catch(e) {}
+		
 
-	// GROUP3
+	// flyer specs
 	// ======
-	var group3 = myWindow.add("group", undefined, {name: "group3"}); 
-		group3.orientation = "row"; 
-		group3.alignChildren = ["left","center"]; 
-		group3.spacing = 10; 
-		group3.margins = [0,10,0,0];
 
+	var panel2 = group1.add("panel", undefined, undefined, {name: "panel2"}); 
+	panel2.text = "Flyer Specs"; 
+	panel2.orientation = "column"; 
+	panel2.alignChildren = ["left","center"]; 
+	panel2.spacing = 10; 
+	panel2.margins = 10;
+
+	var group3 = panel2.add("group", undefined, {name: "group3"}); 
+		group3.orientation = "row"; 
+		group3.alignChildren = ["fill","center"]; 
+		group3.spacing = 10; 
+		group3.margins = [0,0,0,0];
+
+	//action buttons
 	var group4 = myWindow.add("group", undefined, {name: "group4"});
 		group4.orientation = "row";
-		group4.alignChildren = ["left","center"]; 
+		group4.alignChildren = ["right","center"];
 		group4.spacing = 10; 
-		group4.margins = [0,10,0,0];
+		group4.margins = 1;
 
 		var staticText4 = group3.add("statictext", undefined, undefined, {name: "statictext4"});
-		staticText4.text = "Flyer Type:";
+		staticText4.text = "Size:";
 	var flyerType = group3.add("dropdownlist", undefined, undefined, {
 		name:"flyerType", 
 		items:["2-Page Broad (9x21)", "2-Page Broad (11x21)","4-Page Broad","4-Page Broad (8.375x21)","8-Page Tab"]
 		});
 		flyerType.selection = 0;
-
-		var redPriceOption = group3.add("checkbox", undefined, undefined, {name: "checkbox1"});
-		redPriceOption.text = "Red Pricing Front & Back";
-		redPriceOption.value = true;
-		
 
 	var cancel = group4.add("button", undefined, undefined, {name: "cancel"}); 
 		cancel.text = "Cancel"; 
@@ -895,9 +884,6 @@ function myInput() {
 	*/ 
 
 	if (myWindow.show () == 1) {
-		if(redPriceOption.value) {
-			redPricing = true;
-		}
 		return([myMonth.selection.text,myDay.selection.text,myYear.selection.text,flyerType.selection.text]);
 	}
 	else {
