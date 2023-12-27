@@ -298,7 +298,7 @@ function createDoc(objects,index,version,productName) {
 
 	with (newDoc.documentPreferences) {
 		pageWidth = 1080;
-		pageHeight = 672;
+		pageHeight = 1080;
 		facingPages = false;
 		pageOrientation = PageOrientation.landscape;
 		pagesPerDocument = 1;
@@ -311,7 +311,7 @@ function createDoc(objects,index,version,productName) {
 	var imgs = newDoc.allGraphics;
 	var textframes = newDoc.pages[0].allPageItems;
 	var areas = [];
-	var docHeight = 672;
+	var docHeight = 1080;
 	var docWidth = 1080;
 	var lastVal = 0;
 	var lastIndex = 0;
