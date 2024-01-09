@@ -12,6 +12,7 @@
 
 var pathArg;
 var key;
+var singleTextFrame = true;
 
 try {
 	pathArg = arguments[0];
@@ -299,9 +300,8 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
 	myDoc.close();
 	pBar.close();
 }
-// Build a single ad unit
-function myBuildAdUnit(myDoc, myRecord, myPath) {
-	// Locate the ad unit template
+
+function addProductInfoDeprecated(myDoc, myRecord, myPath) {
 	var myGroup = myDoc.groups.itemByName("unit_2.3x2.7");
 
 	var myAd = myGroup.duplicate();
@@ -333,8 +333,13 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 		myRecord.itemDesc = myRecord.itemDesc.slice(0,-1);
 	}
 
+	//add bullets
+	var bullet = new String('\u2022');
+	myRecord.itemDesc = myRecord.itemDesc.replaceAll('\n\n','\n');
+	myRecord.itemDesc = bullet + myRecord.itemDesc;
+	myRecord.itemDesc = myRecord.itemDesc.replaceAll('\n','\n' + bullet);
+
 	myDescFrame.contents = myRecord.itemDesc;
-	myDescFrame.paragraphs.everyItem().changecase(ChangecaseMode.SENTENCECASE);
 	var ourPriceFrame = myLocateFrame(myAd,"script_our_price");
 	
 	if (myRecord.ourPriceDollars != "") { // Dollars present		
@@ -353,6 +358,93 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 			theirPriceFrame.contents = myTheirs+" "+myRecord.theirPriceCents+"¢";
 		}
 	}
+
+	var myLabel = "";
+	myLabel = "<<Price>> "+myRecord.price+"\n\n"+
+			  "<<Logo>> "+myRecord.logo+"\n\n"+
+			  "<<Burst>> "+myRecord.burst+"\n\n"+
+			  "<<Image>> "+myRecord.imageSource+"\n\n"+
+			  "<<Notes>> "+myRecord.specialNotes+"\n\n";
+	myLocateFrame(myAd,"script_item_head").label = myLabel;
+	
+	return myAd;
+}
+
+function addProductInfo(myDoc, myRecord, myPath) {
+	var myGroup = myDoc.groups.itemByName('script_product_block');
+	var overline = "overline";
+	var mainline = myRecord.itemName;
+	var copy = myRecord.itemDesc;
+	var ourPrice;
+	var theirPrice;
+
+	var myAd = myGroup.duplicate();
+	myAd.name = myRecord.itemName;
+	var myProductText = myAd.textFrames.itemByName('script_product_info');
+
+	//reformat prices
+	if (myRecord.ourPriceDollars != "") { // Dollars present		
+		ourPrice = "$" + myRecord.ourPriceDollars + myRecord.ourPriceCents;
+	}
+	else {
+		ourPrice = myRecord.ourPriceCents + "¢";
+	}
+
+	var myTheirs = "theirs";
+
+	if ((myRecord.itemDesc.match(/certified refurbished/gi)) || (myRecord.itemDesc.match(/certified remanufactured/gi))) {
+		myTheirs = "theirs new";
+	}
+
+	if ((myRecord.theirPriceDollars != "") && (myRecord.theirPriceCents != "")) { // Dollars and cents present
+		theirPrice = myTheirs+" $"+myRecord.theirPriceDollars+"."+myRecord.theirPriceCents;
+	}
+	else {
+		if ((myRecord.theirPriceDollars == "") && (myRecord.theirPriceCents != "")) { // Only cents present
+			theirPrice = myTheirs+" "+myRecord.theirPriceCents+"¢";
+		}
+	}
+
+	var tags = ['<overline>', '<mainline>', '<copy>', '0000', '<tp>'];
+	var productInfo = [overline, mainline, copy, ourPrice, theirPrice];
+
+	for(var i = 0; i < productInfo.length; ++i) {
+		app.findGrepPreferences = app.changeGrepPreferences = null;
+		app.findChangeGrepOptions = NothingEnum.nothing;
+		app.findGrepPreferences.findWhat = tags[i];
+		
+		try {
+			app.changeGrepPreferences.changeTo = productInfo[i];
+		}
+		catch(e) {
+			app.changeGrepPreferences.changeTo = "?";
+		}
+		myProductText.changeGrep();
+	}
+
+	var myLabel = "";
+	myLabel = "<<Price>> "+myRecord.price+"\n\n"+
+			  "<<Logo>> "+myRecord.logo+"\n\n"+
+			  "<<Burst>> "+myRecord.burst+"\n\n"+
+			  "<<Image>> "+myRecord.imageSource+"\n\n"+
+			  "<<Notes>> "+myRecord.specialNotes+"\n\n";
+	myAd.label = myLabel;
+
+	return myAd;
+}
+
+// Build a single ad unit
+function myBuildAdUnit(myDoc, myRecord, myPath) {
+
+	var myAd;
+
+	if(singleTextFrame) {
+		myAd = addProductInfo(myDoc, myRecord, myPath);
+	}
+	else {
+		myAd = addProductInfoDeprecated(myDoc, myRecord, myPath);
+	}
+
 	// Add the logo(s)
 	var myOffset = 10;
 	for (var i=0; i<myRecord.logoArray.length; i++) {
@@ -383,8 +475,7 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 				myLogoFrame.place(File(myFile));
 				myLogoFrame.fit(FitOptions.PROPORTIONALLY);
 			} catch (e) {
-				//
-			}
+}
 		}		
 	}	
 	var myLogoFrameMaster = myLocateFrame(myAd,"script_logo");
@@ -466,17 +557,7 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 			}		
 		}
 	}
-	// Add metadata to the item head frame
-	var myLabel = "";
-	myLabel = "<<Price>> "+myRecord.price+"\n\n"+
-			  "<<Logo>> "+myRecord.logo+"\n\n"+
-			  "<<Burst>> "+myRecord.burst+"\n\n"+
-			  "<<Image>> "+myRecord.imageSource+"\n\n"+
-			  "<<Notes>> "+myRecord.specialNotes+"\n\n";
-	myLocateFrame(myAd,"script_item_head").label = myLabel;
-	// Add metadata to the price frame
 
-	ourPriceFrame.label = myRecord.ourPriceCents;
 	return myAd;
 }
 // Locate the frame in the group with the specified name
@@ -495,7 +576,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
 	// Line break characters
 	myGrepFC(myDoc,"\n","\r",NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING);
 	// Remove manual bullets
-	myGrepFC(myDoc,"^~8\\s*","",NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING);
+	//myGrepFC(myDoc,"^~8\\s*","",NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING);
 	// Two or more returns
 	myGrepFC(myDoc,"~b~b+","\r",NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING);
 	// Single left quote to Single right quote (assume there are never paired single quotes)
@@ -566,6 +647,8 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
 	}
 	// Remove the template frames
 	myDoc.groups.item("unit_2.3x2.7").remove();
+	myDoc.groups.item("script_product_block").remove();
+
 	myDoc.groups.item("script_story_template").remove();
 	myDoc.groups.item("script_burst_flag_template").remove();
 	myDoc.groups.item("script_percent_burst_template").remove();
@@ -871,6 +954,8 @@ function myInput() {
 		});
 		flyerType.selection = 0;
 
+	var singleTextFrameCheck = group3.add("checkbox", undefined, "Single text frame product blocks");
+
 	var cancel = group4.add("button", undefined, undefined, {name: "cancel"}); 
 		cancel.text = "Cancel"; 
 		cancel.preferredSize.width = 69; 
@@ -884,6 +969,7 @@ function myInput() {
 	*/ 
 
 	if (myWindow.show () == 1) {
+		singleTextFrame = singleTextFrameCheck.value;
 		return([myMonth.selection.text,myDay.selection.text,myYear.selection.text,flyerType.selection.text]);
 	}
 	else {
