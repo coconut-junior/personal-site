@@ -335,6 +335,7 @@ function addProductInfoDeprecated(myDoc, myRecord, myPath) {
 
 	//add bullets
 	var bullet = new String('\u2022');
+	var centSymbol = new String('\u00a2');
 	myRecord.itemDesc = myRecord.itemDesc.replaceAll('\n\n','\n');
 	myRecord.itemDesc = bullet + myRecord.itemDesc;
 	myRecord.itemDesc = myRecord.itemDesc.replaceAll('\n','\n' + bullet);
@@ -346,7 +347,7 @@ function addProductInfoDeprecated(myDoc, myRecord, myPath) {
 		ourPriceFrame.contents = "$" + myRecord.ourPriceDollars + myRecord.ourPriceCents;
 	}
 	else {
-		ourPriceFrame.contents = myRecord.ourPriceCents + "¢";
+		ourPriceFrame.contents = myRecord.ourPriceCents + centSymbol;
 	}
 
 	var theirPriceFrame = myLocateFrame(myAd,"script_their_price");
@@ -355,7 +356,7 @@ function addProductInfoDeprecated(myDoc, myRecord, myPath) {
 	}
 	else {
 		if ((myRecord.theirPriceDollars == "") && (myRecord.theirPriceCents != "")) { // Only cents present
-			theirPriceFrame.contents = myTheirs+" "+myRecord.theirPriceCents+"¢";
+			theirPriceFrame.contents = myTheirs + " "+myRecord.theirPriceCents + centSymbol;
 		}
 	}
 
@@ -377,6 +378,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
 	var copy = myRecord.itemDesc;
 	var ourPrice;
 	var theirPrice;
+	var centSymbol = new String('\u00a2');
 
 	var myAd = myGroup.duplicate();
 	myAd.name = myRecord.itemName;
@@ -387,10 +389,11 @@ function addProductInfo(myDoc, myRecord, myPath) {
 		ourPrice = "$" + myRecord.ourPriceDollars + myRecord.ourPriceCents;
 	}
 	else {
-		ourPrice = myRecord.ourPriceCents + "¢";
+		ourPrice = myRecord.ourPriceCents + centSymbol;
 	}
 
 	var myTheirs = "theirs";
+	
 
 	if ((myRecord.itemDesc.match(/certified refurbished/gi)) || (myRecord.itemDesc.match(/certified remanufactured/gi))) {
 		myTheirs = "theirs new";
@@ -401,7 +404,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
 	}
 	else {
 		if ((myRecord.theirPriceDollars == "") && (myRecord.theirPriceCents != "")) { // Only cents present
-			theirPrice = myTheirs+" "+myRecord.theirPriceCents+"¢";
+			theirPrice = myTheirs+" "+myRecord.theirPriceCents + centSymbol;
 		}
 	}
 
