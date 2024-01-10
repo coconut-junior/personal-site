@@ -202,8 +202,8 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
 	else if(flyerSpecs == "2-Page Broad (11x21)") {
 		templatePath = "/2pg_broad_11x21/";
 	}
-	else if(flyerSpecs == "4-Page Broad") {
-		templatePath = "/4pg_broad/";
+	else if(flyerSpecs == "4-Page Broad (9x21)") {
+		templatePath = "/4pg_broad_9x21/";
 	}
 	else if (flyerSpecs == "4-Page Broad (8.375x21)") {
 		templatePath = "/4pg_broad_quad_8.375x21/";
@@ -953,7 +953,7 @@ function myInput() {
 		staticText4.text = "Size:";
 	var flyerType = group3.add("dropdownlist", undefined, undefined, {
 		name:"flyerType", 
-		items:["2-Page Broad (9x21)", "2-Page Broad (11x21)","4-Page Broad","4-Page Broad (8.375x21)","8-Page Tab"]
+		items:["2-Page Broad (9x21)", "2-Page Broad (11x21)","4-Page Broad (9x21)","4-Page Broad (8.375x21)","8-Page Tab"]
 		});
 		flyerType.selection = 0;
 
