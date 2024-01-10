@@ -285,7 +285,7 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
 					myAd.move(myDoc.layers.item("cmyk_base"));
 				}
 				catch(error){
-					var layerName = "page_"+(Number(myRecord.pageNumber)).toString() + "_cmyk_base";
+					var layerName = "cmyk_base";
 					myAd.move(myDoc.layers.item(layerName));
 				}
 				break;
