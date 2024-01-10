@@ -75,6 +75,10 @@ function Pre () {
 	app.fontLockingPreferences.fontChangeLocking = 	_fontChangeLocking;
 }  
 function Main() {
+	pathArg = "/Users/jblanck/Desktop/test/featureItems_2_3_4.xls"
+	key = ""
+
+
 	if(key == undefined) {
 		alert('This automation only works with Stellar. Please open Stellar and launch it from there.');
 		return;
@@ -285,7 +289,7 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
 					myAd.move(myDoc.layers.item("cmyk_base"));
 				}
 				catch(error){
-					var layerName = "page_" + myRecord.pageNumber + "_cmyk_base";
+					var layerName = "cmyk_base";
 					myAd.move(myDoc.layers.item(layerName));
 				}
 				break;
@@ -608,13 +612,12 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
 		if (myTFs[i].name == "script_headline") {
 			myTFs[i].move([739,18+(myItemCount*36)]);
 			myItemCount++;
-			myBottomEdge = myTFs[i].geometricBounds[2];
+			try {
+				myBottomEdge = myTFs[i].geometricBounds[2];
+			}
+			catch(e){}
 		}
-	}
-	// Remove duplicate Whats the Story frames and copy the metadata from each duplicate into the remaining frame
-	var myTFs = myDoc.textFrames;
-	for (var i=myTFs.length-1; i>=0; i--) {
-		if (myTFs[i].name == "script_story") {
+		else if (myTFs[i].name == "script_story") {
 			var myStoryText = myTFs[i].contents;
 			for (var j=myTFs.length-1; j>i; j--) {
 				if (myTFs[j].contents == myStoryText) {
@@ -622,16 +625,14 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
 					myTFs[j].remove();
 				}
 			}
-		}
-	}
-	// Position the Whats the Story frames on the right edge of the page
-	var myTFs = myDoc.textFrames;
-	for (var i=0; i<myTFs.length; i++) {
-		if (myTFs[i].name == "script_story") {
 			myTFs[i].move([739,myBottomEdge+5]);
-			myBottomEdge = myTFs[i].geometricBounds[2];
+			try {
+				myBottomEdge = myTFs[i].geometricBounds[2];
+			}
+			catch(e){}
 		}
 	}
+
 	// Position the bursts and flags on the right edge of the page
 	var myGroups = myDoc.groups;
 	for (var i=0; i<myGroups.length; i++) {
