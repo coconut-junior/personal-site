@@ -75,10 +75,6 @@ function Pre () {
 	app.fontLockingPreferences.fontChangeLocking = 	_fontChangeLocking;
 }  
 function Main() {
-	pathArg = "/Users/jblanck/Desktop/test/featureItems_2_3_4.xls"
-	key = ""
-
-
 	if(key == undefined) {
 		alert('This automation only works with Stellar. Please open Stellar and launch it from there.');
 		return;
