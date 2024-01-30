@@ -441,6 +441,9 @@ function createDoc(objects,index,version,productName) {
 
 	productName = productName.replace(/[^a-z0-9]+/gi, "_"); //replace all non alphanumeric
 	var complete_name = code + "_" + productName;
+	if(complete_name.length > 36) {
+		complete_name = complete_name.slice(0, 36);
+	}
 
 	//name document after product
 	newDoc.name = complete_name;
