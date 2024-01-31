@@ -316,6 +316,12 @@ function createDoc(objects,index,version,productName) {
 	var lastVal = 0;
 	var lastIndex = 0;
 
+	//reset rotation
+	for(var i = 0;i< imgs.length;++i) {
+		imgs[i].absoluteRotationAngle = 0;
+		imgs[i].parent.absoluteRotationAngle = 0;
+	}
+
   	//if single image, scale up
 	if(objects.length == 1) {
 		var y1 = 0;
@@ -354,12 +360,12 @@ function createDoc(objects,index,version,productName) {
 		//find product in PSD format
 		for(var a=imgs.length-1; a>=0; a--) {
 			try {
-				if(imgs[a].itemLink.name.match('.psd')) {
+				if(imgs[a].itemLink.name.match('.ai') || imgs[a].itemLink.name.match('logo')) {
 					lastIndex = a;
-					psds.push(imgs[a]);
+					ais.push(imgs[a]);
 				}
 				else {
-					ais.push(imgs[a]);
+					psds.push(imgs[a]);
 				}
 			}
 			catch(err){continue;}
@@ -368,7 +374,7 @@ function createDoc(objects,index,version,productName) {
 		for(var i=0; i<=ais.length-1; i++) {
 			var im = ais[i];
 			areas.push(parseInt(getHeight(im)*getWidth(im)));
-			im.absoluteRotationAngle = 0;
+			
 
 			//arrange logos along top
 			var blockWidth = docWidth/(ais.length);
