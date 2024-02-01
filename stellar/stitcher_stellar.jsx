@@ -49,7 +49,7 @@ thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
 var itemIndex = 0;
 var start = new Date();
 var link_dir = [];
-var exportDir = myTrimName(thisDoc.fullName) + '/kargo';
+var exportDir = myTrimName(thisDoc.fullName) + '/digital';
 
 var dc5050_links = [];
 var dc5100_links = [];
