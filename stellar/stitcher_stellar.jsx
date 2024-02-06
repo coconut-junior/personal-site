@@ -319,7 +319,10 @@ function createDoc(objects,index,version,productName) {
 	//reset rotation
 	for(var i = 0;i< imgs.length;++i) {
 		imgs[i].absoluteRotationAngle = 0;
-		imgs[i].parent.absoluteRotationAngle = 0;
+		try{
+			imgs[i].parent.absoluteRotationAngle = 0;
+		}
+		catch(e){}
 	}
 
   	//if single image, scale up
