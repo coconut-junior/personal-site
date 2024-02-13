@@ -64,28 +64,32 @@ function calculate() {
         var item = items[i];
 
         //our price
-        if(item != undefined && item == "[object TextFrame]" && item.texts[0].appliedFont.name.match('ChocolateMilk') 
-        && (item.contents.match(/^\$/) || item.contents.match(centSymbol))) {
+        if(item != undefined && item == "[object TextFrame]") {
+
+            for(var p = 0; p < item.paragraphs.length; ++p) {
+
+                if (item.paragraphs[p].appliedFont.name.match('ChocolateMilk') 
+                && (item.paragraphs[p].contents.match(/^\$/) || item.paragraphs[p].contents.match(centSymbol))) {
+                    var contents = item.paragraphs[p].contents;
+                    var priceString = contents.replace(/\D/g, "");
+                    var price = parseInt(priceString) * 0.01;
+                    var newPrice = '';
+
+                    if(contents.match(/^\$/)) {
+                        newPrice = '$' + round(price * (1-discount), 2) * 100;
+                    }
+                    else if(contents.match(centSymbol)) {
+                        newPrice = round(price * (1-discount), 2) * 100
+                        newPrice = newPrice.toString() + centSymbol;
+                    }
+
+                    newPrice = newPrice.replace('.','');
+                    item.paragraphs[p].contents = item.paragraphs[p].contents.replace('$','').replace(centSymbol,'').replace(priceString, newPrice);
+                }
+            }
             
-            var bounds = item.geometricBounds;
-            var contents = '';
-            for(var c = 0;c<item.paragraphs.length;++c) {
-                contents = contents + item.paragraphs[c].contents;
-            }
-
-            var price = parseInt(contents.replace(/\D/g, "")) * 0.01;
-            var newPrice = '';
-
-            if(contents.match(/^\$/)) {
-                newPrice = '$' + round(price * (1-discount), 2) * 100;
-            }
-            else if(contents.match(centSymbol)) {
-                newPrice = round(price * (1-discount), 2) * 100
-                newPrice = newPrice.toString() + centSymbol;
-            }
-
-            newPrice = newPrice.replace('.','');
-            item.contents = newPrice;
+            
+            
         }
     }
 
