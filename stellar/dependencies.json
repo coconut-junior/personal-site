@@ -53,7 +53,7 @@
             "filename":"create_signs_stellar.jsx",
             "url":"https://jbx.design/stellar/create_signs_stellar.jsx",
             "hidden":false,
-            "version": 2.1,
+            "version": 2.2,
             "description": "Exports each group as an 8.5 x 11 PDF."
         },
         {
@@ -94,7 +94,7 @@
             "url":"https://jbx.design/stellar/stitcher_stellar.jsx",
             "hidden":false,
             "version": 2.2,
-            "description": "Creates ads formatted for Kargo and sorts them into folders by DC."
+            "description": "Creates ads formatted for Smartly and sorts them into folders by DC."
         }
         ,
         {

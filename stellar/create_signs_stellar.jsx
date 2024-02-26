@@ -4,6 +4,12 @@
 // Keith Gilbert, Gilbert Consulting
 // http://www.gilbertconsulting.com
 
+//backport replaceall function to es3
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+}
+
 Pre();
   
 function Pre () {  		
@@ -113,24 +119,39 @@ function exportGroup(myDoc,myProduct,myOutputFolderName) {
     var myFileNameText = "";
 	var myObjectsArray = mySignDoc.allPageItems; // allPageItems returns an array of all objects in the document, even those in groups
 	for (var i=myObjectsArray.length-1; i>=0; i--) {
+        var myTextFrame = myObjectsArray[i];
+
 		if (myObjectsArray[i].constructor.name == "TextFrame") {
-            var myTextFrame = myObjectsArray[i];
+            for(var p = 0; p < myTextFrame.paragraphs.length; ++p) {
+
+                if (myTextFrame.paragraphs[p].appliedFont.name.match('ChocolateMilk')){
+                    myFileNameText = myTextFrame.contents;
+                }
+            }
+
+            
             myRedefineScaling(myTextFrame);
             if (myTextFrame.characters.length > 0) {
                 var myTextSize = myFindLargestChar(myTextFrame);
                 if (myTextSize > mySize) {
                     if (myTextFrame.contents.toString().match(/\$/g) === null) {
                         if (myTextFrame.characters.length > 5) {
-                            myFileNameText = myTextFrame.contents;
                             mySize = myTextSize;
                         }
                     }
                 }
             }
         }
+            
+        
     }
     myFileNameText = myCleanFileName(myFileNameText);
-    myFileNameText = myFileNameText.slice(0,12);
+    
+    while(myFileNameText.match('__')) {
+        myFileNameText = myFileNameText.replace('__','_');
+    }
+
+    myFileNameText = myFileNameText.slice(0,24);
     var myFileName = new File(myOutputFolderName+"/" + myFileNameText + ".pdf");
     var n = 1;
 	while (myFileName.exists) {
