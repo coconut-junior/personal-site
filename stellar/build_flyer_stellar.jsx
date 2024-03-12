@@ -382,7 +382,8 @@ function addProductInfo(myDoc, myRecord, myPath) {
 
 	var myAd = myGroup.duplicate();
 	myAd.name = myRecord.itemName;
-	var myProductText = myAd.textFrames.itemByName('script_product_info');
+	var price_group = myAd.groups.itemByName('price_group')
+	var myProductText = price_group.textFrames.itemByName('script_product_info');
 
 	//reformat prices
 	if (myRecord.ourPriceDollars != "") { // Dollars present		
@@ -955,6 +956,7 @@ function myInput() {
 		flyerType.selection = 0;
 
 	var singleTextFrameCheck = group3.add("checkbox", undefined, "Single text frame product blocks");
+		singleTextFrameCheck.value = true
 
 	var cancel = group4.add("button", undefined, undefined, {name: "cancel"}); 
 		cancel.text = "Cancel"; 
