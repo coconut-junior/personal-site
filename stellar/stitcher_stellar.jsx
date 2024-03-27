@@ -4,15 +4,109 @@
 //Updated to automatically name and place assets in correct folder
 //Updated to correct image scaling
 
+var scriptPath = File($.fileName).path;
 var mainlineFont = 'Marvin';
 var adWidth = 1080;
 var adHeight = 672;
 var margin = 10;
+var gSettings = new Object();
+var currentSettingsFile = File(scriptPath + '/smartly.ini');
+
+if (currentSettingsFile.exists) {
+  currentSettingsFile.open('r');
+  gSettings = eval(currentSettingsFile.read());
+  adWidth = gSettings.adWidth;
+  adHeight = gSettings.adHeight;
+  margin = gSettings.margin;
+  currentSettingsFile.close();
+}
+
+const orientation = {
+  landscape: 'landscape',
+  portrait: 'portrait',
+  square: 'square',
+};
+const titleStyle = 'item head m8';
+var thisDoc = app.activeDocument;
+thisDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
+thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
+
+var itemIndex = 0;
+var start = new Date();
+var link_dir = [];
+var exportDir = myTrimName(thisDoc.fullName) + '/digital';
+
+var dc5050_links = [];
+var dc5100_links = [];
+var dc5150_links = [];
+var national_links = [];
 
 Array.prototype.exists = function (search) {
   for (var i = 0; i < this.length; i++) if (this[i] == search) return true;
   return false;
 };
+
+//backport replaceall function to es3
+String.prototype.replaceAll = function (str1, str2, ignore) {
+  return this.replace(
+    new RegExp(
+      str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, '\\$&'),
+      ignore ? 'gi' : 'g'
+    ),
+    typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2
+  );
+};
+
+var w = new Window('dialog', 'Create Smartly Ads');
+var p = w.add('panel');
+p.alignChildren = 'fill';
+p.orientation = 'column';
+var p2 = w.add('panel');
+var g1 = p.add('group');
+var g2 = p.add('group');
+var g3 = p.add('group');
+var g4 = w.add('group');
+
+g1.orientation = 'row';
+g1.alignChildren = 'fill';
+g2.orientation = 'row';
+g2.alignChildren = 'fill';
+g3.orientation = 'row';
+g3.alignChildren = 'fill';
+
+var widthLabel = g1.add('statictext', undefined, 'Width');
+var widthText = g1.add('edittext', undefined, adWidth);
+var pxLabel1 = g1.add('statictext', undefined, 'px');
+var heightLabel = g2.add('statictext', undefined, 'Height');
+var heightText = g2.add('edittext', undefined, adHeight);
+var pxLabel2 = g2.add('statictext', undefined, 'px');
+
+var marginLabel = g3.add('statictext', undefined, 'Margin');
+var marginText = g3.add('edittext', undefined, margin);
+var pxLabel3 = g3.add('statictext', undefined, 'px');
+
+var okButton = g4.add('button', undefined, 'Start', { name: 'ok' });
+var cancelButton = g4.add('button', undefined, 'Cancel', { name: 'cancel' });
+
+okButton.onClick = function () {
+  adHeight = parseInt(heightText.text);
+  adWidth = parseInt(widthText.text);
+  margin = parseInt(marginText.text);
+  gSettings.adHeight = adHeight;
+  gSettings.adWidth = adWidth;
+  gSettings.margin = margin;
+
+  currentSettingsFile.open('w');
+  currentSettingsFile.write(gSettings.toSource());
+  currentSettingsFile.close();
+
+  w.close(1);
+};
+cancelButton.onClick = function () {
+  w.close();
+};
+
+if (w.show() == 1) makeAds();
 
 if (![].includes) {
   Array.prototype.includes = function (searchElement /*, fromIndex*/) {
@@ -47,37 +141,6 @@ if (![].includes) {
   };
 }
 
-const orientation = {
-  landscape: 'landscape',
-  portrait: 'portrait',
-  square: 'square',
-};
-const titleStyle = 'item head m8';
-var thisDoc = app.activeDocument;
-thisDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
-thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
-
-var itemIndex = 0;
-var start = new Date();
-var link_dir = [];
-var exportDir = myTrimName(thisDoc.fullName) + '/digital';
-
-var dc5050_links = [];
-var dc5100_links = [];
-var dc5150_links = [];
-var national_links = [];
-
-//backport replaceall function to es3
-String.prototype.replaceAll = function (str1, str2, ignore) {
-  return this.replace(
-    new RegExp(
-      str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, '\\$&'),
-      ignore ? 'gi' : 'g'
-    ),
-    typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2
-  );
-};
-
 function myTrimName(myFileName) {
   var myString = myFileName.toString();
   var myLastSlash = myString.lastIndexOf('/');
@@ -102,209 +165,211 @@ function resetImages(graphics) {
   }
 }
 
-for (var l = 0; l < thisDoc.layers.length; ++l) {
-  var layer = thisDoc.layers[l];
-  var all_imgs = layer.allGraphics;
-  resetImages(all_imgs);
+function makeAds() {
+  for (var l = 0; l < thisDoc.layers.length; ++l) {
+    var layer = thisDoc.layers[l];
+    var all_imgs = layer.allGraphics;
+    resetImages(all_imgs);
 
-  for (var i = 0; i < all_imgs.length; ++i) {
-    var link;
+    for (var i = 0; i < all_imgs.length; ++i) {
+      var link;
 
-    if (String(all_imgs[i].itemLink == 'null')) {
-      link = 'null';
-    } else {
-      link = all_imgs[i].itemLink.name;
-    }
+      if (String(all_imgs[i].itemLink == 'null')) {
+        link = 'null';
+      } else {
+        link = all_imgs[i].itemLink.name;
+      }
 
-    switch (layer.name) {
-      case '5050':
-        dc5050_links.push(link);
-        break;
-      case '5100':
-        dc5100_links.push(link);
-        break;
-      case '5150':
-        dc5150_links.push(link);
-        break;
-    }
-  }
-}
-
-//sort 5050
-for (var i = 0; i < dc5050_links.length; ++i) {
-  var l = dc5050_links[i];
-  if (
-    dc5100_links.exists(l) &&
-    dc5150_links.exists(l) &&
-    !national_links.exists(l)
-  ) {
-    national_links.push(l);
-    //remove from both
-  }
-}
-//sort 5100
-for (var i = 0; i < dc5100_links.length; ++i) {
-  var l = dc5100_links[i];
-  if (
-    dc5050_links.exists(l) &&
-    dc5150_links.exists(l) &&
-    !national_links.exists(l)
-  ) {
-    national_links.push(l);
-  }
-}
-//sort 5150
-for (var i = 0; i < dc5150_links.length; ++i) {
-  var l = dc5150_links[i];
-  if (
-    dc5050_links.exists(l) &&
-    dc5100_links.exists(l) &&
-    !national_links.exists(l)
-  ) {
-    national_links.push(l);
-  }
-}
-
-//remove national items from versioned lists
-var temp_links = [];
-for (var i = 0; i < dc5050_links.length; ++i) {
-  if (!national_links.exists(dc5050_links[i])) {
-    temp_links.push(dc5050_links[i]);
-  }
-}
-dc5050_links = temp_links;
-
-temp_links = [];
-for (var i = 0; i < dc5100_links.length; ++i) {
-  if (!national_links.exists(dc5100_links[i])) {
-    temp_links.push(dc5100_links[i]);
-  }
-}
-dc5100_links = temp_links;
-
-temp_links = [];
-for (var i = 0; i < dc5150_links.length; ++i) {
-  if (!national_links.exists(dc5150_links[i])) {
-    temp_links.push(dc5150_links[i]);
-  }
-}
-dc5150_links = temp_links;
-
-//add back og national items
-for (var l = 0; l < thisDoc.layers.length; ++l) {
-  var layer = thisDoc.layers[l];
-  var all_imgs = layer.allGraphics;
-
-  for (var i = 0; i < all_imgs.length; ++i) {
-    var link;
-
-    if (String(all_imgs[i].itemLink == 'null')) {
-      link = 'null';
-    } else {
-      link = all_imgs[i].itemLink.name;
-    }
-
-    switch (layer.name) {
-      case 'cmyk_base':
-        national_links.push(link);
+      switch (layer.name) {
+        case '5050':
+          dc5050_links.push(link);
+          break;
+        case '5100':
+          dc5100_links.push(link);
+          break;
+        case '5150':
+          dc5150_links.push(link);
+          break;
+      }
     }
   }
-}
 
-var vFolder = new Folder(exportDir);
-if (!vFolder.exists) {
-  vFolder.create();
-}
+  //sort 5050
+  for (var i = 0; i < dc5050_links.length; ++i) {
+    var l = dc5050_links[i];
+    if (
+      dc5100_links.exists(l) &&
+      dc5150_links.exists(l) &&
+      !national_links.exists(l)
+    ) {
+      national_links.push(l);
+      //remove from both
+    }
+  }
+  //sort 5100
+  for (var i = 0; i < dc5100_links.length; ++i) {
+    var l = dc5100_links[i];
+    if (
+      dc5050_links.exists(l) &&
+      dc5150_links.exists(l) &&
+      !national_links.exists(l)
+    ) {
+      national_links.push(l);
+    }
+  }
+  //sort 5150
+  for (var i = 0; i < dc5150_links.length; ++i) {
+    var l = dc5150_links[i];
+    if (
+      dc5050_links.exists(l) &&
+      dc5100_links.exists(l) &&
+      !national_links.exists(l)
+    ) {
+      national_links.push(l);
+    }
+  }
 
-var folders = ['5050', '5100', '5150', 'national'];
-for (var i = 0; i < folders.length; ++i) {
-  var vFolder = new Folder(exportDir + '/' + folders[i]);
+  //remove national items from versioned lists
+  var temp_links = [];
+  for (var i = 0; i < dc5050_links.length; ++i) {
+    if (!national_links.exists(dc5050_links[i])) {
+      temp_links.push(dc5050_links[i]);
+    }
+  }
+  dc5050_links = temp_links;
+
+  temp_links = [];
+  for (var i = 0; i < dc5100_links.length; ++i) {
+    if (!national_links.exists(dc5100_links[i])) {
+      temp_links.push(dc5100_links[i]);
+    }
+  }
+  dc5100_links = temp_links;
+
+  temp_links = [];
+  for (var i = 0; i < dc5150_links.length; ++i) {
+    if (!national_links.exists(dc5150_links[i])) {
+      temp_links.push(dc5150_links[i]);
+    }
+  }
+  dc5150_links = temp_links;
+
+  //add back og national items
+  for (var l = 0; l < thisDoc.layers.length; ++l) {
+    var layer = thisDoc.layers[l];
+    var all_imgs = layer.allGraphics;
+
+    for (var i = 0; i < all_imgs.length; ++i) {
+      var link;
+
+      if (String(all_imgs[i].itemLink == 'null')) {
+        link = 'null';
+      } else {
+        link = all_imgs[i].itemLink.name;
+      }
+
+      switch (layer.name) {
+        case 'cmyk_base':
+          national_links.push(link);
+      }
+    }
+  }
+
+  var vFolder = new Folder(exportDir);
   if (!vFolder.exists) {
     vFolder.create();
   }
-}
 
-//loop thru layers
-for (var l = 0; l < thisDoc.layers.length; ++l) {
-  var layer = thisDoc.layers[l];
-  var groups = layer.groups;
-  var version = '';
-
-  //create DC folders
-  if (
-    layer.name == '5050' ||
-    layer.name == '5100' ||
-    layer.name == '5150' ||
-    layer.name == 'cmyk_base'
-  ) {
-    vFolder = new Folder(exportDir + '/' + layer.name);
-    if (layer.name == 'cmyk_base') {
-      vFolder = new Folder(exportDir + '/national');
-      version = 'national';
-    } else {
-      version = layer.name;
-    }
-
+  var folders = ['5050', '5100', '5150', 'national'];
+  for (var i = 0; i < folders.length; ++i) {
+    var vFolder = new Folder(exportDir + '/' + folders[i]);
     if (!vFolder.exists) {
       vFolder.create();
     }
+  }
 
-    var products = 0;
+  //loop thru layers
+  for (var l = 0; l < thisDoc.layers.length; ++l) {
+    var layer = thisDoc.layers[l];
+    var groups = layer.groups;
+    var version = '';
 
-    //find groups
-    for (var i = 0; i < groups.length; i++) {
-      var objects = groups[i].allGraphics; //object pdf and image in here?
-      var items = groups[i].allPageItems;
-      var isProduct = false;
-      var links = new Array();
-      var productName = '';
-
-      //identify product block
-      for (var g = items.length - 1; g >= 0; g--) {
-        if (items[g].constructor.name == 'TextFrame') {
-          var text = items[g].texts[0].contents;
-
-          //ChocolateMilk_V19 updated to look for new font
-          if (
-            text.toLowerCase().match('theirs') ||
-            text.match('% off') ||
-            text.match('% OFF') ||
-            (text.match('$') &&
-              items[g].texts[0].position == Position.SUPERSCRIPT) ||
-            items[g].texts[0].appliedFont.name.match('ChocolateMilk')
-          ) {
-            isProduct = true;
-            ++products;
-          }
-
-          if (
-            items[g].texts[0].appliedFont.name.match(mainlineFont) &&
-            !text.toLowerCase().match('each')
-          ) {
-            productName = text.toLowerCase().replaceAll(' ', '_');
-          }
-        }
+    //create DC folders
+    if (
+      layer.name == '5050' ||
+      layer.name == '5100' ||
+      layer.name == '5150' ||
+      layer.name == 'cmyk_base'
+    ) {
+      vFolder = new Folder(exportDir + '/' + layer.name);
+      if (layer.name == 'cmyk_base') {
+        vFolder = new Folder(exportDir + '/national');
+        version = 'national';
+      } else {
+        version = layer.name;
       }
 
-      //conditions for creating a new doc
-      if (objects.length > 0 && isProduct) {
-        createDoc(objects, itemIndex, version, productName);
+      if (!vFolder.exists) {
+        vFolder.create();
+      }
+
+      var products = 0;
+
+      //find groups
+      for (var i = 0; i < groups.length; i++) {
+        var objects = groups[i].allGraphics; //object pdf and image in here?
+        var items = groups[i].allPageItems;
+        var isProduct = false;
+        var links = new Array();
+        var productName = '';
+
+        //identify product block
+        for (var g = items.length - 1; g >= 0; g--) {
+          if (items[g].constructor.name == 'TextFrame') {
+            var text = items[g].texts[0].contents;
+
+            //ChocolateMilk_V19 updated to look for new font
+            if (
+              text.toLowerCase().match('theirs') ||
+              text.match('% off') ||
+              text.match('% OFF') ||
+              (text.match('$') &&
+                items[g].texts[0].position == Position.SUPERSCRIPT) ||
+              items[g].texts[0].appliedFont.name.match('ChocolateMilk')
+            ) {
+              isProduct = true;
+              ++products;
+            }
+
+            if (
+              items[g].texts[0].appliedFont.name.match(mainlineFont) &&
+              !text.toLowerCase().match('each')
+            ) {
+              productName = text.toLowerCase().replaceAll(' ', '_');
+            }
+          }
+        }
+
+        //conditions for creating a new doc
+        if (objects.length > 0 && isProduct) {
+          createDoc(objects, itemIndex, version, productName);
+        }
       }
     }
   }
+
+  var ms = new Date() - start;
+  var seconds = ms / 1000;
+
+  alert(
+    'Generated ' +
+      itemIndex +
+      ' ads in ' +
+      seconds +
+      ' seconds.\n' +
+      exportDir.replaceAll('%20', ' ')
+  );
 }
-
-var ms = new Date() - start;
-var seconds = ms / 1000;
-
-alert(
-  'Generated ' +
-    itemIndex +
-    ' ads in ' +
-    seconds +
-    ' seconds.\n' +
-    exportDir.replaceAll('%20', ' ')
-);
 
 function getHeight(object) {
   var bounds = object.parent.geometricBounds;
