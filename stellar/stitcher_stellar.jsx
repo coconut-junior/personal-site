@@ -58,10 +58,11 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
 };
 
 var w = new Window('dialog', 'Create Smartly Ads');
+//w.size = { width: 300, height: 200 };
+w.alignChildren = 'fill';
 var p = w.add('panel');
 p.alignChildren = 'fill';
 p.orientation = 'column';
-var p2 = w.add('panel');
 var g1 = p.add('group');
 var g2 = p.add('group');
 var g3 = p.add('group');
@@ -75,14 +76,21 @@ g3.orientation = 'row';
 g3.alignChildren = 'fill';
 
 var widthLabel = g1.add('statictext', undefined, 'Width');
+widthLabel.size = { width: 50, height: 20 };
 var widthText = g1.add('edittext', undefined, adWidth);
+widthText.size = { width: 50, height: 20 };
+
 var pxLabel1 = g1.add('statictext', undefined, 'px');
 var heightLabel = g2.add('statictext', undefined, 'Height');
+heightLabel.size = { width: 50, height: 20 };
 var heightText = g2.add('edittext', undefined, adHeight);
+heightText.size = { width: 50, height: 20 };
 var pxLabel2 = g2.add('statictext', undefined, 'px');
 
 var marginLabel = g3.add('statictext', undefined, 'Margin');
+marginLabel.size = { width: 50, height: 20 };
 var marginText = g3.add('edittext', undefined, margin);
+marginText.size = { width: 50, height: 20 };
 var pxLabel3 = g3.add('statictext', undefined, 'px');
 
 var okButton = g4.add('button', undefined, 'Start', { name: 'ok' });
