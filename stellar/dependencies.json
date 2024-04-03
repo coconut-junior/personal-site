@@ -151,6 +151,14 @@
       "hidden": false,
       "version": 1.1,
       "description": "Select a text or image frame and run to fit within the frame bounds."
+    },
+    {
+      "name": "Reset Image Transformations",
+      "filename": "reset_image_transformations.jsx",
+      "url": "https://jbx.design/stellar/reset_image_transformations.jsx",
+      "hidden": false,
+      "version": 1.0,
+      "description": "Select one or multiple images. The script will clear transformations such as rotation and flip, then fit them to the frame."
     }
   ]
 }
