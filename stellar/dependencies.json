@@ -121,14 +121,6 @@
       "description": ""
     },
     {
-      "name": "Helpers",
-      "filename": "/helpers/helpers.zip",
-      "url": "https://jbx.design/stellar/helpers.zip",
-      "hidden": true,
-      "version": 1.0,
-      "description": ""
-    },
-    {
       "name": "Apply Discounts",
       "filename": "apply_discounts.jsx",
       "url": "https://jbx.design/stellar/apply_discounts.jsx",
@@ -159,6 +151,14 @@
       "hidden": false,
       "version": 1.0,
       "description": "Select one or multiple images. The script will clear transformations such as rotation and flip, then fit them to the frame."
+    },
+    {
+      "name": "Helpers",
+      "filename": "/helpers/helpers.zip",
+      "url": "https://jbx.design/stellar/helpers.zip",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
     }
   ]
 }
