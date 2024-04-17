@@ -1,6 +1,14 @@
 {
   "scripts": [
     {
+      "name": "Helpers",
+      "filename": "/helpers/helpers.zip",
+      "url": "https://jbx.design/stellar/helpers.zip",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
+    },
+    {
       "name": "Isolate PageItems",
       "filename": "isolate_items.jsx",
       "url": "https://jbx.design/stellar/isolate_items.jsx",
@@ -151,14 +159,6 @@
       "hidden": false,
       "version": 1.0,
       "description": "Select one or multiple images. The script will clear transformations such as rotation and flip, then fit them to the frame."
-    },
-    {
-      "name": "Helpers",
-      "filename": "/helpers/helpers.zip",
-      "url": "https://jbx.design/stellar/helpers.zip",
-      "hidden": true,
-      "version": 1.0,
-      "description": ""
     }
   ]
 }
