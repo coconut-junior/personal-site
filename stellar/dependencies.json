@@ -3,7 +3,7 @@
     {
       "name": "Isolate PageItems",
       "filename": "isolate_items.jsx",
-      "url": "https://jbx.design/stellar/isolate_items.jsx",
+      "url": "",
       "hidden": true,
       "version": 1.0,
       "description": ""
@@ -11,7 +11,7 @@
     {
       "name": "Build Ad",
       "filename": "build_ad.jsx",
-      "url": "https://jbx.design/stellar/build_ad.jsx",
+      "url": "",
       "hidden": true,
       "version": 1.0,
       "description": ""
@@ -19,7 +19,7 @@
     {
       "name": "Clean Up Document",
       "filename": "cleanup.jsx",
-      "url": "https://jbx.design/stellar/cleanup.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": ""
@@ -27,7 +27,7 @@
     {
       "name": "Clean Up Document Config",
       "filename": "cleanup_demo.ini",
-      "url": "https://jbx.design/stellar/cleanup_demo.ini",
+      "url": "",
       "hidden": true,
       "version": 1.0,
       "description": ""
@@ -35,7 +35,7 @@
     {
       "name": "Fix Broken Links",
       "filename": "search_for_links.jsx",
-      "url": "https://jbx.design/stellar/search_for_links.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.2,
       "description": ""
@@ -43,7 +43,7 @@
     {
       "name": "Badger to Email",
       "filename": "badger_to_email_blocks.jsx",
-      "url": "https://jbx.design/stellar/badger_to_email_blocks.jsx",
+      "url": "",
       "hidden": false,
       "version": 2.0,
       "description": "Takes the feature view exported from Badger and turns it into email product blocks."
@@ -51,7 +51,7 @@
     {
       "name": "Create Store Signs",
       "filename": "create_signs_stellar.jsx",
-      "url": "https://jbx.design/stellar/create_signs_stellar.jsx",
+      "url": "",
       "hidden": false,
       "version": 2.2,
       "description": "Exports each group as an 8.5 x 11 PDF."
@@ -59,7 +59,7 @@
     {
       "name": "Generate Alt Tags",
       "filename": "index.html",
-      "url": "https://jbx.design/archive/autotagger/index.html",
+      "url": "",
       "hidden": false,
       "version": 1.2,
       "description": "Takes the feature view exported from Badger and turns it into email product blocks."
@@ -67,7 +67,7 @@
     {
       "name": "Clean Pasteboard",
       "filename": "clean_pasteboard.jsx",
-      "url": "https://jbx.design/stellar/clean_pasteboard.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Removes all items from pasteboard."
@@ -75,7 +75,7 @@
     {
       "name": "Convert Foot & Inch Marks",
       "filename": "format_quotes.jsx",
-      "url": "https://jbx.design/stellar/format_quotes.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Converts double quotes to inch marks and single quotes to foot mark characters."
@@ -83,7 +83,7 @@
     {
       "name": "Proper Fractions",
       "filename": "proper_fraction.jsx",
-      "url": "https://jbx.design/stellar/proper_fraction.jsx",
+      "url": "",
       "hidden": false,
       "version": 2.01,
       "description": "Just select a fraction, like 1/8, run the automation and you get a properly styled fraction."
@@ -91,7 +91,7 @@
     {
       "name": "Create Smartly Ads",
       "filename": "stitcher_stellar.jsx",
-      "url": "https://jbx.design/stellar/stitcher_stellar.jsx",
+      "url": "",
       "hidden": false,
       "version": 2.2,
       "description": "Creates ads formatted for Smartly and sorts them into folders by DC."
@@ -99,7 +99,7 @@
     {
       "name": "Group Product Blocks",
       "filename": "group_blocks.jsx",
-      "url": "https://jbx.design/stellar/group_blocks.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Anything inside a product block (white rectangle) will be grouped. To ensure this works properly, first check that elements are not hanging off the edge of the block too much."
@@ -107,7 +107,7 @@
     {
       "name": "Export Groups",
       "filename": "export_groups.jsx",
-      "url": "https://jbx.design/stellar/export_groups.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Automatically exports groups as PNGs into a folder named 'images'. The filename is determined by the text inside each group."
@@ -115,7 +115,7 @@
     {
       "name": "Build Flyer",
       "filename": "build_flyer_stellar.jsx",
-      "url": "https://jbx.design/stellar/build_flyer_stellar.jsx",
+      "url": "",
       "hidden": true,
       "version": 1.4,
       "description": ""
@@ -123,7 +123,7 @@
     {
       "name": "Helpers",
       "filename": "/helpers/helpers.zip",
-      "url": "https://jbx.design/stellar/helpers.zip",
+      "url": "",
       "hidden": true,
       "version": 1.0,
       "description": ""
@@ -131,7 +131,7 @@
     {
       "name": "Apply Discounts",
       "filename": "apply_discounts.jsx",
-      "url": "https://jbx.design/stellar/apply_discounts.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Select a discount to apply, and click ok. Note: this only works with prices with a paragraph style named 'our price'."
@@ -139,7 +139,7 @@
     {
       "name": "Remove Styles",
       "filename": "remove_styles.jsx",
-      "url": "https://jbx.design/stellar/remove_styles.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Run to remove all object, paragraph and cell styles in the current document."
@@ -147,7 +147,7 @@
     {
       "name": "Fit to Frame",
       "filename": "fit_to_frame.jsx",
-      "url": "https://jbx.design/stellar/fit_to_frame.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.1,
       "description": "Select a text or image frame and run to fit within the frame bounds."
@@ -155,10 +155,18 @@
     {
       "name": "Reset Image Transformations",
       "filename": "reset_image_transformations.jsx",
-      "url": "https://jbx.design/stellar/reset_image_transformations.jsx",
+      "url": "",
       "hidden": false,
       "version": 1.0,
       "description": "Select one or multiple images. The script will clear transformations such as rotation and flip, then fit them to the frame."
+    },
+    {
+      "name": "IceDrive",
+      "filename": "icedrive",
+      "url": "https://ice-us-sfo-56011.icedrive.io/download?p=tCbC6GEvW2sKm3x4p87DR5NJqj_CUfbEzSC2Frf7GCxameEioSQmHlSVWsZyb4pdi3k113se0WgLbx6uSV9qyn06cPlr7X6nfANaIO9vIZKZJSH2S_x8nIAZnVfNvTgpTOaQEksEK3N8Gvlwn8PdDEynYQw.Q4kntS3.fyz.xHiVoPlh.xV9awuLLUWzA8gGzlvtTbQ211U75Ml3Mza70A--",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
     }
   ]
 }
