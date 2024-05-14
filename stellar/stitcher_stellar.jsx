@@ -57,6 +57,37 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
   );
 };
 
+Array.prototype.includes = function (searchElement /*, fromIndex*/) {
+  'use strict';
+  var O = Object(this);
+  var len = parseInt(O.length) || 0;
+  if (len === 0) {
+    return false;
+  }
+  var n = parseInt(arguments[1]) || 0;
+  var k;
+  if (n >= 0) {
+    k = n;
+  } else {
+    k = len + n;
+    if (k < 0) {
+      k = 0;
+    }
+  }
+  var currentElement;
+  while (k < len) {
+    currentElement = O[k];
+    if (
+      searchElement === currentElement ||
+      (searchElement !== searchElement && currentElement !== currentElement)
+    ) {
+      return true;
+    }
+    k++;
+  }
+  return false;
+};
+
 var w = new Window('dialog', 'Create Smartly Ads');
 //w.size = { width: 300, height: 200 };
 w.alignChildren = 'fill';
@@ -115,39 +146,6 @@ cancelButton.onClick = function () {
 };
 
 if (w.show() == 1) makeAds();
-
-if (![].includes) {
-  Array.prototype.includes = function (searchElement /*, fromIndex*/) {
-    'use strict';
-    var O = Object(this);
-    var len = parseInt(O.length) || 0;
-    if (len === 0) {
-      return false;
-    }
-    var n = parseInt(arguments[1]) || 0;
-    var k;
-    if (n >= 0) {
-      k = n;
-    } else {
-      k = len + n;
-      if (k < 0) {
-        k = 0;
-      }
-    }
-    var currentElement;
-    while (k < len) {
-      currentElement = O[k];
-      if (
-        searchElement === currentElement ||
-        (searchElement !== searchElement && currentElement !== currentElement)
-      ) {
-        return true;
-      }
-      k++;
-    }
-    return false;
-  };
-}
 
 function myTrimName(myFileName) {
   var myString = myFileName.toString();
@@ -411,8 +409,14 @@ function createDoc(objects, index, version, productName) {
     pagesPerDocument = 1;
   }
 
+  //only duplicate 1 of each unique image
+  var uniqueLinks = [];
   for (var i = objects.length - 1; i >= 0; i--) {
-    objects[i].duplicate(newDoc.pages[0]);
+    var obj = objects[i];
+    if (!uniqueLinks.exists(obj.itemLink.name)) {
+      obj.duplicate(newDoc.pages[0]);
+      uniqueLinks.push(obj.itemLink.name);
+    }
   }
 
   var imgs = newDoc.allGraphics;
