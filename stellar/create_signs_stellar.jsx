@@ -46,8 +46,8 @@ function Main() {
     $.writeln(myDoc.fullName);
   } catch (e) {
     alert('Please save your document first.');
-    myDoc.save();
   }
+  myDoc.save();
   var myDocFullName = myDoc.fullName;
   var myOutputFolderName = myTrimName(myDoc.fullName) + '/store_signs';
 
