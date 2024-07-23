@@ -3,9 +3,10 @@
 // Created 2022-05-16
 // Keith Gilbert, Gilbert Consulting
 // www.gilbertconsulting.com
-// Edited 2022-08-01 by Jimmy Blanck www.jbx.design
+// Edited 8-1-2022 by Jimmy Blanck www.jbx.design
 
-//2023-02-07 updated to include multiple flyer specs (broad or tab)
+//2-7-2023 updated to include multiple flyer specs (broad or tab)
+//7-22-2024 added new dc to list
 
 #include "helpers/xlsx.extendscript.js"
 #include "helpers/formatting.js"
@@ -147,7 +148,7 @@ function myTestRecord(myPath, myRecord, myLineNumber) {
 	myResult.pageNumber = myRecord[0]; // Column A
 	// Column B
 	if (myRecord[1] == "ALL") {
-		myResult.version = ["5050","5100","5150"];
+		myResult.version = ["5050","5100","5150","5200"];
 	}
 	else {
 		myResult.version = myRecord[1].split(",");

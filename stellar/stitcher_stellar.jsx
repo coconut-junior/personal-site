@@ -12,6 +12,22 @@ var margin = 10;
 var gSettings = new Object();
 var currentSettingsFile = File(scriptPath + '/smartly.ini');
 
+var versionedLinks = {};
+var national_links = [];
+var dcList = ['5050', '5100', '5150', '5200'];
+var layerList = [];
+
+for (dc in dcList) {
+  var dcName = dcList[dc];
+  versionedLinks[dcName] = [];
+}
+
+function getIndex(arr, val) {
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] == val) return i;
+  }
+}
+
 if (currentSettingsFile.exists) {
   currentSettingsFile.open('r');
   gSettings = eval(currentSettingsFile.read());
@@ -35,11 +51,6 @@ var itemIndex = 0;
 var start = new Date();
 var link_dir = [];
 var exportDir = myTrimName(thisDoc.fullName) + '/digital';
-
-var dc5050_links = [];
-var dc5100_links = [];
-var dc5150_links = [];
-var national_links = [];
 
 Array.prototype.exists = function (search) {
   for (var i = 0; i < this.length; i++) if (this[i] == search) return true;
@@ -176,108 +187,54 @@ function makeAds() {
     var layer = thisDoc.layers[l];
     var all_imgs = layer.allGraphics;
     resetImages(all_imgs);
+    if (layer.name != 'cmyk_base') layerList.push(layer.name);
 
     for (var i = 0; i < all_imgs.length; ++i) {
       var link;
 
-      if (String(all_imgs[i].itemLink == 'null')) {
+      if (String(all_imgs[i].itemLink) == 'null') {
         link = 'null';
       } else {
         link = all_imgs[i].itemLink.name;
       }
 
-      switch (layer.name) {
-        case '5050':
-          dc5050_links.push(link);
-          break;
-        case '5100':
-          dc5100_links.push(link);
-          break;
-        case '5150':
-          dc5150_links.push(link);
-          break;
-      }
-    }
-  }
-
-  //sort 5050
-  for (var i = 0; i < dc5050_links.length; ++i) {
-    var l = dc5050_links[i];
-    if (
-      dc5100_links.exists(l) &&
-      dc5150_links.exists(l) &&
-      !national_links.exists(l)
-    ) {
-      national_links.push(l);
-      //remove from both
-    }
-  }
-  //sort 5100
-  for (var i = 0; i < dc5100_links.length; ++i) {
-    var l = dc5100_links[i];
-    if (
-      dc5050_links.exists(l) &&
-      dc5150_links.exists(l) &&
-      !national_links.exists(l)
-    ) {
-      national_links.push(l);
-    }
-  }
-  //sort 5150
-  for (var i = 0; i < dc5150_links.length; ++i) {
-    var l = dc5150_links[i];
-    if (
-      dc5050_links.exists(l) &&
-      dc5100_links.exists(l) &&
-      !national_links.exists(l)
-    ) {
-      national_links.push(l);
-    }
-  }
-
-  //remove national items from versioned lists
-  var temp_links = [];
-  for (var i = 0; i < dc5050_links.length; ++i) {
-    if (!national_links.exists(dc5050_links[i])) {
-      temp_links.push(dc5050_links[i]);
-    }
-  }
-  dc5050_links = temp_links;
-
-  temp_links = [];
-  for (var i = 0; i < dc5100_links.length; ++i) {
-    if (!national_links.exists(dc5100_links[i])) {
-      temp_links.push(dc5100_links[i]);
-    }
-  }
-  dc5100_links = temp_links;
-
-  temp_links = [];
-  for (var i = 0; i < dc5150_links.length; ++i) {
-    if (!national_links.exists(dc5150_links[i])) {
-      temp_links.push(dc5150_links[i]);
-    }
-  }
-  dc5150_links = temp_links;
-
-  //add back og national items
-  for (var l = 0; l < thisDoc.layers.length; ++l) {
-    var layer = thisDoc.layers[l];
-    var all_imgs = layer.allGraphics;
-
-    for (var i = 0; i < all_imgs.length; ++i) {
-      var link;
-
-      if (String(all_imgs[i].itemLink == 'null')) {
-        link = 'null';
+      if (dcList.exists(layer.name)) {
+        if (!versionedLinks[layer.name].exists(link)) {
+          versionedLinks[layer.name].push(link);
+        }
       } else {
-        link = all_imgs[i].itemLink.name;
-      }
-
-      switch (layer.name) {
-        case 'cmyk_base':
+        if (
+          !national_links.exists(link) &&
+          !link.match('.ai') &&
+          !link.toLowerCase().match('logo')
+        )
           national_links.push(link);
       }
+    }
+  }
+
+  //remove duplicates, add to national if in all versions
+  var linkCounts = {};
+
+  for (var d = 0; d < dcList.length; ++d) {
+    var dcName = dcList[d];
+    var dcLinks = versionedLinks[dcName];
+
+    //loop thru links for each dc
+    for (var l = 0; l < dcLinks.length; ++l) {
+      var link = dcLinks[l];
+      if (linkCounts[link] == undefined) linkCounts[link] = 1;
+      else if (!link.match('.ai') && !link.toLowerCase().match('logo'))
+        //dont count logos as dupes
+        linkCounts[link]++;
+    }
+  }
+
+  //if in every layer, add to national
+  for (var key in linkCounts) {
+    var value = linkCounts[key];
+    if (value >= layerList.length) {
+      national_links.push(key);
     }
   }
 
@@ -286,7 +243,7 @@ function makeAds() {
     vFolder.create();
   }
 
-  var folders = ['5050', '5100', '5150', 'national'];
+  var folders = dcList.concat(['national']);
   for (var i = 0; i < folders.length; ++i) {
     var vFolder = new Folder(exportDir + '/' + folders[i]);
     if (!vFolder.exists) {
@@ -301,65 +258,52 @@ function makeAds() {
     var version = '';
 
     //create DC folders
-    if (
-      layer.name == '5050' ||
-      layer.name == '5100' ||
-      layer.name == '5150' ||
-      layer.name == 'cmyk_base'
-    ) {
-      vFolder = new Folder(exportDir + '/' + layer.name);
-      if (layer.name == 'cmyk_base') {
-        vFolder = new Folder(exportDir + '/national');
-        version = 'national';
-      } else {
-        version = layer.name;
-      }
+    if (dcList.exists(layer.name)) {
+      version = layer.name;
+    } else if (layer.name == 'cmyk_base') {
+      version = 'national';
+    }
 
-      if (!vFolder.exists) {
-        vFolder.create();
-      }
+    var products = 0;
 
-      var products = 0;
+    //find groups
+    for (var i = 0; i < groups.length; i++) {
+      var objects = groups[i].allGraphics; //object pdf and image in here?
+      var items = groups[i].allPageItems;
+      var isProduct = false;
+      var links = new Array();
+      var productName = '';
 
-      //find groups
-      for (var i = 0; i < groups.length; i++) {
-        var objects = groups[i].allGraphics; //object pdf and image in here?
-        var items = groups[i].allPageItems;
-        var isProduct = false;
-        var links = new Array();
-        var productName = '';
+      //identify product block
+      for (var g = items.length - 1; g >= 0; g--) {
+        if (items[g].constructor.name == 'TextFrame') {
+          var text = items[g].texts[0].contents;
 
-        //identify product block
-        for (var g = items.length - 1; g >= 0; g--) {
-          if (items[g].constructor.name == 'TextFrame') {
-            var text = items[g].texts[0].contents;
+          //ChocolateMilk_V19 updated to look for new font
+          if (
+            text.toLowerCase().match('theirs') ||
+            text.match('% off') ||
+            text.match('% OFF') ||
+            (text.match('$') &&
+              items[g].texts[0].position == Position.SUPERSCRIPT) ||
+            items[g].texts[0].appliedFont.name.match('ChocolateMilk')
+          ) {
+            isProduct = true;
+            ++products;
+          }
 
-            //ChocolateMilk_V19 updated to look for new font
-            if (
-              text.toLowerCase().match('theirs') ||
-              text.match('% off') ||
-              text.match('% OFF') ||
-              (text.match('$') &&
-                items[g].texts[0].position == Position.SUPERSCRIPT) ||
-              items[g].texts[0].appliedFont.name.match('ChocolateMilk')
-            ) {
-              isProduct = true;
-              ++products;
-            }
-
-            if (
-              items[g].texts[0].appliedFont.name.match(mainlineFont) &&
-              !text.toLowerCase().match('each')
-            ) {
-              productName = text.toLowerCase().replaceAll(' ', '_');
-            }
+          if (
+            items[g].texts[0].appliedFont.name.match(mainlineFont) &&
+            !text.toLowerCase().match('each')
+          ) {
+            productName = text.toLowerCase().replaceAll(' ', '_');
           }
         }
+      }
 
-        //conditions for creating a new doc
-        if (objects.length > 0 && isProduct) {
-          createDoc(objects, itemIndex, version, productName);
-        }
+      //conditions for creating a new doc
+      if (objects.length > 0 && isProduct) {
+        createDoc(objects, itemIndex, version, productName);
       }
     }
   }
@@ -576,29 +520,20 @@ function createDoc(objects, index, version, productName) {
 
   ++itemIndex;
 
-  //save doc in case designer wants to make edits
-
-  if (national_links.exists(linkName)) {
-    version = 'national';
-  } else if (dc5050_links.exists(linkName)) {
-    version = '5050';
-  } else if (dc5100_links.exists(linkName)) {
-    version = '5100';
-  } else if (dc5150_links.exists(linkName)) {
-    version = '5150';
+  //if in national, only put in national, else match versioning
+  for (var i = 0; i < dcList.length; ++i) {
+    var dcName = dcList[i];
+    if (national_links.includes(linkName)) {
+      version = 'national';
+    }
   }
 
   //this is an email not flyer
   if (String(pageNumber) == 'undefined') {
-    if (version == '5050') {
-      complete_name = complete_name.replace('undefined', '2');
-    } else if (version == '5100') {
-      complete_name = complete_name.replace('undefined', '3');
-    } else if (version == '5150') {
-      complete_name = complete_name.replace('undefined', '4');
-    } else {
-      complete_name = complete_name.replace('undefined', '1');
-    }
+    complete_name = complete_name.replace(
+      'undefined',
+      getIndex(dcList.concat('national'), version)
+    );
   }
 
   fileName = new File(folder + '/' + version + '/' + complete_name + '.jpg');
