@@ -385,6 +385,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
 	myAd.name = myRecord.itemName;
 	var price_group = myAd.groups.itemByName('price_group')
 	var myProductText = price_group.textFrames.itemByName('script_product_info');
+	var buyoutHeader = myDoc.textFrames.itemByName('script_buyout');
 
 	//reformat prices
 	if (myRecord.ourPriceDollars != "") { // Dollars present		
@@ -489,7 +490,8 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 	}
 	// Build and populate the headline frame
 	if (myRecord.headline != "") {
-		var myHeadlineFrame = myDoc.pages[0].textFrames.add();
+		var myHeadlineFrameTemp = myDoc.textFrames.itemByName("script_buyout_template");
+		var myHeadlineFrame = myHeadlineFrameTemp.duplicate();
 		myHeadlineFrame.contents = myRecord.headline;
 		myHeadlineFrame.name = "script_headline";
 		myHeadlineFrame.geometricBounds  = [myHeadlineFrame.geometricBounds[0], myHeadlineFrame.geometricBounds[1], 36, 1800];
@@ -653,6 +655,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
 
 	myDoc.groups.item("script_story_template").remove();
 	myDoc.groups.item("script_burst_flag_template").remove();
+	myDoc.textFrames.item("script_buyout_template").remove();
 	myDoc.groups.item("script_percent_burst_template").remove();
 
 	//Product block offset (in pixels)
