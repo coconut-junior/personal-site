@@ -1,7 +1,24 @@
-var args = arguments[0].split(','); //format: url:1,2,3,4;url:5,6,7
-var path = args[0];
-var id = args[1];
-var id = parseInt(id);
+//@include 'json_es3.jsx';
+var args = arguments[0];
+var qmID = args;
+
+function getFolderPath(filePath) {
+  var file = new File(filePath);
+  return file.parent.fsName;
+}
+
+var scriptDir = new File($.fileName).parent;
+
+//read and parse the json
+var jsonFile = File(scriptDir + '/quickmarks/' + qmID + '.json');
+jsonFile.open('r');
+jsonFile.encoding = 'UTF-8';
+var text = jsonFile.read();
+var quickmark = JSON.parse(text);
+jsonFile.close();
+
+var path = quickmark.path;
+var id = quickmark.id;
 
 try {
   app.activate();
