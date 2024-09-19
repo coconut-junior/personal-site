@@ -159,6 +159,30 @@
       "hidden": false,
       "version": 1.0,
       "description": "Select one or multiple images. The script will clear transformations such as rotation and flip, then fit them to the frame."
+    },
+    {
+      "name": "JSON ES3",
+      "filename": "json_es3.jsx",
+      "url": "https://jbx.design/stellar/json_es3.jsx",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
+    },
+    {
+      "name": "Open Quickmark",
+      "filename": "open_quickmark.jsx",
+      "url": "https://jbx.design/stellar/open_quickmark.jsx",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
+    },
+    {
+      "name": "Add Quickmark",
+      "filename": "add_quickmark.jsx",
+      "url": "https://jbx.design/stellar/add_quickmark.jsx",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
     }
   ]
 }
