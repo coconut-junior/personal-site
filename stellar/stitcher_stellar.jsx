@@ -4,70 +4,6 @@
 //Updated to automatically name and place assets in correct folder
 //Updated to correct image scaling
 
-var scriptPath = File($.fileName).path;
-var mainlineFont = 'Marvin';
-var adWidth = 1080;
-var adHeight = 672;
-var margin = 10;
-var gSettings = new Object();
-var currentSettingsFile = File(scriptPath + '/smartly.ini');
-
-var versionedLinks = {};
-var national_links = [];
-var dcList = ['5050', '5100', '5150', '5200'];
-var layerList = [];
-
-for (dc in dcList) {
-  var dcName = dcList[dc];
-  versionedLinks[dcName] = [];
-}
-
-function getIndex(arr, val) {
-  for (var i = 0; i < arr.length; ++i) {
-    if (arr[i] == val) return i;
-  }
-}
-
-if (currentSettingsFile.exists) {
-  currentSettingsFile.open('r');
-  gSettings = eval(currentSettingsFile.read());
-  adWidth = gSettings.adWidth;
-  adHeight = gSettings.adHeight;
-  margin = gSettings.margin;
-  currentSettingsFile.close();
-}
-
-const orientation = {
-  landscape: 'landscape',
-  portrait: 'portrait',
-  square: 'square',
-};
-const titleStyle = 'item head m8';
-var thisDoc = app.activeDocument;
-thisDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
-thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
-
-var itemIndex = 0;
-var start = new Date();
-var link_dir = [];
-var exportDir = myTrimName(thisDoc.fullName) + '/digital';
-
-Array.prototype.exists = function (search) {
-  for (var i = 0; i < this.length; i++) if (this[i] == search) return true;
-  return false;
-};
-
-//backport replaceall function to es3
-String.prototype.replaceAll = function (str1, str2, ignore) {
-  return this.replace(
-    new RegExp(
-      str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, '\\$&'),
-      ignore ? 'gi' : 'g'
-    ),
-    typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2
-  );
-};
-
 Array.prototype.includes = function (searchElement /*, fromIndex*/) {
   'use strict';
   var O = Object(this);
@@ -97,6 +33,73 @@ Array.prototype.includes = function (searchElement /*, fromIndex*/) {
     k++;
   }
   return false;
+};
+
+var thisDoc = app.activeDocument;
+var scriptPath = File($.fileName).path;
+var mainlineFont = 'Marvin';
+var adWidth = 1080;
+var adHeight = 672;
+var margin = 10;
+var gSettings = new Object();
+var currentSettingsFile = File(scriptPath + '/smartly.ini');
+
+var versionedLinks = {};
+var national_links = [];
+var dcList = ['5050', '5100', '5150', '5200'];
+var layerList = [];
+
+for (dc in dcList) {
+  var dcName = dcList[dc];
+  versionedLinks[dcName] = [];
+  try {
+    thisDoc.layers.add({ name: dcName });
+  } catch (e) {}
+}
+
+function getIndex(arr, val) {
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] == val) return i;
+  }
+}
+
+if (currentSettingsFile.exists) {
+  currentSettingsFile.open('r');
+  gSettings = eval(currentSettingsFile.read());
+  adWidth = gSettings.adWidth;
+  adHeight = gSettings.adHeight;
+  margin = gSettings.margin;
+  currentSettingsFile.close();
+}
+
+const orientation = {
+  landscape: 'landscape',
+  portrait: 'portrait',
+  square: 'square',
+};
+const titleStyle = 'item head m8';
+thisDoc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
+thisDoc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
+
+var itemIndex = 0;
+var start = new Date();
+var link_dir = [];
+var exportDir = myTrimName(thisDoc.fullName) + '/digital';
+
+Array.prototype.exists = function (search) {
+  for (var i = 0; i < this.length; i++) if (this[i] == search) return true;
+  return false;
+};
+
+//backport replaceall function to es3
+String.prototype.replaceAll = function (str1, str2, ignore) {
+  return this.replace(
+    new RegExp(
+      str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, '\\$&'),
+      ignore ? 'gi' : 'g'
+    ),
+    typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2
+  );
 };
 
 var w = new Window('dialog', 'Create Smartly Ads');
