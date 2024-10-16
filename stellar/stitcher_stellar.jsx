@@ -228,8 +228,12 @@ function makeAds() {
       var link = dcLinks[l];
       if (linkCounts[link] == undefined) linkCounts[link] = 1;
       else if (!link.match('.ai') && !link.toLowerCase().match('logo'))
-        //dont count logos as dupes
-        linkCounts[link]++;
+        if (linkCounts[link] == undefined) {
+          //dont count logos as dupes
+          linkCounts[link] = 1;
+        } else {
+          linkCounts[link]++;
+        }
     }
   }
 
