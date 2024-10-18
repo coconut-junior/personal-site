@@ -425,7 +425,17 @@ function addProductInfo(myDoc, myRecord, myPath) {
 		catch(e) {
 			app.changeGrepPreferences.changeTo = "?";
 		}
-		myProductText.changeGrep();
+		
+		try {
+			myProductText.changeGrep();
+		}
+		catch (e) {
+			try {
+				alert("Failed to fill additional product info for '" + productInfo[i - 1] + "'. The text in this box is overflowing. Please add the info manually afterwards.");
+				break;
+			}
+			catch(e){}
+		}
 	}
 
 	var myLabel = "";
