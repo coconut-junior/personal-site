@@ -61,7 +61,7 @@
       "filename": "create_signs_stellar.jsx",
       "url": "https://jbx.design/stellar/create_signs_stellar.jsx",
       "hidden": false,
-      "version": 2.3,
+      "version": 2.4,
       "description": "Exports each group as an 8.5 x 11 PDF."
     },
     {

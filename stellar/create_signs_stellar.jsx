@@ -4,6 +4,8 @@
 // Keith Gilbert, Gilbert Consulting
 // http://www.gilbertconsulting.com
 
+var existingFileInc = 0;
+
 //backport replaceall function to es3
 String.prototype.replaceAll = function (str1, str2, ignore) {
   return this.replace(
@@ -163,6 +165,16 @@ function exportGroup(myDoc, myProduct, myOutputFolderName) {
   }
 
   myFileNameText = myFileNameText.slice(0, 24);
+  if (myFileNameText[0] == '_') {
+    myFileNameText = myFileNameText.slice(1, myFileNameText.length - 1);
+  }
+
+  var f = File(myOutputFolderName + '/' + myFileNameText + '.indd');
+  if (f.exists) {
+    myFileNameText += existingFileInc;
+    ++existingFileInc;
+  }
+
   var myFileName = new File(myOutputFolderName + '/' + myFileNameText + '.pdf');
   var n = 1;
   while (myFileName.exists) {
@@ -180,6 +192,7 @@ function exportGroup(myDoc, myProduct, myOutputFolderName) {
     false,
     app.pdfExportPresets.itemByName('[Press Quality]')
   );
+
   mySignDoc.save(File(myOutputFolderName + '/' + myFileNameText + '.indd'));
   mySignDoc.close();
 }
