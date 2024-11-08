@@ -32,4 +32,6 @@ try {
   alert(
     'Could not locate quickmark. Check to see if the document was renamed.'
   );
+
+  jsonFile.remove();
 }
