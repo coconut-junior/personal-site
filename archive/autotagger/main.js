@@ -1,5 +1,6 @@
 document.addEventListener('mousemove', mouseMove);
 document.addEventListener('dragleave', dragLeave);
+console.log('main script loaded');
 
 function mouseMove(e) {
   var x = e.clientX;
@@ -34,9 +35,9 @@ function dropHandler(ev) {
 
         if (file.name.includes('.xls')) {
           xlsFile = file;
-          ev.target.style.color = 'white';
-          ev.target.style.backgroundColor = '#6B9EFF';
-          ev.target.style.border = '2px solid #6B9EFF';
+          ev.target.style.color = 'var(--bright)';
+          ev.target.style.backgroundColor = 'var(--secondary1)';
+          ev.target.style.border = '2px solid var(--primary3)';
         } else {
           alert(
             "Doesn't look like an Excel spreadsheet (XLS). Please try a different file. :)"
@@ -57,7 +58,7 @@ function dragOverHandler(ev) {
 
   // Prevent default behavior (Prevent file from being opened)
   ev.target.style =
-    'background: #ECF9FF;border: 2px dashed #CDCDCD;border-radius: 20px;';
+    'background: var(--primary4);border: 2px dashed var(--black);border-radius: 20px;';
   ev.preventDefault();
 }
 
@@ -89,6 +90,7 @@ function openSheet(file) {
       percent_off = parseInt(document.getElementById('percentBox').value);
 
       if (sheetName[0] == 'featureViewTable') {
+        console.log('found feature view');
         var range = XLSX.utils.decode_range(sheet['!ref']);
         matched_items = [];
 
@@ -159,6 +161,7 @@ function autotag() {
 }
 
 function download() {
+  console.log('saving tags');
   var blob = new Blob([tagList.value], { type: 'text/plain;charset=utf-8' });
   saveAs(blob, 'tags.txt');
 }

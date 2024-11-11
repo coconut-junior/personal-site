@@ -108,15 +108,3 @@ function fixCopy(copy) {
 }
 
 console.log('formatting script loaded');
-console.log(
-  fixCopy('20-24oz In shell peanuts look for unsalted, salted and Hot flavors')
-);
-console.log(fixCopy('*NO TILLAGE *FOOD PLOT SEED'));
-console.log(
-  fixCopy('HOLDS UP TO 300LBS FOLDS IN HALF FOR EASY STORAGE CARRY HANDLE')
-);
-console.log(
-  fixCopy('Huge selection of styles, colors, & sizes to choose from')
-);
-console.log(fixCopy('8-12 oz. Scents vary by store'));
-console.log(fixCopy('	- Look for Hot and Pizza flavors 	'));
