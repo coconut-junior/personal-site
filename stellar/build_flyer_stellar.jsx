@@ -462,38 +462,38 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
 	}
 
 	// Add the logo(s)
-	var myOffset = 10;
-	for (var i=0; i<myRecord.logoArray.length; i++) {
-		// Locate the corresponding logo file
-		var myFile = myPath + '/logos/' + myRecord.logoArray[i] + '.ai';
+// 	var myOffset = 10;
+// 	for (var i=0; i<myRecord.logoArray.length; i++) {
+// 		// Locate the corresponding logo file
+// 		var myFile = myPath + '/logos/' + myRecord.logoArray[i] + '.ai';
 
-		var myLogoFrameMaster = myLocateFrame(myAd,"script_logo");
-		var myLogoFrame = myLogoFrameMaster.duplicate();
-		addItemsToGroup(/*Group*/myAd,/*PageItem|PageItem[]*/myLogoFrame);	
-		myLogoFrame.name = "script_logo_"+(i+1);
-		myLogoFrame.geometricBounds = [myLogoFrameMaster.geometricBounds[0]+(myOffset*i), myLogoFrameMaster.geometricBounds[1]+(myOffset*i), myLogoFrameMaster.geometricBounds[2]+(myOffset*i), myLogoFrameMaster.geometricBounds[3]+(myOffset*i)];
-		if (! myFile || myFile.length == 0) { // The image file could not be located
-			var myTextFrame = myAd.textFrames.add();
-			myTextFrame.name = "script_logo_required";
-			myTextFrame.geometricBounds = myLogoFrame.geometricBounds;
-			myLogoFrame.remove();
-			myTextFrame.contents = "Logo required:\n"+myRemoveStartEndSpaces(myRecord.logoArray[i]).toLowerCase();
-			myTextFrame.paragraphs[0].justification = Justification.centerAlign;
-			var myUnnamedColor = app.activeDocument.colors[-1].duplicate();
-			myUnnamedColor.properties = {colorValue:[0,0,100,0]};
-			myTextFrame.fillColor = myUnnamedColor;
-			myTextFrame.fillTint = 100;
-			myTextFrame.textFramePreferences.verticalJustification = VerticalJustification.CENTER_ALIGN;
-			myTextFrame.textFramePreferences.insetSpacing = 5;
-		}
-		else {
-			try {
-				myLogoFrame.place(File(myFile));
-				myLogoFrame.fit(FitOptions.PROPORTIONALLY);
-			} catch (e) {
-}
-		}		
-	}	
+// 		var myLogoFrameMaster = myLocateFrame(myAd,"script_logo");
+// 		var myLogoFrame = myLogoFrameMaster.duplicate();
+// 		addItemsToGroup(/*Group*/myAd,/*PageItem|PageItem[]*/myLogoFrame);	
+// 		myLogoFrame.name = "script_logo_"+(i+1);
+// 		myLogoFrame.geometricBounds = [myLogoFrameMaster.geometricBounds[0]+(myOffset*i), myLogoFrameMaster.geometricBounds[1]+(myOffset*i), myLogoFrameMaster.geometricBounds[2]+(myOffset*i), myLogoFrameMaster.geometricBounds[3]+(myOffset*i)];
+// 		if (! myFile || myFile.length == 0) { // The image file could not be located
+// 			var myTextFrame = myAd.textFrames.add();
+// 			myTextFrame.name = "script_logo_required";
+// 			myTextFrame.geometricBounds = myLogoFrame.geometricBounds;
+// 			myLogoFrame.remove();
+// 			myTextFrame.contents = "Logo required:\n"+myRemoveStartEndSpaces(myRecord.logoArray[i]).toLowerCase();
+// 			myTextFrame.paragraphs[0].justification = Justification.centerAlign;
+// 			var myUnnamedColor = app.activeDocument.colors[-1].duplicate();
+// 			myUnnamedColor.properties = {colorValue:[0,0,100,0]};
+// 			myTextFrame.fillColor = myUnnamedColor;
+// 			myTextFrame.fillTint = 100;
+// 			myTextFrame.textFramePreferences.verticalJustification = VerticalJustification.CENTER_ALIGN;
+// 			myTextFrame.textFramePreferences.insetSpacing = 5;
+// 		}
+// 		else {
+// 			try {
+// 				myLogoFrame.place(File(myFile));
+// 				myLogoFrame.fit(FitOptions.PROPORTIONALLY);
+// 			} catch (e) {
+// }
+// 		}		
+// 	}	
 	var myLogoFrameMaster = myLocateFrame(myAd,"script_logo");
 	if (myLogoFrameMaster) {
 		myLogoFrameMaster.remove();
