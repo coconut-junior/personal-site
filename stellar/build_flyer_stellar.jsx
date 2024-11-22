@@ -12,8 +12,6 @@
 //@include "helpers/xlsx.extendscript.js"
 //@include "helpers/formatting.js"
 
-app.activate();
-
 var pathArg, key;
 var singleTextFrame = true;
 var dcList = ['5050', '5100', '5150', '5200'];
@@ -152,6 +150,7 @@ function Main() {
     // For each record...
     myResult[i] = myTestRecord(myPath, myData[i], i);
   }
+
   // Process each record and build pages
   myBuildPages(myPath, myResult, myMonth, myDay, myYear);
   beep();
@@ -1114,6 +1113,9 @@ function myDocPrep(myDoc) {
     GlobalClashResolutionStrategy.loadAllWithOverwrite
   );
   // Paste template items from the master template
+  app.selection = null;
+  app.selection = myDoc.pageItems[0];
+  app.activate();
   app.paste();
 }
 // Pad a number to two digits with a leading zero if necessary
