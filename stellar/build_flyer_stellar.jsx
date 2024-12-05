@@ -11,6 +11,7 @@
 
 //@include "helpers/xlsx.extendscript.js"
 //@include "helpers/formatting.js"
+//@include 'json_es3.jsx';
 
 var pathArg, key;
 var singleTextFrame = true;
