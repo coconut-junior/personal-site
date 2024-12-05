@@ -16,6 +16,7 @@ var pathArg, key;
 var singleTextFrame = true;
 var dcList = ['5050', '5100', '5150', '5200'];
 var isTest = false;
+var logoDict = undefined;
 
 try {
   pathArg = arguments[0];
@@ -136,6 +137,15 @@ function Main() {
     pathArg.split('/')[pathArg.split('/').length - 1],
     ''
   );
+
+  var jsonFile = File(myPath + '/logos/assets.json');
+  if (jsonFile.exists) {
+    jsonFile.open('r');
+    jsonFile.encoding = 'UTF-8';
+    var text = jsonFile.read();
+    logoDict = JSON.parse(text);
+    jsonFile.close();
+  }
 
   var workbook = XLSX.readFile(myXLSXFile);
 
@@ -574,20 +584,13 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
   // Add the logo(s)
   var myOffset = 10;
 
-  if (isTest) {
+  if (logoDict) {
     for (var i = 0; i < myRecord.logoArray.length; i++) {
       var brand = myRecord.logoArray[i];
       if (brand) {
-        brand = brand
-          .trim()
-          .replace(/\//g, '%20')
-          .replaceAll(' ', '%20')
-          .replace(/[\r\n]+/g, '%20');
-        if (brand.match(',')) {
-          brand = brand.split(',')[0]; //only grab first logo in list
-        }
         // Locate the corresponding logo file
-        var myFile = myPath + '/logos/' + brand + '.ai';
+        brandFileName = logoDict[brand];
+        var myFile = myPath + '/logos/' + brandFileName + '.ai';
         var myLogoFrameMaster = myLocateFrame(myAd, 'script_logo');
         var myLogoFrame = myLogoFrameMaster.duplicate();
         addItemsToGroup(/*Group*/ myAd, /*PageItem|PageItem[]*/ myLogoFrame);
