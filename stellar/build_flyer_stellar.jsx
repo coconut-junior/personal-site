@@ -15,7 +15,7 @@
 var pathArg, key;
 var singleTextFrame = true;
 var dcList = ['5050', '5100', '5150', '5200'];
-var downloadLogos = false;
+var isTest = false;
 
 try {
   pathArg = arguments[0];
@@ -103,6 +103,7 @@ function Main() {
   var testFile = File('/Users/jblanck/Desktop/testfile.xls');
   if (testFile.exists) {
     alert('Test file detected on desktop, loading items');
+    isTest = true;
     key = 1;
     pathArg = '/Users/jblanck/Desktop/testfile.xls';
   }
@@ -573,7 +574,7 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
   // Add the logo(s)
   var myOffset = 10;
 
-  if (downloadLogos) {
+  if (isTest) {
     for (var i = 0; i < myRecord.logoArray.length; i++) {
       var brand = myRecord.logoArray[i];
       if (brand) {
