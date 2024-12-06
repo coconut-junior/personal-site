@@ -139,7 +139,7 @@ function Main() {
     ''
   );
 
-  var jsonFile = File(myPath + '/logos/assets.json');
+  var jsonFile = File(myPath + 'logos/assets.json');
   if (jsonFile.exists) {
     jsonFile.open('r');
     jsonFile.encoding = 'UTF-8';
@@ -572,6 +572,32 @@ function addProductInfo(myDoc, myRecord, myPath) {
   return myAd;
 }
 
+function cleanString(str) {
+  var result = '';
+  var i;
+  var c;
+  var code;
+
+  for (i = 0; i < str.length; i++) {
+    c = str.charAt(i);
+    code = str.charCodeAt(i);
+
+    // Check if character is a letter (A-Z or a-z)
+    if (
+      (code >= 65 && code <= 90) || // Uppercase A-Z
+      (code >= 97 && code <= 122) || // Lowercase a-z
+      // Include international characters
+      (code >= 192 && code <= 687) || // Latin, Greek, Cyrillic
+      (code >= 880 && code <= 1279) || // Extended characters
+      (code >= 7680 && code <= 7935)
+    ) {
+      // Extended Latin
+      result += c;
+    }
+  }
+  return result;
+}
+
 // Build a single ad unit
 function myBuildAdUnit(myDoc, myRecord, myPath) {
   var myAd;
@@ -588,10 +614,15 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
   if (logoDict) {
     for (var i = 0; i < myRecord.logoArray.length; i++) {
       var brand = myRecord.logoArray[i];
-      if (brand) {
+      var logoKeyText = cleanString(brand);
+      brandFileName = undefined;
+      try {
+        brandFileName = logoDict[logoKeyText]['logo'];
+      } catch (e) {}
+
+      if (brand && brandFileName) {
         // Locate the corresponding logo file
-        brandFileName = logoDict[brand];
-        var myFile = myPath + '/logos/' + brandFileName + '.ai';
+        var myFile = myPath + '/logos/' + brandFileName;
         var myLogoFrameMaster = myLocateFrame(myAd, 'script_logo');
         var myLogoFrame = myLogoFrameMaster.duplicate();
         addItemsToGroup(/*Group*/ myAd, /*PageItem|PageItem[]*/ myLogoFrame);
