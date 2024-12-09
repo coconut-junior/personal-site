@@ -183,6 +183,15 @@
       "hidden": true,
       "version": 1.0,
       "description": ""
+    },
+    {
+      "name": "Test",
+      "filename": "image_resize.py",
+      "url": "https://jbx.design/stellar/image_resize.py",
+      "requirements": "https://jbx.design/stellar/image_resize_requirements.txt",
+      "hidden": false,
+      "version": 1.0,
+      "description": ""
     }
   ]
 }
