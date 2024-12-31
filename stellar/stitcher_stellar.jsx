@@ -364,10 +364,12 @@ function createDoc(objects, index, version, productName) {
   var uniqueLinks = [];
   for (var i = objects.length - 1; i >= 0; i--) {
     var obj = objects[i];
-    if (!uniqueLinks.exists(obj.itemLink.name)) {
-      obj.duplicate(newDoc.pages[0]);
-      uniqueLinks.push(obj.itemLink.name);
-    }
+    try {
+      if (!uniqueLinks.exists(obj.itemLink.name)) {
+        obj.duplicate(newDoc.pages[0]);
+        uniqueLinks.push(obj.itemLink.name);
+      }
+    } catch (e) {}
   }
 
   var imgs = newDoc.allGraphics;
