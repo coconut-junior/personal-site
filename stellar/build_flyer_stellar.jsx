@@ -160,7 +160,12 @@ function Main() {
   // Parse and test each record for integrity
   for (var i = 0; i < myData.length; i++) {
     // For each record...
-    myResult[i] = myTestRecord(myPath, myData[i], i);
+    try {
+      myResult[i] = myTestRecord(myData[i]);
+    } catch (e) {
+      alert('error on entry ' + myData[i]);
+      alert(e);
+    }
   }
 
   // Process each record and build pages
@@ -170,7 +175,7 @@ function Main() {
 }
 
 // Parse and test a data record for integrity
-function myTestRecord(myPath, myRecord, myLineNumber) {
+function myTestRecord(myRecord) {
   var myResult = new Object();
   myResult.pageNumber = '';
   myResult.version = '';
