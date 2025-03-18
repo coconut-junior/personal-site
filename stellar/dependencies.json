@@ -45,8 +45,8 @@
       "filename": "search_for_links.jsx",
       "url": "https://jbx.design/stellar/search_for_links.jsx",
       "hidden": false,
-      "version": 1.2,
-      "description": ""
+      "version": 1.3,
+      "description": "Fixes broken Sharepoint links that point to another user's home folder."
     },
     {
       "name": "Badger to Email",
@@ -181,15 +181,6 @@
       "filename": "add_quickmark.jsx",
       "url": "https://jbx.design/stellar/add_quickmark.jsx",
       "hidden": true,
-      "version": 1.0,
-      "description": ""
-    },
-    {
-      "name": "Test",
-      "filename": "image_resize.py",
-      "url": "https://jbx.design/stellar/image_resize.py",
-      "requirements": "https://jbx.design/stellar/image_resize_requirements.txt",
-      "hidden": false,
       "version": 1.0,
       "description": ""
     }
