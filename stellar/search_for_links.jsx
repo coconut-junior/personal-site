@@ -64,6 +64,12 @@ function getDesignFolder(oneDrive) {
   });
 }
 
+function getCorpFolder(oneDrive) {
+  return Folder(oneDrive).getFiles(function (item) {
+    return item instanceof Folder && item.absoluteURI.match('Corporate');
+  });
+}
+
 function detectPathOS(linkPath) {
   if (/^[a-zA-Z]:\\/.test(linkPath)) {
     return 'windows';
@@ -77,20 +83,12 @@ function detectPathOS(linkPath) {
   }
 }
 
-function relink(i, f) {
-  while (f.match('%20')) {
-    f = f.replace('%20', ' ');
-  }
-  var path = f;
-  imgs[i].relink('file:' + path);
-}
-
 function getRelPath(s) {
   s = s.replaceAll('%20', ' ');
   var sArr = s.split(/[\/\\]+/);
   for (var i = 0; i < sArr.length; ++i) {
     var f = sArr[i];
-    if (f.match('Designs')) {
+    if (f.match('Designs') || f.match('Corporate')) {
       //get everything following 'Ollies Bargain Outlet' or 'OlliesBargainOutlet'
       return s.split(f)[1];
     }
@@ -101,6 +99,13 @@ function getRelPath(s) {
 var spFolders = getSharePointFolders();
 var correctSlash = getCorrectSlash();
 
+//count missing before relink
+for (i = 0; i < imgs.length; i++) {
+  if (imgs[i].status == LinkStatus.LINK_MISSING) {
+    ++missingPre;
+  }
+}
+
 //begin relinking
 for (i = 0; i < imgs.length; i++) {
   var img = imgs[i];
@@ -108,24 +113,24 @@ for (i = 0; i < imgs.length; i++) {
   ++pb.value;
 
   if (img.status == LinkStatus.LINK_MISSING) {
-    ++missingPre;
-    //find the relative path of both links
     var relBrokenPath = getRelPath(img.linkResourceURI);
-    alert(relBrokenPath);
+    var spFolder = spFolders[0].fsName;
+    var designFolder = Folder(getDesignFolder(Folder(spFolder))).fsName;
+    var corpFolder = Folder(getCorpFolder(Folder(spFolder))).fsName;
+    var combinedPath;
 
-    for (i = 0; i < spFolders.length; ++i) {
-      var spFolder = spFolders[i].fsName;
-      var designFolder = getDesignFolder(Folder(spFolder));
-      designFolder = Folder(designFolder).fsName;
-      var combinedPath = designFolder + relBrokenPath;
-      //replace slashes with correct one for mac or windows
-      combinedPath = combinedPath.replace(/[\/\\]/g, correctSlash);
-
-      //attempt to relink
-      try {
-        relink(i, combinedPath);
-      } catch (e) {}
+    if (img.linkResourceURI.match('Designs')) {
+      combinedPath = designFolder + relBrokenPath;
+    } else if (img.linkResourceURI.match('Corporate')) {
+      combinedPath = corpFolder + relBrokenPath;
     }
+    //replace slashes with correct one for mac or windows
+    combinedPath = combinedPath.replace(/[\/\\]/g, correctSlash);
+
+    //attempt to relink
+    try {
+      imgs[i].relink('file:' + combinedPath);
+    } catch (e) {}
   }
 }
 
@@ -139,6 +144,7 @@ w.close();
 alert('Found & relinked ' + (missingPre - missingPost) + ' files.');
 
 // /Users/polder/Library/CloudStorage/OneDrive-OlliesBargainOutlet/Designs
+// /Users/polder/Library/CloudStorage/OneDrive-OlliesBargainOutlet/Corporate Assets
 // /Users/jblanck/Library/CloudStorage/OneDrive-SharedLibraries-OlliesBargainOutlet/Creative Services - Designs/emails
 // C:\Users\lstrickland\Ollies Bargain Outlet
 // C:\Users\CArthur\OneDrive - Ollies Bargain Outlet\Creative Services - Designs
