@@ -66,7 +66,10 @@ function getDesignFolder(oneDrive) {
 
 function getCorpFolder(oneDrive) {
   return Folder(oneDrive).getFiles(function (item) {
-    return item instanceof Folder && item.absoluteURI.match('Corporate');
+    return (
+      item instanceof Folder &&
+      item.absoluteURI.replaceAll('%20', ' ').match('Corporate Assets')
+    );
   });
 }
 
@@ -88,7 +91,10 @@ function getRelPath(s) {
   var sArr = s.split(/[\/\\]+/);
   for (var i = 0; i < sArr.length; ++i) {
     var f = sArr[i];
-    if (f.match('Designs') || f.match('Corporate')) {
+    if (
+      f.match('Designs') ||
+      f.replaceAll('%20', ' ').match('Corporate Assets')
+    ) {
       //get everything following 'Ollies Bargain Outlet' or 'OlliesBargainOutlet'
       return s.split(f)[1];
     }
@@ -121,7 +127,9 @@ for (i = 0; i < imgs.length; i++) {
 
     if (img.linkResourceURI.match('Designs')) {
       combinedPath = designFolder + relBrokenPath;
-    } else if (img.linkResourceURI.match('Corporate')) {
+    } else if (
+      img.linkResourceURI.replaceAll('%20', ' ').match('Corporate Assets')
+    ) {
       combinedPath = corpFolder + relBrokenPath;
     }
     //replace slashes with correct one for mac or windows
