@@ -120,7 +120,6 @@ for (i = 0; i < imgs.length; i++) {
       var combinedPath = designFolder + relBrokenPath;
       //replace slashes with correct one for mac or windows
       combinedPath = combinedPath.replace(/[\/\\]/g, correctSlash);
-      alert(combinedPath);
 
       //attempt to relink
       try {
