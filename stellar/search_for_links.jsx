@@ -123,7 +123,9 @@ for (i = 0; i < imgs.length; i++) {
       alert(combinedPath);
 
       //attempt to relink
-      relink(i, combinedPath);
+      try {
+        relink(i, combinedPath);
+      } catch (e) {}
     }
   }
 }
