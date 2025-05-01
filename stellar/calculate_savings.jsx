@@ -1,4 +1,9 @@
-var stylesToCheck = ['8 pt price', '8 pt theirs'];
+var stylesToCheck = [
+  '6.5 pt price',
+  '6.5 pt theirs',
+  '8 pt price',
+  '8 pt theirs',
+];
 
 //backport includes function
 if (!Array.prototype.includes) {
