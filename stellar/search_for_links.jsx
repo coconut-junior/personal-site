@@ -130,6 +130,7 @@ for (i = 0; i < imgs.length; i++) {
     } else if (
       img.linkResourceURI.replaceAll('%20', ' ').match('Corporate Assets')
     ) {
+      status.text = 'Searching for ' + relBrokenPath + '...';
       combinedPath = corpFolder + relBrokenPath;
     }
     //replace slashes with correct one for mac or windows
