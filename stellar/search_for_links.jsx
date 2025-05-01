@@ -1,107 +1,129 @@
-//written 2023 by Jimmy Blanck
-//must be run from the User script folder
-
-//to do:
-//make compatible with windows
-
-app.scriptPreferences.userInteractionLevel =
-  UserInteractionLevels.INTERACT_WITH_ALL;
-
-var i, j, searchfolder;
+var doc = app.activeDocument;
+var imgs = doc.links;
+var username = $.getenv('USERNAME') || $.getenv('USER');
+var homeFolder = Folder('~');
+var os = '';
 var w = new Window('palette', 'Progress', undefined, { closeButton: false });
 var status = w.add('statictext');
 var pb = w.add('progressbar', undefined, 0, 100);
-pb.preferredSize = [400, -1];
-status.preferredSize = [400, -1];
-
-//original folder structure
-var originalFolder = '1_creative_design_dept'; //old root dir
-var originalSubdir = '/corporate_assets';
-
-function getUsername() {
-  var scriptPath = Folder(File($.fileName).path).fsName;
-  var user = scriptPath.toString().split('/')[2];
-  return user;
-}
-
-function getRelativePath(path) {
-  var scriptPath = Folder(File($.fileName).path).fsName;
-  var user = scriptPath.toString().split('/')[2];
-  var newPath = path.split('/');
-  newPath[2] = user;
-
-  return newPath.join('/');
-}
-
-doc = app.activeDocument;
-imgs = doc.links;
-// path = Folder.selectDialog ("Select a Folder");  // type here the path for the folder to start
-// searchfolder = new Folder(path);
 var missingPre = 0;
 var missingPost = 0;
 
+pb.preferredSize = [400, -1];
+status.preferredSize = [400, -1];
+pb.maxvalue = imgs.length;
 w.show();
 
-//search root of all onedrive sites
-var cloudStorage = '/Users/' + getUsername() + '/Library/CloudStorage';
-var sharepointSites = Folder(cloudStorage).getFiles(function (item) {
-  return item instanceof Folder;
-});
-var oneDrive = '';
-for (var i = 0; i < sharepointSites.length; ++i) {
-  if (sharepointSites[i].fsName.match('OneDrive')) {
-    oneDrive = sharepointSites[i].fsName;
+if ($.os.toLowerCase().indexOf('mac') >= 0) {
+  os = 'mac';
+} else if ($.os.toLowerCase().indexOf('windows') >= 0) {
+  os = 'windows';
+}
+
+// Polyfill for String.prototype.replaceAll in ExtendScript
+if (!String.prototype.replaceAll) {
+  String.prototype.replaceAll = function (search, replacement) {
+    var searchPattern =
+      search instanceof RegExp ? search : new RegExp(escapeRegExp(search), 'g');
+    return this.replace(searchPattern, replacement);
+  };
+}
+
+function getCorrectSlash(s) {
+  if (os == 'mac') {
+    return '/';
+  } else {
+    return '\\';
   }
 }
-var sharepointPages = Folder(oneDrive).getFiles(function (item) {
-  return item instanceof Folder;
-});
 
-pb.maxvalue = imgs.length;
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
+function getSharePointFolders() {
+  var cloudStorage;
+  if (os == 'mac') {
+    cloudStorage = homeFolder + '/Library/CloudStorage'; //mac
+  } else {
+    //if windows, search for folder matching "Ollies Bargain Outlet"
+    cloudStorage = Folder(homeFolder);
+  }
+
+  return Folder(cloudStorage).getFiles(function (item) {
+    return (
+      item instanceof Folder &&
+      item.absoluteURI.replaceAll(' ', '').match('OlliesBargainOutlet')
+    );
+  });
+}
+
+function getDesignFolder(oneDrive) {
+  return Folder(oneDrive).getFiles(function (item) {
+    return item instanceof Folder && item.absoluteURI.match('Designs');
+  });
+}
+
+function detectPathOS(linkPath) {
+  if (/^[a-zA-Z]:\\/.test(linkPath)) {
+    return 'windows';
+  } else if (
+    linkPath.indexOf('/') === 0 ||
+    (linkPath.indexOf(':') > 0 && linkPath.indexOf('\\') === -1)
+  ) {
+    return 'mac';
+  } else {
+    return 'unknown';
+  }
+}
+
+function relink(i, f) {
+  while (f.match('%20')) {
+    f = f.replace('%20', ' ');
+  }
+  var path = f;
+  imgs[i].relink('file:' + path);
+}
+
+function getRelPath(s) {
+  s = s.replaceAll('%20', ' ');
+  var sArr = s.split(/[\/\\]+/);
+  for (var i = 0; i < sArr.length; ++i) {
+    var f = sArr[i];
+    if (f.match('Designs')) {
+      //get everything following 'Ollies Bargain Outlet' or 'OlliesBargainOutlet'
+      return s.split(f)[1];
+    }
+  }
+}
+
+//get all sharepoint folders
+var spFolders = getSharePointFolders();
+var correctSlash = getCorrectSlash();
+
+//begin relinking
 for (i = 0; i < imgs.length; i++) {
-  $.writeln('Image ' + i);
+  var img = imgs[i];
+  var pathType = detectPathOS(img.linkResourceURI);
   ++pb.value;
 
-  //search in user's sharepoint/onedrive folder
-  if (imgs[i].status == LinkStatus.LINK_MISSING) {
+  if (img.status == LinkStatus.LINK_MISSING) {
     ++missingPre;
+    //find the relative path of both links
+    var relBrokenPath = getRelPath(img.linkResourceURI);
+    alert(relBrokenPath);
 
-    if (imgs[i].linkResourceURI.match('Users')) {
-      try {
-        var path = getRelativePath(imgs[i].linkResourceURI);
-        status.text = 'Searching for ' + imgs[i].name + ' in ' + path + '...';
-        imgs[i].relink(path);
-      } catch (e) {}
-    }
-    //link isnt where it should be, look somewhere else
-    if (!Folder(imgs[i].linkResourceURI.replace(imgs[i].name, '')).exists) {
-      var missingFolder = imgs[i].linkResourceURI;
+    for (i = 0; i < spFolders.length; ++i) {
+      var spFolder = spFolders[i].fsName;
+      var designFolder = getDesignFolder(Folder(spFolder));
+      designFolder = Folder(designFolder).fsName;
+      var combinedPath = designFolder + relBrokenPath;
+      //replace slashes with correct one for mac or windows
+      combinedPath = combinedPath.replace(/[\/\\]/g, correctSlash);
+      alert(combinedPath);
 
-      //link points to the old marketing drive
-      var f = missingFolder.split(originalFolder)[1];
-      try {
-        f = f.replace(originalSubdir, '');
-      } catch (e) {}
-      if (missingFolder.match(originalFolder)) {
-        relinkOriginal(f, i);
-      }
-
-      //link points to different sharepoint site
-      try {
-        var relativeSharepointPath =
-          '/' +
-          imgs[i].linkResourceURI
-            .split('OneDrive')[1]
-            .split('/')
-            .slice(2)
-            .join('/');
-        relinkOriginal(relativeSharepointPath, i);
-      } catch (e) {}
-    }
-
-    //if link is still missing, seach in selected folder
-    if (imgs[i].status == LinkStatus.LINK_MISSING) {
+      //attempt to relink
+      relink(i, combinedPath);
     }
   }
 }
@@ -115,41 +137,7 @@ for (i = 0; i < imgs.length; i++) {
 w.close();
 alert('Found & relinked ' + (missingPre - missingPost) + ' files.');
 
-function getFiles(filename, path) {
-  var result, folderList, fl;
-  result = Folder(path).getFiles(filename + '.*');
-  status.text = 'Searching for ' + filename + ' in ' + path + '...';
-
-  if (result.length > 0) {
-    return result;
-  } else {
-    folderList = Folder(path).getFiles(function (item) {
-      return item instanceof Folder && !item.hidden;
-    });
-
-    for (fl = 0; fl < folderList.length; fl++) {
-      $.writeln('Looking in: ' + path + '/' + folderList[fl].name);
-      result = getFiles(filename, path + '/' + folderList[fl].name);
-
-      if (result.length > 0) {
-        return result;
-      }
-    }
-  }
-
-  return [];
-}
-
-function relinkOriginal(f, i) {
-  while (f.match('%20')) {
-    f = f.replace('%20', ' ');
-  }
-
-  for (var s = 0; s < sharepointPages.length; ++s) {
-    try {
-      var path = sharepointPages[s].fsName + f;
-      status.text = 'Searching for ' + imgs[i].name + ' in ' + path + '...';
-      imgs[i].relink('file:' + path);
-    } catch (e) {}
-  }
-}
+// /Users/polder/Library/CloudStorage/OneDrive-OlliesBargainOutlet/Designs
+// /Users/jblanck/Library/CloudStorage/OneDrive-SharedLibraries-OlliesBargainOutlet/Creative Services - Designs/emails
+// C:\Users\lstrickland\Ollies Bargain Outlet
+// C:\Users\CArthur\OneDrive - Ollies Bargain Outlet\Creative Services - Designs
