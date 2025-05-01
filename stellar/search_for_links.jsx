@@ -133,10 +133,10 @@ for (i = 0; i < imgs.length; i++) {
       combinedPath = corpFolder + relBrokenPath;
     }
     //replace slashes with correct one for mac or windows
-    combinedPath = combinedPath.replace(/[\/\\]/g, correctSlash);
 
     //attempt to relink
     try {
+      combinedPath = combinedPath.replace(/[\/\\]/g, correctSlash);
       imgs[i].relink('file:' + combinedPath);
     } catch (e) {}
   }
@@ -153,6 +153,6 @@ alert('Found & relinked ' + (missingPre - missingPost) + ' files.');
 
 // /Users/polder/Library/CloudStorage/OneDrive-OlliesBargainOutlet/Designs
 // /Users/polder/Library/CloudStorage/OneDrive-OlliesBargainOutlet/Corporate Assets
-// /Users/jblanck/Library/CloudStorage/OneDrive-SharedLibraries-OlliesBargainOutlet/Creative Services - Designs/emails
+// /Users/jblanck/Library/CloudStorage/OneDrive-SharedLibraries-OlliesBargainOutlet/Creative Services - Designs
 // C:\Users\lstrickland\Ollies Bargain Outlet
 // C:\Users\CArthur\OneDrive - Ollies Bargain Outlet\Creative Services - Designs
