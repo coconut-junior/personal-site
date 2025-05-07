@@ -184,4 +184,12 @@ function growVertical(myTextFrame) {
   }
 }
 
-main();
+if (parseFloat(app.version) < 6) main();
+else
+  app.doScript(
+    main,
+    ScriptLanguage.JAVASCRIPT,
+    undefined,
+    UndoModes.ENTIRE_SCRIPT,
+    'Apply Discounts'
+  );
