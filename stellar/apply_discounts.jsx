@@ -86,12 +86,12 @@ function calculate() {
     //our price
     if (item != undefined && item == '[object TextFrame]') {
       for (var p = 0; p < item.paragraphs.length; ++p) {
+        var para = item.paragraphs[p];
         if (
-          item.paragraphs[p].appliedFont.name.match('ChocolateMilk') &&
-          (item.paragraphs[p].contents.match(/^\$/) ||
-            item.paragraphs[p].contents.match(centSymbol))
+          para.appliedFont.name.match('ChocolateMilk') &&
+          (para.contents.match(/^\$/) || para.contents.match(centSymbol))
         ) {
-          var contents = item.paragraphs[p].contents;
+          var contents = para.contents;
           var priceString = contents.replace(/\D/g, '');
           var price = parseInt(priceString) * 0.01;
           var newPrice = '';
@@ -104,83 +104,50 @@ function calculate() {
           }
 
           newPrice = newPrice.replace('.', '');
-          item.paragraphs[p].contents = item.paragraphs[p].contents
+          para.contents = para.contents
             .replace('$', '')
             .replace(centSymbol, '')
             .replace(priceString, newPrice);
         }
+        //discount line lists
+        else if (para.appliedParagraphStyle.name.match('line list')) {
+          var contents = para.contents;
+          var priceString = contents.replace(/[^\$¢.\/0-9]/g, '').split('/')[0];
+
+          //account for numbers appearing in front of price (measurements)
+          var lineListArr = priceString.split('$');
+          if (lineListArr.length == 2) {
+            priceString = '$' + lineListArr[1];
+          }
+
+          var price = parseFloat(priceString.replace('$', ''));
+          if (priceString.match(centSymbol)) {
+            priceString = priceString.slice(-3);
+            price = parseFloat(priceString.slice(0, 2));
+          }
+
+          var newPrice = '';
+          var newPriceFloat;
+
+          //calculate discount
+          if (priceString.match(/^\$/)) {
+            newPriceFloat = round(price * (1 - discount), 2);
+          } else if (priceString.match(centSymbol)) {
+            newPriceFloat = price * 0.01 * (1 - discount);
+            newPriceFloat = round(newPriceFloat, 2);
+          }
+
+          //format price as string
+          if (newPriceFloat < 1) {
+            newPrice = (newPriceFloat * 100).toString() + centSymbol;
+          } else {
+            newPrice = '$' + newPriceFloat.toString();
+          }
+
+          para.contents = para.contents.replace(priceString, newPrice);
+        }
       }
     }
-  }
-}
-
-// Repeatedly shrink text paragraphs by .1 points until the text is no longer overset
-function shrinkProportional(myTextFrame) {
-  var myLeading = 1;
-  do {
-    myTextFrame.paragraphs[0].pointSize =
-      myTextFrame.paragraphs[0].pointSize - 0.1;
-    myTextFrame.paragraphs[0].leading =
-      myTextFrame.paragraphs[0].pointSize * myLeading;
-  } while (myTextFrame.overflows == true);
-}
-
-function shrinkVertical(myTextFrame) {
-  vScale = myTextFrame.paragraphs[0].verticalScale;
-  hScale = myTextFrame.paragraphs[0].horizontalScale;
-  leading = myTextFrame.paragraphs[0].leading;
-  size = myTextFrame.paragraphs[0].pointSize;
-
-  while (myTextFrame.overflows && vScale >= 50 && leading > 0) {
-    myTextFrame.paragraphs[0].verticalScale = parseFloat(vScale);
-    myTextFrame.paragraphs[0].horizontalScale = parseFloat(hScale);
-    if (myTextFrame.paragraphs[0].leading != Leading.AUTO) {
-      myTextFrame.paragraphs[0].leading = parseFloat(leading);
-    }
-    myTextFrame.paragraphs[0].pointSize = parseFloat(size);
-    vScale -= 1;
-    hScale += 0.5; //only grow by half a percent, otherwise text becomes squished
-    leading -= 1;
-    size -= 1;
-    app.documents[0].recompose();
-  }
-}
-
-function growVertical(myTextFrame) {
-  vScale = myTextFrame.paragraphs[0].verticalScale;
-  hScale = myTextFrame.paragraphs[0].horizontalScale;
-  leading = myTextFrame.paragraphs[0].leading;
-  size = myTextFrame.paragraphs[0].pointSize;
-
-  while (!myTextFrame.overflows) {
-    myTextFrame.paragraphs[0].horizontalScale = parseFloat(hScale);
-    myTextFrame.paragraphs[0].verticalScale = parseFloat(vScale);
-    if (myTextFrame.paragraphs[0].leading != Leading.AUTO) {
-      myTextFrame.paragraphs[0].leading = parseFloat(leading);
-    }
-    myTextFrame.paragraphs[0].pointSize = parseFloat(size);
-    vScale += 1;
-    hScale += 1;
-    leading += 1;
-    size += 1;
-
-    app.documents[0].recompose();
-  }
-
-  //correct overflow
-  while (myTextFrame.overflows) {
-    myTextFrame.paragraphs[0].horizontalScale = parseFloat(hScale);
-    myTextFrame.paragraphs[0].verticalScale = parseFloat(vScale);
-    if (myTextFrame.paragraphs[0].leading != Leading.AUTO) {
-      myTextFrame.paragraphs[0].leading = parseFloat(leading);
-    }
-    myTextFrame.paragraphs[0].pointSize = parseFloat(size);
-    vScale -= 1;
-    hScale -= 1;
-    leading -= 1;
-    size -= 1;
-
-    app.documents[0].recompose();
   }
 }
 

@@ -133,8 +133,8 @@
       "filename": "apply_discounts.jsx",
       "url": "https://jbx.design/stellar/apply_discounts.jsx",
       "hidden": false,
-      "version": 1.0,
-      "description": "Select a discount to apply, and click ok. Note: this only works with prices with a paragraph style named 'our price'."
+      "version": 2.0,
+      "description": "Select a discount to apply, and click ok. Note: this only works with prices with a paragraph style named 'our price'. For line lists, the applied paragraph style name must contain 'line list'."
     },
     {
       "name": "Remove Styles",
