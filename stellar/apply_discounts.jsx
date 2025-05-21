@@ -110,42 +110,47 @@ function calculate() {
             .replace(priceString, newPrice);
         }
         //discount line lists
-        else if (para.appliedParagraphStyle.name.match('line list')) {
-          var contents = para.contents;
-          var priceString = contents.replace(/[^\$¢.\/0-9]/g, '').split('/')[0];
+        // else if (para.appliedParagraphStyle.name.match('line list')) {
+        //   var contents = para.contents;
+        //   var priceString = contents
+        //     .replace(/[^\$¢.\/0-9]/g, '')
+        //     .split(' /')[0];
 
-          //account for numbers appearing in front of price (measurements)
-          var lineListArr = priceString.split('$');
-          if (lineListArr.length == 2) {
-            priceString = '$' + lineListArr[1];
-          }
+        //   //account for numbers appearing in front of price (measurements)
+        //   var lineListArr = priceString.split('$');
+        //   alert(lineListArr);
 
-          var price = parseFloat(priceString.replace('$', ''));
-          if (priceString.match(centSymbol)) {
-            priceString = priceString.slice(-3);
-            price = parseFloat(priceString.slice(0, 2));
-          }
+        //   if (lineListArr.length > 1) {
+        //     priceString = '$' + lineListArr[1];
+        //     alert(priceString);
+        //   }
 
-          var newPrice = '';
-          var newPriceFloat;
+        //   var price = parseFloat(priceString.replace('$', ''));
+        //   if (priceString.match(centSymbol)) {
+        //     priceString = priceString.slice(-3);
+        //     price = parseFloat(priceString.slice(0, 2));
+        //   }
 
-          //calculate discount
-          if (priceString.match(/^\$/)) {
-            newPriceFloat = round(price * (1 - discount), 2);
-          } else if (priceString.match(centSymbol)) {
-            newPriceFloat = price * 0.01 * (1 - discount);
-            newPriceFloat = round(newPriceFloat, 2);
-          }
+        //   var newPrice = '';
+        //   var newPriceFloat;
 
-          //format price as string
-          if (newPriceFloat < 1) {
-            newPrice = (newPriceFloat * 100).toString() + centSymbol;
-          } else {
-            newPrice = '$' + newPriceFloat.toString();
-          }
+        //   //calculate discount
+        //   if (priceString.match(/^\$/)) {
+        //     newPriceFloat = round(price * (1 - discount), 2);
+        //   } else if (priceString.match(centSymbol)) {
+        //     newPriceFloat = price * 0.01 * (1 - discount);
+        //     newPriceFloat = round(newPriceFloat, 2);
+        //   }
 
-          para.contents = para.contents.replace(priceString, newPrice);
-        }
+        //   //format price as string
+        //   if (newPriceFloat < 1) {
+        //     newPrice = (newPriceFloat * 100).toString() + centSymbol;
+        //   } else {
+        //     newPrice = '$' + newPriceFloat.toString();
+        //   }
+
+        //   para.contents = para.contents.replace(priceString, newPrice);
+        // }
       }
     }
   }
