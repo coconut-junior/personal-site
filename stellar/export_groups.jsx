@@ -58,15 +58,21 @@ function exportAll() {
   for (var i = 0; i < groups.length; ++i) {
     var g = groups[i];
     var fileName = undefined;
+    var items = g.allPageItems; //get all items and items inside subgroups
 
-    for (var j = 0; j < g.textFrames.length; ++j) {
-      var t = g.textFrames[j];
+    for (var j = 0; j < items.length; ++j) {
+      var item = items[j];
 
-      for (var k = 0; k < t.paragraphs.length; ++k) {
-        var para = t.paragraphs[k];
-        if (para.appliedParagraphStyle.name.match('mainline')) {
-          fileName = para.contents.toLowerCase().replace(/([^0-9a-z])/gi, '_');
-          fileName = fileName.replaceAll('__', '_').replaceAll('__', '_');
+      if (item.constructor.name == 'TextFrame') {
+        var t = item;
+        for (var k = 0; k < t.paragraphs.length; ++k) {
+          var para = t.paragraphs[k];
+          if (para.appliedParagraphStyle.name.match('mainline')) {
+            fileName = para.contents
+              .toLowerCase()
+              .replace(/([^0-9a-z])/gi, '_');
+            fileName = fileName.replaceAll('__', '_').replaceAll('__', '_');
+          }
         }
       }
     }
