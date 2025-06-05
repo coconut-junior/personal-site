@@ -71,18 +71,20 @@ function exportAll() {
       }
     }
 
-    if (fileName != undefined) {
-      if (fileName.length > 24) {
-        fileName = fileName.slice(0, 24);
-      }
-      if (fileName.slice(-1) == '_') {
-        fileName = fileName.slice(0, -1);
-      }
-      g.exportFile(
-        (format = ExportFormat.JPG),
-        (to = path + '/images/' + fileName + '.jpg')
-      );
+    if (fileName == undefined) {
+      fileName = 'group_' + i;
     }
+
+    if (fileName.length > 24) {
+      fileName = fileName.slice(0, 24);
+    }
+    if (fileName.slice(-1) == '_') {
+      fileName = fileName.slice(0, -1);
+    }
+    g.exportFile(
+      (format = ExportFormat.JPG),
+      (to = path + '/images/' + fileName + '.jpg')
+    );
   }
   alert('Complete! \nYour images can be found in ' + path + '/images');
 }
