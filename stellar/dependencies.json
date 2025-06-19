@@ -191,6 +191,14 @@
       "hidden": false,
       "version": 1.0,
       "description": "Select multiple product blocks and run to get the highest savings percentage."
+    },
+    {
+      "name": "Export Layers",
+      "filename": "export_layers.jsx",
+      "url": "https://jbx.design/stellar/export_layers.jsx",
+      "hidden": false,
+      "version": 1.0,
+      "description": "Exports each layer as PDF or JPG."
     }
   ]
 }
