@@ -39,31 +39,18 @@ button.text = 'Calculate';
 button2.text = 'Cancel';
 var centSymbol = new String('\u00a2');
 
-var key;
-try {
-  var key = arguments[0];
-} catch (e) {}
-
 function main() {
   var canceled = false;
 
-  if (key == 'stellar') {
-    button.onClick = function () {
-      discount = parseInt(dropdown.selection.text) * 0.01;
-      window.close();
-    };
-
-    button2.onClick = function () {
-      window.close();
-      canceled = true;
-    };
-  } else {
+  button.onClick = function () {
+    discount = parseInt(dropdown.selection.text) * 0.01;
     window.close();
-    alert(
-      'This automation only works through Stellar. Please launch it again from the app.'
-    );
+  };
+
+  button2.onClick = function () {
+    window.close();
     canceled = true;
-  }
+  };
 
   window.show();
   if (!canceled) {
