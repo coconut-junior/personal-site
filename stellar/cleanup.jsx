@@ -2,6 +2,14 @@ var debug = false;
 var scriptPath = File($.fileName).path;
 var gSettings = new Object();
 var currentSettingsFile = File(scriptPath + '/cleanup_demo.ini');
+var doc;
+
+if (app.documents.length == 0) {
+  alert('Please open a document before running the script.');
+  exit();
+} else {
+  doc = app.activeDocument;
+}
 
 if (currentSettingsFile.exists) {
   currentSettingsFile.open('r');
@@ -10,7 +18,6 @@ if (currentSettingsFile.exists) {
 }
 
 //load settings
-
 Array.prototype.joinNames = function () {
   var result = '|';
   for (var i = 0; i < this.length; i++) result += this[i].name + '|';
@@ -122,10 +129,21 @@ Application.prototype.doUndoableScript = function (theFunction, undoName) {
   );
 };
 
-var w = new Window('dialog', 'CleanUp');
+var w = new Window('dialog', '');
 
-w.orientation = 'row';
+w.orientation = 'column';
 w.alignChildren = 'top';
+
+var headerRow = w.add('group');
+headerRow.alignment = 'center';
+var soapEmoji = String.fromCharCode(0xd83e, 0xddfc);
+var header = headerRow.add(
+  'statictext',
+  undefined,
+  soapEmoji + ' Clean Up Document'
+);
+header.justify = 'center';
+header.size = [200, 50];
 
 var d = w.add('panel');
 d.orientation = 'column';
@@ -134,7 +152,7 @@ d.alignChildren = 'left';
 var removeUnusedStylesCheckbox = d.add(
   'checkbox',
   undefined,
-  'Remove Styles not in Use'
+  'Remove Unused Styles'
 );
 removeUnusedStylesCheckbox.helpTip =
   'Removes Paragraph, Character, Object, Table and Cell styles not in use';
@@ -142,7 +160,7 @@ removeUnusedStylesCheckbox.helpTip =
 var removeUnusedColorsCheckbox = d.add(
   'checkbox',
   undefined,
-  'Remove Colours not in Use'
+  'Remove Unused Colors'
 );
 removeUnusedColorsCheckbox.helpTip =
   'Removes colour swatches not in use in document';
@@ -156,6 +174,12 @@ deleteUnusedLayersCheckbox.helpTip = 'Remove layers not in use in document';
 
 var removeFramesCheckbox = d.add('checkbox', undefined, 'Remove Empty Frames');
 
+var sortLayersCheckbox = d.add(
+  'checkbox',
+  undefined,
+  'Sort Layers Alphabetically'
+);
+
 if (gSettings.cleanPasteboard) cleanPasteboardCheckbox.value = true;
 if (gSettings.removeUnusedStyles) removeUnusedStylesCheckbox.value = true;
 if (gSettings.removeUnusedColors) removeUnusedColorsCheckbox.value = true;
@@ -165,6 +189,7 @@ if (gSettings.convertRGBSwatches) convertRGBSwatchesCheckbox.value = true;
 if (gSettings.convertSpotSwatches) convertSpotSwatchesCheckbox.value = true;
 if (gSettings.deleteUnusedLayers) deleteUnusedLayersCheckbox.value = true;
 if (gSettings.removeFrames) removeFramesCheckbox.value = true;
+if (gSettings.sortLayers) sortLayersCheckbox.value = true;
 
 var gr1 = d.add('group');
 gr1.orientation = 'row';
@@ -179,8 +204,12 @@ var d2 = w.add('group');
 d2.orientation = 'column';
 d2.alignChildren = 'fill';
 
-var okButton = d2.add('button', undefined, 'Start Cleanup', { name: 'ok' });
-var cancelButton = d2.add('button', undefined, 'Cancel', { name: 'cancel' });
+var d3 = w.add('group');
+d2.orientation = 'row';
+d2.alignChildren = 'fill';
+
+var okButton = d3.add('button', undefined, 'Start Cleaning', { name: 'ok' });
+var cancelButton = d3.add('button', undefined, 'Cancel', { name: 'cancel' });
 
 cancelButton.onClick = function () {
   //populate settings
@@ -189,6 +218,7 @@ cancelButton.onClick = function () {
   gSettings.removeUnusedColors = removeUnusedColorsCheckbox.value;
   gSettings.deleteUnusedLayers = deleteUnusedLayersCheckbox.value;
   gSettings.removeFrames = removeFramesCheckbox.value;
+  gSettings.sortLayers = sortLayersCheckbox.value;
 
   currentSettingsFile.open('w');
   currentSettingsFile.write(gSettings.toSource());
@@ -201,6 +231,7 @@ okButton.onClick = function () {
   gSettings.removeUnusedStyles = removeUnusedStylesCheckbox.value;
   gSettings.removeUnusedColors = removeUnusedColorsCheckbox.value;
   gSettings.deleteUnusedLayers = deleteUnusedLayersCheckbox.value;
+  gSettings.sortLayers = sortLayersCheckbox.value;
   gSettings.removeFrames = removeFramesCheckbox.value;
 
   //save
@@ -216,8 +247,8 @@ if (w.show() == 1) app.doUndoableScript(process, 'CleanUp');
 
 function process() {
   if (app.documents.length) {
-    processOneDoc(app.activeDocument);
-    alert('Cleanup finished!');
+    processOneDoc(doc);
+    alert('Clean up complete!');
   } else alert('No active document to process');
 }
 
@@ -368,8 +399,38 @@ function processOneDoc(docRef) {
       removeEmptyUnstyledFrames();
     }
 
+    if (gSettings.sortLayers) {
+      sortLayersByName();
+    }
+
     //docRef.save();
   } while (false);
+}
+
+function sortLayersByName() {
+  var layers = doc.layers;
+  var unlockedLayers = [];
+
+  // Collect unlocked layers
+  for (var i = 0; i < layers.length; i++) {
+    if (!layers[i].locked) {
+      unlockedLayers.push(layers[i]);
+    }
+  }
+
+  // Sort unlocked layers alphabetically by name
+  unlockedLayers.sort(function (a, b) {
+    var nameA = a.name.toUpperCase();
+    var nameB = b.name.toUpperCase();
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  });
+
+  // Move unlocked layers to top in sorted order (from bottom to top)
+  for (var i = unlockedLayers.length - 1; i >= 0; i--) {
+    unlockedLayers[i].move(LocationOptions.AT_BEGINNING);
+  }
 }
 
 function basedOnStyles(style) {
@@ -398,7 +459,7 @@ function log(obj) {
 
 function removeEmptyUnstyledFrames() {
   var count = 0;
-  var doc = app.activeDocument;
+
   var pageitems = doc.allPageItems;
 
   for (var i = pageitems.length - 1; i >= 0; i--) {
