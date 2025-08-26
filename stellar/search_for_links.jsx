@@ -44,10 +44,11 @@ function escapeRegExp(string) {
 function getSharePointFolders() {
   var cloudStorage;
   if (os == 'mac') {
-    cloudStorage = homeFolder + '/Library/CloudStorage'; //mac
+    cloudStorage = homeFolder + '/Library/CloudStorage'; //if mac, start in CloudStorage folder
   } else {
-    //if windows, search for folder matching "Ollies Bargain Outlet"
-    cloudStorage = Folder(homeFolder);
+    //if windows, start in home folder
+    cloudStorage = homeFolder;
+    return [homeFolder];
   }
 
   return Folder(cloudStorage).getFiles(function (item) {
@@ -104,6 +105,7 @@ function getRelPath(s) {
 //get all sharepoint folders
 var spFolders = getSharePointFolders();
 var correctSlash = getCorrectSlash();
+var spFolder = spFolders[0].fsName;
 
 //count missing before relink
 for (i = 0; i < imgs.length; i++) {
@@ -120,7 +122,6 @@ for (i = 0; i < imgs.length; i++) {
 
   if (img.status == LinkStatus.LINK_MISSING) {
     var relBrokenPath = getRelPath(img.linkResourceURI);
-    var spFolder = spFolders[0].fsName;
     var designFolder = Folder(getDesignFolder(Folder(spFolder))).fsName;
     var corpFolder = Folder(getCorpFolder(Folder(spFolder))).fsName;
     var combinedPath;

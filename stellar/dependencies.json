@@ -45,7 +45,7 @@
       "filename": "search_for_links.jsx",
       "url": "https://jbx.design/stellar/search_for_links.jsx",
       "hidden": false,
-      "version": 2.3,
+      "version": 2.4,
       "description": "Fixes broken Sharepoint links that point to another user's home folder on Mac or Windows."
     },
     {
