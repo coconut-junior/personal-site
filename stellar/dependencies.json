@@ -197,7 +197,7 @@
       "filename": "export_layers.jsx",
       "url": "https://jbx.design/stellar/export_layers.jsx",
       "hidden": false,
-      "version": 1.0,
+      "version": 1.1,
       "description": "Exports each layer as PDF or JPG."
     }
   ]

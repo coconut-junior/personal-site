@@ -99,10 +99,8 @@ function exportLayersIndividually() {
       }
 
       // Export file
-      var fileName =
-        layer.name.replace(/[^a-z0-9]/gi, '_') +
-        '.' +
-        (exportFormat === 'PDF' ? 'pdf' : 'jpg');
+      var fileName = layer.name.replace(/[^a-z0-9-]/gi, '_');
+      +'.' + (exportFormat === 'PDF' ? 'pdf' : 'jpg');
       var saveFile = new File(folderPath.fsName + '/' + fileName);
 
       if (exportFormat === 'PDF') {
