@@ -1,3 +1,7 @@
+var gSettings = new Object();
+var currentSettingsFile = File(File($.fileName).path + '/export_layers.ini');
+currentSettingsFile.hidden = true;
+
 function exportLayersIndividually() {
   var doc = app.activeDocument;
   var myPDFExportPreset = app.pdfExportPresets.item('[High Quality Print]');
@@ -7,22 +11,20 @@ function exportLayersIndividually() {
   var win = new Window('dialog', 'Export Layers');
   win.alignChildren = 'left';
 
+  var g1 = win.add('group');
+
   // Format selection dropdown
-  win.add('statictext', undefined, 'Export Format:');
-  var formatDropdown = win.add('dropdownlist', undefined);
+  g1.add('statictext', undefined, 'Export Format:');
+  var formatDropdown = g1.add('dropdownlist', undefined);
   formatDropdown.add('item', 'PDF');
   formatDropdown.add('item', 'JPG');
   formatDropdown.selection = 0;
 
-  // Folder selection
-  win.add('statictext', undefined, 'Export Folder:');
-  var pathText = win.add(
-    'edittext',
-    [150, 50, 350, 75],
-    doc.filePath ? doc.filePath.absoluteURI : Folder.desktop.absoluteURI
+  var dimensionsCheckbox = win.add(
+    'checkbox',
+    undefined,
+    'Include dimensions in filename'
   );
-  pathText.enabled = false;
-  var browseButton = win.add('button', undefined, 'Browse...');
 
   // Locked layers option
   var lockedCheckbox = win.add(
@@ -30,7 +32,36 @@ function exportLayersIndividually() {
     undefined,
     'Change visibility of locked layers'
   );
-  lockedCheckbox.value = false;
+
+  if (currentSettingsFile.exists) {
+    currentSettingsFile.open('r');
+    gSettings = eval(currentSettingsFile.read());
+    currentSettingsFile.close();
+  }
+  if (gSettings.includeDimensions) {
+    dimensionsCheckbox.value = gSettings.includeDimensions;
+  }
+  if (gSettings.lockedLayers) {
+    lockedCheckbox.value = gSettings.lockedLayers;
+  }
+
+  var g2 = win.add('group');
+
+  // Folder selection
+  g2.add('statictext', undefined, 'Export Folder:');
+  try {
+    var pathText = g2.add(
+      'edittext',
+      [150, 50, 350, 75],
+      doc.filePath ? doc.filePath.absoluteURI : Folder.desktop.absoluteURI
+    );
+  } catch (e) {
+    alert('Please save your document first, then run the script again');
+    exit();
+  }
+
+  pathText.enabled = false;
+  var browseButton = g2.add('button', undefined, 'Browse...');
 
   var buttonGroup = win.add('group');
   buttonGroup.orientation = 'row';
@@ -50,6 +81,14 @@ function exportLayersIndividually() {
   win.center();
   if (win.show() === 1) {
     win.close();
+
+    //write config
+    gSettings.lockedLayers = lockedCheckbox.value;
+    gSettings.includeDimensions = dimensionsCheckbox.value;
+    currentSettingsFile.open('w');
+    currentSettingsFile.write(gSettings.toSource());
+    currentSettingsFile.close();
+
     var progressDlg = new Window('palette', 'Progress', undefined, {
       closeButton: false,
     });
@@ -77,6 +116,15 @@ function exportLayersIndividually() {
     // Create export folder if needed
     if (!folderPath.exists) folderPath.create();
 
+    //Format text to append
+    var appendText = '';
+    if (dimensionsCheckbox.value) {
+      var bounds = doc.pages[0].bounds;
+      var pageWidth = bounds[3] - bounds[1];
+      var pageHeight = bounds[2] - bounds[0];
+      appendText = '_' + pageWidth + 'x' + pageHeight;
+    }
+
     // Process each layer
     for (var i = 0; i < doc.layers.length; i++) {
       ++pb.value;
@@ -99,7 +147,7 @@ function exportLayersIndividually() {
       }
 
       // Export file
-      var fileName = layer.name.replace(/[^a-z0-9-]/gi, '_');
+      var fileName = layer.name.replace(/[^a-z0-9-]/gi, '_') + appendText;
       +'.' + (exportFormat === 'PDF' ? 'pdf' : 'jpg');
       var saveFile = new File(folderPath.fsName + '/' + fileName);
 
