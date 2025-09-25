@@ -458,8 +458,16 @@ function addProductInfoDeprecated(myDoc, myRecord, myPath) {
     }
   }
 
+  var versions = myRecord.version;
+  if (versions == dcList) {
+    versions = 'All';
+  }
+
   var myLabel = '';
   myLabel =
+    '<<Versions>>' +
+    versions +
+    '\n\n' +
     '<<Price>> ' +
     myRecord.price +
     '\n\n' +
@@ -555,8 +563,16 @@ function addProductInfo(myDoc, myRecord, myPath) {
     }
   }
 
+  var versions = myRecord.version;
+  if (versions == dcList) {
+    versions = 'All';
+  }
+
   var myLabel = '';
   myLabel =
+    '<<Versions>>' +
+    versions +
+    '\n\n' +
     '<<Price>> ' +
     myRecord.price +
     '\n\n' +
