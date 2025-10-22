@@ -352,32 +352,48 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
     }
     // Build 1 ad unit
     var myAd = myBuildAdUnit(myDoc, myRecord, myPath);
+
     // Put the ad on the correct layer
-    switch (myRecord.version.length) {
-      case 1:
-        var myVersionName = myRecord.version.toString();
-        myCreateLayer(myDoc, myVersionName);
-        myAd.move(myDoc.layers.item(myVersionName));
-        break;
-      case 2:
-        var myVersionName = myRecord.version[0].toString();
-        myCreateLayer(myDoc, myVersionName);
-        myAd.move(myDoc.layers.item(myVersionName));
-        var myVersionName = myRecord.version[1].toString();
-        myCreateLayer(myDoc, myVersionName);
-        myAd.duplicate(myDoc.layers.item(myVersionName));
-        break;
-      case 3:
-        try {
-          myAd.move(myDoc.layers.item('cmyk_base'));
-        } catch (error) {
-          var layerName = 'cmyk_base';
-          myAd.move(myDoc.layers.item(layerName));
-        }
-        break;
-      default:
-        break;
+    if (myRecord.version.toString() == dcList) {
+      var version = 'cmyk_base';
+      myCreateLayer(myDoc, version);
+      myAd.move(myDoc.layers.item(version));
+    } else {
+      for (v = 0; v < myRecord.version.length; ++v) {
+        var version = myRecord.version[v];
+        myCreateLayer(myDoc, version);
+        myAd.duplicate(myDoc.layers.item(version));
+      }
+      myAd.remove();
     }
+
+    //rewrite this... logic does not work for 4 DCs
+    // switch (myRecord.version.length) {
+    //   case 1:
+    //     var myVersionName = myRecord.version.toString();
+    //     myCreateLayer(myDoc, myVersionName);
+    //     myAd.move(myDoc.layers.item(myVersionName));
+    //     break;
+    //   case 2:
+    //     //if 5050 5100, copy to both
+    //     var myVersionName = myRecord.version[0].toString();
+    //     myCreateLayer(myDoc, myVersionName);
+    //     myAd.move(myDoc.layers.item(myVersionName));
+    //     var myVersionName = myRecord.version[1].toString();
+    //     myCreateLayer(myDoc, myVersionName);
+    //     myAd.duplicate(myDoc.layers.item(myVersionName));
+    //     break;
+    //   case 3:
+    //     try {
+    //       myAd.move(myDoc.layers.item('cmyk_base'));
+    //     } catch (error) {
+    //       var layerName = 'cmyk_base';
+    //       myAd.move(myDoc.layers.item(layerName));
+    //     }
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
   // Position page items and clean up the last page
   myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear);
@@ -909,11 +925,11 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
   myDoc.groups.item('script_percent_burst_template').remove();
 
   //Product block offset (in pixels)
-  var myVOffset = 140;
-  var myHOffset = 234;
+  var myVOffset = 120;
+  var myHOffset = 214;
   var myStartX = 0;
   var myStartY = 0;
-  var myNumColumns = 4;
+  var myNumColumns = 5;
 
   switch (myPageNum) {
     case 1:
