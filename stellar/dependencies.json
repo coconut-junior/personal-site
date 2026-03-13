@@ -17,6 +17,14 @@
       "description": ""
     },
     {
+      "name": "Ungroup All",
+      "filename": "ungroup_all.jsx",
+      "url": "https://jbx.design/stellar/ungroup_all.jsx",
+      "hidden": false,
+      "version": 1.0,
+      "description": "Ungroups all groups on document, recursively."
+    },
+    {
       "name": "Build Ad",
       "filename": "build_ad.jsx",
       "url": "https://jbx.design/stellar/build_ad.jsx",
