@@ -40,7 +40,7 @@ function dropHandler(ev) {
           ev.target.style.border = '2px solid var(--primary3)';
         } else {
           alert(
-            "Doesn't look like an Excel spreadsheet (XLS). Please try a different file. :)"
+            "Doesn't look like an Excel spreadsheet (XLS). Please try a different file. :)",
           );
         }
       }
@@ -125,16 +125,15 @@ function openSheet(file) {
           }
 
           prices = priceList.toString();
-
-          prices = prices.replaceAll(`"`, ' in. ');
-
           prices = prices.replaceAll('rice:', 'rice: $');
           prices = prices.replaceAll('OurPrice:', 'Our Price:');
           prices = prices.replaceAll('TheirPrice:', ' theirs:');
           prices = prices.replaceAll(',,', ', ');
-          iname = iname.replaceAll('"', '');
           iname = iname.replaceAll('&', 'and');
           iname = iname.replaceAll('  ', ' ');
+
+          iname = fixCopy(iname);
+
           var tag = iname.replaceAll(' (logo)', '') + ': ' + prices;
           matched_items.push(tag);
         }
@@ -146,7 +145,7 @@ function openSheet(file) {
         }
       }
     },
-    false
+    false,
   );
 
   if (file) {

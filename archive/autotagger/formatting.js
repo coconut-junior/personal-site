@@ -93,7 +93,8 @@ function normalizeAbbreviations(iname) {
 }
 
 function replaceQuotes(copy) {
-  let revCopy = copy.replaceAll('"', 'in.');
+  let revCopy = copy.replaceAll(`"`, ' in. ');
+  console.log('replacing quotes!');
   return revCopy;
 }
 
