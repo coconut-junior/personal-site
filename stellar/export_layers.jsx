@@ -23,14 +23,14 @@ function exportLayersIndividually() {
   var dimensionsCheckbox = win.add(
     'checkbox',
     undefined,
-    'Include dimensions in filename'
+    'Include dimensions in filename',
   );
 
   // Locked layers option
   var lockedCheckbox = win.add(
     'checkbox',
     undefined,
-    'Change visibility of locked layers'
+    'Change visibility of locked layers',
   );
 
   if (currentSettingsFile.exists) {
@@ -53,7 +53,7 @@ function exportLayersIndividually() {
     var pathText = g2.add(
       'edittext',
       [150, 50, 350, 75],
-      doc.filePath ? doc.filePath.absoluteURI : Folder.desktop.absoluteURI
+      doc.filePath ? doc.filePath.absoluteURI : Folder.desktop.absoluteURI,
     );
   } catch (e) {
     alert('Please save your document first, then run the script again');
@@ -101,7 +101,7 @@ function exportLayersIndividually() {
 
     var exportFormat = formatDropdown.selection.text.toUpperCase();
     var folderPath = new Folder(
-      decodeURI(pathText.text.replace('file://', ''))
+      decodeURI(pathText.text.replace('file://', '')),
     );
     var changeLockedVisibility = lockedCheckbox.value;
 
@@ -147,8 +147,12 @@ function exportLayersIndividually() {
       }
 
       // Export file
-      var fileName = layer.name.replace(/[^a-z0-9-]/gi, '_') + appendText;
-      +'.' + (exportFormat === 'PDF' ? 'pdf' : 'jpg');
+      var fileName =
+        layer.name.replace(/[^a-z0-9-]/gi, '_') +
+        appendText +
+        '.' +
+        (exportFormat === 'PDF' ? 'pdf' : 'jpg');
+
       var saveFile = new File(folderPath.fsName + '/' + fileName);
 
       if (exportFormat === 'PDF') {
@@ -156,7 +160,7 @@ function exportLayersIndividually() {
           ExportFormat.PDF_TYPE,
           saveFile,
           false,
-          myPDFExportPreset
+          myPDFExportPreset,
         );
       } else {
         doc.exportFile(ExportFormat.JPG, saveFile);
