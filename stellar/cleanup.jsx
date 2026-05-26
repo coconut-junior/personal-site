@@ -62,7 +62,7 @@ Array.prototype.containsNested = function (style) {
   for (var i = 0; i < this.length; i++) {
     var allNested = this[i].nestedStyles.everyItem().getElements().slice(0);
     allNested = allNested.concat(
-      this[i].nestedGrepStyles.everyItem().getElements().slice(0)
+      this[i].nestedGrepStyles.everyItem().getElements().slice(0),
     );
 
     for (var j = 0; j < allNested.length; j++) {
@@ -125,7 +125,7 @@ Application.prototype.doUndoableScript = function (theFunction, undoName) {
     ScriptLanguage.javascript,
     undefined,
     UndoModes.entireScript,
-    undoName
+    undoName,
   );
 };
 
@@ -140,7 +140,7 @@ var soapEmoji = String.fromCharCode(0xd83e, 0xddfc);
 var header = headerRow.add(
   'statictext',
   undefined,
-  soapEmoji + ' Clean Up Document'
+  soapEmoji + ' Clean Up Document',
 );
 header.justify = 'center';
 header.size = [200, 50];
@@ -152,7 +152,7 @@ d.alignChildren = 'left';
 var removeUnusedStylesCheckbox = d.add(
   'checkbox',
   undefined,
-  'Remove Unused Styles'
+  'Remove Unused Styles',
 );
 removeUnusedStylesCheckbox.helpTip =
   'Removes Paragraph, Character, Object, Table and Cell styles not in use';
@@ -160,7 +160,7 @@ removeUnusedStylesCheckbox.helpTip =
 var removeUnusedColorsCheckbox = d.add(
   'checkbox',
   undefined,
-  'Remove Unused Colors'
+  'Remove Unused Colors',
 );
 removeUnusedColorsCheckbox.helpTip =
   'Removes colour swatches not in use in document';
@@ -168,16 +168,20 @@ removeUnusedColorsCheckbox.helpTip =
 var deleteUnusedLayersCheckbox = d.add(
   'checkbox',
   undefined,
-  'Remove Unused Layers'
+  'Remove Unused Layers',
 );
 deleteUnusedLayersCheckbox.helpTip = 'Remove layers not in use in document';
 
-var removeFramesCheckbox = d.add('checkbox', undefined, 'Remove Empty Frames');
+var removeFramesCheckbox = d.add(
+  'checkbox',
+  undefined,
+  'Remove Empty Frames & Text',
+);
 
 var sortLayersCheckbox = d.add(
   'checkbox',
   undefined,
-  'Sort Layers Alphabetically'
+  'Sort Layers Alphabetically',
 );
 
 if (gSettings.cleanPasteboard) cleanPasteboardCheckbox.value = true;
@@ -260,7 +264,7 @@ function processOneDoc(docRef) {
       var allTables = new Array();
       for (var i = 0; i < docRef.stories.length; i++)
         allTables = allTables.concat(
-          docRef.stories[i].tables.everyItem().getElements().slice(0)
+          docRef.stories[i].tables.everyItem().getElements().slice(0),
         );
 
       var allUsedTableStyles = new Array();
@@ -468,7 +472,7 @@ function removeEmptyUnstyledFrames() {
     // Remove empty text frames with no fill and no stroke
     if (
       item instanceof TextFrame &&
-      item.contents === '' &&
+      (item.contents === '' || item.contents === 'NA') &&
       item.strokeWeight === 0 &&
       item.fillColor.name === 'None'
     ) {

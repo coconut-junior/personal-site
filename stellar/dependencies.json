@@ -37,7 +37,7 @@
       "filename": "cleanup.jsx",
       "url": "https://jbx.design/stellar/cleanup.jsx",
       "hidden": false,
-      "version": 1.2,
+      "version": 1.3,
       "description": "Removes unused objects from the document, and sorts layers."
     },
     {
