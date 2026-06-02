@@ -109,7 +109,19 @@ function main(){
         records[i] = badgerRecord(myData[i]);
 	}
 
-	var doc = app.activeDocument;
+	var doc;
+
+	try {
+		doc = app.activeDocument;
+	}
+	catch (e) {
+		doc = app.documents.add();
+		doc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.pixels;
+		doc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.pixels;
+		doc.documentPreferences.pageWidth = 600;
+		doc.documentPreferences.pageHeight = 15000;
+	}
+
 	prepDoc(doc);
 
 	//convert badger entries to product objects
