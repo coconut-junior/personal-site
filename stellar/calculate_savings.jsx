@@ -35,7 +35,7 @@ function average(arr) {
     var num = arr[i];
     sum += num;
   }
-  return parseInt(sum / arr.length);
+  return parseFloat(sum / arr.length);
 }
 
 if (app.selection.length === 0) {
@@ -62,18 +62,19 @@ if (app.selection.length === 0) {
   //convert sets of 2 integers to prices [our price, their price]
   for (var i = 0; i < numbersArray.length - 1; i += 2) {
     var prices = [numbersArray[i] / 100, numbersArray[i + 1]];
-    var savings = parseInt(((prices[1] - prices[0]) / prices[1]) * 100);
+    var savings = parseFloat(((prices[1] - prices[0]) / prices[1]) * 100);
     savingsArray.push(savings);
   }
 
   //convert sets of 2 integers to prices [our price, their price]
   for (var i = 0; i < numbersArray.length - 1; i += 2) {
     var prices = [numbersArray[i] / 100, numbersArray[i + 1]];
-    var savings = parseInt(((prices[1] - prices[0]) / prices[1]) * 100);
+    var savings = parseFloat(((prices[1] - prices[0]) / prices[1]) * 100);
     savingsArray.push(savings);
   }
 
   var s = largest(savingsArray);
+  s = Math.round(s);
   alert('Largest savings is ' + s + '%');
 
   function processTextFrame(textFrame) {
