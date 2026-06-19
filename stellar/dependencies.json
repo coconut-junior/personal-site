@@ -201,6 +201,14 @@
       "description": "Select multiple product blocks and run to get the highest savings percentage. The percentage is rounded to the nearest whole number."
     },
     {
+      "name": "Calculate Dollar Savings",
+      "filename": "calculate_savings_dollars.jsx",
+      "url": "https://jbx.design/stellar/calculate_savings_dollars.jsx",
+      "hidden": false,
+      "version": 1.0,
+      "description": "Select multiple product blocks and run to get the total dollars saved."
+    },
+    {
       "name": "Export Layers",
       "filename": "export_layers.jsx",
       "url": "https://jbx.design/stellar/export_layers.jsx",
