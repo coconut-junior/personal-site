@@ -61,7 +61,7 @@
       "filename": "badger_to_email_blocks.jsx",
       "url": "https://jbx.design/stellar/badger_to_email_blocks.jsx",
       "hidden": false,
-      "version": 2.1,
+      "version": 2.2,
       "description": "Takes the feature view exported from Badger and turns it into email product blocks."
     },
     {
