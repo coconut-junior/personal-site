@@ -105,8 +105,11 @@ function main(){
 	myData.shift(); // Remove the first array element since it is the header
 	var records = new Array;
 	// Parse and test each record for integrity
-    for (var i=0; i<myData.length; i++) { // For each record...
-        records[i] = badgerRecord(myData[i]);
+	for (var i = 0; i < myData.length; i++) { // For each record...
+		if (myData[i] == undefined || myData[i] == '') { //SKIP EMPTY ROWS
+			break;
+		}
+		records[i] = badgerRecord(myData[i]);
 	}
 
 	var doc;
