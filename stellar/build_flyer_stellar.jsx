@@ -27,14 +27,22 @@ try {
   key = undefined;
 }
 
+//backport startsWith
+if (!String.prototype.startsWith) {
+  String.prototype.startsWith = function (searchString, position) {
+    position = position || 0;
+    return this.substr(position, searchString.length) === searchString;
+  };
+}
+
 //backport replaceall function to es3
 String.prototype.replaceAll = function (str1, str2, ignore) {
   return this.replace(
     new RegExp(
       str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, '\\$&'),
-      ignore ? 'gi' : 'g'
+      ignore ? 'gi' : 'g',
     ),
-    typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2
+    typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2,
   );
 };
 
@@ -48,7 +56,7 @@ var FILENAME_MATCH_PATTERN = /([^\:]+)\.(ai|psd|jpg|png|tif)/i;
 var flyerSpecs = '';
 
 var ProgressBar = function (
-  /*str*/ title // by Marc Autret
+  /*str*/ title, // by Marc Autret
 ) {
   var w = new Window('palette', ' ' + title, {
       x: 0,
@@ -112,7 +120,7 @@ function Main() {
 
   if (key == undefined) {
     alert(
-      'This automation only works with Stellar. Please open Stellar and launch it from there.'
+      'This automation only works with Stellar. Please open Stellar and launch it from there.',
     );
     return;
   }
@@ -136,7 +144,7 @@ function Main() {
   }
   var myPath = pathArg.replace(
     pathArg.split('/')[pathArg.split('/').length - 1],
-    ''
+    '',
   );
 
   var jsonFile = File(myPath + 'logos/assets.json');
@@ -157,11 +165,29 @@ function Main() {
   var myData = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 });
   myData.shift(); // Remove the first array element since it is the header
   var myResult = new Array();
+
+  var firstPageName = myData[0][0];
+
+  if (
+    firstPageName != '1' &&
+    !firstPageName.toLowerCase().startsWith('page 1')
+  ) {
+    alert(
+      "Page names are incorrect.\n\n Please check that page 1 is named '1' or has a name starting with 'Page 1' in Badger",
+    );
+    exit();
+  }
+
   // Parse and test each record for integrity
   for (var i = 0; i < myData.length; i++) {
     // For each record...
     try {
       myResult[i] = myTestRecord(myData[i]);
+
+      //fix page names that include the word "page"
+      if (myResult[i].pageNumber.toLowerCase().startsWith('page ')) {
+        myResult[i].pageNumber = myResult[i].pageNumber[5];
+      }
     } catch (e) {
       alert('error on entry ' + myData[i]);
       alert(e);
@@ -242,7 +268,7 @@ function getFile() {
     myFileName = File.openDialog(
       'Select an XLS file',
       'XLS files:*.xls',
-      false
+      false,
     );
   }
   return myFileName;
@@ -266,7 +292,7 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
 
   // Open the master template and copy the page elements to the clipboard
   var myMainTemplate = File(
-    myTrimPath($.fileName) + '/helpers/catalog_template_master.indt'
+    myTrimPath($.fileName) + '/helpers/catalog_template_master.indt',
   );
   var myDoc = app.open(myMainTemplate);
   app.select(SelectAll.ALL);
@@ -281,8 +307,8 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
       myTrimPath($.fileName) +
         '/helpers' +
         templatePath +
-        'catalog_template_01.indt'
-    )
+        'catalog_template_01.indt',
+    ),
   );
   // Do some document setup
   myDocPrep(myDoc);
@@ -293,7 +319,7 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
   myDoc.layers.itemByName('page_1_base_X_X').name =
     'page_1_base_' + myMonth + '_' + myDay;
   var wedItems = myDoc.layers.itemByName(
-    'page_1_base_' + myMonth + '_' + myDay
+    'page_1_base_' + myMonth + '_' + myDay,
   ).textFrames;
   for (var i = 0; i < wedItems.length; ++i) {
     if (wedItems[i].paragraphs[0].contents.match('Pg.1')) {
@@ -309,7 +335,7 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
     'page_1_base_' + thursMonth + '_' + thursDay;
 
   var thursItems = myDoc.layers.itemByName(
-    'page_1_base_' + thursMonth + '_' + thursDay
+    'page_1_base_' + thursMonth + '_' + thursDay,
   ).textFrames;
   for (var i = 0; i < thursItems.length; ++i) {
     if (thursItems[i].paragraphs[0].contents.match('Pg.1')) {
@@ -331,8 +357,8 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
           myPath +
             '/page_' +
             (Number(myRecord.pageNumber) - 1).toString() +
-            '.indd'
-        )
+            '.indd',
+        ),
       );
       myDoc.close();
       // Create a new doc based on the correct page template based on the page nuymber
@@ -343,8 +369,8 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
             templatePath +
             'catalog_template_' +
             myPadString(myRecord.pageNumber.toString()) +
-            '.indt'
-        )
+            '.indt',
+        ),
       );
       // Do some document setup
       myDocPrep(myDoc);
@@ -426,7 +452,7 @@ function addProductInfoDeprecated(myDoc, myRecord, myPath) {
   if (myRecord.itemDesc[0] == ' ') {
     myRecord.itemDesc = myRecord.itemDesc.slice(
       1,
-      myRecord.itemDesc.length - 1
+      myRecord.itemDesc.length - 1,
     );
   }
   //remove trailing characters
@@ -572,7 +598,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
         alert(
           "Failed to fill additional product info for '" +
             productInfo[i - 1] +
-            "'. The text in this box is overflowing. Please add the info manually afterwards."
+            "'. The text in this box is overflowing. Please add the info manually afterwards.",
         );
         break;
       } catch (e) {}
@@ -706,7 +732,7 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
   // Build and populate the headline frame
   if (myRecord.headline != '') {
     var myHeadlineFrameTemp = myDoc.textFrames.itemByName(
-      'script_buyout_template'
+      'script_buyout_template',
     );
     var myHeadlineFrame = myHeadlineFrameTemp.duplicate();
     myHeadlineFrame.contents = myRecord.headline;
@@ -763,12 +789,12 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
     if (myRecord.percent) {
       // Burst is a percent off
       var myPercentBurstTemplateGroup = myDoc.groups.itemByName(
-        'script_burst_flag_template'
+        'script_burst_flag_template',
       );
       var myPercentBurstGroup = myPercentBurstTemplateGroup.duplicate();
       myPercentBurstGroup.name = 'script_burst_flag_template';
       var myPercentTF = myPercentBurstGroup.textFrames.itemByName(
-        'script_burst_text_frame'
+        'script_burst_text_frame',
       );
       myPercentTF.paragraphs[0].contents = myRecord.percent;
       myPercentBurstGroup.label = myRecord.itemName;
@@ -781,12 +807,12 @@ function myBuildAdUnit(myDoc, myRecord, myPath) {
       }
     } else {
       var myBurstFlagTemplateGroup = myDoc.groups.itemByName(
-        'script_burst_flag_template'
+        'script_burst_flag_template',
       );
       var myBurstFlagGroup = myBurstFlagTemplateGroup.duplicate();
       myBurstFlagGroup.name = 'script_burst_flag';
       var myBurstTF = myBurstFlagGroup.textFrames.itemByName(
-        'script_burst_text_frame'
+        'script_burst_text_frame',
       );
       myBurstTF.contents = myRecord.burst;
       myShrinkTextToFitFrame(myBurstTF, 0.9286);
@@ -825,7 +851,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
-    NothingEnum.NOTHING
+    NothingEnum.NOTHING,
   );
   // Remove manual bullets
   //myGrepFC(myDoc,"^~8\\s*","",NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING,NothingEnum.NOTHING);
@@ -837,7 +863,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
-    NothingEnum.NOTHING
+    NothingEnum.NOTHING,
   );
   // Single left quote to Single right quote (assume there are never paired single quotes)
   myGrepFC(
@@ -847,7 +873,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
-    NothingEnum.NOTHING
+    NothingEnum.NOTHING,
   );
   // Return at end of story
   myGrepFC(
@@ -857,7 +883,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
     NothingEnum.NOTHING,
-    NothingEnum.NOTHING
+    NothingEnum.NOTHING,
   );
   // Remove duplicate headline frames and copy the metadata from each duplicate into the remaining frame
   var myPage = myDoc.pages[0];
@@ -1038,7 +1064,7 @@ function myGrepFC(
   findCharStyle,
   findParaStyle,
   changeCharStyle,
-  changeParaStyle
+  changeParaStyle,
 ) {
   app.findGrepPreferences = app.changeGrepPreferences = null;
   app.findChangeGrepOptions.includeFootnotes = false;
@@ -1162,7 +1188,7 @@ function myCreateLayer(myDoc, myLayerName) {
     // The layer already exists
     myDoc.activeLayer = myDoc.layers.item(myLayerName);
     myDoc.activeLayer.layerColor = eval(
-      'UIColors.' + myInDesignUIColorArray[myNumLayers]
+      'UIColors.' + myInDesignUIColorArray[myNumLayers],
     );
   }
 }
@@ -1178,12 +1204,12 @@ function myDocPrep(myDoc) {
   myDoc.importStyles(
     ImportFormat.textStylesFormat,
     File(myTrimPath($.fileName) + '/helpers/catalog_template_master.indt'),
-    GlobalClashResolutionStrategy.loadAllWithOverwrite
+    GlobalClashResolutionStrategy.loadAllWithOverwrite,
   );
   myDoc.importStyles(
     ImportFormat.objectStylesFormat,
     File(myTrimPath($.fileName) + '/helpers/catalog_template_master.indt'),
-    GlobalClashResolutionStrategy.loadAllWithOverwrite
+    GlobalClashResolutionStrategy.loadAllWithOverwrite,
   );
   // Paste template items from the master template
   app.selection = null;
@@ -1377,7 +1403,7 @@ function myInput() {
   var singleTextFrameCheck = group3.add(
     'checkbox',
     undefined,
-    'Single text frame product blocks'
+    'Single text frame product blocks',
   );
   singleTextFrameCheck.value = true;
 
