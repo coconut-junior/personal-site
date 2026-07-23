@@ -96,6 +96,13 @@ function openSheet(file) {
 
         //search excel sheet for matches
         for (let rowNum = range.s.r + 1; rowNum <= range.e.r; rowNum++) {
+          var cell1 = sheet[XLSX.utils.encode_cell({ r: rowNum, c: 1 })];
+
+          //skip empty rows
+          if (cell1 == undefined) {
+            continue;
+          }
+
           var iname = sheet[XLSX.utils.encode_cell({ r: rowNum, c: 3 })]['v'];
           var logo = sheet[XLSX.utils.encode_cell({ r: rowNum, c: 4 })]['v'];
           var prices = sheet[XLSX.utils.encode_cell({ r: rowNum, c: 10 })]['v'];
