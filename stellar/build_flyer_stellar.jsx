@@ -185,7 +185,7 @@ function Main() {
       myResult[i] = myTestRecord(myData[i]);
 
       //fix page names that include the word "page"
-      if (myResult[i].pageNumber.toLowerCase().startsWith('page ')) {
+      if (myResult[i].pageNumber.toString().toLowerCase().startsWith('page ')) {
         myResult[i].pageNumber = myResult[i].pageNumber[5];
       }
     } catch (e) {
