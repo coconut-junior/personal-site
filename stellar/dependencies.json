@@ -5,7 +5,7 @@
       "filename": "/helpers/helpers.zip",
       "url": "https://jbx.design/stellar/helpers.zip",
       "hidden": true,
-      "version": 2.5,
+      "version": 2.6,
       "description": "InDesign templates and helper scripts"
     },
     {
@@ -133,7 +133,7 @@
       "filename": "build_flyer_stellar.jsx",
       "url": "https://jbx.design/stellar/build_flyer_stellar.jsx",
       "hidden": true,
-      "version": 1.9,
+      "version": 2.0,
       "description": ""
     },
     {

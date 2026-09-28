@@ -392,34 +392,6 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
       }
       myAd.remove();
     }
-
-    //rewrite this... logic does not work for 4 DCs
-    // switch (myRecord.version.length) {
-    //   case 1:
-    //     var myVersionName = myRecord.version.toString();
-    //     myCreateLayer(myDoc, myVersionName);
-    //     myAd.move(myDoc.layers.item(myVersionName));
-    //     break;
-    //   case 2:
-    //     //if 5050 5100, copy to both
-    //     var myVersionName = myRecord.version[0].toString();
-    //     myCreateLayer(myDoc, myVersionName);
-    //     myAd.move(myDoc.layers.item(myVersionName));
-    //     var myVersionName = myRecord.version[1].toString();
-    //     myCreateLayer(myDoc, myVersionName);
-    //     myAd.duplicate(myDoc.layers.item(myVersionName));
-    //     break;
-    //   case 3:
-    //     try {
-    //       myAd.move(myDoc.layers.item('cmyk_base'));
-    //     } catch (error) {
-    //       var layerName = 'cmyk_base';
-    //       myAd.move(myDoc.layers.item(layerName));
-    //     }
-    //     break;
-    //   default:
-    //     break;
-    // }
   }
   // Position page items and clean up the last page
   myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear);
@@ -543,6 +515,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
   myAd.name = myRecord.itemName;
   var price_group = myAd.groups.itemByName('price_group');
   var myProductText = price_group.textFrames.itemByName('script_product_info');
+  var myProductPrices = price_group.textFrames.itemByName('script_prices');
   var buyoutHeader = myDoc.textFrames.itemByName('script_buyout');
 
   //reformat prices
@@ -593,6 +566,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
 
     try {
       myProductText.changeGrep();
+      myProductPrices.changeGrep();
     } catch (e) {
       try {
         alert(
@@ -600,7 +574,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
             productInfo[i - 1] +
             "'. The text in this box is overflowing. Please add the info manually afterwards.",
         );
-        break;
+        continue;
       } catch (e) {}
     }
   }
@@ -1403,7 +1377,7 @@ function myInput() {
   var singleTextFrameCheck = group3.add(
     'checkbox',
     undefined,
-    'Single text frame product blocks',
+    'Product copy & prices grouped separately',
   );
   singleTextFrameCheck.value = true;
 
