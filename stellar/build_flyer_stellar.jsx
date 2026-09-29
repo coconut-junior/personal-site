@@ -975,7 +975,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
           //tiny block
           try {
             myAd.move([
-              0 + (miniBlockCount % myNumColumns) * (miniBlockWidth + gutter),
+              648 + (miniBlockCount % myNumColumns) * (miniBlockWidth + gutter),
               myStartY +
                 Math.floor(miniBlockCount / myNumColumns) *
                   (miniBlockHeight + gutter),
@@ -1308,8 +1308,9 @@ function myInput() {
   flyerType.selection = 0;
 
   var gutterLabel = optionsGroup.add('statictext', undefined, 'Gutter Size');
-  var gutterEditText = optionsGroup.add('edittext', undefined, gutter);
+  var gutterEditText = optionsGroup.add('edittext', undefined, '0.25');
   gutterEditText.characters = 4;
+  var gutterLabel2 = optionsGroup.add('statictext', undefined, 'in.');
 
   var placeMiniBlocksCheck = optionsGroup.add(
     'checkbox',
@@ -1333,7 +1334,7 @@ function myInput() {
   if (myWindow.show() == 1) {
     //apply settings
     placeMiniBlocks = placeMiniBlocksCheck.value;
-    gutter = parseInt(gutterEditText.text);
+    gutter = parseFloat(gutterEditText.text) * 72;
 
     return [
       myMonth.selection.text,
