@@ -5,19 +5,31 @@
 // www.gilbertconsulting.com
 // Updated and maintained by Jimmy Blanck www.jbx.design
 
-//2-7-2023 updated to include multiple flyer specs (broad or tab)
-//7-22-2024 added new dc to list
-//11-24-2024 rewrote functions to automatically add logos
+/* 
+
+2-7-2023 updated to include multiple flyer specs (broad or tab)
+7-22-2024 added new dc to list
+11-24-2024 rewrote functions to automatically add logos
+9-29-2026 added options for block spacing and "mini blocks" for a silly guy named Shelby
+
+*/
 
 //@include "helpers/xlsx.extendscript.js"
 //@include "helpers/formatting.js"
 //@include 'json_es3.jsx';
 
 var pathArg, key;
-var singleTextFrame = true;
+var placeMiniBlocks = true;
 var dcList = ['5050', '5100', '5150', '5200'];
 var isTest = false;
 var logoDict = undefined;
+var gutter = 10;
+var blockHeight = 101.539;
+var blockWidth = 177.435;
+var miniBlockHeight = 75.288;
+var miniBlockWidth = 142.155;
+var myVOffset;
+var myHOffset;
 
 try {
   pathArg = arguments[0];
@@ -25,6 +37,15 @@ try {
 } catch (e) {
   pathArg = undefined;
   key = undefined;
+}
+
+//backport range
+function range(start, end) {
+  var ans = [];
+  for (var i = start; i <= end; i++) {
+    ans.push(i);
+  }
+  return ans;
 }
 
 //backport startsWith
@@ -45,6 +66,25 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
     typeof str2 == 'string' ? str2.replace(/\$/g, '$$$$') : str2,
   );
 };
+
+//includes polyfill
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function (valueToFind, fromIndex) {
+    if (this == null) {
+      throw new TypeError('"this" is null or not defined');
+    }
+    var O = Object(this);
+    var len = O.length >>> 0;
+    if (len === 0) return false;
+    var n = fromIndex | 0;
+    var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+    while (k < len) {
+      if (O[k] === valueToFind) return true;
+      k++;
+    }
+    return false;
+  };
+}
 
 //backport trim() to es3
 String.prototype.trim = function () {
@@ -135,8 +175,7 @@ function Main() {
     alert('No options were selected.');
     return;
   }
-  // Prompt the user to select an xlsx file
-  // var myXLSXFile = myGetFile();
+
   var myXLSXFile = pathArg;
 
   if (myXLSXFile == '') {
@@ -188,10 +227,7 @@ function Main() {
       if (myResult[i].pageNumber.toString().toLowerCase().startsWith('page ')) {
         myResult[i].pageNumber = myResult[i].pageNumber[5];
       }
-    } catch (e) {
-      alert('error on entry ' + myData[i]);
-      alert(e);
-    }
+    } catch (e) {}
   }
 
   // Process each record and build pages
@@ -226,7 +262,7 @@ function myTestRecord(myRecord) {
   if (myRecord[1] == 'ALL') {
     myResult.version = dcList;
   } else {
-    myResult.version = myRecord[1].split(',');
+    myResult.version = myRecord[1].replaceAll(' ', '').split(',');
   }
   myResult.headline = myRecord[2]; // Column C
   myResult.itemName = myRecord[3]; // Column D
@@ -376,8 +412,15 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
       myDocPrep(myDoc);
       myPageNum++;
     }
+
     // Build 1 ad unit
-    var myAd = myBuildAdUnit(myDoc, myRecord, myPath);
+    var myAd = myBuildAdUnit(
+      'script_product_block',
+      myDoc,
+      myRecord,
+      myPath,
+      false,
+    );
 
     // Put the ad on the correct layer
     if (myRecord.version.toString() == dcList) {
@@ -392,6 +435,31 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
       }
       myAd.remove();
     }
+
+    if (placeMiniBlocks) {
+      // Build 1 ad unit
+      var myAd = myBuildAdUnit(
+        'script_mini_block',
+        myDoc,
+        myRecord,
+        myPath,
+        true,
+      );
+
+      // Put the ad on the correct layer
+      if (myRecord.version.toString() == dcList) {
+        var version = 'cmyk_base';
+        myCreateLayer(myDoc, version);
+        myAd.move(myDoc.layers.item(version));
+      } else {
+        for (v = 0; v < myRecord.version.length; ++v) {
+          var version = myRecord.version[v];
+          myCreateLayer(myDoc, version);
+          myAd.duplicate(myDoc.layers.item(version));
+        }
+        myAd.remove();
+      }
+    }
   }
   // Position page items and clean up the last page
   myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear);
@@ -400,110 +468,9 @@ function myBuildPages(myPath, myResult, myMonth, myDay, myYear) {
   pBar.close();
 }
 
-function addProductInfoDeprecated(myDoc, myRecord, myPath) {
-  var myGroup = myDoc.groups.itemByName('unit_2.3x2.7');
-  var myAd = myGroup.duplicate();
-  myAd.name = myRecord.itemName;
-  myLocateFrame(myAd, 'script_item_head').contents = myRecord.itemName;
-  var myDescFrame = myLocateFrame(myAd, 'script_desc');
-  var myTheirs = 'theirs';
+function addProductInfo(templateName, myDoc, myRecord, myPath, isMini) {
+  var myGroup = myDoc.groups.itemByName(templateName);
 
-  // Massage the item description
-  if (
-    myRecord.itemDesc.match(/certified refurbished/gi) ||
-    myRecord.itemDesc.match(/certified remanufactured/gi)
-  ) {
-    myTheirs = 'theirs new';
-  }
-
-  //format copy points
-  myRecord.itemDesc = normalizeAbbreviations(myRecord.itemDesc);
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('-', '');
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('*', '');
-  //remove leading space
-  if (myRecord.itemDesc[0] == ' ') {
-    myRecord.itemDesc = myRecord.itemDesc.slice(
-      1,
-      myRecord.itemDesc.length - 1,
-    );
-  }
-  //remove trailing characters
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('  ', ' ');
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll(' \r', '\r');
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('.\r', '\r');
-  //remove double return
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('\r\r', '\r');
-  if (myRecord.itemDesc[-1] == '.' || myRecord.itemDesc[-1] == ' ') {
-    myRecord.itemDesc = myRecord.itemDesc.slice(0, -1);
-  }
-
-  //add bullets
-  var bullet = new String('\u2022');
-  var centSymbol = new String('\u00a2');
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('\n\n', '\n');
-  myRecord.itemDesc = bullet + myRecord.itemDesc;
-  myRecord.itemDesc = myRecord.itemDesc.replaceAll('\n', '\n' + bullet);
-
-  myDescFrame.contents = myRecord.itemDesc;
-  var ourPriceFrame = myLocateFrame(myAd, 'script_our_price');
-
-  if (myRecord.ourPriceDollars != '') {
-    // Dollars present
-    ourPriceFrame.contents =
-      '$' + myRecord.ourPriceDollars + myRecord.ourPriceCents;
-  } else {
-    ourPriceFrame.contents = myRecord.ourPriceCents + centSymbol;
-  }
-
-  var theirPriceFrame = myLocateFrame(myAd, 'script_their_price');
-  if (myRecord.theirPriceDollars != '' && myRecord.theirPriceCents != '') {
-    // Dollars and cents present
-    theirPriceFrame.contents =
-      myTheirs +
-      ' $' +
-      myRecord.theirPriceDollars +
-      '.' +
-      myRecord.theirPriceCents;
-  } else {
-    if (myRecord.theirPriceDollars == '' && myRecord.theirPriceCents != '') {
-      // Only cents present
-      theirPriceFrame.contents =
-        myTheirs + ' ' + myRecord.theirPriceCents + centSymbol;
-    }
-  }
-
-  var versions = myRecord.version;
-  if (versions == dcList) {
-    versions = 'All';
-  }
-
-  var myLabel = '';
-  myLabel =
-    '<<Versions>>' +
-    versions +
-    '\n\n' +
-    '<<Price>> ' +
-    myRecord.price +
-    '\n\n' +
-    '<<Logo>> ' +
-    myRecord.logo +
-    '\n\n' +
-    '<<Burst>> ' +
-    myRecord.burst +
-    '\n\n' +
-    '<<Image>> ' +
-    myRecord.imageSource +
-    '\n\n' +
-    '<<Notes>> ' +
-    myRecord.specialNotes +
-    '\n\n';
-  myLocateFrame(myAd, 'script_item_head').label = myLabel;
-
-  return myAd;
-}
-
-function addProductInfo(myDoc, myRecord, myPath) {
-  var myGroup = myDoc.groups.itemByName('script_product_block');
   var overline = 'overline';
   var mainline = myRecord.itemName;
   var copy = myRecord.itemDesc;
@@ -513,6 +480,7 @@ function addProductInfo(myDoc, myRecord, myPath) {
 
   var myAd = myGroup.duplicate();
   myAd.name = myRecord.itemName;
+
   var price_group = myAd.groups.itemByName('price_group');
   var myProductText = price_group.textFrames.itemByName('script_product_info');
   var myProductPrices = price_group.textFrames.itemByName('script_prices');
@@ -604,6 +572,11 @@ function addProductInfo(myDoc, myRecord, myPath) {
     '<<Notes>> ' +
     myRecord.specialNotes +
     '\n\n';
+
+  if (isMini) {
+    myLabel += '<<Mini Block>>';
+  }
+
   myAd.label = myLabel;
 
   return myAd;
@@ -636,14 +609,8 @@ function cleanString(str) {
 }
 
 // Build a single ad unit
-function myBuildAdUnit(myDoc, myRecord, myPath) {
-  var myAd;
-
-  if (singleTextFrame) {
-    myAd = addProductInfo(myDoc, myRecord, myPath);
-  } else {
-    myAd = addProductInfoDeprecated(myDoc, myRecord, myPath);
-  }
+function myBuildAdUnit(templateName, myDoc, myRecord, myPath, isMini) {
+  var myAd = addProductInfo(templateName, myDoc, myRecord, myPath, isMini);
 
   // Add the logo(s)
   var myOffset = 10;
@@ -918,6 +885,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
   // Remove the template frames
   myDoc.groups.item('unit_2.3x2.7').remove();
   myDoc.groups.item('script_product_block').remove();
+  myDoc.groups.item('script_mini_block').remove();
 
   myDoc.groups.item('script_story_template').remove();
   myDoc.groups.item('script_burst_flag_template').remove();
@@ -925,9 +893,7 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
   myDoc.groups.item('script_percent_burst_template').remove();
 
   //Product block offset (in pixels)
-  var myVOffset = 120;
-  var myHOffset = 214;
-  var myStartX = 0;
+  var myStartX = -980;
   var myStartY = 0;
   var myNumColumns = 5;
 
@@ -991,7 +957,9 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
       break;
   }
   // Position the ads on the page
+
   var myAdCount = 0;
+  var miniBlockCount = 0;
   for (var i = myDoc.layers.length - 1; i >= 0; i--) {
     var myLayer = myDoc.layers[i];
     for (var j = 0; j < myLayer.groups.length; j++) {
@@ -1001,13 +969,31 @@ function myCleanUp(myDoc, myPageNum, myMonth, myDay, myYear) {
         myLayer.groups[j].name != 'script_percent_burst'
       ) {
         var myAd = myLayer.groups[j];
-        try {
-          myAd.move([
-            myStartX + (myAdCount % myNumColumns) * myHOffset,
-            myStartY + Math.floor(myAdCount / myNumColumns) * myVOffset,
-          ]);
-        } catch (error) {}
-        myAdCount++;
+
+        //reset position for mini blocks
+        if (myAd.label.match('<<Mini Block>>')) {
+          //tiny block
+          try {
+            myAd.move([
+              0 + (miniBlockCount % myNumColumns) * (miniBlockWidth + gutter),
+              myStartY +
+                Math.floor(miniBlockCount / myNumColumns) *
+                  (miniBlockHeight + gutter),
+            ]);
+            miniBlockCount++;
+          } catch (error) {}
+        } else {
+          //regular block
+          try {
+            myAd.move([
+              myStartX + (myAdCount % myNumColumns) * (blockWidth + gutter),
+              myStartY +
+                Math.floor(myAdCount / myNumColumns) * (blockHeight + gutter),
+            ]);
+
+            myAdCount++;
+          } catch (error) {}
+        }
       }
     }
   }
@@ -1220,7 +1206,7 @@ function myInput() {
   // PANEL1
   // ======
   var panel1 = group1.add('panel', undefined, undefined, { name: 'panel1' });
-  panel1.text = 'Select a Wednesday date';
+  panel1.text = 'Flyer Drop Date';
   panel1.orientation = 'column';
   panel1.alignChildren = ['left', 'center'];
   panel1.spacing = 10;
@@ -1239,21 +1225,7 @@ function myInput() {
   });
   statictext1.text = 'Month:';
 
-  var myMonth_array = [
-    '',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-  ];
+  var myMonth_array = range(1, 12);
   var myMonth = group2.add('dropdownlist', undefined, undefined, {
     name: 'myMonth',
     items: myMonth_array,
@@ -1265,40 +1237,7 @@ function myInput() {
   });
   statictext2.text = 'Day:';
 
-  var myDay_array = [
-    '',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-    '20',
-    '21',
-    '22',
-    '23',
-    '24',
-    '25',
-    '26',
-    '27',
-    '28',
-    '29',
-    '30',
-    '31',
-  ];
+  var myDay_array = range(1, 31);
   var myDay = group2.add('dropdownlist', undefined, undefined, {
     name: 'myDay',
     items: myDay_array,
@@ -1310,33 +1249,16 @@ function myInput() {
   });
   statictext3.text = 'Year:';
 
-  var myYear_array = [
-    '',
-    '2021',
-    '2022',
-    '2023',
-    '2024',
-    '2025',
-    '2026',
-    '2027',
-    '2028',
-    '2029',
-    '2030',
-    '2031',
-  ];
+  var d = new Date();
+  var year = d.getFullYear();
+  var myYear_array = range(year, year + 4);
   var myYear = group2.add('dropdownlist', undefined, undefined, {
     name: 'myYear',
     items: myYear_array,
   });
   myYear.selection = 0;
-  try {
-    var d = new Date();
-    var year = d.getFullYear();
-    myYear.selection = myYear_array.indexOf(year.toString());
-  } catch (e) {}
 
   // flyer specs
-  // ======
 
   var panel2 = group1.add('panel', undefined, undefined, { name: 'panel2' });
   panel2.text = 'Flyer Specs';
@@ -1350,6 +1272,17 @@ function myInput() {
   group3.alignChildren = ['fill', 'center'];
   group3.spacing = 10;
   group3.margins = [0, 0, 0, 0];
+
+  var optionsPanel = group1.add('panel', undefined, undefined, {
+    name: 'optionsPanel',
+  });
+  optionsPanel.alignChildren = ['fill', 'center'];
+  optionsPanel.text = 'Placing Options';
+
+  var optionsGroup = optionsPanel.add('group', undefined, {
+    name: 'optionsGroup',
+    alignChildren: ['fill', 'center'],
+  });
 
   //action buttons
   var group4 = myWindow.add('group', undefined, { name: 'group4' });
@@ -1374,12 +1307,16 @@ function myInput() {
   });
   flyerType.selection = 0;
 
-  var singleTextFrameCheck = group3.add(
+  var gutterLabel = optionsGroup.add('statictext', undefined, 'Gutter Size');
+  var gutterEditText = optionsGroup.add('edittext', undefined, gutter);
+  gutterEditText.characters = 4;
+
+  var placeMiniBlocksCheck = optionsGroup.add(
     'checkbox',
     undefined,
-    'Product copy & prices grouped separately',
+    'Place mini blocks',
   );
-  singleTextFrameCheck.value = true;
+  placeMiniBlocksCheck.value = true;
 
   var cancel = group4.add('button', undefined, undefined, { name: 'cancel' });
   cancel.text = 'Cancel';
@@ -1394,7 +1331,10 @@ function myInput() {
 	*/
 
   if (myWindow.show() == 1) {
-    singleTextFrame = singleTextFrameCheck.value;
+    //apply settings
+    placeMiniBlocks = placeMiniBlocksCheck.value;
+    gutter = parseInt(gutterEditText.text);
+
     return [
       myMonth.selection.text,
       myDay.selection.text,
