@@ -1307,7 +1307,7 @@ function myInput() {
   });
   flyerType.selection = 0;
 
-  var gutterLabel = optionsGroup.add('statictext', undefined, 'Gutter Size');
+  var gutterLabel = optionsGroup.add('statictext', undefined, 'Block Spacing');
   var gutterEditText = optionsGroup.add('edittext', undefined, '0.25');
   gutterEditText.characters = 4;
   var gutterLabel2 = optionsGroup.add('statictext', undefined, 'in.');
