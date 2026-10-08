@@ -1,4 +1,5 @@
 var discount = 0;
+var doc = app.activeDocument;
 
 const ourPriceStyle = 'our price';
 var yellow = app.activeDocument.colors[-1].duplicate();
@@ -29,7 +30,7 @@ var dropdown = window.add(
     '70',
     '75',
   ],
-  undefined
+  undefined,
 );
 var text = window.add('statictext');
 text.text = '% off';
@@ -55,6 +56,7 @@ function main() {
   window.show();
   if (!canceled) {
     calculate();
+    changeFonts();
   }
 }
 
@@ -64,7 +66,6 @@ function round(num, precision) {
 }
 
 function calculate() {
-  var doc = app.activeDocument;
   var items = doc.allPageItems;
 
   for (var i = 0; i < items.length; ++i) {
@@ -150,5 +151,39 @@ else
     ScriptLanguage.JAVASCRIPT,
     undefined,
     UndoModes.ENTIRE_SCRIPT,
-    'Apply Discounts'
+    'Apply Discounts',
   );
+
+function changeFonts() {
+  var oldFontName = 'ChocolateMilk';
+  var newFontName = 'ChocolateMilk_V21\tSVG';
+  var styleNameFragment = 'price';
+  var count = 0;
+
+  for (var s = 0; s < doc.stories.length; s++) {
+    var story = doc.stories[s];
+
+    for (var p = 0; p < story.paragraphs.length; p++) {
+      var para = story.paragraphs[p];
+      var styleName = para.appliedParagraphStyle.name;
+
+      if (
+        styleName.toLowerCase().indexOf(styleNameFragment.toLowerCase()) !== -1
+      ) {
+        for (var t = 0; t < para.textStyleRanges.length; t++) {
+          var tsr = para.textStyleRanges[t];
+
+          if (tsr.appliedFont.name.indexOf(oldFontName) !== -1) {
+            tsr.appliedFont = newFontName;
+            count++;
+          }
+        }
+      }
+    }
+  }
+
+  alert('Updated ' + count + ' text range(s).');
+  alert(
+    'Please remember to calculate discounts for lines lists & tables manually.',
+  );
+}
