@@ -1,12 +1,9 @@
 var discount = 0;
 var doc = app.activeDocument;
-
 const ourPriceStyle = 'our price';
-var yellow = app.activeDocument.colors[-1].duplicate();
-yellow.properties = { colorValue: [0, 0, 100, 0], space: ColorSpace.CMYK };
-var red = app.activeDocument.colors[-1].duplicate();
-red.properties = { colorValue: [0, 99, 97, 0], space: ColorSpace.CMYK };
-var white = 'Paper';
+var oldFontName = 'ChocolateMilk_V20';
+var newFontName = 'ChocolateMilk_V21\tSVG';
+var styleNameFragment = 'price';
 
 var window = new Window('dialog', 'Discount');
 var dropdown = window.add(
@@ -57,6 +54,10 @@ function main() {
   if (!canceled) {
     calculate();
     changeFonts();
+    removeEllipses(150);
+    alert(
+      'Please remember to calculate discounts for lines lists & tables manually.',
+    );
   }
 }
 
@@ -155,9 +156,6 @@ else
   );
 
 function changeFonts() {
-  var oldFontName = 'ChocolateMilk';
-  var newFontName = 'ChocolateMilk_V21\tSVG';
-  var styleNameFragment = 'price';
   var count = 0;
 
   for (var s = 0; s < doc.stories.length; s++) {
@@ -181,9 +179,23 @@ function changeFonts() {
       }
     }
   }
+}
 
-  alert('Updated ' + count + ' text range(s).');
-  alert(
-    'Please remember to calculate discounts for lines lists & tables manually.',
-  );
+function removeEllipses(minWidth) {
+  var removed = 0;
+  var items = app.activeDocument.allPageItems;
+
+  for (var i = items.length - 1; i >= 0; i--) {
+    try {
+      if (items[i] instanceof Oval) {
+        var gb = items[i].geometricBounds;
+        var width = gb[3] - gb[1];
+
+        if (width >= minWidth) {
+          items[i].remove();
+          removed++;
+        }
+      }
+    } catch (e) {}
+  }
 }
