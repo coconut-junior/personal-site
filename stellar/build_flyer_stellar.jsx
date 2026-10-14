@@ -482,7 +482,7 @@ function addProductInfo(templateName, myDoc, myRecord, myPath, isMini) {
   myAd.name = myRecord.itemName;
 
   var price_group = myAd.groups.itemByName('price_group');
-  var myProductText = price_group.textFrames.itemByName('script_product_info');
+  var myProductText = myAd.textFrames.itemByName('script_product_info');
   var myProductPrices = price_group.textFrames.itemByName('script_prices');
   var buyoutHeader = myDoc.textFrames.itemByName('script_buyout');
 
