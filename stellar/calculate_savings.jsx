@@ -74,8 +74,9 @@ if (app.selection.length === 0) {
   }
 
   var s = largest(savingsArray);
+  var a = Math.round(average(savingsArray));
   s = Math.round(s);
-  alert('Largest savings is ' + s + '%');
+  alert('Largest savings is ' + s + '%\n' + 'Average savings is ' + a + '%');
 
   function processTextFrame(textFrame) {
     for (var p = 0; p < textFrame.paragraphs.length; p++) {
