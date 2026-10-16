@@ -176,13 +176,10 @@ function Main() {
     myXLSXFile = File(pathArg);
   }
 
-  var myPath = myXLSXFile.path.replace(
-    myXLSXFile.path.split('/')[myXLSXFile.path.split('/').length - 1],
-    '',
-  );
+  var myPath = myXLSXFile.path;
 
   //check for logo dictionary
-  var jsonFile = File(myPath + 'logos/assets.json');
+  var jsonFile = File(myPath + '/logos/assets.json');
   if (jsonFile.exists) {
     jsonFile.open('r');
     jsonFile.encoding = 'UTF-8';
