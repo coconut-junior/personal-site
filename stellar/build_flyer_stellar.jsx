@@ -11,10 +11,13 @@
 7-22-2024 added new dc to list
 11-24-2024 rewrote functions to automatically add logos
 9-29-2026 added options for block spacing and "mini blocks" for a silly guy named Shelby
-
+10-26-2026
+  - added ability to run without Stellar (without connecting to DAM, of course)
+  - test file will now load automatically regardless of username
+  - will check if column names are present before processing spreadsheet
 */
 
-//@include "helpers/xlsx.extendscript.js"
+//@include "xlsx.extendscript.js"
 //@include "helpers/formatting.js"
 //@include 'json_es3.jsx';
 
@@ -30,6 +33,8 @@ var miniBlockHeight = 75.288;
 var miniBlockWidth = 142.155;
 var myVOffset;
 var myHOffset;
+var desktopFolder = Folder.desktop.fsName;
+var myXLSXFile;
 
 try {
   pathArg = arguments[0];
@@ -150,42 +155,33 @@ function setPreferences() {
 
 function Main() {
   //LOAD TEST FILE IF PRESENT
-  var testFile = File('/Users/jblanck/Desktop/testfile.xls');
+  var testFile = File(desktopFolder + '/testfile.xls');
   if (testFile.exists) {
     alert('Test file detected on desktop, loading items');
     isTest = true;
     key = 1;
-    pathArg = '/Users/jblanck/Desktop/testfile.xls';
+    pathArg = desktopFolder + '/testfile.xls';
   }
 
   if (key == undefined) {
     alert(
-      'This automation only works with Stellar. Please open Stellar and launch it from there.',
+      'Warning\nBy running this script without Stellar, please note that logos cannot be downloaded from the DAM. \n\nSelect a spreadsheet to continue.',
     );
-    return;
-  }
 
-  var myResultsArray = myInput();
-  if (myResultsArray) {
-    var myMonth = Number(myResultsArray[0]);
-    var myDay = Number(myResultsArray[1]);
-    var myYear = Number(myResultsArray[2]);
-    flyerSpecs = myResultsArray[3];
+    myXLSXFile = getFile();
+    if (!myXLSXFile) {
+      return;
+    }
   } else {
-    alert('No options were selected.');
-    return;
+    myXLSXFile = File(pathArg);
   }
 
-  var myXLSXFile = pathArg;
-
-  if (myXLSXFile == '') {
-    return;
-  }
-  var myPath = pathArg.replace(
-    pathArg.split('/')[pathArg.split('/').length - 1],
+  var myPath = myXLSXFile.path.replace(
+    myXLSXFile.path.split('/')[myXLSXFile.path.split('/').length - 1],
     '',
   );
 
+  //check for logo dictionary
   var jsonFile = File(myPath + 'logos/assets.json');
   if (jsonFile.exists) {
     jsonFile.open('r');
@@ -196,12 +192,19 @@ function Main() {
   }
 
   var workbook = XLSX.readFile(myXLSXFile);
-
   // Convert the first worksheet (project info) to JSON array of arrays
   var first_sheet_name = workbook.SheetNames[0],
     first_worksheet = workbook.Sheets[first_sheet_name];
-
   var myData = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 });
+
+  var A1 = myData[0][0];
+  if (A1 != 'Page Name') {
+    alert(
+      'Column names are missing or incorrect. Please download a new spreadsheet from Badger (CMS).\n Why did you edit the spreadsheet, Shelby?',
+    );
+    return;
+  }
+
   myData.shift(); // Remove the first array element since it is the header
   var myResult = new Array();
 
@@ -228,6 +231,16 @@ function Main() {
         myResult[i].pageNumber = myResult[i].pageNumber[5];
       }
     } catch (e) {}
+  }
+
+  var myResultsArray = myInput();
+  if (myResultsArray) {
+    var myMonth = Number(myResultsArray[0]);
+    var myDay = Number(myResultsArray[1]);
+    var myYear = Number(myResultsArray[2]);
+    flyerSpecs = myResultsArray[3];
+  } else {
+    return;
   }
 
   // Process each record and build pages
