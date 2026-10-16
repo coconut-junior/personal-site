@@ -17,6 +17,14 @@
       "description": ""
     },
     {
+      "name": "SheetJS for Extendscript",
+      "filename": "xlsx.extendscript.js",
+      "url": "https://jbx.design/stellar/xlsx.extendscript.js",
+      "hidden": true,
+      "version": 1.0,
+      "description": ""
+    },
+    {
       "name": "Ungroup All",
       "filename": "ungroup_all.jsx",
       "url": "https://jbx.design/stellar/ungroup_all.jsx",
