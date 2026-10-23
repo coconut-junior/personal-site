@@ -77,7 +77,7 @@ function calculate() {
       for (var p = 0; p < item.paragraphs.length; ++p) {
         var para = item.paragraphs[p];
         if (
-          para.appliedFont.name.match('ChocolateMilk') &&
+          para.appliedFont.name.match(oldFontName) &&
           (para.contents.match(/^\$/) || para.contents.match(centSymbol))
         ) {
           var contents = para.contents;
