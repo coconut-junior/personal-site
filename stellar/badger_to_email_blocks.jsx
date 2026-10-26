@@ -24,7 +24,8 @@ function myParsePrice(myPrice) {
 	var ourPriceDollars = OurPriceCents = theirPriceDollars = theirPriceCents = "";
 	var ourPrice = myPrice.match(/our price:\s*\d*\.{0,1}\d*/i);
 	if (ourPrice) {
-		ourPrice = ourPrice[0].replace(/our price:\s*/i,""); // Remove "our price"
+		ourPrice = ourPrice[0].replace(/our price:\s*/i, ""); // Remove "our price"
+		ourPrice = parseFloat(ourPrice).toFixed(2); //ensure cents have 2 decimal places
 		var ourPriceDollars = ourPrice.replace(/\.\d*/i,"");
 		if ((ourPriceDollars == "0") || (ourPriceDollars == "00")) {
 			ourPriceDollars = "";
