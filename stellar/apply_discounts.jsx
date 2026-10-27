@@ -81,22 +81,38 @@ function calculate() {
           (para.contents.match(/^\$/) || para.contents.match(centSymbol))
         ) {
           var contents = para.contents;
-          var priceString = contents.replace(/\D/g, '');
-          var price = parseInt(priceString) * 0.01;
+          var priceString = contents.replace(/\D/g, ''); //just the number
+          var originalString = priceString;
+
+          //if second to last character is a space, we must replace that as well later.
+          // otherwise, the grep style will make the cents normal size, not superscript
+          var secondToLastChar = contents.charCodeAt(contents.length - 2);
+          if (secondToLastChar == 32) originalString += ' ';
+
+          //if flat price point, add 0 cents
+          if (para.contents.match(/^\$/) && priceString.length < 3) {
+            priceString += '00';
+          }
+
+          var price = parseInt(priceString) * 0.01; //total price in cents
           var newPrice = '';
 
-          if (contents.match(/^\$/)) {
-            newPrice = '$' + round(price * (1 - discount), 2) * 100;
-          } else if (contents.match(centSymbol)) {
+          var newPriceCents = round(price * (1 - discount), 2) * 100;
+
+          if (newPriceCents < 100) {
+            //final price needs cent symbol
             newPrice = round(price * (1 - discount), 2) * 100;
             newPrice = newPrice.toString() + centSymbol;
+          } else {
+            //final price needs dollar symbol
+            newPrice = '$' + round(price * (1 - discount), 2) * 100;
           }
 
           newPrice = newPrice.replace('.', '');
           para.contents = para.contents
             .replace('$', '')
             .replace(centSymbol, '')
-            .replace(priceString, newPrice);
+            .replace(originalString, newPrice);
         }
         //discount line lists
         // else if (para.appliedParagraphStyle.name.match('line list')) {
