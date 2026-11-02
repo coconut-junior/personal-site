@@ -139,8 +139,8 @@ var ProgressBar = function (
     w.close();
   };
 };
-var pBar = new ProgressBar('Build catalog pages.jsx');
-var parseBar = new ProgressBar('Parse spreadsheet.jsx');
+var pBar = new ProgressBar('Build Flyer');
+var parseBar = new ProgressBar('Parse Spreadsheet');
 
 function logTiming(phase, startTime) {
   var elapsedSeconds = (new Date().getTime() - startTime) / 1000;
@@ -328,10 +328,7 @@ function Main() {
         }
       } catch (e) {}
 
-      if (
-        (i + 1) % validationUpdateInterval == 0 ||
-        i == myData.length - 1
-      ) {
+      if ((i + 1) % validationUpdateInterval == 0 || i == myData.length - 1) {
         parseBar.update(
           i + 1,
           'Validating row ' + (i + 1) + ' of ' + myData.length,
