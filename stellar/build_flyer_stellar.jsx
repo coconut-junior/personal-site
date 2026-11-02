@@ -120,6 +120,15 @@ var ProgressBar = function (
     pb.visible = !!maxValue;
     w.show();
   };
+  this.update = function (value, msg) {
+    if (value !== undefined && value !== null) {
+      pb.value = value;
+    }
+    if (msg !== undefined) {
+      st.text = msg;
+    }
+    w.update();
+  };
   this.hit = function () {
     ++pb.value;
   };
@@ -131,6 +140,14 @@ var ProgressBar = function (
   };
 };
 var pBar = new ProgressBar('Build catalog pages.jsx');
+var parseBar = new ProgressBar('Parse spreadsheet.jsx');
+
+function logTiming(phase, startTime) {
+  var elapsedSeconds = (new Date().getTime() - startTime) / 1000;
+  $.writeln(
+    '[Build Flyer] ' + phase + ': ' + elapsedSeconds.toFixed(2) + ' sec',
+  );
+}
 
 setPreferences();
 
@@ -188,49 +205,148 @@ function Main() {
     jsonFile.close();
   }
 
-  var workbook = XLSX.readFile(myXLSXFile);
-  // Convert the first worksheet (project info) to JSON array of arrays
-  var first_sheet_name = workbook.SheetNames[0],
-    first_worksheet = workbook.Sheets[first_sheet_name];
-  var myData = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 });
-
-  var A1 = myData[0][0];
-  if (A1 != 'Page Name') {
-    alert(
-      'Column names are missing or incorrect. Please download a new spreadsheet from Badger (CMS).\n Why did you edit the spreadsheet, Shelby?',
-    );
-    return;
-  }
-
-  myData.shift(); // Remove the first array element since it is the header
   var myResult = new Array();
+  var spreadsheetParseStart = new Date().getTime();
+  try {
+    var workbookReadStart = new Date().getTime();
+    parseBar.reset('Reading spreadsheet...', 0);
+    parseBar.update();
+    var workbookReadOptions = {};
+    // SheetJS can skip unused sheets in ZIP-based workbooks, but not legacy XLS.
+    if (myXLSXFile.name.match(/\.(xlsx|xlsm|xlsb)$/i)) {
+      workbookReadOptions.sheets = 0;
+    }
+    var workbook = XLSX.readFile(myXLSXFile, workbookReadOptions);
+    logTiming('Workbook read', workbookReadStart);
 
-  var firstPageName = myData[0][0];
+    // Convert only the columns used by this script and skip trailing empty rows.
+    var firstSheetName = workbook.SheetNames[0];
+    var firstWorksheet = workbook.Sheets[firstSheetName];
+    if (!firstWorksheet || !firstWorksheet['!ref']) {
+      alert('The spreadsheet does not contain a readable first worksheet.');
+      return;
+    }
 
-  if (
-    firstPageName != '1' &&
-    !firstPageName.toLowerCase().startsWith('page 1')
-  ) {
-    alert(
-      "Page names are incorrect.\n\n Please check that page 1 is named '1' or has a name starting with 'Page 1' in Badger",
-    );
-    exit();
-  }
-
-  // Parse and test each record for integrity
-  for (var i = 0; i < myData.length; i++) {
-    // For each record...
-    try {
-      myResult[i] = myTestRecord(myData[i]);
-
-      //fix page names that include the word "page"
-      if (myResult[i].pageNumber.toString().toLowerCase().startsWith('page ')) {
-        myResult[i].pageNumber = myResult[i].pageNumber[5];
+    var worksheetRange = XLSX.utils.decode_range(firstWorksheet['!ref']);
+    var lastDataRow = -1;
+    for (var cellAddress in firstWorksheet) {
+      if (firstWorksheet.hasOwnProperty(cellAddress)) {
+        var cellMatch = cellAddress.match(/^([A-O])([1-9]\d*)$/);
+        if (
+          cellMatch &&
+          firstWorksheet[cellAddress].v !== undefined &&
+          firstWorksheet[cellAddress].v !== null &&
+          firstWorksheet[cellAddress].v !== ''
+        ) {
+          lastDataRow = Math.max(lastDataRow, Number(cellMatch[2]) - 1);
+        }
       }
-    } catch (e) {}
+    }
+
+    if (lastDataRow < 0) {
+      alert(
+        'Column names are missing or incorrect. Please download a new spreadsheet from Badger (CMS).\n Why did you edit the spreadsheet, Shelby?',
+      );
+      return;
+    }
+
+    var conversionStart = new Date().getTime();
+    var rowCount = lastDataRow - worksheetRange.s.r + 1;
+    var conversionBatchSize = 100;
+    var myData = [];
+    parseBar.reset('Converting spreadsheet rows...', rowCount);
+    for (
+      var firstRow = worksheetRange.s.r;
+      firstRow <= lastDataRow;
+      firstRow += conversionBatchSize
+    ) {
+      var lastBatchRow = Math.min(
+        firstRow + conversionBatchSize - 1,
+        lastDataRow,
+      );
+      var convertedRows = XLSX.utils.sheet_to_json(firstWorksheet, {
+        header: 1,
+        blankrows: false,
+        range: {
+          s: { r: firstRow, c: 0 },
+          e: { r: lastBatchRow, c: 14 },
+        },
+      });
+      for (
+        var convertedIndex = 0;
+        convertedIndex < convertedRows.length;
+        convertedIndex++
+      ) {
+        myData.push(convertedRows[convertedIndex]);
+      }
+      parseBar.update(
+        lastBatchRow - worksheetRange.s.r + 1,
+        'Converting rows ' +
+          (firstRow + 1) +
+          '-' +
+          (lastBatchRow + 1) +
+          ' of ' +
+          (lastDataRow + 1),
+      );
+      $.sleep(1);
+    }
+    logTiming('Worksheet conversion (columns A-O)', conversionStart);
+
+    if (!myData.length || myData[0][0] != 'Page Name') {
+      alert(
+        'Column names are missing or incorrect. Please download a new spreadsheet from Badger (CMS).\n Why did you edit the spreadsheet, Shelby?',
+      );
+      return;
+    }
+
+    myData.shift(); // Remove the first array element since it is the header
+
+    var firstPageName = myData[0][0];
+    if (
+      firstPageName != '1' &&
+      !firstPageName.toLowerCase().startsWith('page 1')
+    ) {
+      alert(
+        "Page names are incorrect.\n\n Please check that page 1 is named '1' or has a name starting with 'Page 1' in Badger",
+      );
+      exit();
+    }
+
+    // Parse and test each record for integrity
+    var validationStart = new Date().getTime();
+    var validationUpdateInterval = Math.max(1, Math.ceil(myData.length / 100));
+    parseBar.reset('Validating spreadsheet rows...', myData.length);
+    for (var i = 0; i < myData.length; i++) {
+      try {
+        myResult[i] = myTestRecord(myData[i]);
+
+        // Fix page names that include the word "page".
+        if (
+          myResult[i].pageNumber.toString().toLowerCase().startsWith('page ')
+        ) {
+          myResult[i].pageNumber = myResult[i].pageNumber[5];
+        }
+      } catch (e) {}
+
+      if (
+        (i + 1) % validationUpdateInterval == 0 ||
+        i == myData.length - 1
+      ) {
+        parseBar.update(
+          i + 1,
+          'Validating row ' + (i + 1) + ' of ' + myData.length,
+        );
+      }
+    }
+    logTiming('Record validation', validationStart);
+  } finally {
+    parseBar.close();
+    logTiming('Total spreadsheet parsing', spreadsheetParseStart);
   }
 
+  var inputStart = new Date().getTime();
   var myResultsArray = myInput();
+  logTiming('Date and flyer options dialog', inputStart);
   if (myResultsArray) {
     var myMonth = Number(myResultsArray[0]);
     var myDay = Number(myResultsArray[1]);
@@ -241,7 +357,9 @@ function Main() {
   }
 
   // Process each record and build pages
+  var pageBuildStart = new Date().getTime();
   myBuildPages(myPath, myResult, myMonth, myDay, myYear);
+  logTiming('Page generation', pageBuildStart);
   beep();
   alert('Kachow!');
 }
