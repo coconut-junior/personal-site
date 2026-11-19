@@ -5,6 +5,8 @@ var stylesToCheck = [
   '6.5 pt theirs',
   '8 pt price',
   '8 pt theirs',
+  '120 pt price',
+  '20 pt theirs',
 ];
 
 //backport includes function

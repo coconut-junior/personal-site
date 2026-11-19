@@ -205,7 +205,7 @@
       "filename": "calculate_savings.jsx",
       "url": "https://jbx.design/stellar/calculate_savings.jsx",
       "hidden": false,
-      "version": 1.1,
+      "version": 1.2,
       "description": "Select multiple product blocks and run to get the highest savings percentage. The percentage is rounded to the nearest whole number."
     },
     {
